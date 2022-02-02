@@ -1,43 +1,47 @@
-import React, { useState } from 'react';
-import LoginFormContainer, { Form, FormInput } from "./login.styles"
+import React, { useState, useContext } from "react";
+import LoginFormContainer, { Form, FormInput } from "./login.styles";
 import { useform } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { AdminContext } from "contexts/AdminContext";
 
-export default function index() {
+export default function Login() {
+  const context = useContext(AdminContext);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  // const
-
-  function sendLogin(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-
-    const Login = {
-      "username": this.state.username,
-      "password": this.state.password,
-    }
-    // console.log(Login)
-
-    await axios({
-      method: 'post',
-      url: "https://ramadan-comp-rest.herokuapp.com/token/",
-      data: JSON.stringify(Login),
-      headers: {
-
-        "Content-Type": "application/json"
-      }
-    }).then(res => {
-      // console.log(res.data)
-      if (res.data.access) {
-        localStorage.setItem("admin", JSON.stringify(res.data));
-      }
-      return (res.data)
-    })
+    console.log(context, username, password);
+    context.login(username, password);
+    e.target.reset();
   }
 
+  function handleChange(e) {
+    const { name, value } = e.target;
+    if (name === "username") {
+      setUsername(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+  }
 
-  return <LoginFormContainer>
-    <Form>
-      <FormInput type="text" placeholder='Username' />
-      <FormInput type="passowrd" placeholder='Passowrd' />
-    </Form>
-  </LoginFormContainer>;
+  return (
+    <LoginFormContainer>
+      <Form onSubmit={handleSubmit}>
+        <FormInput
+          onChange={handleChange}
+          type="text"
+          name="username"
+          placeholder="Username"
+        />
+        <FormInput
+          onChange={handleChange}
+          type="passowrd"
+          name="password"
+          placeholder="Passowrd"
+        />
+        <button type="submit"> login </button>
+      </Form>
+    </LoginFormContainer>
+  );
 }
