@@ -1,43 +1,36 @@
 import React, { useEffect, useContext, useState } from "react";
-import axios from "axios";
-const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
+import cookie from "react-cookies";
+import { login } from "services/auth";
 
-
-export const AdminContext = React.createContext({
-  IsLogdedIn: false,
-  IsSuperAdmin: false,
-  IsAdmin: false,
-  login: undefined,
-  logout: undefined,
-  token:undefined
-});
-
-AdminContext.displayName = "AdminContext";
-
-// TODO: store in the context not in the localstorage of the cookies!
-export function AdminProvider(props) {
+export const AdminContext = React.createContext();
+function AdminProvider({ children }) {
   const [IsLogdedIn, setIsLogdedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState(undefined);
-  const [IsSuperAdmin, setIsSuperAdmin] = useState(false);
 
+  useEffect(() => {
+    const token = cookie.load("token");
+    // console.log("userCookie >>> ", token);
+    if (token) {
+      setIsLogdedIn(true);
+    }
+  }, []);
+  let state = {
+    AdminContext,
+    IsLogdedIn,
+    login,
+    logout,
+  };
+  return (
+    // TODO : add usecallback and memo to avoid re-rendering and read from the cache.
+    <AdminContext.Provider value={state}>
+      {" "}
+      // to check if didn't work put empty object
+      {children}
+    </AdminContext.Provider>
+  );
 }
+export default AdminProvider;
 
-
-
-
-
-const login = async (email, password) => {
-  const { data } = await axios.post(`${apiUrl}/token/`, {
-    email,
-    password
-  });
-  console.log(data);
-  return data.access;
+export function logout() {
+  cookie.remove("token");
+  return "loged out successfully";
 }
-
-const logout = async () => {
-  setIsLogdedIn(false);
-  setIsSuperAdmin(false);
-  return data.access;
-}
-
