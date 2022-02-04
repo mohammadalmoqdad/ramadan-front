@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import cookie from "react-cookies";
-
+import Login from "components/Login";
 function Home({ test }) {
   console.log(cookie.load("token"));
   useEffect(() => {
@@ -13,6 +13,8 @@ function Home({ test }) {
   }, [test]);
   return (
     <div>
+      {console.log('in return ---------------------------------------------------')}
+
       {cookie.load("token") ? "loged in successfully" : "nothing to do"}
     </div>
   );
