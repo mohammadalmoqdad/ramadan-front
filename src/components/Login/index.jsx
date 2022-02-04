@@ -27,7 +27,6 @@ export default function Login() {
 
   const handleChangeUsername =(e)=>{
     setUsername(e.target.value)
-    // console.log(e.target.value);
   }
   const handleChangePassowrd =(e)=>{
     setPassword(e.target.value)
