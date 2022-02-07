@@ -1,6 +1,6 @@
 import "./App.css";
 import Login from "./components/Login";
-import AdminContext from "./contexts/AdminContext";
+// import AdminContext from "./contexts/AdminContext";
 import AuthProvider from "./contexts/AuthProvider";
 
 import Home from "./components/Home";
@@ -10,13 +10,13 @@ import { useState, useEffect, useContext } from "react";
 function App() {
   const [test, isTest] = useState(false);
 
-  const context = useContext(AdminContext);
+  // const context = useContext(AdminContext);
 
-  console.log(context);
+  // console.log(context);
 
   return (
     <AuthProvider>
-      <AdminContext>
+
       <Login />
       <Home test={test} />
       <button
@@ -26,7 +26,7 @@ function App() {
       >
         logout
       </button>
-      </AdminContext>
+
     </AuthProvider>
   );
 }
