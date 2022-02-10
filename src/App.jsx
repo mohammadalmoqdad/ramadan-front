@@ -1,7 +1,6 @@
 import "./App.css";
 import Login from "./components/Login";
-// import AdminContext from "./contexts/AdminContext";
-import AuthProvider from "./contexts/AuthProvider";
+import AuthProvider from "./contexts/AdminContext";
 
 import Home from "./components/Home";
 import cookie from "react-cookies";
