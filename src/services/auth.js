@@ -1,5 +1,6 @@
 import axios from "axios";
 import cookie from "react-cookies";
+import { useNavigate } from "react-router-dom";
 const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
 
 export async function login(username, password) {
@@ -17,6 +18,7 @@ export async function login(username, password) {
     cookie.save("token", data.access);
 
     console.log("inside the login function ", data);
+    useNavigate("/");
     return data.access; // not nessesary to return anything because I can get the token from cookies
   } catch (err) {
     return err;
