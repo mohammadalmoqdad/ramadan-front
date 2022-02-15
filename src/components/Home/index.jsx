@@ -14,7 +14,7 @@ function Home({ test }) {
   return (
     <div>
       {console.log('in return ---------------------------------------------------')}
-
+      <h1>home --------------</h1>
       {cookie.load("token") ? "loged in successfully" : "nothing to do"}
     </div>
   );
