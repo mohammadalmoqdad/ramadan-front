@@ -1,8 +1,10 @@
 import "./App.css";
 import Login from "./components/Login";
 import AuthProvider from "./contexts/AdminContext";
+
 import Home from "./components/Home";
 import cookie from "react-cookies";
+
 import { useState, useEffect } from "react";
 import { Route, BrowserRouter, Router, Routes } from "react-router-dom";
 import React from "react";
@@ -21,6 +23,7 @@ function App() {
         </BrowserRouter>
       </AuthProvider>
     </>
+
   );
 }
 
