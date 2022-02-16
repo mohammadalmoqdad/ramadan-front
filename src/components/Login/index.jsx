@@ -20,23 +20,30 @@ function Login(props) {
   const context = useContext(AdminContext);
   const [username, setUsername] = useState(" ");
   const [password, setPassword] = useState(" ");
-  // const [flag, setFlag] = useState(false);
-  
+
   useEffect(() => {
-    console.log("inside the useeffect");
-    if (!cookie.load("token")) {
-      // return <Redirect to="/" />;
+    console.log("inside the login useeffect");
+    if (cookie.load("token")) {
+      console.log("is logged in ");
       Navigate("/");
-      console.log("not logged in ");
     }
   }, []);
+
+  useEffect(() => {
+    console.log("inside the listener of the cookie");
+    if (cookie.load("token")) {
+      Navigate("/");
+    }
+  }, [cookie.load("token")]);
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log(context, username, password);
     context.login(username, password);
-    // setFlag(true);
     e.target.reset();
+    setTimeout(() => {
+      Navigate("/");
+    }, 1000);
   }
 
   // function handleChange(e) {

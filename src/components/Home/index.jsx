@@ -1,24 +1,34 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import cookie from "react-cookies";
 import { Redirect, Route, useNavigate } from "react-router-dom";
+import Sidebar from "components/shared/Sidebar";
+import { HomeContainer } from "./home.styles";
+let flag = 0;
 function Home(props) {
   let navigate = useNavigate();
   useEffect(() => {
     console.log("inside the useeffect");
     if (!cookie.load("token")) {
-      // return <Redirect to="/" />;
       navigate("/login");
       console.log("not logged in ");
     }
   }, []);
+  console.log("inside the Home", cookie.load("token"));
 
   return (
-    <div>
-      {console.log(
-        "in return ---------------------------------------------------"
-      )}
-      {cookie.load("token") ? "loged in successfully" : "nothing to do"}
-    </div>
+    <HomeContainer>
+      <Sidebar />
+      <div>home</div>
+
+      <button
+        onClick={() => {
+          cookie.remove("token");
+          navigate("/login");
+        }}
+      >
+        Logout
+      </button>
+    </HomeContainer>
   );
 }
 
