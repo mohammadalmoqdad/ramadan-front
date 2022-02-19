@@ -1,20 +1,27 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import cookie from "react-cookies";
-import Login from "components/Login";
-function Home({ test }) {
-  console.log(cookie.load("token"));
+import { Redirect, Route, useNavigate } from "react-router-dom";
+function Home(props) {
+  let navigate = useNavigate();
   useEffect(() => {
     console.log("inside the useeffect");
-    if (cookie.load("token")) {
-      console.log("logged in");
-    } else {
-      console.log("not logged in");
+    if (!cookie.load("token")) {
+      // return <Redirect to="/" />;
+      navigate("/login");
+      console.log("not logged in ");
     }
-  }, [test]);
+  }, []);
+
   return (
     <div>
+
       {console.log('in return ---------------------------------------------------')}
       <h1>home --------------</h1>
+
+      {console.log(
+        "in return ---------------------------------------------------"
+      )}
+
       {cookie.load("token") ? "loged in successfully" : "nothing to do"}
     </div>
   );
