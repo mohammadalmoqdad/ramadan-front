@@ -14,9 +14,14 @@ function Home(props) {
 
   return (
     <div>
+
+      {console.log('in return ---------------------------------------------------')}
+      <h1>home --------------</h1>
+
       {console.log(
         "in return ---------------------------------------------------"
       )}
+
       {cookie.load("token") ? "loged in successfully" : "nothing to do"}
     </div>
   );

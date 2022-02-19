@@ -71,52 +71,52 @@ margin-right: 1rem;
 
 `;
 
-export const DropdownList = styled.div`
- position: absolute;
-width: 25rem;
-
-font-family: 'Noto Kufi Arabic', sans-serif;
-color: #213C64;
-font-size: 1.3rem;
-
-border: 2px solid orange;
-
-border-radius: 4px;
-background-color: white;
-opacity: 0;
-visibility: hidden;
-transition: opacity 0.2s linear,visibility 0.2s linear;
-@media (max-width:500px) {
-  font-size: 1rem;
-  width: 15rem;
-}
-`;
-
-
-// export const DropdownList = styled.select`
-
+// export const DropdownList = styled.div`
+//  position: absolute;
 // width: 25rem;
+
 // font-family: 'Noto Kufi Arabic', sans-serif;
 // color: #213C64;
 // font-size: 1.3rem;
-// padding:1rem;
+
+// border: 2px solid orange;
 
 // border-radius: 4px;
 // background-color: white;
-// box-shadow: 1px 3px 12px 0px #0000007a;
-// :hover{
-//   outline: none;
-//   border: none;
-// }
-// :focus{
-//   outline: none;
-//   border: none;
-// }
+// opacity: 0;
+// visibility: hidden;
+// transition: opacity 0.2s linear,visibility 0.2s linear;
 // @media (max-width:500px) {
-//   font-size: .8rem;
+//   font-size: 1rem;
 //   width: 15rem;
 // }
 // `;
+
+
+export const DropdownList = styled.select`
+
+width: 25rem;
+font-family: 'Noto Kufi Arabic', sans-serif;
+color: #213C64;
+font-size: 1.3rem;
+padding:1rem;
+
+border-radius: 4px;
+background-color: white;
+box-shadow: 1px 3px 12px 0px #0000007a;
+:hover{
+  outline: none;
+  border: none;
+}
+:focus{
+  outline: none;
+  border: none;
+}
+@media (max-width:500px) {
+  font-size: .8rem;
+  width: 15rem;
+}
+`;
 
 export const DropdownListItem = styled.option`
 
@@ -130,10 +130,11 @@ text-align:center;
   background-color: orange;
   color: white;
 } */
-:hover {
-  background-color: orange;
-  color: white;
-}
+/* background-color: orange; */
+  &:hover {
+    background-color: orange;
+    color: white;
+  }
 `;
 
 export const StudantName = styled.div`
