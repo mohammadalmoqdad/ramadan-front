@@ -6,12 +6,9 @@ import Multiselect from 'multiselect-react-dropdown';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-import AddNewAdmindefault, { DivMultiselect, DivTxtFieldDaynumber, DropdownListItemDays, AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./EditStandards.styles"
+import AddNewAdmindefault, { DivMultiselect, DivTxtFieldDaynumber, DropdownListItemDays, AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./AddStandards.styles"
 
-export default function EditStandards() {
- 
-
-
+export default function AddStandards() {
   const [showdays, setshowdays] = useState('none')
 
   const dayOfRamdan = (e) =>{
@@ -70,26 +67,12 @@ export default function EditStandards() {
         <H3Login>تعديل معايير المسابقة</H3Login>
 
         <Formm>
-
           <DropdownListStanderd className='DropdownList'>
-
-
-            <DropdownListItemStanderd>اختر اسم المعيار - من السيرفر </DropdownListItemStanderd>
+            <DropdownListItemStanderd>اختر اسم المعيار (مقترحات) </DropdownListItemStanderd>
             <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
             <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
             <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
-
           </DropdownListStanderd>
-
-          <DropdownListStanderd className='DropdownList'>
-
-
-<DropdownListItemStanderd>اختر اسم المعيار - من السيرفر </DropdownListItemStanderd>
-<DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
-<DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
-<DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
-
-</DropdownListStanderd>
 
           <DivTxtField>
             <Span />
@@ -97,12 +80,10 @@ export default function EditStandards() {
           </DivTxtField>
 
           <DropdownListStanderd className='DropdownList'>
-
             <DropdownListItemStanderd>اختر نوع النموذج</DropdownListItemStanderd>
             <DropdownListItemStanderd >قراءة قرآن </DropdownListItemStanderd>
             <DropdownListItemStanderd value="bo">الصلاة في المسجد</DropdownListItemStanderd>
             <DropdownListItemStanderd value="An">غسل الجمعة</DropdownListItemStanderd>
-
           </DropdownListStanderd>
 
 
@@ -140,10 +121,8 @@ export default function EditStandards() {
           </DivMultiselect>
           {/* <DivPass>رسالة من الbackend </DivPass> */}
           <InputSubmit type="submit" value='login' >تعديل المعيار</InputSubmit>
-          
         </Formm>
       </DivCenter>
-
     </AddNewAdmindefault>
   )
 }

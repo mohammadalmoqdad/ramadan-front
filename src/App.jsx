@@ -4,8 +4,8 @@ import AuthProvider from "./contexts/AdminContext";
 import Home from "./components/Home";
 import cookie from "react-cookies";
 import { useState, useEffect } from "react";
-import AddCriterias from "./components/AddCriterias";
 import EditStandards from "./components/EditStandards/EditStandards";
+import AddStandards from "./components/AddStandards/AddStandards";
 
 import { Route, BrowserRouter, Router, Routes } from "react-router-dom";
 import React from "react";
@@ -15,7 +15,7 @@ function App() {
     <>
       <AuthProvider>
         <BrowserRouter>
-          <EditStandards />
+          <AddStandards />
           <Routes>
             {/* <Route exact path="/login" component={Login} /> */}
             {/* <Route exact path="/login" element={<Login />}></Route>
