@@ -1,10 +1,32 @@
-import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react'
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
-import AddNewAdmindefault, {AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./EditStandards.styles"
+import AddNewAdmindefault, { Td , Th, Table , Tr, Tbody, Thead , AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./EditStandards.styles"
 
 export default function EditStandards() {
+    
+ const [Tdd , setTdd] = useState();
+useEffect(() => {
+    calendar();
+ });
+const calendar = () => {
+    let Tdd =   ``;
+    let count = 1; 
+    if(count < 30 ) {
+    for(let i = 1; i < 6 ; i++){
+      if(count < 30 ) {
+         Tdd += `<Tr>`;
+        for(let j = 0 ; j < 7; j++){
+          Tdd += `<Td>`+count+++`<Td>`;
+        }
+        Tdd +=`</Tr>`;
+      }
 
+    }
+      }
+      setTdd(Tdd);
+    }
+  
   return (
     <AddNewAdmindefault>
 
@@ -36,20 +58,12 @@ export default function EditStandards() {
           <DropdownListStanderd className='DropdownList'>
 
             <DropdownListItemStanderd>اختر اسم المعيار </DropdownListItemStanderd>
-            <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
+            <DropdownListItemStanderd >قراءة قرآن </DropdownListItemStanderd>
+            <DropdownListItemStanderd value="bo">الصلاة في المسجد</DropdownListItemStanderd>
+            <DropdownListItemStanderd value="An">غسل الجمعة</DropdownListItemStanderd>
 
           </DropdownListStanderd>
 
-          <DropdownListStanderd className='DropdownList'>
-
-            <DropdownListItemStanderd>تعديل اسم العيار - مقترح</DropdownListItemStanderd>
-            <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
-
-          </DropdownListStanderd>
 
           <DivTxtField>
             <Span />
@@ -59,24 +73,29 @@ export default function EditStandards() {
           <DropdownListStanderd className='DropdownList'>
 
             <DropdownListItemStanderd>اختر نوع النموذج</DropdownListItemStanderd>
-            <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
+            <DropdownListItemStanderd >قراءة قرآن </DropdownListItemStanderd>
+            <DropdownListItemStanderd value="bo">الصلاة في المسجد</DropdownListItemStanderd>
+            <DropdownListItemStanderd value="An">غسل الجمعة</DropdownListItemStanderd>
 
           </DropdownListStanderd>
 
 
+          <DivTxtField>
+            <Span />
+            <FormInput placeholder='وصف النقاط - مثال : نقطتان لكل صفحة ' type="text" required />
+          </DivTxtField>
+
           <DivTxtFieldnumber>
             <Span />
-            <FormInputnumber placeholder='' type="number" required />
+            <FormInputnumber placeholder='0' min="0" type="number"  required/>
 
             <Label>ادخل عدد نقاط المعيار</Label>
           </DivTxtFieldnumber>
 
           <DivTxtFieldnumber>
             <Span />
-            <FormInputnumber placeholder='' type="number" required  />
-            <Label>عدد التكرارات المسموح بها باليوم</Label>
+            <FormInputnumber placeholder='0' min="0" type="number"  required />
+            <Label>الحد الأعلى للتكرار</Label>
 
           </DivTxtFieldnumber>
 
@@ -86,7 +105,36 @@ export default function EditStandards() {
 
           {/* <DivPass>رسالة من الbackend </DivPass> */}
           <InputSubmit type="submit" value='login' >تعديل المعيار</InputSubmit>
-
+           <Table> 
+            <Thead>
+              <Tr>
+                    <Th> 
+                      الجمعة
+                    </Th>
+                    <Th> 
+                      السبت
+                    </Th>
+                    <Th> 
+                      الأحد 
+                    </Th>
+                    <Th> 
+                      الاثنين 
+                    </Th>
+                    <Th> 
+                      الثلاثاء
+                    </Th>
+                    <Th> 
+                      الاربعاء 
+                    </Th>
+                    <Th> 
+                      الخميس
+                    </Th>
+                </Tr> 
+              </Thead> 
+              <Tbody> 
+                        { Tdd}
+              </Tbody>
+           </Table>
         </Formm>
       </DivCenter>
 

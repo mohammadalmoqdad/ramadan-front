@@ -166,6 +166,10 @@ border-radius: .5rem;
 transition: .1s;
 /* border-bottom: 3px solid orange; */
 }
+::placeholder {
+  color: white;
+}
+
 
 @media (max-width:500px) {
   width: 11rem;
@@ -320,12 +324,13 @@ background: white;
 `;
 
 export const DropdownListItemStanderd = styled.option`
-
 padding: 1rem ;
 text-align:center;
-
 align-items: flex-start;
 border-bottom: 1px solid silver;
+:hover{
+  background-color: #213C64;
+}
 `;
 
 export const I = styled.i`
@@ -400,3 +405,27 @@ flex-direction: column;
 
 `;
 // DivTxtFieldcheckbox
+
+
+export const Td = styled.td`
+`;
+
+export const Tr = styled.tr`
+`;
+
+
+export const Tbody = styled.tbody`
+`;
+
+
+export const Thead = styled.thead`
+`;
+
+
+export const Table = styled.table`
+`;
+
+
+export const Th = styled.th`
+`;
+
