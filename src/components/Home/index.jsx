@@ -26,6 +26,7 @@ function Home(props) {
   console.log("inside the Home", cookie.load("token"));
 
   return (
+
     <HomeContainer>
       <Sidebar />
       <div>
@@ -71,6 +72,7 @@ function Home(props) {
         Logout
       </button> */}
     </HomeContainer>
+
   );
 }
 

@@ -5,7 +5,6 @@ import { useLogin } from "services/auth";
 export const AdminContext = React.createContext();
 function AdminProvider({ children }) {
   const [IsLogdedIn, setIsLogdedIn] = useState(false);
-
   useEffect(() => {
     const token = cookie.load("token");
     if (token) {

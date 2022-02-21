@@ -6,11 +6,15 @@ import Home from "./components/Home";
 import cookie from "react-cookies";
 import Loder from "components/Loader";
 import { useState, useEffect } from "react";
+
+import AddCriterias from "./components/AddCriterias";
+
 import { Route, BrowserRouter, Router, Routes } from "react-router-dom";
 import React from "react";
 function App() {
   // const [test, isTest] = useState(false);
   return (
+
     <>
       <AuthProvider>
         <BrowserRouter>

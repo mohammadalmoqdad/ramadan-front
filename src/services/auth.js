@@ -18,8 +18,12 @@ export async function useLogin(username, password) {
       }
     );
     console.log("inside the login function ", data);
+
     cookie.save("token", data.access);
     // context.setIsLogdedIn(true);
+
+    // useNavigate("/");
+
     return data.access; // not nessesary to return anything because I can get the token from cookies
   } catch (err) {
     console.log("in the catch of loggin");
