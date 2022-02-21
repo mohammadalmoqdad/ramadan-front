@@ -10,12 +10,16 @@ import AddNewAdmindefault, { DivMultiselect, DivTxtFieldDaynumber, DropdownListI
 export default function EditStandards() {
 
   const [showdays, setshowdays] = useState('none')
+  const[selectedDayOf, setselectedDayOf]= useState([])
 
   const dayOfRamdan = (e) =>{
     if(showdays == 'none'){
       setshowdays('block')
     }else{
       setshowdays('none')
+      setselectedDayOf(0)
+      console.log(selectedDayOf);
+
     }
   }
 
@@ -26,7 +30,20 @@ export default function EditStandards() {
     for (let i = 0; i < e.length; i++) {
       selectedDay[i] = e[i].id;
     }
-    console.log(selectedDay);
+    setselectedDayOf(selectedDay)
+    // console.log(selectedDayOf);
+  }
+
+  const handleDeleteDays = (e) => {
+    // setdays(e)
+    let selectedDay = []
+    // console.log(e[0].id);
+    for (let i = 0; i < e.length; i++) {
+      selectedDay[i] = e[i].id;
+    }
+    // console.log(selectedDayOf);
+    setselectedDayOf(selectedDay)
+
   }
 
   const day = [
@@ -124,8 +141,10 @@ export default function EditStandards() {
 
           <DivMultiselect style={{display: showdays}}>
           <Multiselect
-            // onSelect={handleDeleteDays}
+          
             onSelect={handleAddDays}
+            onRemove={handleDeleteDays}
+
             placeholder='اختر الايام ليكون متاحا'
             options={options} // Options to display in the dropdown
             displayValue='dayOfRamdan'

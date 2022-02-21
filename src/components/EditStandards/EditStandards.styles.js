@@ -5,7 +5,7 @@ import styled from "styled-components";
 // addNewAdmin 
 export default styled.div`
 width: 100%;
-height: 100%rem;
+height: 100%;
 background: linear-gradient(120deg, #2980b9, #2980b9);
 
 display: flex;
@@ -20,6 +20,7 @@ flex-direction: column;
 
 @media (max-width:500px) {
   padding: 2rem;
+  height: 60rem;
   width: 30rem;
 }
 `;
@@ -130,7 +131,7 @@ border-bottom: 3px solid orange;
 }
 
 @media (max-width:500px) {
-  width: 11rem;
+  width: 9rem;
   font-size: .8rem;
 }
 `;
@@ -181,9 +182,8 @@ transition: .1s;
   color: white;
 }
 
-
 @media (max-width:500px) {
-  width: 11rem;
+  width: 3rem;
   font-size: .8rem;
 }
 `;
@@ -425,6 +425,12 @@ flex-direction: column;
   background-color: orange;
 
 }
+@media (max-width:500px) {
+  font-size: .8rem;
+  width: 1rem;
+  margin: 0;
+
+}
 `;
 
 export const LabelSoper = styled.section`
@@ -437,11 +443,19 @@ display: block;
 margin: auto;
 flex-direction: column;
 
+@media (max-width:500px) {
+  font-size: .7rem;
+  width: 8rem;
+  margin-left: 1.5rem;
+}
 `;
 
 export const DivMultiselect = styled.div`
-
 /* display: none; */
+@media (max-width:500px) {
+  font-size: .7rem;
+  width: 12rem;
 
+}
 `;
 // DivTxtFieldcheckbox 
