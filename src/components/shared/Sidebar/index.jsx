@@ -3,7 +3,7 @@ import {
   SideBarContainer,
   MenuList,
   MenuContainer,
-  MenuListItem,
+  MenuLink,
   UserInfoContainer,
   Username,
   UserPicContainer,
@@ -22,6 +22,7 @@ function Sidebar() {
       <MenuIconContainer>
         <MenuIcon />
       </MenuIconContainer>
+
       <UserInfoContainer>
         <Username>اسم المستخدم</Username>
         <UserPicContainer>
@@ -30,15 +31,13 @@ function Sidebar() {
       </UserInfoContainer>
 
       <MenuContainer>
-        <MenuList>
-          <MenuListItem>الصفحة الرئيسية</MenuListItem>
-          <MenuListItem>إضافة أدمن جديد</MenuListItem>
-          <MenuListItem>باسورد جديد للطالب</MenuListItem>
-          <MenuListItem>إضافة معايير المسابقة</MenuListItem>
-          <MenuListItem>تعديل معايير المسابقة</MenuListItem>
-          <MenuListItem>مشاهدة النتائج</MenuListItem>
-          <MenuListItem>المجموعات</MenuListItem>
-        </MenuList>
+        <MenuLink to="/">الصفحة الرئيسية</MenuLink>
+        <MenuLink to="/">إضافة أدمن جديد</MenuLink>
+        <MenuLink to="/">باسورد جديد للطالب</MenuLink>
+        <MenuLink to="/">إضافة معايير المسابقة</MenuLink>
+        <MenuLink to="/">تعديل معايير المسابقة</MenuLink>
+        <MenuLink to="/">مشاهدة النتائج</MenuLink>
+        <MenuLink to="/">المجموعات</MenuLink>
       </MenuContainer>
     </SideBarContainer>
   );

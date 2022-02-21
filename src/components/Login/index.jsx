@@ -14,36 +14,40 @@ import LoginFormContainer, {
 import { AdminContext } from "contexts/AdminContext";
 import { useNavigate } from "react-router-dom";
 import cookie from "react-cookies";
+import Loader from "../Loader";
 
 function Login(props) {
   let Navigate = useNavigate();
   const context = useContext(AdminContext);
   const [username, setUsername] = useState(" ");
   const [password, setPassword] = useState(" ");
+  const [loading, setloading] = useState(true); // note: to open loading comp when the function start
 
   useEffect(() => {
-    console.log("inside the login useeffect");
+    // setloading(true); // noooooooooooooooot nessesry but because of Amin's mostach lol
+    // console.log("inside the login useeffect");
     if (cookie.load("token")) {
       console.log("is logged in ");
       Navigate("/");
     }
+    setloading(false);
   }, []);
 
-  useEffect(() => {
-    console.log("inside the listener of the cookie");
-    if (cookie.load("token")) {
-      Navigate("/");
-    }
-  }, [cookie.load("token")]);
+  // useEffect(() => {
+  //   console.log("inside the listener of the IsLogdedIn");
+  //   if (context.IsLogdedIn) Navigate("/");
+  //   // else Navigate("/login");
+  // }, [context.IsLogdedIn]);
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log(context, username, password);
-    context.login(username, password);
+    context.useLogin(username, password);
+    // Navigate("/");
     e.target.reset();
-    setTimeout(() => {
-      Navigate("/");
-    }, 1000);
+
+    // setTimeout(() => {
+    // }, 1000);
   }
 
   // function handleChange(e) {
@@ -61,6 +65,14 @@ function Login(props) {
   const handleChangePassowrd = (e) => {
     setPassword(e.target.value);
   };
+  if (loading) {
+    // to render loading if the 'loading' true and to be unreadable if it false
+    return (
+      <main>
+        <Loader />
+      </main>
+    );
+  }
   return (
     <LoginFormContainer>
       <DivCenter>
