@@ -11,6 +11,7 @@ import AddCriterias from "./components/AddCriterias";
 
 import { Route, BrowserRouter, Router, Routes } from "react-router-dom";
 import React from "react";
+import SetPasswordStudents from "components/setPasswordStudent/SetPasswordStudents";
 function App() {
   // const [test, isTest] = useState(false);
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route exact path="/login" element={<Login />}></Route>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/loading" element={<Loder />} />
+            <Route exact path= "/set-student-password" element= {<SetPasswordStudents/>}  ></Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

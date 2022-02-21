@@ -62,7 +62,7 @@ function Home(props) {
         {/* Third Section */}
         <VideoSection></VideoSection>
       </div>
-      {/* <button
+      <button
         onClick={() => {
           cookie.remove("token");
           navigate("/login");
@@ -70,7 +70,7 @@ function Home(props) {
         }}
       >
         Logout
-      </button> */}
+      </button>
     </HomeContainer>
 
   );
