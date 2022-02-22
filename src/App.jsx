@@ -9,7 +9,7 @@ import Group from "components/Group/Group";
 
 import { useState, useEffect } from "react";
 
-import AddCriterias from "./components/AddCriterias";
+
 import EditStandards from './components/EditStandards/EditStandards'
 import AddNewAdmin from './components/addNewAdmin/AddNewAdmin'
 import StudentsPoints from './components/studentsPoints/StudentsPoints'

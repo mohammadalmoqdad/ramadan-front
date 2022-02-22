@@ -62,7 +62,7 @@ export default function EditStandards() {
 
   return (
     <AddNewAdmindefault>
-
+      
       {/* <DropdownDiv className='DropdownDiv'> */}
 
         {/* <DropdownDivSelect>
@@ -166,7 +166,7 @@ export default function EditStandards() {
 
         </Formm>
       </DivCenter>
-
+      <Sidebar/>
     </AddNewAdmindefault>
   )
 }
