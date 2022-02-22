@@ -13,11 +13,11 @@ export default function EditStandards() {
   const[selectedDayOf, setselectedDayOf]= useState([])
 
   const dayOfRamdan = (e) =>{
-    if(showdays == 'none'){
+    if(showdays === 'none'){
       setshowdays('block')
     }else{
       setshowdays('none')
-      setselectedDayOf(0)
+      setselectedDayOf([])
       console.log(selectedDayOf);
 
     }
@@ -125,13 +125,20 @@ export default function EditStandards() {
             <Span />
             <FormInputnumber placeholder='0' type="number" min ='0' required />
 
-            <Label>ادخل عدد نقاط المعيار</Label>
+            <Label>ادخل عدد نقاط لكل تكرار</Label>
           </DivTxtFieldnumber>
 
           <DivTxtFieldnumber>
             <Span />
             <FormInputnumber placeholder='0' type="number" min='0' required />
             <Label>عدد التكرارات المسموح بها باليوم</Label>
+
+          </DivTxtFieldnumber>
+
+          <DivTxtFieldnumber>
+            <Span />
+            <FormInputnumber placeholder='0' type="number" min='0' required />
+            <Label>الحد الادنى للتركرار</Label>
 
           </DivTxtFieldnumber>
 

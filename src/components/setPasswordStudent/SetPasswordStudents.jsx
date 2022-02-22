@@ -52,7 +52,7 @@ export default function SetPasswordStudents() {
   };
   useEffect((e) => {
     let arr = [];
-    console.log(AccessToken);
+    // console.log(AccessToken);
     axios({
       method: "get",
       url: `https://ramadan-comp-rest.herokuapp.com/comp-admin/students/`,
@@ -61,7 +61,7 @@ export default function SetPasswordStudents() {
         Authorization: `Bearer ${AccessToken}`,
       },
     }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       // we can't render array of objects, so we created a setState hook as array to store the users names and then render the array of usernames 
       for (let i = 0; i < res.data.results.length; i++) {
         arr.push(res.data.results[i].username);
@@ -70,10 +70,11 @@ export default function SetPasswordStudents() {
       console.log(mhdArray);
     });
   }, []);
+
   const Set_Pas_St_Fun = async (e) => {
     e.preventDefault();
 
-    if (PasswordStudent1 !== PasswordStudent2) {
+    if (PasswordStudent1 !== PasswordStudent2 || usarName === 'اختر المتسابق لتغيير كلمة المرور' ) {
       setPasswordStudentEqual("false");
       // console.log(PasswordStudentEqual);
     } else {
@@ -82,7 +83,7 @@ export default function SetPasswordStudents() {
       };
       await axios({
         method: "put",
-        url: `https://ramadan-comp-rest.herokuapp.com/comp-admin/students/st1/change_password/`,
+        url: `https://ramadan-comp-rest.herokuapp.com/comp-admin/students/${usarName}/change_password/`,
         data: PasswordStudent,
         headers: {
           "Content-Type": "application/json",

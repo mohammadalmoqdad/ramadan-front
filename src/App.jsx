@@ -8,6 +8,7 @@ import Loder from "components/Loader";
 import { useState, useEffect } from "react";
 
 import AddCriterias from "./components/AddCriterias";
+import EditStandards from './components/EditStandards/EditStandards'
 
 import { Route, BrowserRouter, Router, Routes } from "react-router-dom";
 import React from "react";
@@ -21,11 +22,13 @@ function App() {
         <BrowserRouter>
           {/* <Login /> */}
           <Routes>
-            {/* <Route exact path="/login" component={Login} /> */}
+            {/* <Route exact path="/login" component={Login} /> */} 
             <Route exact path="/login" element={<Login />}></Route>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/loading" element={<Loder />} />
             <Route exact path= "/set-student-password" element= {<SetPasswordStudents/>}  ></Route>
+            <Route exact path= "/EditStandards" element= {<EditStandards/>}  ></Route>
+
           </Routes>
         </BrowserRouter>
       </AuthProvider>
