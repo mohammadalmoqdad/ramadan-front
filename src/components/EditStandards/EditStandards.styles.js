@@ -11,7 +11,7 @@ background: linear-gradient(120deg, #2980b9, #2980b9);
 display: flex;
 justify-content: center;
 align-items: flex-start;
-padding: 5rem;
+/* padding: 5rem; */
 /* flex-direction: column; */
 
 @media (max-width:1000px) {

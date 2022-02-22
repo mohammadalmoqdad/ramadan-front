@@ -61,7 +61,7 @@ export default function SetPasswordStudents() {
         Authorization: `Bearer ${AccessToken}`,
       },
     }).then((res) => {
-      // console.log(res.data);
+      console.log(res.data);
       // we can't render array of objects, so we created a setState hook as array to store the users names and then render the array of usernames 
       for (let i = 0; i < res.data.results.length; i++) {
         arr.push(res.data.results[i].username);
