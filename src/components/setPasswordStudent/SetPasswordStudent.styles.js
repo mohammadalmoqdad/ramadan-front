@@ -19,7 +19,6 @@ flex-direction: column;
 }
 `;
 
-
 export const DropdownDiv = styled.div`
 width: 25rem;
 margin: auto;
@@ -47,10 +46,10 @@ justify-content: center;
 align-items: flex-start;
 cursor: pointer;
 margin-bottom: .5rem;
+
 @media (max-width:500px) {
   padding: .8rem;
   margin-bottom: 0rem;
-
 }
 `;
 

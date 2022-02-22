@@ -6,6 +6,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AddNewAdmindefault, { DivMultiselect, DivTxtFieldDaynumber, DropdownListItemDays, AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./EditStandards.styles"
+import Sidebar from "components/shared/Sidebar";
 
 export default function EditStandards() {
 
