@@ -5,6 +5,8 @@ import AuthProvider from "./contexts/AdminContext";
 import Home from "./components/Home";
 import cookie from "react-cookies";
 import Loder from "components/Loader";
+import Group from "components/Group/Group";
+
 import { useState, useEffect } from "react";
 
 import AddCriterias from "./components/AddCriterias";
@@ -28,6 +30,7 @@ function App() {
             <Route exact path="/loading" element={<Loder />} />
             <Route exact path= "/set-student-password" element= {<SetPasswordStudents/>}  ></Route>
             <Route exact path= "/EditStandards" element= {<EditStandards/>}  ></Route>
+            <Route exact path= "/Groups" element= {<Group/>}  ></Route>
 
           </Routes>
         </BrowserRouter>
