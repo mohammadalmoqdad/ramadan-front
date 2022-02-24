@@ -1,5 +1,6 @@
 import React from 'react'
 import { TiTimes } from "react-icons/ti";
+import Sidebar from "components/shared/Sidebar";
 import AddNewAdmindefault, { LabelSoper,Checkboxes,Wird, InputSubmit, DivPass, FormInput, DivTxtField, Form, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./AddNewAdmin.styles"
 
 export default function AddNewAdmin() {
@@ -7,7 +8,6 @@ export default function AddNewAdmin() {
 
   return (
     <AddNewAdmindefault> 
-
       <DropdownDiv className='DropdownDiv'>
         <DropdownDivSelect>
 
@@ -61,6 +61,7 @@ export default function AddNewAdmin() {
 
         </Form>
       </DivCenter>
+      <Sidebar/>
 
     </AddNewAdmindefault>
   )

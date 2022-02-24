@@ -3,13 +3,14 @@ import React, { useState } from 'react'
 import Multiselect from 'multiselect-react-dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddNewAdmindefault, { DivMultiselect, DivTxtFieldDaynumber, DropdownListItemDays, AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./Group.styles"
+import Sidebar from "components/shared/Sidebar";
 
 
 export default function Group() {
 
   const [showdays, setshowdays] = useState('none')
   const [selectedDayOf, setselectedDayOf] = useState([])
-  const [addGroup , setaddGroup] = useState([])
+  const [addGroup, setaddGroup] = useState([])
 
   const dayOfRamdan = (e) => {
     if (showdays === 'none') {
@@ -69,7 +70,7 @@ export default function Group() {
 
         </DropdownDivSelect> */}
 
-        {/* <AvailableDays className='DropdownList'>
+      {/* <AvailableDays className='DropdownList'>
 
           <DropdownListItemDays value="An"><DivTxtFieldDaynumber><Checkboxes type="checkbox" /> <LabelSoper>يوم 1 رمضان</LabelSoper></DivTxtFieldDaynumber></DropdownListItemDays>
           <DropdownListItemDays value="An"><DivTxtFieldDaynumber><Checkboxes type="checkbox" /> <LabelSoper>يوم 2 رمضان</LabelSoper></DivTxtFieldDaynumber></DropdownListItemDays>
@@ -120,7 +121,7 @@ export default function Group() {
             <Span />
             <FormInput placeholder='ادخل اسم المجموعة الجديدة' type="text" required />
           </DivTxtField>
-{/* 
+          {/* 
           <DivTxtFieldnumber>
             <Span />
             <FormInputnumber placeholder='0' type="number" min='0' required />
@@ -147,25 +148,26 @@ export default function Group() {
           </DivTxtFieldnumber>
 
           <DivMultiselect style={{ display: showdays }}>
-          <DropdownListStanderd className='DropdownList'>
+            <DropdownListStanderd className='DropdownList'>
 
-            <DropdownListItemStanderd>أسم المجموعة </DropdownListItemStanderd>
-            <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
+              <DropdownListItemStanderd>أسم المجموعة </DropdownListItemStanderd>
+              <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
+              <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
+              <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
 
-          </DropdownListStanderd>
+            </DropdownListStanderd>
 
-          <InputSubmit type="submit" value='' >تعديل المجموعة</InputSubmit>
-          <InputSubmit type="submit" value='' >حذف المجموعة</InputSubmit>
+            <InputSubmit type="submit" value='' >تعديل المجموعة</InputSubmit>
+            <InputSubmit type="submit" value='' >حذف المجموعة</InputSubmit>
 
           </DivMultiselect>
           {/* <DivPass>رسالة من الbackend </DivPass> */}
-          <InputSubmit type="submit" value='login'  style={{ display: addGroup }} >اضافة مجموعة</InputSubmit>
+          <InputSubmit type="submit" value='login' style={{ display: addGroup }} >اضافة مجموعة</InputSubmit>
 
         </Formm>
       </DivCenter>
 
+      <Sidebar />
     </AddNewAdmindefault>
   )
 }

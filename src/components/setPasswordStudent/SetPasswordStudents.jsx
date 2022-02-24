@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Sidebar from "components/shared/Sidebar";
 
 import { AiFillCaretDown } from "react-icons/ai";
 
@@ -19,7 +20,7 @@ import SetPasswordStudentContainer, {
   DropdownDiv,
   DropdownDivSelect,
   Span,
-  I,
+  SetPasswordStudent,
 } from "./SetPasswordStudent.styles";
 import "./Setpass.css";
 import cookie from "react-cookies";
@@ -103,6 +104,7 @@ export default function SetPasswordStudents() {
 
   return (
     <SetPasswordStudentContainer>
+      <SetPasswordStudent>
       <DropdownDiv className="DropdownDiv" onChange={selectedUser}>
         {/* <DropdownDivSelect>
         <I><AiFillCaretDown /></I>
@@ -178,6 +180,9 @@ export default function SetPasswordStudents() {
           </InputSubmit>
         </Form>
       </DivCenter>
+      </SetPasswordStudent>
+      <Sidebar/>
+
     </SetPasswordStudentContainer>
   );
 }

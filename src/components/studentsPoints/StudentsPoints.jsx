@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Sidebar from "components/shared/Sidebar";
 
-import LoginFormContainer, { Formm, DropdownListItem, DropdownList, DropdownDiv, Wird, DivPass, DivCenter, H3Login, InputSubmit, Form, FormInput, H1Login, DivTxtField, FormLabel, Span } from "./StudentsPoints.styles"
+import LoginFormContainer, { LoginForm, Formm, DropdownListItem, DropdownList, DropdownDiv, Wird, DivPass, DivCenter, H3Login, InputSubmit, Form, FormInput, H1Login, DivTxtField, FormLabel, Span } from "./StudentsPoints.styles"
 import  Tabl  from './table/Tabl.jsx';
 export default function StudentsPoints() {
   const [usarName, setUsarName] = useState("");
@@ -12,7 +13,7 @@ export default function StudentsPoints() {
   }
 
   return <LoginFormContainer>
-
+    <LoginForm>
     <DropdownDiv className='DropdownDiv' onChange={selectedUser} >
       {/* <DropdownDivSelect>
         <I><AiFillCaretDown /></I>
@@ -71,6 +72,8 @@ export default function StudentsPoints() {
       
     </DropdownDiv>
     <Tabl/>
+    </LoginForm>
+    <Sidebar/>
 
   </LoginFormContainer>;
 }
