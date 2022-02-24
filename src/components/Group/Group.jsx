@@ -112,27 +112,6 @@ export default function Group() {
             <Span />
             <FormInput placeholder='ادخل اسم المجموعة الجديدة' type="text" required />
           </DivTxtField>
-          {/* 
-          <DivTxtFieldnumber>
-            <Span />
-            <FormInputnumber placeholder='0' type="number" min='0' required />
-
-            <Label>ادخل عدد نقاط لكل تكرار</Label>
-          </DivTxtFieldnumber>
-
-          <DivTxtFieldnumber>
-            <Span />
-            <FormInputnumber placeholder='0' type="number" min='0' required />
-            <Label>عدد التكرارات المسموح بها باليوم</Label>
-
-          </DivTxtFieldnumber>
-
-          <DivTxtFieldnumber>
-            <Span />
-            <FormInputnumber placeholder='0' type="number" min='0' required />
-            <Label>الحد الادنى للتركرار</Label>
-
-          </DivTxtFieldnumber> */}
 
           <DivTxtFieldnumber>
             <Checkboxes type="checkbox" onChange={dayOfRamdan} /> <LabelSoper>هل تريد تعديل أو حذف مجموعة سابقة؟</LabelSoper>

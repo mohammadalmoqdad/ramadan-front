@@ -1,30 +1,9 @@
 import styled from "styled-components";
 
 export default styled.div`
-
-background:white ;
+justify-content: center;
+align-items: flex-start;
 display: flex;
-justify-content: center;
-align-items: flex-start;
-flex-direction: column;
-
-
-margin: auto;
-margin-top: 2rem;
-border-radius: 10px;
-box-shadow: 1px 3px 12px 0px #0000007a;
-
-`;
-
-export const DivIn = styled.div`
-
- margin: 1rem;
- margin-top: 2rem;
- background: white;
- display: flex;
-justify-content: center;
-align-items: flex-start;
-flex-direction: column;
 `;
 
 export const InputSubmit = styled.button`
@@ -75,7 +54,7 @@ font-size: 1.2rem;
 }
 `;
 export const FormInput = styled.input`
-width: 5rem;
+width: 7rem;
 padding: 0 5px;
 height: 2.1rem;
 font-size: 1rem;
@@ -85,6 +64,7 @@ outline: none;
 text-align:right;
 color: orange;
 border-bottom: 2px solid #2691d9;
+margin-right: 2rem;
 :focus{
 transition: .1s;
 border-bottom: 3px solid orange;
