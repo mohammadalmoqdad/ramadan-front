@@ -22,6 +22,7 @@ function Login(props) {
   const [username, setUsername] = useState(" ");
   const [password, setPassword] = useState(" ");
   const [loading, setloading] = useState(true); // note: to open loading comp when the function start
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   useEffect(() => {
     // setloading(true); // noooooooooooooooot nessesry but because of Amin's mostach lol
@@ -42,9 +43,16 @@ function Login(props) {
   function handleSubmit(e) {
     e.preventDefault();
     console.log(context, username, password);
-    context.useLogin(username, password);
-    // Navigate("/");
-    e.target.reset();
+    context.useLogin(username, password).then((isUsersLoggedIn) => {
+          if (isUsersLoggedIn === true) {
+            Navigate("/");
+          } else {
+            setShowErrorMessage(true);
+            e.target.reset();
+          }
+        }
+    );
+
 
     // setTimeout(() => {
     // }, 1000);
@@ -102,6 +110,9 @@ function Login(props) {
             />
           </DivTxtField>
 
+          { showErrorMessage &&
+              <DivPass>اسم المستخدم أو كلمة المرور خاطآن</DivPass>
+          }
           <DivPass>
             هل تواجه مشكلة تقنية أو نسيت كلمة المرور؟ تواصل مع الدعم الفني
           </DivPass>

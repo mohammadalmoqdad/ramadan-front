@@ -24,9 +24,9 @@ export async function useLogin(username, password) {
 
     // useNavigate("/");
 
-    return data.access; // not nessesary to return anything because I can get the token from cookies
+    return true; // not nessesary to return anything because I can get the token from cookies
   } catch (err) {
     console.log("in the catch of loggin");
-    return "اسم المستخدم أو كلمة المرور خاطآن";
+    return false;
   }
 }
