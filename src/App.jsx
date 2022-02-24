@@ -35,7 +35,7 @@ function App() {
             <Route exact path= "/EditStandards" element= {<EditStandards/>}  ></Route>
             <Route exact path= "/Groups" element= {<Group/>}  ></Route>
             <Route exact path= "/AddNewAdmin" element= {<AddNewAdmin/>}  ></Route>
-            <Route exact path= "/StudentsPoints" element= {<AddNewAdmin/>}  ></Route>
+            <Route exact path= "/StudentsPoints" element= {<StudentsPoints/>}  ></Route>
 
           </Routes>
         </BrowserRouter>

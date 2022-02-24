@@ -1,13 +1,21 @@
 import styled from "styled-components";
 
 export default styled.div`
-width: 100%;
-height: 60rem;
-background: linear-gradient(120deg, #2980b9, #2980b9);
 display: flex;
+background: linear-gradient(120deg, #2980b9, #2980b9);
+
+`;
+export const LoginForm = styled.div`
+
+ /* display: flex; */ 
+ /* justify-content: center; */
+ /* align-items: center; */
+ display: flex;
+ width: 100%;
+height: 60rem;
 justify-content: center;
 align-items: flex-start;
-padding: 5rem;
+/* padding: 5rem; */
 flex-direction: column;
 
 @media (max-width:500px) {
@@ -16,9 +24,10 @@ flex-direction: column;
   height: 80rem;
 }
 `;
+
 export const DivCenter = styled.div`
 
- /* display: flex; */
+ /* display: flex; */ 
  /* justify-content: center; */
  /* align-items: center; */
  box-shadow: 1px 3px 12px 0px #0000007a;
