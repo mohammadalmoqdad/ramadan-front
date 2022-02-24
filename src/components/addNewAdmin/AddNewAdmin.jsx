@@ -8,6 +8,7 @@ export default function AddNewAdmin() {
 
   return (
     <AddNewAdmindefault> 
+      
       <DropdownDiv className='DropdownDiv'>
         <DropdownDivSelect>
 
@@ -61,6 +62,7 @@ export default function AddNewAdmin() {
 
         </Form>
       </DivCenter>
+
       <Sidebar/>
 
     </AddNewAdmindefault>

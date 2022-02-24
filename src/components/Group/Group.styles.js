@@ -19,7 +19,7 @@ flex-direction: column;
 }
 
 @media (max-width:500px) {
-  padding: 2rem;
+  /* padding: 2rem; */
   height: 60rem;
   width: 30rem;
 }
@@ -222,8 +222,8 @@ margin-top: 0rem;
 
 @media (max-width:500px) {
 width: 15rem;
-margin-bottom: 3rem;
-margin-top: 3rem;
+/* margin-bottom: 3rem;
+margin-top: 3rem; */
 }
 `;
 

@@ -13,6 +13,7 @@ import {
   VideoSection,
 } from "./home.styles";
 import { AdminContext } from "../../contexts/AdminContext";
+
 function Home(props) {
   const context = useContext(AdminContext);
   let navigate = useNavigate();
