@@ -5,25 +5,53 @@ display: flex;
 background: linear-gradient(120deg, #2980b9, #2980b9);
 
 `;
-export const LoginForm = styled.div`
 
- /* display: flex; */ 
- /* justify-content: center; */
- /* align-items: center; */
- display: flex;
+export const PointShow = styled.div`
  width: 100%;
 height: 60rem;
+background: linear-gradient(120deg, #2980b9, #2980b9);
 justify-content: center;
-align-items: flex-start;
-/* padding: 5rem; */
-flex-direction: column;
+ align-items: center;
+ display: flex;
+ @media (max-width:960px) {
+  /* padding: 3rem; */
+  /* width: 30rem; */
+  height:85rem;
+  }
+  @media (max-width:500px) {
+  margin: auto;
+  margin-top: 1rem;
+  width: 25rem;
+  height: 115rem;
+}
+`;
 
-@media (max-width:500px) {
+export const LoginForm = styled.div`
+height: 50rem;
+width: 55rem;
+background: white;
+
+ justify-content: center;
+ align-items: center;
+ display: flex;
+ box-shadow: 1px 3px 12px 0px #0000007a;
+ border-radius: 10px;
+
+padding: 1rem;
+flex-direction: column;
+@media (max-width:960px) {
   padding: 2rem;
   width: 30rem;
   height: 80rem;
 }
+@media (max-width:500px) {
+  margin: auto;
+  margin-top: 1rem;
+  width: 18rem;
+  height: 105rem;
+}
 `;
+
 
 export const DivCenter = styled.div`
 
@@ -40,6 +68,7 @@ export const DivCenter = styled.div`
 
 `;
 
+
 export const Form = styled.div`
 
 margin: auto;
@@ -50,6 +79,10 @@ display: flex;
 /* justify-content: space-between; */
 @media (max-width:960px) {
  display: flex;
+ 
+}
+@media (max-width:500px) {
+  flex-direction: column;
 }
 `;
 export const Formm = styled.div`
@@ -188,12 +221,12 @@ width: 20rem;
 margin: auto;
 
 /* margin-bottom: 0rem; */
-margin-top: 2rem;
+margin-top: 1rem;
 
 @media (max-width:500px) {
 width: 15rem;
-margin-bottom: 3rem;
-margin-top: 3rem;
+margin-bottom: 1rem;
+margin-top: 1rem;
 }
 `;
 
@@ -203,20 +236,28 @@ export const DropdownList = styled.select`
 
 width: 20rem;
 font-family: 'Noto Kufi Arabic', sans-serif;
-color: #213C64;
+/* color: #213C64; */
+color: white;
 font-size: 1.3rem;
 padding:1rem;
 
 border-radius: 4px;
-background-color: white;
+background-color: #E94F57;
 box-shadow: 1px 3px 12px 0px #0000007a;
+border: none;
+outline: none;
+
 :hover{
   outline: none;
   border: none;
+  color: #213C64;
+  background-color: white;
 }
 :focus{
   outline: none;
+  color: #213C64;
   border: none;
+  background-color: white;
 }
 @media (max-width:500px) {
   font-size: .8rem;

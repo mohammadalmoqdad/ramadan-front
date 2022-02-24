@@ -108,16 +108,7 @@ export default function Group() {
 
           </DropdownDiv>
 
-          <DropdownListStanderd className='DropdownList'>
-
-            <DropdownListItemStanderd>اسماء الطلبة الموجودين بالمجموعة </DropdownListItemStanderd>
-            <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
-
-          </DropdownListStanderd>
-
-          <DivTxtField >
+          <DivTxtField style={{ display: addGroup }}>
             <Span />
             <FormInput placeholder='ادخل اسم المجموعة الجديدة' type="text" required />
           </DivTxtField>
@@ -148,9 +139,19 @@ export default function Group() {
           </DivTxtFieldnumber>
 
           <DivMultiselect style={{ display: showdays }}>
+
             <DropdownListStanderd className='DropdownList'>
 
               <DropdownListItemStanderd>أسم المجموعة </DropdownListItemStanderd>
+              <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
+              <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
+              <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
+
+            </DropdownListStanderd>
+
+            <DropdownListStanderd className='DropdownList'>
+
+              <DropdownListItemStanderd>اسماء الطلبة الموجودين بالمجموعة </DropdownListItemStanderd>
               <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
               <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
               <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
