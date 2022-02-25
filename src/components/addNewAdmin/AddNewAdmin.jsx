@@ -21,7 +21,6 @@ import Sidebar from "components/shared/Sidebar";
 import Multiselect from 'multiselect-react-dropdown';
 import axios from "axios";
 import cookie from "react-cookies";
-let AccessToken = cookie.load('token');
 const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
 
 export default function AddNewAdmin() {
@@ -50,7 +49,7 @@ export default function AddNewAdmin() {
       url: `${apiUrl}/comp-admin/comp-admins/`,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${AccessToken}`,
+        Authorization: `Bearer ${cookie.load('token')}`,
       },
     }).then((res) => {
       setAdmins(res.data)
@@ -61,7 +60,7 @@ export default function AddNewAdmin() {
       url: `${apiUrl}/comp-admin/comp-group/`,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${AccessToken}`,
+        Authorization: `Bearer ${cookie.load('token')}`,
       },
     }).then((res) => {
       setManagedGroups(res.data);
@@ -95,7 +94,7 @@ export default function AddNewAdmin() {
         },{
           headers:{
             "Content-Type": "application/json",
-            Authorization: `Bearer ${AccessToken}`
+            Authorization: `Bearer ${cookie.load('token')}`
           }
         }
     ).then(
