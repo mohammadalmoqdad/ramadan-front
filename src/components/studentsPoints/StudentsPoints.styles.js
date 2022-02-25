@@ -8,7 +8,7 @@ background: linear-gradient(120deg, #2980b9, #2980b9);
 
 export const PointShow = styled.div`
  width: 100%;
-height: 60rem;
+height: 70rem;
 background: linear-gradient(120deg, #2980b9, #2980b9);
 justify-content: center;
  align-items: center;
@@ -27,7 +27,7 @@ justify-content: center;
 `;
 
 export const LoginForm = styled.div`
-height: 50rem;
+height: 60rem;
 width: 55rem;
 background: white;
 
