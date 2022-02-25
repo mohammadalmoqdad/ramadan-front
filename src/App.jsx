@@ -12,6 +12,7 @@ import StudentsPoints from './components/studentsPoints/StudentsPoints'
 import { Route, BrowserRouter, Router, Routes } from "react-router-dom";
 import React from "react";
 import SetPasswordStudents from "components/setPasswordStudent/SetPasswordStudents";
+import AddStandards from "./components/AddStandards/AddStandards";
 
 function App() {
   // const [test, isTest] = useState(false);
@@ -29,6 +30,7 @@ function App() {
             <Route exact path= "/EditStandards" element= {<EditStandards/>}  ></Route>
             <Route exact path= "/Groups" element= {<Group/>}  ></Route>
             <Route exact path= "/AddNewAdmin" element= {<AddNewAdmin/>}  ></Route>
+            <Route exact path= "/AddNewStandards" element= {<AddStandards/>}  ></Route>
             <Route exact path= "/StudentsPoints" element= {<StudentsPoints/>}  ></Route>
 
           </Routes>
