@@ -432,13 +432,9 @@ display: flex;
 justify-content: center;
 align-items: flex-start;
 display: block;
-
 margin: auto;
 flex-direction: column;
-
 `;
-
-
 export const DivMultiselect = styled.div`
 
 `

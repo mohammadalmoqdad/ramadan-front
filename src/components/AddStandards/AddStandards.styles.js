@@ -4,10 +4,9 @@ import styled from "styled-components";
 
 // addNewAdmin 
 export default styled.div`
-width: 100%;
+/* width: 100%; */
 height: 100%rem;
 background: linear-gradient(120deg, #2980b9, #2980b9);
-
 display: flex;
 justify-content: center;
 align-items: flex-start;
@@ -35,9 +34,7 @@ export const DivCenter = styled.div`
  background: white;
  border-radius: 10px;
  box-shadow: 1px 3px 12px 0px #0000007a;
- 
  @media (max-width:500px) {
-
   width: 15rem;
 }
 `;
@@ -444,3 +441,26 @@ export const DivMultiselect = styled.div`
 `
 
 
+export const Frame = styled.div`
+
+`
+export const Framephone = styled.div`
+height: 550px;
+width: 270px;
+position: relative;
+background-image : url('frame_ph.png');
+z-index: 1;
+background-repeat: no-repeat;
+background-size: cover;
+`
+export const Imgtype = styled.img`
+width : 215px;
+margin-top:3.6rem;
+height: 480px;
+z-index: 66;
+opacity: 1;
+margin-bottom:-30rem;
+margin-left: 2rem;
+position: absolute;
+border-radius: 15px;
+`

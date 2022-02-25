@@ -6,17 +6,23 @@ import Multiselect from 'multiselect-react-dropdown';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-import AddNewAdmindefault, { DivMultiselect, DivTxtFieldDaynumber, DropdownListItemDays, AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./AddStandards.styles"
+import AddNewAdmindefault, {Imgtype , Frame,Framephone, DivMultiselect, DivTxtFieldDaynumber, DropdownListItemDays, AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./AddStandards.styles"
 
 export default function AddStandards() {
   const [showdays, setshowdays] = useState('none')
+  const [typephoto , settypephoto] = useState('type2');
 
-  const dayOfRamdan = (e) =>{
+  const dayOfRamdan   = (e) =>{
     if(showdays == 'none'){
       setshowdays('block')
     }else{
       setshowdays('none')
     }
+  }
+  
+  const typeOfinput = (e) =>{
+      console.log(e.target.value);
+      settypephoto(e.target.value) 
   }
 
   const handleAddDays = (e) => {
@@ -28,7 +34,6 @@ export default function AddStandards() {
     }
     console.log(selectedDay);
   }
-
   const day = [
     { dayOfRamdan: 'يوم 1 رمضان', id: 1 },
     { dayOfRamdan: 'يوم 2 رمضان', id: 2 },
@@ -62,9 +67,21 @@ export default function AddStandards() {
       {/* </DropdownDiv> */}
 
       <DivCenter>
+        <H3Login>نوع النموذج الذي تم اختياره</H3Login>
+        <Frame >
+          <Framephone >
+          <Imgtype src={typephoto + '.png'} alt="" />
+          {/* <Imgtype src="type2.png" alt="" /> */}
+
+          </Framephone>
+        </Frame>
+
+      </DivCenter>
+
+      <DivCenter>
 
         {/* <H1Login>أهلا بك في موقع<Wird>وِرد</Wird> </H1Login> */}
-        <H3Login>تعديل معايير المسابقة</H3Login>
+        <H3Login>اضافة معايير المسابقة</H3Login>
 
         <Formm>
           <DropdownListStanderd className='DropdownList'>
@@ -79,11 +96,10 @@ export default function AddStandards() {
             <FormInput placeholder='ادخل اسم اخر - اختياري' type="text" required />
           </DivTxtField>
 
-          <DropdownListStanderd className='DropdownList'>
-            <DropdownListItemStanderd>اختر نوع النموذج</DropdownListItemStanderd>
-            <DropdownListItemStanderd >قراءة قرآن </DropdownListItemStanderd>
-            <DropdownListItemStanderd value="bo">الصلاة في المسجد</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="An">غسل الجمعة</DropdownListItemStanderd>
+          <DropdownListStanderd className='DropdownList' onClick={typeOfinput}>
+            <DropdownListItemStanderd value="type2">اختر نوع النموذج</DropdownListItemStanderd>
+            <DropdownListItemStanderd value="type2" >قراءة قرآن </DropdownListItemStanderd>
+            <DropdownListItemStanderd value="stand">الصلاة في المسجد</DropdownListItemStanderd>
           </DropdownListStanderd>
 
 
@@ -123,6 +139,8 @@ export default function AddStandards() {
           <InputSubmit type="submit" value='login' >تعديل المعيار</InputSubmit>
         </Formm>
       </DivCenter>
+     
+
     </AddNewAdmindefault>
   )
 }
