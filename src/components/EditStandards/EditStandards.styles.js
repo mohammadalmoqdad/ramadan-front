@@ -448,10 +448,6 @@ flex-direction: column;
 }
 `;
 export const DivMultiselect = styled.div`
-
-`
-
-
 /* display: none; */
 @media (max-width:500px) {
   font-size: .7rem;

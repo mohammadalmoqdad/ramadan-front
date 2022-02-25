@@ -20,7 +20,6 @@ function App() {
     <>
       <AuthProvider>
         <BrowserRouter>
-          <AddStandards />
           <Routes>
             {/* <Route exact path="/login" component={Login} /> */} 
             <Route exact path="/login" element={<Login />}></Route>
