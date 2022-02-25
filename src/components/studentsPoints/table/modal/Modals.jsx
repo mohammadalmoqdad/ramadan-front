@@ -1,10 +1,11 @@
 import React from 'react'
-import Divv, { FormInput, Span, DivTxtField } from "./Modals.styled"
+import Divv, { Divvv,InputSubmit,FormInput, Span, DivTxtField } from "./Modals.styled"
 
 
 export default function Modals() {
   return (
     <Divv>
+      <Divvv>
       {Array.from({ length: 5 }).map((_, index) => (
         <td key={index}>
           <DivTxtField >
@@ -12,6 +13,8 @@ export default function Modals() {
             <FormInput placeholder='ادخل رقم' type="number" required />
           </DivTxtField><br /> </td>
       ))}
+      </Divvv>
+      <InputSubmit type="submit" value='' >تعديل</InputSubmit>
     </Divv>
   )
 }

@@ -2,34 +2,44 @@ import styled from "styled-components";
 
 export default styled.div`
 justify-content: center;
+flex-direction: column;
+text-align:center;
+/* display: flex; */
+`;
+
+export const Divvv = styled.div`
+justify-content: center;
+
 align-items: flex-start;
 display: flex;
 `;
 
+
 export const InputSubmit = styled.button`
 justify-content: center;
 align-items: flex-start;
-width:3rem;
-height: 1.5rem;
+width:8rem;
+height: 3rem;
 border: 1px;
 background: linear-gradient(120deg, #2980b9, #2980b9);
 border-radius: 1.5rem;
-font-size: .7rem;
+font-size: 1.1rem;
 color: #e9f4fb;
 cursor: pointer;
 outline: none;
 margin-top: .5rem;
 :hover{
 background: orange;
-height: 1.5rem;
+height: 3rem;
 transition: .3s;
 }
 @media (max-width:500px) {
-  width: 2rem;
+  width: 5rem;
   font-size: .7rem;
   
 }
 `;
+
 
 export const DivTxtField = styled.div`
 position: relative;
