@@ -7,18 +7,23 @@ import Multiselect from 'multiselect-react-dropdown';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AddNewAdmindefault, { DivMultiselect, DivTxtFieldDaynumber, DropdownListItemDays, AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./EditStandards.styles"
+import Sidebar from "components/shared/Sidebar";
 
 export default function EditStandards() {
  
 
 
   const [showdays, setshowdays] = useState('none')
+  const[selectedDayOf, setselectedDayOf]= useState([])
 
   const dayOfRamdan = (e) =>{
-    if(showdays == 'none'){
+    if(showdays === 'none'){
       setshowdays('block')
     }else{
       setshowdays('none')
+      setselectedDayOf([])
+      console.log(selectedDayOf);
+
     }
   }
 
@@ -29,7 +34,20 @@ export default function EditStandards() {
     for (let i = 0; i < e.length; i++) {
       selectedDay[i] = e[i].id;
     }
-    console.log(selectedDay);
+    setselectedDayOf(selectedDay)
+    // console.log(selectedDayOf);
+  }
+
+  const handleDeleteDays = (e) => {
+    // setdays(e)
+    let selectedDay = []
+    // console.log(e[0].id);
+    for (let i = 0; i < e.length; i++) {
+      selectedDay[i] = e[i].id;
+    }
+    // console.log(selectedDayOf);
+    setselectedDayOf(selectedDay)
+
   }
 
   const day = [
@@ -44,7 +62,7 @@ export default function EditStandards() {
   // console.log(days);
   return (
     <AddNewAdmindefault>
-
+      
       {/* <DropdownDiv className='DropdownDiv'> */}
 
         {/* <DropdownDivSelect>
@@ -114,7 +132,9 @@ export default function EditStandards() {
           <DivTxtFieldnumber>
             <Span />
             <FormInputnumber placeholder='0' type="number" min ='0' required />
-            <Label>ادخل عدد نقاط المعيار</Label>
+
+            <Label>ادخل عدد نقاط لكل تكرار</Label>
+
           </DivTxtFieldnumber>
 
           <DivTxtFieldnumber>
@@ -124,13 +144,22 @@ export default function EditStandards() {
           </DivTxtFieldnumber>
 
           <DivTxtFieldnumber>
+            <Span />
+            <FormInputnumber placeholder='0' type="number" min='0' required />
+            <Label>الحد الادنى للتركرار</Label>
+
+          </DivTxtFieldnumber>
+
+          <DivTxtFieldnumber>
             <Checkboxes type="checkbox" onChange={dayOfRamdan} /> <LabelSoper>هل متاح لأيام محددة؟</LabelSoper>
           </DivTxtFieldnumber>
 
           <DivMultiselect style={{display: showdays}}>
           <Multiselect
-            // onSelect={handleDeleteDays}
+          
             onSelect={handleAddDays}
+            onRemove={handleDeleteDays}
+
             placeholder='اختر الايام ليكون متاحا'
             options={options} // Options to display in the dropdown
             displayValue='dayOfRamdan'
@@ -143,7 +172,7 @@ export default function EditStandards() {
           
         </Formm>
       </DivCenter>
-
+      <Sidebar/>
     </AddNewAdmindefault>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import cookie from "react-cookies";
-import { login } from "services/auth";
+import { useLogin } from "services/auth";
 
 export const AdminContext = React.createContext();
 function AdminProvider({ children }) {
@@ -14,7 +14,8 @@ function AdminProvider({ children }) {
   let state = {
     AdminContext,
     IsLogdedIn,
-    login,
+    setIsLogdedIn,
+    useLogin,
     logout,
   };
   return (

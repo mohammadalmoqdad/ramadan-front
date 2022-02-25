@@ -2,15 +2,24 @@ import styled from "styled-components";
 
 // import SetPasswordStudentContainer, { DropdownDiv, DropdownDivSelect, Span, I } from "./SetPasswordStudent.styles"
 
-// SetPasswordStudentContainer 
+// SetPasswordStudentContainer  SetPasswordStudent
 export default styled.div`
+
+background: linear-gradient(120deg, #2980b9, #2980b9);
+
+display: flex;
+/* justify-content: center; */
+/* align-items: flex-start; */
+
+
+`;
+export const SetPasswordStudent = styled.div`
+padding-top: 5rem;
+display: flex;
 width: 100%;
 height: 60rem;
-background: linear-gradient(120deg, #2980b9, #2980b9);
-display: flex;
 justify-content: center;
 align-items: flex-start;
-padding: 5rem;
 flex-direction: column;
 
 @media (max-width:500px) {
@@ -18,7 +27,6 @@ flex-direction: column;
   width: 30rem;
 }
 `;
-
 
 export const DropdownDiv = styled.div`
 width: 25rem;
@@ -47,10 +55,10 @@ justify-content: center;
 align-items: flex-start;
 cursor: pointer;
 margin-bottom: .5rem;
+
 @media (max-width:500px) {
   padding: .8rem;
   margin-bottom: 0rem;
-
 }
 `;
 

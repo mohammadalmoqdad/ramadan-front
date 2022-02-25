@@ -14,29 +14,48 @@ import LoginFormContainer, {
 import { AdminContext } from "contexts/AdminContext";
 import { useNavigate } from "react-router-dom";
 import cookie from "react-cookies";
+import Loader from "../Loader";
 
 function Login(props) {
   let Navigate = useNavigate();
   const context = useContext(AdminContext);
   const [username, setUsername] = useState(" ");
   const [password, setPassword] = useState(" ");
-  // const [flag, setFlag] = useState(false);
-  
+  const [loading, setloading] = useState(true); // note: to open loading comp when the function start
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+
   useEffect(() => {
-    console.log("inside the useeffect");
-    if (!cookie.load("token")) {
-      // return <Redirect to="/" />;
+    // setloading(true); // noooooooooooooooot nessesry but because of Amin's mostach lol
+    // console.log("inside the login useeffect");
+    if (cookie.load("token")) {
+      console.log("is logged in ");
       Navigate("/");
-      console.log("not logged in ");
     }
+    setloading(false);
   }, []);
+
+  // useEffect(() => {
+  //   console.log("inside the listener of the IsLogdedIn");
+  //   if (context.IsLogdedIn) Navigate("/");
+  //   // else Navigate("/login");
+  // }, [context.IsLogdedIn]);
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log(context, username, password);
-    context.login(username, password);
-    // setFlag(true);
-    e.target.reset();
+    context.useLogin(username, password).then((isUsersLoggedIn) => {
+          if (isUsersLoggedIn === true) {
+            Navigate("/");
+          } else {
+            setShowErrorMessage(true);
+            e.target.reset();
+          }
+        }
+    );
+
+
+    // setTimeout(() => {
+    // }, 1000);
   }
 
   // function handleChange(e) {
@@ -54,6 +73,14 @@ function Login(props) {
   const handleChangePassowrd = (e) => {
     setPassword(e.target.value);
   };
+  if (loading) {
+    // to render loading if the 'loading' true and to be unreadable if it false
+    return (
+      <main>
+        <Loader />
+      </main>
+    );
+  }
   return (
     <LoginFormContainer>
       <DivCenter>
@@ -83,6 +110,9 @@ function Login(props) {
             />
           </DivTxtField>
 
+          { showErrorMessage &&
+              <DivPass>اسم المستخدم أو كلمة المرور خاطآن</DivPass>
+          }
           <DivPass>
             هل تواجه مشكلة تقنية أو نسيت كلمة المرور؟ تواصل مع الدعم الفني
           </DivPass>
