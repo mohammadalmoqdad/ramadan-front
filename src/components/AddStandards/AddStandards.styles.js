@@ -4,14 +4,13 @@ import styled from "styled-components";
 
 // addNewAdmin 
 export default styled.div`
-width: 100%;
-height: 100%;
+/* width: 100%; */
+height: 100%rem;
 background: linear-gradient(120deg, #2980b9, #2980b9);
-
 display: flex;
 justify-content: center;
 align-items: flex-start;
-/* padding: 5rem; */
+padding: 5rem;
 /* flex-direction: column; */
 
 @media (max-width:1000px) {
@@ -20,7 +19,6 @@ flex-direction: column;
 
 @media (max-width:500px) {
   padding: 2rem;
-  height: 60rem;
   width: 30rem;
 }
 `;
@@ -36,9 +34,7 @@ export const DivCenter = styled.div`
  background: white;
  border-radius: 10px;
  box-shadow: 1px 3px 12px 0px #0000007a;
- 
  @media (max-width:500px) {
-
   width: 15rem;
 }
 `;
@@ -131,7 +127,7 @@ border-bottom: 3px solid orange;
 }
 
 @media (max-width:500px) {
-  width: 9rem;
+  width: 11rem;
   font-size: .8rem;
 }
 `;
@@ -182,8 +178,9 @@ transition: .1s;
   color: white;
 }
 
+
 @media (max-width:500px) {
-  width: 3rem;
+  width: 11rem;
   font-size: .8rem;
 }
 `;
@@ -424,12 +421,6 @@ flex-direction: column;
   background-color: orange;
 
 }
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 1rem;
-  margin: 0;
-
-}
 `;
 
 export const LabelSoper = styled.section`
@@ -438,26 +429,38 @@ display: flex;
 justify-content: center;
 align-items: flex-start;
 display: block;
+
 margin: auto;
 flex-direction: column;
 
-@media (max-width:500px) {
-  font-size: .7rem;
-  width: 8rem;
-  margin-left: 1.5rem;
-}
 `;
+
+
 export const DivMultiselect = styled.div`
 
 `
 
 
-/* display: none; */
-@media (max-width:500px) {
-  font-size: .7rem;
-  width: 12rem;
+export const Frame = styled.div`
 
-}
-`;
-// DivTxtFieldcheckbox 
-
+`
+export const Framephone = styled.div`
+height: 550px;
+width: 270px;
+position: relative;
+background-image : url('frame_ph.png');
+z-index: 1;
+background-repeat: no-repeat;
+background-size: cover;
+`
+export const Imgtype = styled.img`
+width : 215px;
+margin-top:3.6rem;
+height: 480px;
+z-index: 66;
+opacity: 1;
+margin-bottom:-30rem;
+margin-left: 2rem;
+position: absolute;
+border-radius: 15px;
+`

@@ -1,23 +1,18 @@
 import "./App.css";
 import Login from "./components/Login";
 import AuthProvider from "./contexts/AdminContext";
-
 import Home from "./components/Home";
 import cookie from "react-cookies";
 import Loder from "components/Loader";
 import Group from "components/Group/Group";
-
 import { useState, useEffect } from "react";
-
-
 import EditStandards from './components/EditStandards/EditStandards'
 import AddNewAdmin from './components/addNewAdmin/AddNewAdmin'
 import StudentsPoints from './components/studentsPoints/StudentsPoints'
-
-
 import { Route, BrowserRouter, Router, Routes } from "react-router-dom";
 import React from "react";
 import SetPasswordStudents from "components/setPasswordStudent/SetPasswordStudents";
+
 function App() {
   // const [test, isTest] = useState(false);
   return (
@@ -25,7 +20,7 @@ function App() {
     <>
       <AuthProvider>
         <BrowserRouter>
-          {/* <Login /> */}
+          <AddStandards />
           <Routes>
             {/* <Route exact path="/login" component={Login} /> */} 
             <Route exact path="/login" element={<Login />}></Route>

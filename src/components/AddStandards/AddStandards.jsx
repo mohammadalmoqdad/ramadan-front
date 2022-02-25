@@ -6,25 +6,23 @@ import Multiselect from 'multiselect-react-dropdown';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-import AddNewAdmindefault, { DivMultiselect, DivTxtFieldDaynumber, DropdownListItemDays, AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./EditStandards.styles"
-import Sidebar from "components/shared/Sidebar";
+import AddNewAdmindefault, {Imgtype , Frame,Framephone, DivMultiselect, DivTxtFieldDaynumber, DropdownListItemDays, AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./AddStandards.styles"
 
-export default function EditStandards() {
- 
-
-
+export default function AddStandards() {
   const [showdays, setshowdays] = useState('none')
-  const[selectedDayOf, setselectedDayOf]= useState([])
+  const [typephoto , settypephoto] = useState('type2');
 
-  const dayOfRamdan = (e) =>{
-    if(showdays === 'none'){
+  const dayOfRamdan   = (e) =>{
+    if(showdays == 'none'){
       setshowdays('block')
     }else{
       setshowdays('none')
-      setselectedDayOf([])
-      console.log(selectedDayOf);
-
     }
+  }
+  
+  const typeOfinput = (e) =>{
+      console.log(e.target.value);
+      settypephoto(e.target.value) 
   }
 
   const handleAddDays = (e) => {
@@ -34,22 +32,8 @@ export default function EditStandards() {
     for (let i = 0; i < e.length; i++) {
       selectedDay[i] = e[i].id;
     }
-    setselectedDayOf(selectedDay)
-    // console.log(selectedDayOf);
+    console.log(selectedDay);
   }
-
-  const handleDeleteDays = (e) => {
-    // setdays(e)
-    let selectedDay = []
-    // console.log(e[0].id);
-    for (let i = 0; i < e.length; i++) {
-      selectedDay[i] = e[i].id;
-    }
-    // console.log(selectedDayOf);
-    setselectedDayOf(selectedDay)
-
-  }
-
   const day = [
     { dayOfRamdan: 'يوم 1 رمضان', id: 1 },
     { dayOfRamdan: 'يوم 2 رمضان', id: 2 },
@@ -62,7 +46,7 @@ export default function EditStandards() {
   // console.log(days);
   return (
     <AddNewAdmindefault>
-      
+
       {/* <DropdownDiv className='DropdownDiv'> */}
 
         {/* <DropdownDivSelect>
@@ -83,44 +67,39 @@ export default function EditStandards() {
       {/* </DropdownDiv> */}
 
       <DivCenter>
+        <H3Login>نوع النموذج الذي تم اختياره</H3Login>
+        <Frame >
+          <Framephone >
+          <Imgtype src={typephoto + '.png'} alt="" />
+          {/* <Imgtype src="type2.png" alt="" /> */}
+
+          </Framephone>
+        </Frame>
+
+      </DivCenter>
+
+      <DivCenter>
 
         {/* <H1Login>أهلا بك في موقع<Wird>وِرد</Wird> </H1Login> */}
-        <H3Login>تعديل معايير المسابقة</H3Login>
+        <H3Login>اضافة معايير المسابقة</H3Login>
 
         <Formm>
-
           <DropdownListStanderd className='DropdownList'>
-
-
-            <DropdownListItemStanderd>اختر اسم المعيار - من السيرفر </DropdownListItemStanderd>
+            <DropdownListItemStanderd>اختر اسم المعيار (مقترحات) </DropdownListItemStanderd>
             <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
             <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
             <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
-
           </DropdownListStanderd>
-
-          <DropdownListStanderd className='DropdownList'>
-
-
-<DropdownListItemStanderd>اختر اسم المعيار - من السيرفر </DropdownListItemStanderd>
-<DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
-<DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
-<DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
-
-</DropdownListStanderd>
 
           <DivTxtField>
             <Span />
             <FormInput placeholder='ادخل اسم اخر - اختياري' type="text" required />
           </DivTxtField>
 
-          <DropdownListStanderd className='DropdownList'>
-
-            <DropdownListItemStanderd>اختر نوع النموذج</DropdownListItemStanderd>
-            <DropdownListItemStanderd >قراءة قرآن </DropdownListItemStanderd>
-            <DropdownListItemStanderd value="bo">الصلاة في المسجد</DropdownListItemStanderd>
-            <DropdownListItemStanderd value="An">غسل الجمعة</DropdownListItemStanderd>
-
+          <DropdownListStanderd className='DropdownList' onClick={typeOfinput}>
+            <DropdownListItemStanderd value="type2">اختر نوع النموذج</DropdownListItemStanderd>
+            <DropdownListItemStanderd value="type2" >قراءة قرآن </DropdownListItemStanderd>
+            <DropdownListItemStanderd value="stand">الصلاة في المسجد</DropdownListItemStanderd>
           </DropdownListStanderd>
 
 
@@ -132,9 +111,7 @@ export default function EditStandards() {
           <DivTxtFieldnumber>
             <Span />
             <FormInputnumber placeholder='0' type="number" min ='0' required />
-
-            <Label>ادخل عدد نقاط لكل تكرار</Label>
-
+            <Label>ادخل عدد نقاط المعيار</Label>
           </DivTxtFieldnumber>
 
           <DivTxtFieldnumber>
@@ -144,22 +121,13 @@ export default function EditStandards() {
           </DivTxtFieldnumber>
 
           <DivTxtFieldnumber>
-            <Span />
-            <FormInputnumber placeholder='0' type="number" min='0' required />
-            <Label>الحد الادنى للتركرار</Label>
-
-          </DivTxtFieldnumber>
-
-          <DivTxtFieldnumber>
             <Checkboxes type="checkbox" onChange={dayOfRamdan} /> <LabelSoper>هل متاح لأيام محددة؟</LabelSoper>
           </DivTxtFieldnumber>
 
           <DivMultiselect style={{display: showdays}}>
           <Multiselect
-          
+            // onSelect={handleDeleteDays}
             onSelect={handleAddDays}
-            onRemove={handleDeleteDays}
-
             placeholder='اختر الايام ليكون متاحا'
             options={options} // Options to display in the dropdown
             displayValue='dayOfRamdan'
@@ -169,10 +137,10 @@ export default function EditStandards() {
           </DivMultiselect>
           {/* <DivPass>رسالة من الbackend </DivPass> */}
           <InputSubmit type="submit" value='login' >تعديل المعيار</InputSubmit>
-          
         </Formm>
       </DivCenter>
-      <Sidebar/>
+     
+
     </AddNewAdmindefault>
   )
 }
