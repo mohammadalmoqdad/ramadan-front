@@ -259,7 +259,7 @@ flex-direction: column;
 }
 `;
 
-export const LabelSoper = styled.section `
+export const LabelSuper = styled.section `
 text-align: center;
 display: flex;
 justify-content: center;
@@ -270,3 +270,12 @@ margin: auto;
 flex-direction: column;
 
 `;
+export const DivMultiselect = styled.div`
+/* display: none; */
+.multiSelectContainer{
+ text-align:right;
+}
+@media (max-width:500px) {
+  font-size: .7rem;
+  width: 12rem;
+}`;
