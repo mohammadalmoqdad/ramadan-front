@@ -34,7 +34,7 @@ function Sidebar() {
         <MenuLink to="/">الصفحة الرئيسية</MenuLink>
         <MenuLink to="/AddNewAdmin">إضافة أدمن جديد</MenuLink>
         <MenuLink to="/set-student-password">باسورد جديد للطالب</MenuLink>
-        <MenuLink to="/">إضافة معايير المسابقة</MenuLink>
+        <MenuLink to="/AddStandards">إضافة معايير المسابقة</MenuLink>
         <MenuLink to="/EditStandards">تعديل معايير المسابقة</MenuLink>
         <MenuLink to="/StudentsPoints">مشاهدة النتائج</MenuLink>
         <MenuLink to="/Groups">المجموعات</MenuLink>
