@@ -83,6 +83,7 @@ font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.5rem;
 font-weight: bolder;
+display: block;
 
 
 @media (max-width:500px) {
