@@ -45,10 +45,10 @@ export default function SetPasswordStudents() {
     console.log(e.target.value);
   };
 
-  const handleChangeStudentPassowrd1 = (e) => {
+  const handleChangeStudentPassword1 = (e) => {
     setPasswordStudent1(e.target.value);
   };
-  const handleChangeStudentPassowrd2 = (e) => {
+  const handleChangeStudentPassword2 = (e) => {
     setPasswordStudent2(e.target.value);
   };
   useEffect((e) => {
@@ -117,11 +117,9 @@ export default function SetPasswordStudents() {
             // TODO 3 : type map method to render the userName from the git method
 
             // console.log(userNameData.results[0].username)
-            true
-              ? mhdArray.map((item) => (
-                  <DropdownListItem>{item}</DropdownListItem>
-                ))
-              : ""
+            mhdArray.map((item) => (
+                <DropdownListItem>{item}</DropdownListItem>
+            ))
           }
           {/* <h1>{userNameData} </h1> */}
           {/* <DropdownListItem>{mhdArray[0]}</DropdownListItem> */}
@@ -142,8 +140,8 @@ export default function SetPasswordStudents() {
           <DivTxtField>
             <Span />
             <FormInput
-              onChange={handleChangeStudentPassowrd1}
-              type="passowrd"
+              onChange={handleChangeStudentPassword1}
+              type="password"
               placeholder="أدخل كلمة مرور جديدة"
               required
             />
@@ -152,9 +150,9 @@ export default function SetPasswordStudents() {
           <DivTxtField>
             <Span />
             <FormInput
-              onChange={handleChangeStudentPassowrd2}
+              onChange={handleChangeStudentPassword2}
               placeholder="تأكيد كلمة المرور"
-              type="passowrd"
+              type="password"
               required
             />
           </DivTxtField>
