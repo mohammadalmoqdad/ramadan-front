@@ -95,11 +95,9 @@ export default function Group() {
 
                   onSelect={handleAddDays}
                   onRemove={handleDeleteDays}
-
-                  placeholder='اختر الايام ليكون متاحا'
                   options={options} // Options to display in the dropdown
                   displayValue='dayOfRamdan'
-
+                  placeholder=""
                   popupHeight='1rem'
                   popupwidth='5rem'
                 />

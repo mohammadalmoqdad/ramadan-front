@@ -11,7 +11,6 @@ import AddNewAdmindefault, {
   Form,
   FormInput,
   H3Login,
-  I,
   InputSubmit,
   LabelSuper,
   Span,
@@ -24,7 +23,6 @@ import cookie from "react-cookies";
 const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
 
 export default function AddNewAdmin() {
-  //<TiTimes/>
 
   const [admins, setAdmins] = useState(null);
   const [username, setUserName] = useState(null);
@@ -32,16 +30,19 @@ export default function AddNewAdmin() {
   const [lastName, setLastName] = useState(null);
   const [managedGroups, setManagedGroups] = useState(null);
   const [selectedManagedGroups, setSelectedManagedGroups] = useState([]);
-  const [permissions, setPermissions] = useState(null);
   const [isSuperAdmin, setSuperAdmin] = useState(false);
-  const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
   const [unmatchedPasswords, setUnmatchedPasswords] = useState(false);
   const [message, setMessage] = useState("");
   const [isValidPassword, setValidPassword] = useState(true);
   const [isValidUserName, setValidUserName] = useState(true);
-  const [isValidPermissions, setValidPermissions] = useState(true);
+
+  //TODO: Uncomment them when they are supported in backend-side
+
+  // const [isValidPermissions, setValidPermissions] = useState(true);
+  // const [permissions, setPermissions] = useState(null);
+  // const [email, setEmail] = useState(null);
 
   useEffect(() => {
     axios({
@@ -76,7 +77,7 @@ export default function AddNewAdmin() {
       return;
     }
 
-    if(!isValidUserName || !isValidPassword || !isValidPermissions){
+    if(!isValidUserName || !isValidPassword ){      // TODO: add "|| !isValidPermissions" when it's supported in backend-side
       return;
     }
 
@@ -87,10 +88,10 @@ export default function AddNewAdmin() {
           'username': username,
           'first_name': firstName,
           'last_name': lastName,
-          'permissions': permissions,
+          'permissions': "0",                       // TODO:  update it when it's supported from backend-side
           'is_super_admin': isSuperAdmin,
           'managed_groups': selectedManagedGroups
-          // 'email': email,  TODO: uncomment when it become supported from backend-side
+          // 'email': email,                           TODO: uncomment it when it's supported from backend-side
         },{
           headers:{
             "Content-Type": "application/json",
@@ -126,25 +127,11 @@ export default function AddNewAdmin() {
     setUserName(e.target.value);
   }
 
-  const handleEmailChange = (e)=>{
-    setEmail(e.target.value);
-  }
-
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
   }
   const handleLastNameChange = (e) => {
     setLastName(e.target.value);
-  }
-
-  const handlePermissionsChange = (e) => {
-    let regex = new RegExp('^[0-9]+(,[0-9])*$');
-    if(e.target.value.length > 9 || !regex.test(e.target.value)){
-      setValidPermissions(false)
-    }else{
-      setValidPermissions(true);
-    }
-    setPermissions(e.target.value);
   }
 
   const handlePasswordChange = (e) => {
@@ -173,108 +160,131 @@ export default function AddNewAdmin() {
     setSelectedManagedGroups(selectedGroups);
   }
 
+  //TODO: Uncomment them when they are supported in backend-side
+
+  // const handleEmailChange = (e)=>{
+  //   setEmail(e.target.value);
+  // }
+  //
+  // const handlePermissionsChange = (e) => {
+  //   let regex = new RegExp('^[0-9]+(,[0-9])*$');
+  //   if(e.target.value.length > 9 || !regex.test(e.target.value)){
+  //     setValidPermissions(false)
+  //   }else{
+  //     setValidPermissions(true);
+  //   }
+  //   setPermissions(e.target.value);
+  // }
+
+
+
   return (
-    <AddNewAdmindefault>
+      <AddNewAdmindefault>
 
-      { admins && admins.count > 0 &&
-          <DropdownDiv className='DropdownDiv'>
-            <DropdownDivSelect>
-              <Span>الآدمن الحاليين</Span>
-            </DropdownDivSelect>
-            <DropdownList className='DropdownList'>
-              {
-                admins.results.map((admin) =>{
-                  return <DropdownListItem value={admin.username}><I/>{admin.first_name} {admin.last_name}</DropdownListItem>
-                })
-              }
-            </DropdownList>
-          </DropdownDiv>
-      }
-
-      <DivCenter>
-        {/* <H1Login>أهلا بك في موقع<Wird>وِرد</Wird> </H1Login> */}
-        <H3Login>اضافة آدمن جديد</H3Login>
-
-        <Form onSubmit={handleAddNewAdminSubmit}>
-          <DivTxtField>
-            <Span />
-            <FormInput onChange={handleUserNameChange} type="text" placeholder='أسم المستخدم' required/>
-          </DivTxtField>
-          { !isValidUserName &&
-              <DivPass>اسم المستخدم يمكن أن يحتوي على الحروف والأرقام وبعض الرموز(+/-/_/./@)فقط</DivPass>
+          {admins && admins.count > 0 &&
+              <DropdownDiv className='DropdownDiv'>
+                  <DropdownDivSelect>
+                      <Span>الآدمن الحاليين</Span>
+                  </DropdownDivSelect>
+                  <DropdownList className='DropdownList'>
+                      {
+                          admins.results.map((admin) => {
+                              return (<DropdownListItem
+                                  value={admin.username} key={admin.username}>{admin.first_name} {admin.last_name}</DropdownListItem>)
+                          })
+                      }
+                  </DropdownList>
+              </DropdownDiv>
           }
 
-          <DivTxtField>
-            <Span/>
-            <FormInput onChange={handleFirstNameChange} placeholder='الاسم الأول' type="text" required/>
-          </DivTxtField>
+          <DivCenter>
+              <H3Login>اضافة آدمن جديد</H3Login>
+              <Form onSubmit={handleAddNewAdminSubmit}>
+                  <DivTxtField>
+                      <Span/>
+                      <FormInput onChange={handleUserNameChange} type="text" placeholder='اسم المستخدم' required/>
+                  </DivTxtField>
+                  {!isValidUserName &&
+                      <DivPass>اسم المستخدم يمكن أن يحتوي على الحروف والأرقام وبعض الرموز(+/-/_/./@)فقط</DivPass>
+                  }
 
-          <DivTxtField>
-            <Span/>
-            <FormInput onChange={handleLastNameChange} placeholder='اسم العائلة' type="text" required/>
-          </DivTxtField>
+                  <DivTxtField>
+                      <Span/>
+                      <FormInput onChange={handleFirstNameChange} placeholder='الاسم الأول' type="text" required/>
+                  </DivTxtField>
 
-          <DivTxtField>
-            <Span />
-            <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email" required />
-          </DivTxtField>
+                  <DivTxtField>
+                      <Span/>
+                      <FormInput onChange={handleLastNameChange} placeholder='اسم العائلة' type="text" required/>
+                  </DivTxtField>
 
-          <DivTxtField>
-            <Span />
-            <FormInput onChange={handlePasswordChange} placeholder='كلمة المرور' type="passowrd" required />
-          </DivTxtField>
-          { !isValidPassword &&
-              <DivPass>يجب أن تتكون كلمة المرور 8 أحرف على الأقل</DivPass>
-          }
+                  {/*TODO: Uncomment when it's supported in backend-side*/}
+                  {/*<DivTxtField>*/}
+                  {/*  <Span />*/}
+                  {/*  <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email" required />*/}
+                  {/*</DivTxtField>*/}
 
-          <DivTxtField>
-            <Span />
-            <FormInput onChange={handleConfirmPasswordChange} placeholder='تأكيد كلمة المرور' type="passowrd" required />
-          </DivTxtField>
+                  <DivTxtField>
+                      <Span/>
+                      <FormInput onChange={handlePasswordChange} placeholder='كلمة المرور' type="password" required/>
+                  </DivTxtField>
+                  {!isValidPassword &&
+                      <DivPass>يجب أن تتكون كلمة المرور 8 أحرف على الأقل</DivPass>
+                  }
 
-          { unmatchedPasswords &&
-              <DivPass>الإدخال غير صحيح، تأكد من مطابقة كلمة المرور</DivPass>
-          }
+                  <DivTxtField>
+                      <Span/>
+                      <FormInput onChange={handleConfirmPasswordChange} placeholder='تأكيد كلمة المرور' type="password" required/>
+                  </DivTxtField>
 
-          <DivTxtField>
-            <Span/>
-            <FormInput onChange={handlePermissionsChange} placeholder='الصلاحيات' type="text" required />
-          </DivTxtField>
-          { !isValidPermissions &&
-              <DivPass>يجب أن تتكون الصلاحيات من أرقام وبينهم فواصل فقط وعددهم أقل من 10 أحرف</DivPass>
-          }
+                  {unmatchedPasswords &&
+                      <DivPass>الإدخال غير صحيح، تأكد من مطابقة كلمة المرور</DivPass>
+                  }
 
-          {
-              managedGroups && managedGroups.count > 0 &&
-              <DivMultiselect>
-                <Multiselect
+                  {/*TODO: Uncomment when it's supported in backend-side*/}
 
-                    onSelect={handleUpdateSelectedGroupsChange}
-                    onRemove={handleUpdateSelectedGroupsChange}
-                    style={{textAlign: 'right'}}
-                    placeholder='اختر المجموعات المسؤول عنها'
-                    options={managedGroups.results}
-                    displayValue='name'
-                />
-              </DivMultiselect>
-          }
+                  {/*<DivTxtField>*/}
+                  {/*  <Span/>*/}
+                  {/*  <FormInput onChange={handlePermissionsChange} placeholder='الصلاحيات' type="text" required />*/}
+                  {/*</DivTxtField>*/}
+                  {/*{ !isValidPermissions &&*/}
+                  {/*    <DivPass>يجب أن تتكون الصلاحيات من أرقام وبينهم فواصل فقط وعددهم أقل من 10 أحرف</DivPass>*/}
+                  {/*}*/}
 
-          <DivTxtField>
-            {/* <Span /> */}
+                  {
+                      managedGroups && managedGroups.count > 0 &&
+                          <DropdownDivSelect>
+                              <LabelSuper>اختر المجموعات المسؤول عنها</LabelSuper>
+                              <DivMultiselect>
+                                  <Multiselect
+                                      onSelect={handleUpdateSelectedGroupsChange}
+                                      onRemove={handleUpdateSelectedGroupsChange}
+                                      options={managedGroups.results}
+                                      displayValue='name'
+                                      style={{textAlign: 'right'}}
+                                      placeholder=""
+                                      popupwidth='5rem'
+                                      popupHeight='1rem'
+                                  />
+                              </DivMultiselect>
+                          </DropdownDivSelect>
+                  }
 
-            <LabelSuper>هل آدمن رئيسي؟ </LabelSuper><Checkboxes onChange={handleSuperAdminCheckChange} type="checkbox" />
-          </DivTxtField>
+                  <DivTxtField>
+                      <LabelSuper>هل آدمن رئيسي؟ </LabelSuper><Checkboxes onChange={handleSuperAdminCheckChange}
+                                                                          type="checkbox"/>
+                  </DivTxtField>
 
-          { message !== "" &&
-              <DivPass>{message}</DivPass>
-          }
-          <InputSubmit type="submit" value='login' >اضافة آدمن جديد</InputSubmit>
+                  {message !== "" &&
+                      <DivPass>{message}</DivPass>
+                  }
+                  <InputSubmit type="submit" value='login'>اضافة آدمن جديد</InputSubmit>
 
-        </Form>
-      </DivCenter>
+              </Form>
+          </DivCenter>
 
-      <Sidebar/>
+          <Sidebar/>
 
-    </AddNewAdmindefault>
-  )
+      </AddNewAdmindefault>
+  );
 }

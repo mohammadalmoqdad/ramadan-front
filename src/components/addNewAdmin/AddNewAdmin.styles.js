@@ -157,7 +157,6 @@ padding: 1rem;
 border-radius: 6px;
 background-color: white;
 margin-top: 3rem;
-display: flex;
 
 box-shadow: 1px 3px 12px 0px #0000007a;
 
@@ -165,9 +164,7 @@ box-shadow: 1px 3px 12px 0px #0000007a;
 /* border: 2px;
 border-bottom-color: blue; */
 
-display: flex;
 justify-content: center;
-align-items: flex-start;
 cursor: pointer;
 margin-bottom: .5rem;
 @media (max-width:500px) {
