@@ -7,7 +7,7 @@ import AdminsDefault, {
     Span,
 } from "./Admins.styles"
 import Sidebar from "components/shared/Sidebar";
-import Tabs from "../Tabs";
+import Tabs from "../shared/Tabs/Tabs";
 import AddAdminForm from "./AddAdminForm";
 import EditAdminForm from "./EditAdminForm";
 import axios from "axios";
