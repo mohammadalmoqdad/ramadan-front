@@ -32,7 +32,7 @@ function Sidebar() {
 
       <MenuContainer>
         <MenuLink to="/">الصفحة الرئيسية</MenuLink>
-        <MenuLink to="/AddNewAdmin">إضافة أدمن جديد</MenuLink>
+        <MenuLink to="/Admins">المسؤولون</MenuLink>
         <MenuLink to="/set-student-password">باسورد جديد للطالب</MenuLink>
         <MenuLink to="/AddNewStandards">إضافة معايير المسابقة</MenuLink>
         <MenuLink to="/EditStandards">تعديل معايير المسابقة</MenuLink>
