@@ -27,9 +27,14 @@ export default function Admins() {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${cookie.load('token')}`,
             },
-        }).then((res) => {
-            setAdmins(res.data)
-        })
+        }).then(
+            (res) => {
+                setAdmins(res.data)
+            }, (err) => {
+                //TODO: We should update our Auth logic and using refresh token to refresh the access token
+                //TODO: Redirect the user to login with saving the location to return him back here again
+                console.log("ERROR: "+JSON.stringify(err.response.data));
+            })
 
     }, []);
 

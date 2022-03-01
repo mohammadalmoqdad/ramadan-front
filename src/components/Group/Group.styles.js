@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-// import AddNewAdmindefault,{ Wird, DivPass, DivCenter, H3Login, InputSubmit, Form, FormInput, H1Login, DivTxtField, FormLabel, Span } from "./AddNewAdmin.styles"
 
-// addNewAdmin 
 export default styled.div`
 width: 100%;
 height: 100%;
@@ -58,7 +56,7 @@ color: #213C64;
 }
 `;
 
-export const Formm = styled.form`
+export const Form = styled.form`
 width:20rem;
 display: flex;
 flex-direction: column;
@@ -70,17 +68,6 @@ margin: auto;
 
 export const DivTxtField = styled.div`
 position: relative;
-/* border-bottom: 2px solid #adadad; */
-margin: 1rem 0;
-
-@media (max-width:500px) {
-margin: 1rem 0;
-}
-`;
-
-export const DivTxtFieldnumber = styled.div`
-/* position: relative; */
-display: flex;
 /* border-bottom: 2px solid #adadad; */
 margin: 1rem 0;
 
@@ -114,29 +101,6 @@ font-size: 1.2rem;
 `;
 
 
-export const Label = styled.section`
-width: 15rem;
-padding: 0 5px;
-height: 2.1rem;
-font-size: 1rem;
-border: none;
-background: none;
-outline: none;
-text-align:right;
-color: #213C64;
-/* border-bottom: 2px solid #2691d9; */
-:focus{
-transition: .1s;
-border-bottom: 3px solid orange;
-}
-
-@media (max-width:500px) {
-  width: 9rem;
-  font-size: .8rem;
-}
-`;
-
-
 export const FormInput = styled.input`
 width: 20rem;
 padding: 0 5px;
@@ -155,35 +119,6 @@ border-bottom: 3px solid orange;
 
 @media (max-width:500px) {
   width: 11rem;
-  font-size: .8rem;
-}
-`;
-
-export const FormInputnumber = styled.input`
-
-width: 4rem;
-padding: 0 5px;
-height: 2.1rem;
-font-size: 1rem;
-border: none;
-/* background: none; */
-background: linear-gradient(120deg, #2980b9, #2980b9);
-
-outline: none;
-text-align:center;
-color: white;
-border: 2px solid #2691d9;
-border-radius: .5rem;
-:focus{
-transition: .1s;
-/* border-bottom: 3px solid orange; */
-}
-::placeholder {
-  color: white;
-}
-
-@media (max-width:500px) {
-  width: 3rem;
   font-size: .8rem;
 }
 `;
@@ -275,71 +210,6 @@ background-color: white;
 }
 `;
 
-export const DropdownListStanderd = styled.select`
-width: 20rem;
-font-family: 'Noto Kufi Arabic', sans-serif;
-color: white;
-font-size: 1rem;
-padding:1rem;
-margin-top: 1rem;
-border-radius: 4px;
-/* background-color: white; */
-box-shadow: 1px 1px 2px 0px #0000007a;
-outline: none;
-border: none;
-/* border: 2px solid  #213C64; */
-background: linear-gradient(120deg, #2980b9, #2980b9);
-:hover{
-  outline: none;
-  /* border: none; */
-  /* color: #213C64; */
-}
-:focus{
-  outline: none;
-  /* border: none; */
-  color: #213C64;
-}
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 11rem;
-}
-`;
-
-export const AvailableDays = styled.div`
-position: fixed;
-width: 25rem;
-font-family: 'Noto Kufi Arabic', sans-serif;
-color: #213C64;
-font-size: 1rem;
-/* padding:1rem; */
-margin-top: 1rem;
-border-radius: 4px;
-/* background-color: white; */
-box-shadow: 1px 1px 2px 0px #0000007a;
-outline: none;
-border: none;
-/* border: 2px solid  #213C64; */
-background: white;
- /* opacity: 0;
- visibility: hidden;
- transition: opacity 0.2s linear,visibility 0.2s linear; */
-
-:hover{
-  
-  outline: none;
-  /* border: none; */
-  /* color: #213C64; */
-}
-:focus{
-  outline: none;
-  /* border: none; */
-  color: #213C64;
-}
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 11rem;
-}
-`;
 // DropdownListItemDays
 export const DropdownListItemDays = styled.div`
 
@@ -403,51 +273,6 @@ text-align: center;
   :focus{
     border:0.2px solid #213C64;
   }
-`;
-
-
-export const Checkboxes = styled.input`
-/* display: flex;
-justify-content: center;
-align-items: flex-start; */
-
-margin: auto;
-display: block;
-margin-bottom: 0rem;
-width: 1.5rem;
-padding: 0 5px;
-height: 40px;
-margin-top: .5rem;
-font-size: 16px;
-flex-direction: column;
-
-:scope{
-  background-color: orange;
-
-}
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 1rem;
-  margin: 0;
-
-}
-`;
-
-export const LabelSoper = styled.section`
-text-align: center;
-display: flex;
-justify-content: center;
-align-items: flex-start;
-display: block;
-
-margin: auto;
-flex-direction: column;
-
-@media (max-width:500px) {
-  font-size: .7rem;
-  width: 8rem;
-  margin-left: 1.5rem;
-}
 `;
 
 export const DivMultiselect = styled.div`

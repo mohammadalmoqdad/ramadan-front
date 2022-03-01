@@ -78,7 +78,7 @@
   content: "";
   display: block;
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% + 2px);
@@ -101,7 +101,7 @@ button {
   display: none;
 }
 .content h2 {
-  padding: 0px 0 5px 0px;
+  padding: 0 0 5px 0;
 }
 .content hr {
   width: 100px;
@@ -115,4 +115,7 @@ button {
 }
 .active-content {
   display: block;
+}
+.DropdownList_groups{
+  width: 100%;
 }

@@ -1,151 +1,91 @@
-import React, { useState } from 'react'
-
-import Multiselect from 'multiselect-react-dropdown';
+import React, {useEffect, useState} from 'react'
+import GroupsContainer from "./Group.styles";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AddNewAdmindefault, { DivMultiselect, DivTxtFieldDaynumber, DropdownListItemDays, AvailableDays, DivTxtFieldnumber, FormInputnumber, Label, LabelSoper, DropdownListStanderd, DropdownListItemStanderd, Checkboxes, Wird, InputSubmit, DivPass, FormInput, DivTxtField, Formm, H3Login, H1Login, DivCenter, StudantName, DropdownListItem, DropdownList, DropdownDiv, DropdownDivSelect, Span, I } from "./Group.styles"
+import Tabs from "../shared/Tabs/Tabs";
 import Sidebar from "components/shared/Sidebar";
-
+import AddGroupForm from "./AddGroupForm";
+import EditGroupForm from "./EditGroupForm";
+import axios from "axios";
+import cookie from "react-cookies";
+const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
 
 export default function Group() {
 
-  const [showdays, setshowdays] = useState('none')
-  const [selectedDayOf, setselectedDayOf] = useState([])
-  const [addGroup, setaddGroup] = useState([])
+    const [admins, setAdmins] = useState(null);
+    const [groups, setGroups] = useState(null);
+    const [students, setStudents] = useState(null);
 
-  const dayOfRamdan = (e) => {
-    if (showdays === 'none') {
-      setshowdays('block')
-      setaddGroup('none')
-    } else {
-      setshowdays('none')
-      setaddGroup('block')
+    useEffect(() => {
+        axios({
+            method: "get",
+            url: `${apiUrl}/comp-admin/students/`,
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${cookie.load('token')}`,
+            },
+        }).then(
+            (res) => {
+                setStudents(res.data)
+            }, (err) => {
+                //TODO: We have to update our Auth logic and using refresh token to refresh the access token.
+                //TODO: Redirect the user to login with saving the location to return him back here again.
+                console.log("ERROR: "+JSON.stringify(err.response.data));
+            }
+        );
 
-      setselectedDayOf([])
-      console.log(selectedDayOf);
-    }
-  }
+        axios({
+            method: "get",
+            url: `${apiUrl}/comp-admin/comp-admins/`,
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${cookie.load('token')}`,
+            },
+        }).then(
+            (res) => {
+                setAdmins(res.data)
+            }, (err) => {
+                //TODO: We have to update our Auth logic and using refresh token to refresh the access token.
+                //TODO: Redirect the user to login with saving the location to return him back here again.
+                console.log("ERROR: "+JSON.stringify(err.response.data));
+            }
+        );
 
-  const handleAddDays = (e) => {
-    // setdays(e)
-    let selectedDay = []
-    // console.log(e[0].id);
-    for (let i = 0; i < e.length; i++) {
-      selectedDay[i] = e[i].id;
-    }
-    setselectedDayOf(selectedDay)
-    // console.log(selectedDayOf);
-  }
-
-  const handleDeleteDays = (e) => {
-    // setdays(e)
-    let selectedDay = []
-    // console.log(e[0].id);
-    for (let i = 0; i < e.length; i++) {
-      selectedDay[i] = e[i].id;
-    }
-    // console.log(selectedDayOf);
-    setselectedDayOf(selectedDay)
-
-  }
-
-  const day = [
-    { dayOfRamdan: 'أنس القاضي', id: 1 },
-    { dayOfRamdan: 'مقداد', id: 2 },
-    { dayOfRamdan: 'حمدان', id: 3 },
-    { dayOfRamdan: 'أمين', id: 4 },
-    { dayOfRamdan: 'حمزة أبوسنينة', id: 5 },
-  ]
-
-  const [options] = useState(day);
-
-  return (
-    <AddNewAdmindefault>
-
-      {/* <DropdownDiv className='DropdownDiv'>
-
-        <DropdownDivSelect>
+        axios({
+            method: "get",
+            url: `${apiUrl}/comp-admin/comp-group/`,
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${cookie.load('token')}`,
+            },
+        }).then(
+            (res) => {
+                setGroups(res.data)
+            }, (err) => {
+                //TODO: We have to update our Auth logic and using refresh token to refresh the access token.
+                //TODO: Redirect the user to login with saving the location to return him back here again.
+                console.log("ERROR: "+JSON.stringify(err.response.data));
+            }
+        );
 
 
-          <I></I><Span>اختر الأيام التي تريد أن يكون متاحا بها</Span>
+    }, []);
 
-        </DropdownDivSelect> */}
+    useEffect(() => {
+            if(students && students.results){
+                students.results.map(student => student['full_name'] = student.first_name+" "+student.last_name);
+            }
+    } , [students]);
 
-      {/* <AvailableDays className='DropdownList'>
-
-          <DropdownListItemDays value="An"><DivTxtFieldDaynumber><Checkboxes type="checkbox" /> <LabelSoper>يوم 1 رمضان</LabelSoper></DivTxtFieldDaynumber></DropdownListItemDays>
-          <DropdownListItemDays value="An"><DivTxtFieldDaynumber><Checkboxes type="checkbox" /> <LabelSoper>يوم 2 رمضان</LabelSoper></DivTxtFieldDaynumber></DropdownListItemDays>
-          <DropdownListItemDays value="An"><DivTxtFieldDaynumber><Checkboxes type="checkbox" /> <LabelSoper>يوم 3 رمضان</LabelSoper></DivTxtFieldDaynumber></DropdownListItemDays>
-
-        </AvailableDays> */}
-
-      {/* </DropdownDiv> */}
-
-      <DivCenter>
-
-        {/* <H1Login>أهلا بك في موقع<Wird>وِرد</Wird> </H1Login> */}
-        <H3Login>اضافة مجموعة</H3Login>
-
-        <Formm>
-
-          <DropdownDiv className='DropdownDiv'>
-            <DropdownDivSelect>
-              <I></I><Span>أسماء الطلبة يكمن اضافتهم</Span>
-              <DivMultiselect >
-                <Multiselect
-
-                  onSelect={handleAddDays}
-                  onRemove={handleDeleteDays}
-                  options={options} // Options to display in the dropdown
-                  displayValue='dayOfRamdan'
-                  placeholder=""
-                  popupHeight='1rem'
-                  popupwidth='5rem'
-                />
-              </DivMultiselect>
-            </DropdownDivSelect>
-
-          </DropdownDiv>
-
-          <DivTxtField style={{ display: addGroup }}>
-            <Span />
-            <FormInput placeholder='ادخل اسم المجموعة الجديدة' type="text" required />
-          </DivTxtField>
-
-          <DivTxtFieldnumber>
-            <Checkboxes type="checkbox" onChange={dayOfRamdan} /> <LabelSoper>هل تريد تعديل أو حذف مجموعة سابقة؟</LabelSoper>
-          </DivTxtFieldnumber>
-
-          <DivMultiselect style={{ display: showdays }}>
-
-            <DropdownListStanderd className='DropdownList'>
-
-              <DropdownListItemStanderd>أسم المجموعة </DropdownListItemStanderd>
-              <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
-              <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
-              <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
-
-            </DropdownListStanderd>
-
-            <DropdownListStanderd className='DropdownList'>
-
-              <DropdownListItemStanderd>اسماء الطلبة الموجودين بالمجموعة </DropdownListItemStanderd>
-              <DropdownListItemStanderd >امين بسام صالح</DropdownListItemStanderd>
-              <DropdownListItemStanderd value="bo">أسامة مؤمن أبوحمدان</DropdownListItemStanderd>
-              <DropdownListItemStanderd value="An">الليدر أنس القاضي</DropdownListItemStanderd>
-
-            </DropdownListStanderd>
-
-            <InputSubmit type="submit" value='' >تعديل المجموعة</InputSubmit>
-            <InputSubmit type="submit" value='' >حذف المجموعة</InputSubmit>
-
-          </DivMultiselect>
-          {/* <DivPass>رسالة من الbackend </DivPass> */}
-          <InputSubmit type="submit" value='login' style={{ display: addGroup }} >اضافة مجموعة</InputSubmit>
-
-        </Formm>
-      </DivCenter>
-
-      <Sidebar />
-    </AddNewAdmindefault>
-  )
+    return (
+        <GroupsContainer>
+            <Tabs labels={['تعديل مجموعة', 'إضافة مجموعة']}
+                  contents={
+                      [
+                          <EditGroupForm studentsGroups={groups} students={students} admins={admins}/>,
+                          <AddGroupForm students={students} admins={admins}/>
+                      ]
+                  }/>
+            <Sidebar/>
+        </GroupsContainer>
+    )
 }
