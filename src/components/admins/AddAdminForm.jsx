@@ -1,36 +1,39 @@
-import React, { useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import  {
     Checkboxes,
     DivPass,
     DivTxtField,
-    DropdownDivSelect,
     Form,
     FormInput,
     InputSubmit,
     LabelSuper,
-    Span,
-    DivMultiselect
+    Span
 } from "./Admins.styles";
 
-import Multiselect from 'multiselect-react-dropdown';
 import axios from "axios";
 import cookie from "react-cookies";
 const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
 
 
-export default function AddAdminForm(props) {
+export default function AddAdminForm() {
 
     const [username, setUserName] = useState(null);
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
-    const [selectedManagedGroups, setSelectedManagedGroups] = useState([]);
+    const [email, setEmail] = useState(null);
+    const [phoneNumber, setPhoneNumber] = useState(null);
     const [isSuperAdmin, setSuperAdmin] = useState(false);
     const [password, setPassword] = useState(null);
     const [confirmPassword, setConfirmPassword] = useState(null);
     const [unmatchedPasswords, setUnmatchedPasswords] = useState(false);
-    const [message, setMessage] = useState("");
+    const [messages, setMessages] = useState([]);
     const [isValidPassword, setValidPassword] = useState(true);
     const [isValidUserName, setValidUserName] = useState(true);
+
+    useEffect(()=>{
+            setMessages([]);
+        }
+    ,[username, firstName, lastName, email, phoneNumber, password, confirmPassword]);
 
     const handleAddNewAdminSubmit = (e)=>{
         e.preventDefault();
@@ -53,8 +56,8 @@ export default function AddAdminForm(props) {
                 'last_name': lastName,
                 'permissions': "0",                       // TODO:  update it when it's supported from backend-side
                 'is_super_admin': isSuperAdmin,
-                'managed_groups': selectedManagedGroups
-                // 'email': email,                           TODO: uncomment it when it's supported from backend-side
+                'email': email,
+                "phone_number": phoneNumber,
             },{
                 headers:{
                     "Content-Type": "application/json",
@@ -64,18 +67,22 @@ export default function AddAdminForm(props) {
         ).then(
             (res)=>{
                 if(res && res.status === 201){
-                    setMessage("تمت إضافة المسؤول بنجاح");
-                } else{
-                    setMessage("لم تمت إضافة المسؤول");
+                    setMessages(["تمت إضافة المسؤول بنجاح"]);
                 }
             },
             (err)=>{
-                if(err && err.response && err.response.data && err.response.data.includes('user with that username already exists')){
-                    setMessage("اسم المستخدم موجود، لم تمت إضافة المسؤول")
-                } else{
-                    setMessage("لم تمت إضافة المسؤول");
+                if(err.response.data.messages){
+                    setMessages(["لم تمت إضافة المسؤول"]);
+                }else{
+                    let errMessages = [];
+                    let obj = err.response.data;
+                    Object.keys(obj).forEach(e => {
+                            errMessages.push(obj[e]);
+                        }
+                    )
+                    setMessages(errMessages);
                 }
-                console.log("ERROR: ",err);
+                console.log("ERROR: ",JSON.stringify(err.response.data));
             }
         );
     }
@@ -112,15 +119,15 @@ export default function AddAdminForm(props) {
 
     const handleConfirmPasswordChange = (e) => {
         setConfirmPassword(e.target.value);
+        setUnmatchedPasswords(false);
     }
 
-    const handleUpdateSelectedGroupsChange = (e) =>{
-        let selectedGroups =[];
+    const handleEmailChange = (e) =>{
+        setEmail(e.target.value);
+    }
 
-        for(let i=0; i < e.length ; i++){
-            selectedGroups.push(e[i].id);
-        }
-        setSelectedManagedGroups(selectedGroups);
+    const handlePhoneNumberChange = (e) =>{
+        setPhoneNumber(e.target.value);
     }
 
     return (
@@ -143,11 +150,15 @@ export default function AddAdminForm(props) {
                 <FormInput onChange={handleLastNameChange} placeholder='اسم العائلة' type="text" required/>
             </DivTxtField>
 
-            {/*TODO: Uncomment when it's supported in backend-side*/}
-            {/*<DivTxtField>*/}
-            {/*  <Span />*/}
-            {/*  <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email" required />*/}
-            {/*</DivTxtField>*/}
+            <DivTxtField>
+              <Span />
+              <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email" required />
+            </DivTxtField>
+
+            <DivTxtField>
+                <Span />
+                <FormInput onChange={handlePhoneNumberChange} placeholder='رقم الهاتف' type="text" required />
+            </DivTxtField>
 
             <DivTxtField>
                 <Span/>
@@ -177,31 +188,16 @@ export default function AddAdminForm(props) {
             {/*    <DivPass>يجب أن تتكون الصلاحيات من أرقام وبينهم فواصل فقط وعددهم أقل من 10 أحرف</DivPass>*/}
             {/*}*/}
 
-            {
-                props.managedGroups && props.managedGroups.count > 0 &&
-                <DropdownDivSelect>
-                    <LabelSuper>اختر المجموعات المسؤول عنها</LabelSuper>
-                    <DivMultiselect>
-                        <Multiselect
-                            onSelect={handleUpdateSelectedGroupsChange}
-                            onRemove={handleUpdateSelectedGroupsChange}
-                            options={props.managedGroups.results}
-                            displayValue='name'
-                            style={{textAlign: 'right'}}
-                            placeholder=""
-                            popupwidth='5rem'
-                            popupHeight='1rem'
-                        />
-                    </DivMultiselect>
-                </DropdownDivSelect>
-            }
-
             <DivTxtField>
                 <LabelSuper>إضافته كمسؤول رئيسي؟ </LabelSuper><Checkboxes onChange={handleSuperAdminCheckChange} type="checkbox"/>
             </DivTxtField>
 
-            {message !== "" &&
-                <DivPass>{message}</DivPass>
+            {
+                messages.length > 0  &&
+                    messages.map((message, index)=>{
+                        return <DivPass key={index}>{message}</DivPass>
+                    })
+
             }
             <InputSubmit type="submit" value='login'>إضافة مسؤول جديد</InputSubmit>
 

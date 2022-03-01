@@ -18,7 +18,6 @@ const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
 export default function Admins() {
 
     const [admins, setAdmins] = useState(null);
-    const [managedGroups, setManagedGroups] = useState(null);
 
     useEffect(() => {
         axios({
@@ -30,17 +29,6 @@ export default function Admins() {
             },
         }).then((res) => {
             setAdmins(res.data)
-        })
-
-        axios({
-            method: "get",
-            url: `${apiUrl}/comp-admin/comp-group/`,
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${cookie.load('token')}`,
-            },
-        }).then((res) => {
-            setManagedGroups(res.data);
         })
 
     }, []);
@@ -67,8 +55,8 @@ export default function Admins() {
 
             <Tabs labels={['تعديل مسؤول', 'إضافة مسؤول']}
                   contents={
-                    [<EditAdminForm managedGroups={managedGroups} admins={admins}/>
-                      , <AddAdminForm managedGroups={managedGroups}/>
+                    [<EditAdminForm admins={admins}/>
+                      , <AddAdminForm/>
                     ]}/>
 
             <Sidebar/>

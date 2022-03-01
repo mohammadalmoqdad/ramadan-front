@@ -14,7 +14,7 @@ export default function Tabs(props) {
         <div className="container">
             <div className="bloc-tabs">
                 {
-                    props.labels.reverse().map((label, index) => {
+                    props.labels.map((label, index) => {
                         return (
                             <button
                                 className={toggleState ===  index ? "tabs active-tabs" : "tabs"}
@@ -25,7 +25,7 @@ export default function Tabs(props) {
             </div>
             <div className="content-tabs">
                 {
-                    props.contents.reverse().map((content, index)=>{
+                    props.contents.map((content, index)=>{
                         return(
                             <div className={toggleState === index ? "content  active-content" : "content"}>{content}</div>
                         )

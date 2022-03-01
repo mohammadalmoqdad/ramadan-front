@@ -220,6 +220,8 @@ export const DivPass = styled.h3`
 display: flex;
 justify-content: center;
 align-items: flex-start;
+word-break: break-word;
+direction: rtl;
 
 width: 100%;
 padding: 0 5px;
@@ -268,12 +270,3 @@ margin: auto;
 flex-direction: column;
 
 `;
-export const DivMultiselect = styled.div`
-/* display: none; */
-.multiSelectContainer{
- text-align:right;
-}
-@media (max-width:500px) {
-  font-size: .7rem;
-  width: 12rem;
-}`;
