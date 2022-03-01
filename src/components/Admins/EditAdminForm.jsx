@@ -107,17 +107,6 @@ export default function AddAdminForm(props) {
 
             {
                 props.admins && props.admins.count > 0 &&
-                    <>
-                        {/*<label>اختر المسؤول</label>*/}
-                        {/*<select id="standard-select" onChange={handleAdminSelectChange}>*/}
-                        {/*    {*/}
-                        {/*        props.admins.results.map((admin, index)=>{*/}
-                        {/*                return(<option key={index} value={admin.username}>{admin.first_name} {admin.last_name}</option> )*/}
-                        {/*            }*/}
-                        {/*        )*/}
-                        {/*    }*/}
-                        {/*</select>*/}
-
                         <DropdownDiv className="DropdownDiv" onChange={handleAdminSelectChange}>
                             <DropdownList className="DropdownList_editAdmin" >
                                 <DropdownListItem>اختر المسؤول</DropdownListItem>
@@ -128,8 +117,6 @@ export default function AddAdminForm(props) {
                                 }
                             </DropdownList>
                         </DropdownDiv>
-
-                    </>
             }
             <DivTxtField>
                 <Span/>

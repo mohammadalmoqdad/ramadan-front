@@ -1,0 +1,192 @@
+import React, {useEffect, useState} from 'react'
+import {
+    DivMultiselect,
+    DivTxtField,
+    DropdownDiv,
+    DropdownDivSelect,
+    FormInput,
+    Form,
+    InputSubmit,
+    Span
+} from "./Group.styles";
+import Multiselect from "multiselect-react-dropdown";
+import {DropdownList, DropdownListItem} from "../Admins/EditAdminForm.styles";
+import {DivPass} from "../Admins/Admins.styles";
+import axios from "axios";
+import cookie from "react-cookies";
+const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
+
+export default function EditGroupForm(props) {
+
+    const [selectedStudents, setSelectedStudents] = useState([]);
+    const [currentSelectedStudents, setCurrentSelectedStudents] = useState([]);
+    const [selectedGroup, setSelectedGroup] = useState(null);
+    const [selectedAdminUserName, setSelectedAdminUserName] = useState("");
+    const [groupName, setGroupName] = useState("");
+    const [isValidGroupName, setValidGroupName] = useState(true);
+    const [announcements, setAnnouncements] = useState("");
+    const [messages, setMessages] = useState([]);
+
+    useEffect(()=>{
+        setMessages([]);
+    },[selectedStudents, selectedAdminUserName, groupName, announcements]);
+
+    const handleSelectedGroupChange = (e)=>{
+        let group = props.studentsGroups.results.filter(studentsGroup => studentsGroup.id === Number(e.target.value))[0];
+        if(group){
+            setSelectedAdminUserName(group.admin);
+            setGroupName(group.name);
+            setAnnouncements(group.announcements);
+            if(group.group_students && group.group_students.length > 0){
+                setCurrentSelectedStudents(props.students.results.filter(student => group.group_students.includes(student.username)));
+            }
+            setSelectedStudents(group.group_students);
+            setSelectedGroup(group);
+        }else{
+            setSelectedAdminUserName("");
+            setGroupName("");
+            setAnnouncements("");
+            setCurrentSelectedStudents([]);
+        }
+    }
+
+    const handleUpdateSelectedStudentsChange = (e) => {
+        let selectedStudents = [];
+        for (let i = 0; i < e.length; i++) {
+            selectedStudents.push(e[i].username);
+        }
+        setSelectedStudents(selectedStudents);
+    };
+
+    const handleAdminSelectChange = (e) => {
+        setSelectedAdminUserName(e.target.value);
+    };
+
+    const handleGroupNameChange = (e) => {
+        if(e.target.value > 30){
+            setValidGroupName(false);
+        }else{
+            setValidGroupName(true);
+        }
+        setGroupName(e.target.value);
+    };
+
+    const handleAnnouncementsChange = (e) => {
+        setAnnouncements(e.target.value);
+    };
+
+    const handleEditGroupSubmit = (e) => {
+        e.preventDefault();
+
+        axios.put(
+            `${apiUrl}/comp-admin/comp-group/${selectedGroup.id}/`,
+            {
+                'admin': selectedAdminUserName,
+                'name': groupName,
+                'group_students': selectedStudents,
+                'announcements': announcements
+            },{
+                headers:{
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${cookie.load('token')}`
+                }
+            }
+        ).then(
+            (res)=>{
+                if(res && res.status === 200){
+                    setMessages(["تم تعديل المجموعة بنجاح"]);
+                }
+            },
+            (err)=>{
+                if(err.response.data.messages){
+                    setMessages(["لم يتم تعديل المجموعة"]);
+                }else{
+                    let errMessages = [];
+                    let obj = err.response.data;
+                    Object.keys(obj).forEach(e => {
+                            errMessages.push(obj[e]);
+                        }
+                    )
+                    setMessages(errMessages);
+                }
+                console.log("ERROR: ",JSON.stringify(err.response.data));
+            }
+        );
+    };
+
+    return (
+        <Form onSubmit={handleEditGroupSubmit}>
+
+            { props.studentsGroups && props.studentsGroups.count > 0 &&
+                <DropdownDiv className="DropdownDiv" onChange={handleSelectedGroupChange}>
+                    <DropdownList className="DropdownList_groups" >
+                        <DropdownListItem>اختر المجموعة</DropdownListItem>
+                        {
+                            props.studentsGroups.results.map((group, index) => (
+                                <DropdownListItem key={index} value={group.id}>{group.name}</DropdownListItem>
+                            ))
+                        }
+                    </DropdownList>
+                </DropdownDiv>
+
+            }
+            { props.students && props.students.count > 0 &&
+                <DropdownDiv className='DropdownDiv'>
+                    <DropdownDivSelect>
+                        <Span>أسماء طلبة يكمن اضافتهم</Span>
+                        <DivMultiselect>
+                            <Multiselect
+                                onSelect={handleUpdateSelectedStudentsChange}
+                                onRemove={handleUpdateSelectedStudentsChange}
+                                selectedValues={currentSelectedStudents === [] ? [] : currentSelectedStudents}
+                                options={props.students.results}
+                                displayValue="full_name"
+                                placeholder=""
+                                popupHeight='1rem'
+                                popupwidth='5rem'
+                            />
+                        </DivMultiselect>
+                    </DropdownDivSelect>
+
+                </DropdownDiv>
+            }
+
+            { props.admins && props.admins.count > 0 &&
+
+                    <DropdownDiv className="DropdownDiv" onChange={handleAdminSelectChange}>
+                        <DropdownList className="DropdownList_groups">
+                            <DropdownListItem>اختر المسؤول</DropdownListItem>
+                            {
+                                props.admins.results.map((admin, index) => (
+                                    <DropdownListItem key={index} value={admin.username}>{admin.first_name} {admin.last_name}</DropdownListItem>
+                                ))
+                            }
+                        </DropdownList>
+                    </DropdownDiv>
+            }
+
+            <DivTxtField>
+                <Span/>
+                <FormInput placeholder='ادخل اسم المجموعة الجديدة' value={groupName !== "" ?  groupName : ""} onChange={handleGroupNameChange} type="text" required/>
+            </DivTxtField>
+            {!isValidGroupName &&
+                <DivPass>يجب أن يكون طول اسم المجموعة أقل أو يساوي 30 حرف</DivPass>
+
+            }
+
+            <DivTxtField>
+                <Span/>
+                <FormInput placeholder='الإعلانات' value={announcements !== "" ?  announcements : ""} onChange={handleAnnouncementsChange} type="text"/>
+            </DivTxtField>
+            <DivPass>استخدم ; للفصل بين الإعلانات في حالة إضافة أكثر من إعلان</DivPass>
+
+            {messages.length > 0 &&
+                messages.map((message, index)=>{
+                    return <DivPass key={index}>{message}</DivPass>
+                })
+            }
+            <InputSubmit type="submit" value='login'>تعديل المجموعة</InputSubmit>
+
+        </Form>
+    );
+}

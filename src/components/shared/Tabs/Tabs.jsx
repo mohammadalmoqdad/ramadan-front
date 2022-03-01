@@ -27,7 +27,7 @@ export default function Tabs(props) {
                 {
                     props.contents.map((content, index)=>{
                         return(
-                            <div className={toggleState === index ? "content  active-content" : "content"}>{content}</div>
+                            <div className={toggleState === index ? "content  active-content" : "content"} key={index}>{content}</div>
                         )
                     })
                 }
