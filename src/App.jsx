@@ -7,7 +7,7 @@ import Loder from "components/Loader";
 import Group from "components/Group/Group";
 import { useState, useEffect } from "react";
 import EditStandards from './components/EditStandards/EditStandards'
-import Admins from './components/admins/Admins'
+import Admins from './components/Admins/Admins'
 import StudentsPoints from './components/studentsPoints/StudentsPoints'
 import { Route, BrowserRouter, Router, Routes } from "react-router-dom";
 import React from "react";
