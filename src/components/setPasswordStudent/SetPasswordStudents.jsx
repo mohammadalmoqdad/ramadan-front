@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Sidebar from "components/shared/Sidebar";
 
 
@@ -19,71 +18,77 @@ import SetPasswordStudentContainer, {
   SetPasswordStudent,
 } from "./SetPasswordStudent.styles";
 import "./Setpass.css";
-import cookie from "react-cookies";
-let AccessToken = cookie.load("token");
-
-// we have 3 TODO
-// TODO 1 : get the token from Cookies and let it to AccessToken
-// NOTE : when I test the get, put method the token need change If we had an error, I dont know why, also the useEffect was rendering.
+import {setStudentPassword, retrieveStudents} from "../../services/studentsServices";
 
 export default function SetPasswordStudents() {
   const [userName, setUserName] = useState("");
-
   const [PasswordStudent1, setPasswordStudent1] = useState("");
   const [PasswordStudent2, setPasswordStudent2] = useState("");
   const [PasswordStudentEqual, setPasswordStudentEqual] = useState(true);
-  const [mhdArray, setMhdarray] = useState([]);
-  const [message, setMessage] = useState("");
+  const [students, setStudents] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [selectedUserFullName, setSelectedUserFullName] = useState("");
+  const [isValidPassword, setValidPassword] = useState(true);
+
+  useEffect(() => {
+
+    retrieveStudents(
+        (res) => {
+          setStudents(res.data);
+        }, (err) => {
+          console.log("ERROR: "+JSON.stringify(err.response.data));
+        }
+    );
+
+  }, []);
+
+  useEffect(() => {
+
+    setMessages([]);
+  }, [userName, PasswordStudent1, PasswordStudent2]);
+
 
   const selectedUser = (e) => {
-    setUserName(e.target.value);
-    console.log(e.target.value);
+    if(e.target.value !== ""){
+      setUserName(e.target.value);
+      console.log(e.target.value);
+      let student = students.results.filter( student => student.username === e.target.value)[0];
+      setSelectedUserFullName(student.first_name+" "+student.last_name);
+    }else{
+      setSelectedUserFullName("");
+
+    }
   };
 
   const handleChangeStudentPassword1 = (e) => {
+    if(e.target.value.length < 8){
+      setValidPassword(false);
+    }else{
+      setValidPassword(true);
+    }
     setPasswordStudent1(e.target.value);
   };
+
   const handleChangeStudentPassword2 = (e) => {
-    if(PasswordStudent1 !== PasswordStudent2){
-      setPasswordStudentEqual(false);
-    }else{
-      setPasswordStudentEqual(true);
-    }
     setPasswordStudent2(e.target.value);
+    if(PasswordStudent1 === e.target.value){
+      setPasswordStudentEqual(true);
+    }else{
+      setPasswordStudentEqual(false);
+    }
   };
-  useEffect(() => {
-    let arr = [];
-    // console.log(AccessToken);
-    axios({
-      method: "get",
-      url: `https://ramadan-comp-rest.herokuapp.com/comp-admin/students/`,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${AccessToken}`,
-      },
-    }).then((res) => {
-      console.log(res.data);
-      for (let i = 0; i < res.data.results.length; i++) {
-        arr.push(res.data.results[i].first_name+" "+res.data.results[i].last_name);
-      }
-      setMhdarray(arr);
-      console.log(mhdArray);
-    }, (err) => {
-      //TODO: We should update our Auth logic and using refresh token to refresh the access token
-      //TODO: Redirect the user to login with saving the location to return him back here again
-      console.log("ERROR: "+JSON.stringify(err.response.data));
-    });
-  }, []);
+
+
 
   const Set_Pas_St_Fun = async (e) => {
     e.preventDefault();
 
-    if (!PasswordStudentEqual) {
+    if (!PasswordStudentEqual || !isValidPassword) {
       return;
     }
 
-    if (userName === 'اختر المتسابق لتغيير كلمة المرور') {
-      setMessage("يجب عليك اختيار متسابق لتغيير كلمة المرور");
+    if (userName === "") {
+      setMessages(["يجب عليك اختيار متسابق لتغيير كلمة المرور"]);
       return;
     }
 
@@ -91,43 +96,51 @@ export default function SetPasswordStudents() {
       password: PasswordStudent1,
     };
 
-    await axios({
-      method: "put",
-      url: `https://ramadan-comp-rest.herokuapp.com/comp-admin/students/${userName}/change_password/`,
-      data: PasswordStudent,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${AccessToken}`,
-      },
-    }).then(
-        (res) => {
+    setStudentPassword(
+        userName,
+        PasswordStudent,
+        (res)=>{
+          setMessages(['تم تغيير كلمة المرور بنجاح']);
           console.log(res.data);
-          setMessage('تم تغيير كلمة المرور بنجاح')
-        }, (err) => {
-          console.log("ERROR: "+JSON.stringify(err.response.data));
+        },
+        (err)=>{
+          let errMessages =[];
+          errMessages.push('لم يتم تغيير كلمة المرور');
+          if (err.response.data) {
+            let obj = err.response.data;
+            Object.keys(obj).forEach(e => {
+                  errMessages.push(obj[e]);
+                }
+            )
+          }
+          setMessages(errMessages)
         }
     );
+
   };
 
   return (
     <SetPasswordStudentContainer>
       <SetPasswordStudent>
-      <DropdownDiv className="DropdownDiv" onChange={selectedUser}>
-        <DropdownList className="DropdownList">
-          <DropdownListItem>اختر المتسابق لتغيير كلمة المرور</DropdownListItem>
-          {
-            // TODO 3 : type map method to render the userName from the git method
+        {students && students.count > 0 &&
+            <>
+              <DropdownDiv className="DropdownDiv" onChange={selectedUser}>
+                <DropdownList className="DropdownList">
+                  <DropdownListItem key={0} value="">اختر المتسابق لتغيير كلمة المرور</DropdownListItem>
+                  {
+                    students.results.map((student, index) => (
+                        <DropdownListItem key={index + 1}
+                                          value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
+                    ))
+                  }
+                </DropdownList>
+              </DropdownDiv>
 
-            mhdArray.map((item, index) => (
-                <DropdownListItem key={index}>{item}</DropdownListItem>
-            ))
-          }
-        </DropdownList>
-      </DropdownDiv>
-
-      <StudantName>
-        : اسم المتسابق <br /> {userName}{" "}
-      </StudantName>
+              <StudantName>
+                : اسم المتسابق <br/> {selectedUserFullName}{" "}
+              </StudantName>
+            </>
+        }
 
       <DivCenter>
         <H3Login>أدخل كلمة مرور جديدة</H3Login>
@@ -142,6 +155,9 @@ export default function SetPasswordStudents() {
               required
             />
           </DivTxtField>
+          {!isValidPassword &&
+              <DivPass>يجب أن تتكون كلمة المرور 8 أحرف على الأقل</DivPass>
+          }
 
           <DivTxtField>
             <Span />
@@ -159,8 +175,10 @@ export default function SetPasswordStudents() {
               </DivPass>
           }
 
-          { message !== "" &&
-            <DivPass>{message}</DivPass>
+          { messages.length > 0  &&
+              messages.map((message, index)=>{
+                return <DivPass key={index}>{message}</DivPass>
+              })
           }
           <InputSubmit type="submit" value="login">
             تغيير كلمة المرور

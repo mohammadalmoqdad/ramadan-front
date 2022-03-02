@@ -9,10 +9,7 @@ import  {
     LabelSuper,
     Span
 } from "./Admins.styles";
-
-import axios from "axios";
-import cookie from "react-cookies";
-const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
+import {addAdmin} from "../../services/adminsServices";
 
 
 export default function AddAdminForm() {
@@ -47,9 +44,7 @@ export default function AddAdminForm() {
             return;
         }
 
-        axios.post(
-            `${apiUrl}/comp-admin/comp-admins/`,
-            {
+        addAdmin({
                 'password': password,
                 'username': username,
                 'first_name': firstName,
@@ -58,31 +53,22 @@ export default function AddAdminForm() {
                 'is_super_admin': isSuperAdmin,
                 'email': email,
                 "phone_number": phoneNumber,
-            },{
-                headers:{
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${cookie.load('token')}`
-                }
-            }
-        ).then(
-            (res)=>{
+            },
+            (res) => {
                 if(res && res.status === 201){
                     setMessages(["تمت إضافة المسؤول بنجاح"]);
                 }
-            },
-            (err)=>{
-                if(err.response.data.messages){
-                    setMessages(["لم تمت إضافة المسؤول"]);
-                }else{
-                    let errMessages = [];
+            }, (err) => {
+                let errMessages = [];
+                errMessages.push(["لم تمت إضافة المسؤول"]);
+                if(err.response.data){
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
                             errMessages.push(obj[e]);
                         }
                     )
-                    setMessages(errMessages);
                 }
-                console.log("ERROR: ",JSON.stringify(err.response.data));
+                setMessages(errMessages);
             }
         );
     }
