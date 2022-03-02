@@ -12,9 +12,7 @@ import {
 import Multiselect from "multiselect-react-dropdown";
 import {DropdownList, DropdownListItem} from "../Admins/EditAdminForm.styles";
 import {DivPass} from "../Admins/Admins.styles";
-import axios from "axios";
-import cookie from "react-cookies";
-const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
+import {addGroup} from "../../services/groupsServices";
 
 export default function AddGroupForm(props) {
 
@@ -38,7 +36,7 @@ export default function AddGroupForm(props) {
     };
 
     const handleAdminSelectChange = (e) => {
-      setSelectedAdminUserName(e.target.value);
+        setSelectedAdminUserName(e.target.value);
     };
 
     const handleGroupNameChange = (e) => {
@@ -55,40 +53,35 @@ export default function AddGroupForm(props) {
     };
 
     const handleAddGroupSubmit = (e) => {
-      e.preventDefault();
+        e.preventDefault();
 
-        axios.post(
-            `${apiUrl}/comp-admin/comp-group/`,
-            {
+        if(selectedAdminUserName === ""){
+            setMessages(['يجب عليك إختيار مسؤول لهذه المجموعة'])
+            return;
+        }
+
+        addGroup({
                 'admin': selectedAdminUserName,
                 'name': groupName,
                 'group_students': selectedStudents,
                 'announcements': announcements
-            },{
-                headers:{
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${cookie.load('token')}`
-                }
-            }
-        ).then(
-            (res)=>{
-                if(res && res.status === 201){
+            },
+            (res) => {
+                if (res && res.status === 201) {
                     setMessages(["تم إضافة المجموعة بنجاح"]);
                 }
             },
-            (err)=>{
-                if(err.response.data.messages){
-                    setMessages(["لم يتم إضافة المجموعة"]);
-                }else{
-                    let errMessages = [];
+            (err) => {
+                let errMessages = [];
+                errMessages.push("لم يتم إضافة المجموعة");
+                if (err.response.data) {
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
                             errMessages.push(obj[e]);
                         }
                     )
-                    setMessages(errMessages);
                 }
-                console.log("ERROR: ",JSON.stringify(err.response.data));
+                setMessages(errMessages);
             }
         );
     };
@@ -118,19 +111,18 @@ export default function AddGroupForm(props) {
 
             {
                 props.admins && props.admins.count > 0 &&
-                <>
                     <DropdownDiv className="DropdownDiv" onChange={handleAdminSelectChange}>
-                        <DropdownList className="DropdownList_groups" >
-                            <DropdownListItem>اختر المسؤول</DropdownListItem>
+                        <DropdownList className="DropdownList_groups">
+                            <DropdownListItem key={0} value="">اختر المسؤول</DropdownListItem>
                             {
                                 props.admins.results.map((admin, index) => (
-                                    <DropdownListItem key={index} value={admin.username}>{admin.first_name} {admin.last_name}</DropdownListItem>
+                                    <DropdownListItem key={index+1}
+                                                      value={admin.username}>{admin.first_name} {admin.last_name}</DropdownListItem>
                                 ))
                             }
                         </DropdownList>
                     </DropdownDiv>
 
-                </>
             }
 
             <DivTxtField>

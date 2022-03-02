@@ -5,9 +5,9 @@ import Tabs from "../shared/Tabs/Tabs";
 import Sidebar from "components/shared/Sidebar";
 import AddGroupForm from "./AddGroupForm";
 import EditGroupForm from "./EditGroupForm";
-import axios from "axios";
-import cookie from "react-cookies";
-const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
+import {retrieveStudents} from "../../services/studentsServices";
+import {retrieveAdmins} from "../../services/adminsServices";
+import {retrieveGroups} from "../../services/groupsServices";
 
 export default function Group() {
 
@@ -16,57 +16,27 @@ export default function Group() {
     const [students, setStudents] = useState(null);
 
     useEffect(() => {
-        axios({
-            method: "get",
-            url: `${apiUrl}/comp-admin/students/`,
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${cookie.load('token')}`,
-            },
-        }).then(
-            (res) => {
-                setStudents(res.data)
-            }, (err) => {
-                //TODO: We have to update our Auth logic and using refresh token to refresh the access token.
-                //TODO: Redirect the user to login with saving the location to return him back here again.
-                console.log("ERROR: "+JSON.stringify(err.response.data));
-            }
-        );
 
-        axios({
-            method: "get",
-            url: `${apiUrl}/comp-admin/comp-admins/`,
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${cookie.load('token')}`,
-            },
-        }).then(
+        retrieveStudents(
             (res) => {
-                setAdmins(res.data)
-            }, (err) => {
-                //TODO: We have to update our Auth logic and using refresh token to refresh the access token.
-                //TODO: Redirect the user to login with saving the location to return him back here again.
-                console.log("ERROR: "+JSON.stringify(err.response.data));
-            }
-        );
+            setStudents(res.data)
+        }, (err) => {
+            console.log("ERROR: " + JSON.stringify(err.response.data));
+        });
 
-        axios({
-            method: "get",
-            url: `${apiUrl}/comp-admin/comp-group/`,
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${cookie.load('token')}`,
-            },
-        }).then(
+        retrieveAdmins(
             (res) => {
-                setGroups(res.data)
-            }, (err) => {
-                //TODO: We have to update our Auth logic and using refresh token to refresh the access token.
-                //TODO: Redirect the user to login with saving the location to return him back here again.
-                console.log("ERROR: "+JSON.stringify(err.response.data));
-            }
-        );
+            setAdmins(res.data)
+        }, (err) => {
+            console.log("ERROR: " + JSON.stringify(err.response.data));
+        });
 
+        retrieveGroups(
+            (res) => {
+            setGroups(res.data)
+        }, (err) => {
+            console.log("ERROR: " + JSON.stringify(err.response.data));
+        });
 
     }, []);
 

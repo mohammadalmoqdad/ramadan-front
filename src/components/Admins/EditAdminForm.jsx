@@ -8,11 +8,8 @@ import  {
     Span
 } from "./Admins.styles";
 
-import axios from "axios";
-import cookie from "react-cookies";
 import {DropdownDiv, DropdownList, DropdownListItem} from "./EditAdminForm.styles";
-const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
-
+import {updateAdmin} from "../../services/adminsServices";
 
 export default function AddAdminForm(props) {
 
@@ -31,40 +28,29 @@ export default function AddAdminForm(props) {
         e.preventDefault();
 
 
-
-        axios.put(
-            `${apiUrl}/comp-admin/comp-admins/${selectedUserName}/`,
-            {
+        updateAdmin(selectedUserName, {
                 'username': selectedUserName,
                 'first_name': firstName,
                 'last_name': lastName,
                 'email': email,
                 'phone_number': phoneNumber,
-            },{
-                headers:{
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${cookie.load('token')}`
-                }
-            }
-        ).then(
-            (res)=>{
-                if(res && res.status === 200){
+            },
+            (res) => {
+                if (res && res.status === 200) {
                     setMessages(["تم تعديل المسؤول"]);
                 }
             },
-            (err)=>{
-                if(err.response.data.messages){
-                    setMessages(["لم يتم تعديل المسؤول"]);
-                }else{
-                    let errMessages = [];
+            (err) => {
+                let errMessages = [];
+                errMessages.push(["لم يتم تعديل المسؤول"]);
+                if (err.response.data) {
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
                             errMessages.push(obj[e]);
                         }
                     )
-                    setMessages(errMessages);
                 }
-                console.log("ERROR: ",JSON.stringify(err.response.data));
+                setMessages(errMessages);
             }
         );
     }
