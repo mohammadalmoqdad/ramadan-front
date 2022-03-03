@@ -27,7 +27,7 @@ function App() {
     <>
       <AuthProvider>
         <BrowserRouter>
-          {/* <AddStandards /> */}
+
           <Routes>
             {/* <Route exact path="/login" component={Login} /> */} 
             <Route exact path="/login" element={<Login />}></Route>
@@ -37,7 +37,7 @@ function App() {
             <Route exact path= "/EditStandards" element= {<EditStandards/>}  ></Route>
             <Route exact path= "/Groups" element= {<Group/>}  ></Route>
             <Route exact path= "/AddNewAdmin" element= {<AddNewAdmin/>}  ></Route>
-            <Route exact path="/AddStandards" element={<AddStandards />}></Route>
+            <Route exact path= "/AddNewStandards" element= {<AddStandards/>}  ></Route>
             <Route exact path= "/StudentsPoints" element= {<StudentsPoints/>}  ></Route>
 
           </Routes>
