@@ -38,6 +38,8 @@ export default function EditGroupForm(props) {
             setAnnouncements(group.announcements);
             if(group.group_students && group.group_students.length > 0){
                 setCurrentSelectedStudents(props.students.results.filter(student => group.group_students.includes(student.username)));
+            }else{
+                setCurrentSelectedStudents([]);
             }
             setSelectedStudents(group.group_students);
             setSelectedGroup(group);
@@ -46,6 +48,7 @@ export default function EditGroupForm(props) {
             setGroupName("");
             setAnnouncements("");
             setCurrentSelectedStudents([]);
+            setSelectedStudents([]);
         }
     }
 
