@@ -49,6 +49,7 @@ export default function EditGroupForm(props) {
             setAnnouncements("");
             setCurrentSelectedStudents([]);
             setSelectedStudents([]);
+            setSelectedGroup(null);
         }
     }
 
@@ -80,8 +81,13 @@ export default function EditGroupForm(props) {
     const handleEditGroupSubmit = (e) => {
         e.preventDefault();
 
+        if(selectedGroup == null){
+            setMessages(['يجب عليك إختيار مجموعة']);
+            return;
+        }
+
         if(selectedAdminUserName ===""){
-            setMessages(['يجب عليك إختيار مسؤول لهذه المجموعة'])
+            setMessages(['يجب عليك إختيار مسؤول لهذه المجموعة']);
             return;
         }
 
