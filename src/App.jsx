@@ -9,7 +9,7 @@ import Home from "./components/Home";
 import Loder from "components/Loader";
 import Group from "components/Group/Group";
 import EditStandards from './components/EditStandards/EditStandards'
-import AddNewAdmin from './components/addNewAdmin/AddNewAdmin'
+import Admins from './components/Admins/Admins'
 import StudentsPoints from './components/studentsPoints/StudentsPoints'
 import AddStandards from './components/AddStandards/AddStandards'
 
@@ -36,7 +36,7 @@ function App() {
             <Route exact path= "/set-student-password" element= {<SetPasswordStudents/>}  ></Route>
             <Route exact path= "/EditStandards" element= {<EditStandards/>}  ></Route>
             <Route exact path= "/Groups" element= {<Group/>}  ></Route>
-            <Route exact path= "/AddNewAdmin" element= {<AddNewAdmin/>}  ></Route>
+            <Route exact path= "/Admins" element= {<Admins/>}  ></Route>
             <Route exact path= "/AddNewStandards" element= {<AddStandards/>}  ></Route>
             <Route exact path= "/StudentsPoints" element= {<StudentsPoints/>}  ></Route>
 

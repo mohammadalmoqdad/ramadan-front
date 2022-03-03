@@ -83,6 +83,7 @@ font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.5rem;
 font-weight: bolder;
+display: block;
 
 
 @media (max-width:500px) {
@@ -157,7 +158,6 @@ padding: 1rem;
 border-radius: 6px;
 background-color: white;
 margin-top: 3rem;
-display: flex;
 
 box-shadow: 1px 3px 12px 0px #0000007a;
 
@@ -165,9 +165,7 @@ box-shadow: 1px 3px 12px 0px #0000007a;
 /* border: 2px;
 border-bottom-color: blue; */
 
-display: flex;
 justify-content: center;
-align-items: flex-start;
 cursor: pointer;
 margin-bottom: .5rem;
 @media (max-width:500px) {
@@ -222,6 +220,8 @@ export const DivPass = styled.h3`
 display: flex;
 justify-content: center;
 align-items: flex-start;
+word-break: break-word;
+direction: rtl;
 
 width: 100%;
 padding: 0 5px;
@@ -270,12 +270,3 @@ margin: auto;
 flex-direction: column;
 
 `;
-export const DivMultiselect = styled.div`
-/* display: none; */
-.multiSelectContainer{
- text-align:right;
-}
-@media (max-width:500px) {
-  font-size: .7rem;
-  width: 12rem;
-}`;

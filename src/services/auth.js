@@ -20,6 +20,7 @@ export async function useLogin(username, password) {
     console.log("inside the login function ", data);
 
     cookie.save("token", data.access);
+    cookie.save("refresh-token", data.refresh);
     // context.setIsLogdedIn(true);
 
     // useNavigate("/");
