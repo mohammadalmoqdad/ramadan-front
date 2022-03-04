@@ -1,16 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from "components/shared/Sidebar";
 
-import LoginFormContainer, { PointShow, LoginForm, Formm, DropdownListItem, DropdownList, DropdownDiv, Wird, DivPass, DivCenter, H3Login, InputSubmit, Form, FormInput, H1Login, DivTxtField, FormLabel, Span } from "./StudentsPoints.styles"
+import { retrieveStudents } from "../../services/studentsServices";
+
+import LoginFormContainer,
+{
+  PointShow,
+  LoginForm,
+  Formm,
+  DropdownListItem,
+  DropdownList,
+  DropdownDiv,
+  Wird,
+  // DivPass,
+  DivCenter,
+  H3Login,
+  // InputSubmit,
+  Form,
+  // FormInput,
+  H1Login,
+  // DivTxtField,
+  // FormLabel,
+  // Span
+} from "./StudentsPoints.styles"
+
 import Tabl from './table/Tabl.jsx';
+
+
 export default function StudentsPoints() {
+
+  const [Students, setStudents] = useState(null);
   const [usarName, setUsarName] = useState("");
+
+  useEffect(() => {
+    // successCallback,
+    // faiCallback,
+    retrieveStudents(
+      (res) => {
+        setStudents(res.data);
+        // console.log(res.data);
+        // console.log(Students);
+      }, (err) => {
+        console.log("ERROR: " + JSON.stringify(err.response.data));
+      }
+    );
+
+  }, []);
+
 
   const selectedUser = (e) => {
     setUsarName(e.target.value)
-    console.log(e.target.value);
+    // console.log(e.target.value);
   }
+  // console.log(usarName);
 
   return <LoginFormContainer>
     <PointShow>
@@ -39,26 +82,26 @@ export default function StudentsPoints() {
               <H1Login>التقويم الرمضاني<Wird>1</Wird> </H1Login>
               <H3Login>اللهم تقبل</H3Login>
             </DivCenter>
-          </Formm>
-        </Form> */}
+          </Formm> /*/}
+        {/* </Form> */}
+        {Students && Students.count > 0 &&
+          <>
+            <DropdownDiv className='DropdownDiv' onChange={selectedUser} >
+              <DropdownList className='DropdownList'>
 
-        <DropdownDiv className='DropdownDiv' onChange={selectedUser} >
-          {/* <DropdownDivSelect>
-        <I><AiFillCaretDown /></I>
-        <Span>اختر المتسابق لتغيير كلمة المرور</Span>  .results[i].username
-      </DropdownDivSelect> */}
+                <DropdownListItem key={0} value="">اختر المتسابق </DropdownListItem>
+                {
+                  Students.results.map((student, index) => (
+                    <DropdownListItem key={index + 1}
+                      value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
+                  ))
+                }
+              </DropdownList>
+            </DropdownDiv>
+          </>
+        }
 
-          <DropdownList className='DropdownList'>
-
-            <DropdownListItem>اختر المتسابق </DropdownListItem>
-            <DropdownListItem >امين بسام صالح</DropdownListItem>
-            <DropdownListItem value="bo">أسامة مؤمن أبوحمدان</DropdownListItem>
-            <DropdownListItem value="An">الليدر أنس القاضي</DropdownListItem>
-
-          </DropdownList>
-        </DropdownDiv>
-
-        <DropdownDiv className='DropdownDiv' onChange={selectedUser} >
+        <DropdownDiv className='DropdownDiv' >
           {/* <DropdownDivSelect>
         <I><AiFillCaretDown /></I>
         <Span>اختر المتسابق لتغيير كلمة المرور</Span>  .results[i].username
@@ -75,7 +118,7 @@ export default function StudentsPoints() {
 
         </DropdownDiv>
 
-        <Tabl />
+        <Tabl usarName={usarName} />
 
       </LoginForm>
     </PointShow>

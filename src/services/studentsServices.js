@@ -38,6 +38,19 @@ export const updateStudent = (username, data, successCallback, faiCallback) => {
         true);
 };
 
+
+export const dataStudentPoints = (username, data, successCallback, faiCallback) => {
+    doRequest(data, `/comp-admin/students/mhmdBnAli/`,
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "put",
+        successCallback,
+        faiCallback,
+        true);
+};
+
 export const updateStudentPoint = (username, data, successCallback, faiCallback) => {
     doRequest(data, `/comp-admin/students/${username}/update_or_delete_point/`,
         {

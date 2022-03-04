@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import  {
+import React, { useEffect, useState } from 'react';
+import {
     DivPass,
     DivTxtField,
     Form,
@@ -20,21 +20,21 @@ export default function EditGroupForm(props) {
     const [phoneNumber, setPhoneNumber] = useState(null);
     const [selectedUserName, setSelectedUserName] = useState("");
 
-    useEffect(()=>{
-            setMessages([]);
-        },[ firstName, lastName, email, phoneNumber]);
+    useEffect(() => {
+        setMessages([]);
+    }, [firstName, lastName, email, phoneNumber]);
 
-    const handleEditAdminSubmit = (e)=>{
+    const handleEditAdminSubmit = (e) => {
         e.preventDefault();
 
 
         updateAdmin(selectedUserName, {
-                'username': selectedUserName,
-                'first_name': firstName,
-                'last_name': lastName,
-                'email': email,
-                'phone_number': phoneNumber,
-            },
+            'username': selectedUserName,
+            'first_name': firstName,
+            'last_name': lastName,
+            'email': email,
+            'phone_number': phoneNumber,
+        },
             (res) => {
                 if (res && res.status === 200) {
                     let updatedAdmin = props.admins.filter(admin => admin.username === selectedUserName)[0];
@@ -52,8 +52,8 @@ export default function EditGroupForm(props) {
                 if (err.response.data) {
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
-                            errMessages.push(obj[e]);
-                        }
+                        errMessages.push(obj[e]);
+                    }
                     )
                 }
                 setMessages(errMessages);
@@ -67,11 +67,11 @@ export default function EditGroupForm(props) {
     const handleLastNameChange = (e) => {
         setLastName(e.target.value);
     }
-    const handleEmailChange = (e) =>{
+    const handleEmailChange = (e) => {
         setEmail(e.target.value);
     }
 
-    const handlePhoneNumberChange = (e) =>{
+    const handlePhoneNumberChange = (e) => {
         setPhoneNumber(e.target.value);
     }
 
@@ -84,7 +84,7 @@ export default function EditGroupForm(props) {
             setLastName(admin.last_name);
             setPhoneNumber(admin.phone_number);
             setEmail(admin.email);
-        }else{
+        } else {
             setSelectedUserName("");
             setFirstName("");
             setLastName("");
@@ -111,18 +111,18 @@ export default function EditGroupForm(props) {
                         </DropdownDiv>
             }
             <DivTxtField>
-                <Span/>
-                <FormInput onChange={handleFirstNameChange} placeholder='الاسم الأول' type="text" value={firstName == null ? "" : firstName} required/>
-            </DivTxtField>
-
-            <DivTxtField>
-                <Span/>
-                <FormInput onChange={handleLastNameChange} placeholder='اسم العائلة' type="text" value={lastName == null ? "" : lastName} required/>
+                <Span />
+                <FormInput onChange={handleFirstNameChange} placeholder='الاسم الأول' type="text" value={firstName == null ? "" : firstName} required />
             </DivTxtField>
 
             <DivTxtField>
                 <Span />
-                <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email"  value={email == null? "" : email} required />
+                <FormInput onChange={handleLastNameChange} placeholder='اسم العائلة' type="text" value={lastName == null ? "" : lastName} required />
+            </DivTxtField>
+
+            <DivTxtField>
+                <Span />
+                <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email" value={email == null ? "" : email} required />
             </DivTxtField>
 
             <DivTxtField>
@@ -138,7 +138,7 @@ export default function EditGroupForm(props) {
             {/*</DivTxtField>*/}
 
             {messages.length > 0 &&
-                messages.map((message, index)=>{
+                messages.map((message, index) => {
                     return <DivPass key={index}>{message}</DivPass>
                 })
             }
