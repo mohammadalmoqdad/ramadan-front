@@ -11,7 +11,7 @@ const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
 */
 
 
-const refreshTokenThenRetry = (data, uri, config, method, successCallback, failCallback, beforeRefresh)=>{
+const refreshTokenThenRetry = (data, uri, config, method, successCallback, failCallback, beforeRefresh) => {
     axios.post(
         `${apiUrl}/token/refresh/`,
         {
@@ -25,29 +25,29 @@ const refreshTokenThenRetry = (data, uri, config, method, successCallback, failC
             doRequest(data, uri, config, method, successCallback, failCallback, beforeRefresh);
         }, (err) => {
             // Navigate to login page with saving location info to redirect back to
-            console.log("ERROR refreshTokenThenRetry: "+JSON.stringify(err.response.data));
+            console.log("ERROR refreshTokenThenRetry: " + JSON.stringify(err.response.data));
         }
     );
 }
 
-export const doRequest = (data, uri, config, method, successCallback, failCallback, beforeRefresh) =>{
+export const doRequest = (data, uri, config, method, successCallback, failCallback, beforeRefresh) => {
     axios({
-            method: method,
-            url: `${apiUrl}${uri}`,
-            data: data,
-            headers: config
-        }
-    ).then( (data) => {
+        method: method,
+        url: `${apiUrl}${uri}`,
+        data: data,
+        headers: config
+    }
+    ).then((data) => {
         successCallback(data);
-    }, (err)=>{
-        if(err.response && err.response.status === 401){
-            if(beforeRefresh){
+    }, (err) => {
+        if (err.response && err.response.status === 401) {
+            if (beforeRefresh) {
                 refreshTokenThenRetry(data, uri, config, method, successCallback, false);
-            }else{
+            } else {
                 // Navigate to login page with saving location info to redirect back to
-                console.log("ERROR doRequest: "+JSON.stringify(err.response.data));
+                console.log("ERROR doRequest: " + JSON.stringify(err.response.data));
             }
         }
-       failCallback(err);
+        failCallback(err);
     });
 }

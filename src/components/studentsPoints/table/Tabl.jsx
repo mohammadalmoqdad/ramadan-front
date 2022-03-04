@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import Table from "react-bootstrap/Table";
-import Div, {
-  FormInput,
-  Span,
-  DivTxtField,
-  InputSubmit,
-  DivIn,
-} from "./Tabl.styles";
-import Modals from "./modal/Modals";
+import React, { useState, useEffect } from 'react'
+import Table from 'react-bootstrap/Table'
+import Div, { FormInput, Span, DivTxtField, InputSubmit, DivIn } from "./Tabl.styles"
+import { dataStudentPoints } from "../../../services/studentsServices";
+import Modals from './modal/Modals'
 
-export default function Tabl() {
-  const [showdays, setshowdays] = useState("none");
+export default function Tabl(props) {
+  const [showdays, setshowdays] = useState('none')
+  const [usaruame, setUsarName] = useState(null);
+
+  const [StudentsPoints, setStudentsPoints] = useState(null);
+
+
 
   const dayOfRamdan = (e) => {
     if (showdays === "none") {
@@ -19,6 +19,33 @@ export default function Tabl() {
       setshowdays("none");
     }
   };
+  
+
+
+  useEffect(() => {
+    // let userdata = props.usarName
+    // setUsarName(userdata)
+    console.log(props.usarName);
+
+    // successCallback,
+    // faiCallback,
+    dataStudentPoints(
+      props.usarName,
+      null,
+      (res) => {
+        setStudentsPoints(res.data);
+        console.log(res.data);
+        // console.log(Students);
+      }, (err) => {
+        console.log("ERROR: " + JSON.stringify(err));
+      }
+    );
+
+  }, [props.usarName || usaruame]);
+  // console.log(StudentsPoints);
+
+  // console.log(data);
+
   return (
     <Div>
       <DivIn>
@@ -86,4 +113,4 @@ export default function Tabl() {
       </DivIn>
     </Div>
   );
-}
+              }

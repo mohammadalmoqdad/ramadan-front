@@ -82,24 +82,25 @@ export default function StudentsPoints() {
               <H1Login>التقويم الرمضاني<Wird>1</Wird> </H1Login>
               <H3Login>اللهم تقبل</H3Login>
             </DivCenter>
-          </Formm> /*/}
-        {/* </Form> */}
-        {Students && Students.count > 0 &&
-          <>
-            <DropdownDiv className='DropdownDiv' onChange={selectedUser} >
-              <DropdownList className='DropdownList'>
-
-                <DropdownListItem key={0} value="">اختر المتسابق </DropdownListItem>
+          </Formm>
+        </Form>
+        */}
+        <DropdownDiv className='DropdownDiv' onChange={selectedUser} >
+          <DropdownList className='DropdownList'>
+          <DropdownListItem key={0} value="">اختر المتسابق </DropdownListItem>
+            {Students && Students.count > 0 &&
+              <>
                 {
                   Students.results.map((student, index) => (
                     <DropdownListItem key={index + 1}
                       value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
                   ))
                 }
-              </DropdownList>
-            </DropdownDiv>
-          </>
-        }
+              </>
+            }
+          </DropdownList>
+        </DropdownDiv>
+
 
         <DropdownDiv className='DropdownDiv' >
           {/* <DropdownDivSelect>

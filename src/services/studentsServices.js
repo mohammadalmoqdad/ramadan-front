@@ -40,12 +40,12 @@ export const updateStudent = (username, data, successCallback, faiCallback) => {
 
 
 export const dataStudentPoints = (username, data, successCallback, faiCallback) => {
-    doRequest(data, `/comp-admin/students/mhmdBnAli/`,
+    doRequest(data, `/comp-admin/students/${username}/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
         },
-        "put",
+        "get",
         successCallback,
         faiCallback,
         true);
