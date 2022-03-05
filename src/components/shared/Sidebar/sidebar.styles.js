@@ -7,15 +7,16 @@ const fadeIn = keyframes`
   }
   
   to {
-    
+    /* max-height: 3.8rem; */
     max-width: 4rem;
   }`;
 
 const fadeOut = keyframes`
   from {
     max-width: 4rem;
+    /* max-height: 100vh; */
     &{
-      position: relative;
+      position: static;
     }
   }
   
@@ -35,9 +36,9 @@ export const SideBarContainer = styled.div`
   @media(max-width: 400px) {
       position: absolute;
     }
-  background-color: white;
+  background-color: #2980b9;
   height: 100vh;
-  box-shadow: 1px 3px 12px 2px #0000007a;
+  /* box-shadow: 1px 3px 12px 2px #0000007a; */
   text-align: center;
   color: lightgray;
   /* width: 15rem; */
