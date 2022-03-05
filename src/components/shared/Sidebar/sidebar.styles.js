@@ -1,23 +1,54 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { NavLink } from "react-router-dom";
 
+const fadeIn = keyframes`
+  from {
+    max-width: 15rem;
+  }
+  
+  to {
+    
+    max-width: 4rem;
+  }`;
+
+const fadeOut = keyframes`
+  from {
+    max-width: 4rem;
+    &{
+      position: relative;
+    }
+  }
+  
+  to {  
+    max-width: 15rem;
+  }
+`;
+
 export const SideBarContainer = styled.div`
+  animation: ${({ isSidebarCollapsed }) => {
+    if (isSidebarCollapsed === true) return fadeIn;
+    if (isSidebarCollapsed === false) return fadeOut;
+    return "";
+  }}
+    ease-in-out forwards;
+  animation-duration: 0.2s;
+  @media(max-width: 400px) {
+      position: absolute;
+    }
   background-color: white;
   height: 100vh;
- box-shadow: 1px 3px 12px 2px #0000007a;
-
+  box-shadow: 1px 3px 12px 2px #0000007a;
   text-align: center;
   color: lightgray;
-  width: 15rem;
-  /* :hover{
-    transition: opacity 0.2s linear,visibility 0.2s linear;
-    opacity: 0;
-    visibility: hidden;
-  } */
+  /* width: 15rem; */
 `;
 
 export const UserInfoContainer = styled.div`
-  display: flex;
+  display: ${({ isSidebarCollapsed }) => {
+    if (isSidebarCollapsed === true) return "none";
+    if (isSidebarCollapsed === false) return "flex";
+    return "flex";
+  }};
   justify-content: space-around;
   flex-direction: row-reverse;
   align-items: center;
@@ -27,7 +58,7 @@ export const UserInfoContainer = styled.div`
 export const Username = styled.label`
   border-bottom: 1px solid lightgray;
   padding: 0.5rem;
-  color: #213C64;
+  color: #213c64;
   font-size: 1.1rem;
   font-weight: bold;
 `;
@@ -45,25 +76,48 @@ export const MenuIconContainer = styled.span`
   > svg {
     width: 2rem;
   }
-
 `;
 
 export const MenuContainer = styled.div`
-
- 
+  width: 100%;
 `;
 
 export const MenuLink = styled(NavLink)`
   display: flex;
   text-decoration: none;
   justify-content: flex-end;
-  padding: 1rem;
-  /* color: lightgray; */
-  color: #213C64;
-  :hover{
-    color: #F4B069;
+  align-items: center;
+  /* padding: 1rem; */
+  color: #213c64;
+  white-space: nowrap;
+  width: 100%;
+  height: 3.063rem;
+  padding: 0.5rem 0.8rem;
+  :hover {
+    background-color: #f4b069;
+    color: white;
   }
-  :focus{
-    color: #F4B069;
+  :focus {
+    background-color: #f4b069;
+    color: white;
   }
+  > svg {
+    width: 1.4rem;
+    margin-left: 0.5rem;
+  }
+`;
+
+export const MenuItem = styled.span`
+  display: ${({ isSidebarCollapsed }) => {
+    if (isSidebarCollapsed === true) return "none";
+    if (isSidebarCollapsed === false) return "flex";
+    return "";
+  }};
+  cursor: pointer;
+  background-color: inherit;
+  padding: 0;
+  border: none;
+  width: 100%;
+
+  /* margin-right: 1rem; */
 `;

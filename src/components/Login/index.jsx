@@ -44,15 +44,13 @@ function Login(props) {
     e.preventDefault();
     console.log(context, username, password);
     context.useLogin(username, password).then((isUsersLoggedIn) => {
-          if (isUsersLoggedIn === true) {
-            Navigate("/");
-          } else {
-            setShowErrorMessage(true);
-            e.target.reset();
-          }
-        }
-    );
-
+      if (isUsersLoggedIn === true) {
+        Navigate("/");
+      } else {
+        setShowErrorMessage(true);
+        e.target.reset();
+      }
+    });
 
     // setTimeout(() => {
     // }, 1000);
@@ -110,9 +108,10 @@ function Login(props) {
             />
           </DivTxtField>
 
-          { showErrorMessage &&
-              <DivPass>اسم المستخدم أو كلمة المرور خاطآن</DivPass>
-          }
+          {/* TODO: style the error message */}
+          {showErrorMessage && (
+            <DivPass>اسم المستخدم أو كلمة المرور خاطآن</DivPass>
+          )}
           <DivPass>
             هل تواجه مشكلة تقنية أو نسيت كلمة المرور؟ تواصل مع الدعم الفني
           </DivPass>
