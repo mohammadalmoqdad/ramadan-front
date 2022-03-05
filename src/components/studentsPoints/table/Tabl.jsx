@@ -23,12 +23,8 @@ export default function Tabl(props) {
 
 
   useEffect(() => {
-    // let userdata = props.usarName
-    // setUsarName(userdata)
     console.log(props.usarName);
 
-    // successCallback,
-    // faiCallback,
     dataStudentPoints(
       props.usarName,
       null,
@@ -42,7 +38,6 @@ export default function Tabl(props) {
     );
 
   }, [props.usarName || usaruame]);
-  // console.log(StudentsPoints);
 
   // console.log(data);
 
