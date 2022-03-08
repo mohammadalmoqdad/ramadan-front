@@ -437,7 +437,9 @@ flex-direction: column;
 
 
 export const DivMultiselect = styled.div`
-
+.multiSelectContainer{
+    text-align: right
+}
 `
 
 
