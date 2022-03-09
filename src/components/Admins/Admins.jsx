@@ -8,8 +8,8 @@ import AdminsDefault, {
 } from "./Admins.styles"
 import Sidebar from "components/shared/Sidebar";
 import Tabs from "../shared/Tabs/Tabs";
-import AddAdminForm from "./AddAdminForm";
-import EditAdminForm from "./EditAdminForm";
+import AddAdminForm from "./AddAdminForm/AddAdminForm";
+import EditAdminForm from "./EditAdminForm/EditAdminForm";
 import {retrieveAdmins} from "../../services/adminsServices";
 
 export default function Admins() {

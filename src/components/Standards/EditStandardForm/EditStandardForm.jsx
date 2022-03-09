@@ -15,9 +15,9 @@ import {
     DivTxtField,
     Formm,
     Span, DropdownDiv
-} from "./AddStandardForm.styles"
-import {DivPass} from "../Admins/Admins.styles";
-import { updateStandard} from "../../services/standardServices";
+} from "../AddStandardForm/AddStandardForm.styles"
+import {DivPass} from "../../Admins/Admins.styles";
+import { updateStandard} from "../../../services/standardServices";
 
 
 export default function EditStandardForm(props) {
