@@ -16,8 +16,8 @@ import {
     Formm,
     Span, DropdownDiv
 } from "./AddStandardForm.styles"
-import {DivPass} from "../Admins/Admins.styles";
-import {addStandard} from "../../services/standardServices";
+import {DivPass} from "../../Admins/Admins.styles";
+import {addStandard} from "../../../services/standardServices";
 
 export default function AddStandardForm(props) {
     const [selectedSection, setSelectedSection] = useState(null);

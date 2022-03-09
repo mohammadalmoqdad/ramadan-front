@@ -9,10 +9,10 @@ import {
     Formm,
     Span,
     DivPass, DropdownDiv, DropdownListStanderd, DropdownListItemStanderd,
-} from "./AddStandardForm.styles"
-import {updateSection} from "../../services/standardServices";
+} from "../AddStandardForm/AddStandardForm.styles"
+import {updateSection} from "../../../services/standardServices";
 
-export default function EditSection(props){
+export default function EditSectionForm(props){
 
     const [selectedSection, setSelectedSection] = useState(null);
     const [label, setLabel] = useState("");

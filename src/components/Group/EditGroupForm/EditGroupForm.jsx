@@ -8,11 +8,11 @@ import {
     Form,
     InputSubmit,
     Span
-} from "./Group.styles";
+} from "../Group.styles";
 import Multiselect from "multiselect-react-dropdown";
-import {DropdownList, DropdownListItem} from "../Admins/EditAdminForm.styles";
-import {DivPass} from "../Admins/Admins.styles";
-import {updateGroup} from "../../services/groupsServices";
+import {DropdownList, DropdownListItem} from "../../Admins/EditAdminForm/EditAdminForm.styles";
+import {DivPass} from "../../Admins/Admins.styles";
+import {updateGroup} from "../../../services/groupsServices";
 
 export default function EditGroupForm(props) {
 

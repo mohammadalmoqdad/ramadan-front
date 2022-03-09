@@ -8,8 +8,8 @@ import  {
     InputSubmit,
     LabelSuper,
     Span
-} from "./Admins.styles";
-import {addAdmin} from "../../services/adminsServices";
+} from "../Admins.styles";
+import {addAdmin} from "../../../services/adminsServices";
 
 
 export default function AddAdminForm() {

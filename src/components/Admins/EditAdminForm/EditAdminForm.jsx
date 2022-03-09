@@ -6,12 +6,12 @@ import  {
     FormInput,
     InputSubmit,
     Span
-} from "./Admins.styles";
+} from "../Admins.styles";
 
 import {DropdownDiv, DropdownList, DropdownListItem} from "./EditAdminForm.styles";
-import {updateAdmin} from "../../services/adminsServices";
+import {updateAdmin} from "../../../services/adminsServices";
 
-export default function AddAdminForm(props) {
+export default function EditGroupForm(props) {
 
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);

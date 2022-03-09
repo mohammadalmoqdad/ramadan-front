@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import AddStandardForm from "./AddStandardForm";
-import EditStandardForm from "./EditStandardForm";
-import AddSection from "./AddSection";
-import EditSection from "./EditSection";
+import AddStandardForm from "./AddStandardForm/AddStandardForm";
+import EditStandardForm from "./EditStandardForm/EditStandardForm";
+import AddSectionForm from "./AddSectionForm/AddSectionForm";
+import EditSectionForm from "./EditSectionForm/EditSectionForm";
 import {retrieveSections, retrieveStandards} from "../../services/standardServices";
 import Tabs from "./../shared/Tabs/Tabs";
 import Sidebar from "../shared/Sidebar";
@@ -55,8 +55,8 @@ export default function Standards() {
             <Tabs
                 labels={['تعديل قسم','إضافة قسم','تعديل معيار','إضافة معيار']}
                 contents={[
-                    <EditSection sections={sections}/>,
-                    <AddSection/>,
+                    <EditSectionForm sections={sections}/>,
+                    <AddSectionForm/>,
                     <EditStandardForm  sections={sections} standards={standards} />,
                     <AddStandardForm sections={sections} />
                 ]}/>

@@ -9,10 +9,10 @@ import {
     Formm,
     Span,
     DivPass,
-} from "./AddStandardForm.styles"
-import {addSection} from "../../services/standardServices";
+} from "../AddStandardForm/AddStandardForm.styles"
+import {addSection} from "../../../services/standardServices";
 
-export default function AddSection(){
+export default function AddSectionForm(){
 
     const [label, setLabel] = useState("");
     const [position, setPosition] = useState(-1);
