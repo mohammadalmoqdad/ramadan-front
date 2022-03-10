@@ -37,8 +37,8 @@ export const updateGroup = (id, data, successCallback, faiCallback) => {
         true);
 };
 
-export const deleteGroup = (id, data,  successCallback, faiCallback) => {
-    doRequest(data, `/comp-admin/comp-group/${id}/`,
+export const deleteGroup = (id,   successCallback, faiCallback) => {
+    doRequest(null, `/comp-admin/comp-group/${id}/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,

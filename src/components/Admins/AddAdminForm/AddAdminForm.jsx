@@ -12,7 +12,7 @@ import  {
 import {addAdmin} from "../../../services/adminsServices";
 
 
-export default function AddAdminForm() {
+export default function AddAdminForm(props) {
 
     const [username, setUserName] = useState(null);
     const [firstName, setFirstName] = useState(null);
@@ -44,18 +44,21 @@ export default function AddAdminForm() {
             return;
         }
 
-        addAdmin({
-                'password': password,
-                'username': username,
-                'first_name': firstName,
-                'last_name': lastName,
-                'permissions': "0",                       // TODO:  update it when it's supported from backend-side
-                'is_super_admin': isSuperAdmin,
-                'email': email,
-                "phone_number": phoneNumber,
-            },
+        let data={
+            'password': password,
+            'username': username,
+            'first_name': firstName,
+            'last_name': lastName,
+            'permissions': "0",                       // TODO:  update it when it's supported from backend-side
+            'is_super_admin': isSuperAdmin,
+            'email': email,
+            "phone_number": phoneNumber,
+        };
+
+        addAdmin(data,
             (res) => {
                 if(res && res.status === 201){
+                    props.setAdmins([...props.admins, data])
                     setMessages(["تمت إضافة المسؤول بنجاح"]);
                 }
             }, (err) => {

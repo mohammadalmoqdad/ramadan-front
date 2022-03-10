@@ -73,8 +73,20 @@ export const updateSection = (id, data, successCallback, faiCallback) => {
         true);
 };
 
-export const deleteStandard = (id, data,  successCallback, faiCallback) => {
-    doRequest(data, `/comp-admin/point-template/${id}/`,
+export const deleteStandard = (id,   successCallback, faiCallback) => {
+    doRequest(null, `/comp-admin/point-template/${id}/`,
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "delete",
+        successCallback,
+        faiCallback,
+        true);
+};
+
+export const deleteSection = (id,   successCallback, faiCallback) => {
+    doRequest(null, `/comp-admin/section/${id}/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,

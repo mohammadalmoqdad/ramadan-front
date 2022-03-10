@@ -8,7 +8,7 @@ import {
     Form,
     InputSubmit,
     Span
-} from "../Group.styles";
+} from "../Groups.styles";
 import Multiselect from "multiselect-react-dropdown";
 import {DropdownList, DropdownListItem} from "../../Admins/EditAdminForm/EditAdminForm.styles";
 import {DivPass} from "../../Admins/Admins.styles";
@@ -100,6 +100,12 @@ export default function EditGroupForm(props) {
             },
             (res) => {
                 if (res && res.status === 200) {
+                    let updatedGroup = props.studentsGroups.filter( group => group.id === Number(selectedGroup.id))[0];
+                    updatedGroup.admin = selectedAdminUserName;
+                    updatedGroup.name = groupName;
+                    updatedGroup.group_students = selectedStudents;
+                    updatedGroup.announcements = announcements;
+                    props.setGroups([...props.studentsGroups.filter( group => group.id !== Number(selectedGroup.id)), updatedGroup]);
                     setMessages(["تم تعديل المجموعة بنجاح"]);
                 }
             },

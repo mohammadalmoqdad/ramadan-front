@@ -56,6 +56,20 @@ export default function EditStandardForm(props) {
         ]
     );
 
+    const updateStandardItem = (item, data)=>{
+        item.section = data.section;
+        item.is_active = data.is_active;
+        item.is_shown = data.is_shown;
+        item.order_in_section = data.order_in_section;
+        item.custom_days = data.custom_days;
+        item.label = data.label;
+        item.description = data.description;
+        item.form_type = data.form_type;
+        item.upper_units_bound = data.upper_units_bound;
+        item.lower_units_bound = data.lower_units_bound;
+        item.points_per_unit = data.points_per_unit;
+
+    }
     const handleEditStandardSubmit = (e)=>{
         e.preventDefault();
 
@@ -81,6 +95,9 @@ export default function EditStandardForm(props) {
         updateStandard(selectedStandard.id, data,
             (res) => {
                 if (res && res.status === 200) {
+                    let updatedStandard = props.standards.filter(standard => standard.id === Number(selectedStandard.id))[0];
+                    updateStandardItem(updatedStandard, data);
+                    props.setStandards([...props.standards.filter(standard => standard.id !== Number(selectedStandard.id)), updatedStandard]);
                     setMessages(['تم تعديل المعيار بنجاح']);
                 }
             },
@@ -162,6 +179,9 @@ export default function EditStandardForm(props) {
     };
 
     const handleCustomDaysCheckboxChange = (e)=>{
+        if(!e.target.checked){
+            setCustomDays("");
+        }
         setCustomDaysChecked(e.target.checked);
     };
 
