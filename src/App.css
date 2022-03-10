@@ -44,7 +44,7 @@
   height: 300px;
   background: #f1f1f1;
   margin: 100px auto 0;
-  word-break: break-all;
+  word-break: break-word;
   border: 1px solid rgba(0, 0, 0, 0.274);
   padding-right: 0;
   padding-left: 0;
@@ -54,7 +54,6 @@
   display: flex;
 }
 .tabs {
-
   padding: 15px;
   text-align: center;
   width: 50%;

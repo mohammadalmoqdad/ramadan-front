@@ -89,7 +89,7 @@ export default function AddGroupForm(props) {
     return (
         <Form onSubmit={handleAddGroupSubmit}>
             {
-                props.students && props.students.count > 0 &&
+                props.students && props.students.length > 0 &&
                     <DropdownDiv className='DropdownDiv'>
                         <DropdownDivSelect>
                             <Span>أسماء الطلبة يكمن اضافتهم</Span>
@@ -97,7 +97,7 @@ export default function AddGroupForm(props) {
                                 <Multiselect
                                     onSelect={handleUpdateSelectedStudentsChange}
                                     onRemove={handleUpdateSelectedStudentsChange}
-                                    options={props.students.results}
+                                    options={props.students}
                                     displayValue='full_name'
                                     placeholder=""
                                     popupHeight='1rem'
@@ -110,12 +110,12 @@ export default function AddGroupForm(props) {
             }
 
             {
-                props.admins && props.admins.count > 0 &&
+                props.admins && props.admins.length > 0 &&
                     <DropdownDiv className="DropdownDiv" onChange={handleAdminSelectChange}>
                         <DropdownList className="DropdownList_groups">
                             <DropdownListItem key={0} value="">اختر المسؤول</DropdownListItem>
                             {
-                                props.admins.results.map((admin, index) => (
+                                props.admins.map((admin, index) => (
                                     <DropdownListItem key={index+1}
                                                       value={admin.username}>{admin.first_name} {admin.last_name}</DropdownListItem>
                                 ))

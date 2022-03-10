@@ -31,14 +31,14 @@ export default function Admins() {
     return (
         <AdminsDefault>
 
-            {admins && admins.count > 0 &&
+            {admins && admins.length > 0 &&
                 <DropdownDiv className='DropdownDiv'>
                     <DropdownDivSelect>
                         <Span>المسؤولون الحاليين</Span>
                     </DropdownDivSelect>
                     <DropdownList className='DropdownList'>
                         {
-                            admins.results.map((admin, index) => {
+                            admins.map((admin, index) => {
                                 return (<DropdownListItem
                                     value={admin.username}
                                     key={index}>{admin.first_name} {admin.last_name}</DropdownListItem>)

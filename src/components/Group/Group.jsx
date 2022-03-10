@@ -41,8 +41,8 @@ export default function Group() {
     }, []);
 
     useEffect(() => {
-            if(students && students.results){
-                students.results.map(student => student['full_name'] = student.first_name+" "+student.last_name);
+            if(students && students.length > 0){
+                students.map(student => student['full_name'] = student.first_name+" "+student.last_name);
             }
     } , [students]);
 

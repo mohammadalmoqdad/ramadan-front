@@ -117,9 +117,9 @@ export default function EditStandardForm(props) {
             setCustomDays("");
 
         }else{
-            let standard = props.standards.results.filter(standard => standard.id === Number(e.target.value))[0];
+            let standard = props.standards.filter(standard => standard.id === Number(e.target.value))[0];
             setSelectedStandard(standard);
-            setSelectedSection(props.sections.results.filter(section => section.id === standard.section)[0]);
+            setSelectedSection(props.sections.filter(section => section.id === standard.section)[0]);
             setActive(standard.is_active);
             setShown(standard.is_shown);
             setOrder(standard.order_in_section);
@@ -145,7 +145,7 @@ export default function EditStandardForm(props) {
         if(e.target.value === ""){
             selectedSection(null);
         }else{
-            setSelectedSection(props.sections.results.filter(section => section.id === Number(e.target.value))[0]);
+            setSelectedSection(props.sections.filter(section => section.id === Number(e.target.value))[0]);
         }
     };
 
@@ -209,11 +209,11 @@ export default function EditStandardForm(props) {
 
         <Formm onSubmit={handleEditStandardSubmit}>
 
-            { props.standards && props.standards.count > 0 &&
+            { props.standards && props.standards.length > 0 &&
                 <DropdownDiv onChange={handleSelectedStandardChange}>
                     <DropdownListStanderd className='DropdownList'>
                         <DropdownListItemStanderd key={0} value="">اختر المعيار </DropdownListItemStanderd>
-                        { props.standards.results.map((standard, index) => {
+                        { props.standards.map((standard, index) => {
                             return <DropdownListItemStanderd key={index + 1}  value={standard.id}>{standard.label}</DropdownListItemStanderd>
                             })
                         }
@@ -221,12 +221,12 @@ export default function EditStandardForm(props) {
                 </DropdownDiv>
             }
 
-            { props.sections && props.sections.count > 0
+            { props.sections && props.sections.length > 0
                 ?
                 <DropdownDiv>
                     <DropdownListStanderd className='DropdownList' value={selectedSection !== null ? selectedSection.id : ""}  onChange={handleSelectedSectionChange}>
                         <DropdownListItemStanderd key={0} value="">اختر القسم </DropdownListItemStanderd>
-                        { props.sections.results.map((section, index) => {
+                        { props.sections.map((section, index) => {
                             return <DropdownListItemStanderd key={index + 1} value={section.id}>{section.label}</DropdownListItemStanderd>
                         })
                         }
