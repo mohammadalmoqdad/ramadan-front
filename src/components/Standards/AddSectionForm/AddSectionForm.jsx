@@ -12,7 +12,7 @@ import {
 } from "../AddStandardForm/AddStandardForm.styles"
 import {addSection} from "../../../services/standardServices";
 
-export default function AddSectionForm(){
+export default function AddSectionForm(props){
 
     const [label, setLabel] = useState("");
     const [position, setPosition] = useState(-1);
@@ -40,6 +40,7 @@ export default function AddSectionForm(){
             },
             (res) => {
                 if (res && res.status === 201) {
+                    props.setSections([...props.sections, {label: label, position: position, id : res.data.id}])
                     setMessages(['تم إضافة القسم بنجاح']);
                 }
             },

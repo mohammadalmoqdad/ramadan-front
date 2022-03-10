@@ -36,7 +36,7 @@ export default function SetPasswordStudents() {
         (res) => {
           setStudents(res.data);
         }, (err) => {
-          console.log("ERROR: "+JSON.stringify(err.response.data));
+          console.log("Failed to retrieve students: "+JSON.stringify(err.response.data));
         }
     );
 

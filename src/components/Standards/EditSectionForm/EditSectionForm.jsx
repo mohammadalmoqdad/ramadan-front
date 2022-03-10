@@ -60,6 +60,10 @@ export default function EditSectionForm(props){
             },
             (res) => {
                 if (res && res.status === 200) {
+                    let updatedSection = props.sections.filter( section => section.id === Number(selectedSection.id))[0];
+                    updatedSection.label = label;
+                    updatedSection.position = position;
+                    props.setSections([...props.sections.filter( section => section.id !== Number(selectedSection.id)), updatedSection]);
                     setMessages(['تم تعديل القسم بنجاح']);
                 }
             },

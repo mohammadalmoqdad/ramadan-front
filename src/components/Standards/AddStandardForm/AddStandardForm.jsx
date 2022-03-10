@@ -72,6 +72,8 @@ export default function AddStandardForm(props) {
         addStandard(data,
             (res) => {
                 if(res && res.status === 201){
+                    data.id = res.data.id;
+                    props.setStandards([...props.standards, data]);
                     setMessages(['تم إضافة المعيار بنجاح']);
                 }
             },

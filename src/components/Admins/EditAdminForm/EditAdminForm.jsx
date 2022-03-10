@@ -37,6 +37,12 @@ export default function EditGroupForm(props) {
             },
             (res) => {
                 if (res && res.status === 200) {
+                    let updatedAdmin = props.admins.filter(admin => admin.username === selectedUserName)[0];
+                    updatedAdmin.first_name = firstName;
+                    updatedAdmin.last_name = lastName;
+                    updatedAdmin.email = email;
+                    updatedAdmin.phone_number = phoneNumber;
+                    props.setAdmins([...props.admins.filter(admin => admin.username !== selectedUserName), updatedAdmin]);
                     setMessages(["تم تعديل المسؤول"]);
                 }
             },

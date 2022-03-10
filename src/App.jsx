@@ -3,7 +3,7 @@ import Login from "./components/Login";
 import AuthProvider from "./contexts/AdminContext";
 import Home from "./components/Home";
 import Loder from "components/Loader";
-import Group from "components/Group/Group";
+import Groups from "components/Groups/Groups";
 import Standards from './components/Standards/Standards'
 import Admins from './components/Admins/Admins'
 import StudentsPoints from './components/studentsPoints/StudentsPoints'
@@ -23,7 +23,7 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/loading" element={<Loder />} />
             <Route exact path= "/set-student-password" element= {<SetPasswordStudents/>}  />
-            <Route exact path= "/Groups" element= {<Group/>}  />
+            <Route exact path= "/Groups" element= {<Groups/>}  />
             <Route exact path= "/Admins" element= {<Admins/>}  />
             <Route exact path= "/Standards" element= {<Standards/>}/>
             <Route exact path= "/StudentsPoints" element= {<StudentsPoints/>}/>

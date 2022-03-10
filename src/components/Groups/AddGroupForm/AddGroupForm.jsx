@@ -8,7 +8,7 @@ import {
     Form,
     InputSubmit,
     Span
-} from "../Group.styles";
+} from "../Groups.styles";
 import Multiselect from "multiselect-react-dropdown";
 import {DropdownList, DropdownListItem} from "../../Admins/EditAdminForm/EditAdminForm.styles";
 import {DivPass} from "../../Admins/Admins.styles";
@@ -60,14 +60,18 @@ export default function AddGroupForm(props) {
             return;
         }
 
-        addGroup({
-                'admin': selectedAdminUserName,
-                'name': groupName,
-                'group_students': selectedStudents,
-                'announcements': announcements
-            },
+        let data = {
+            'admin': selectedAdminUserName,
+            'name': groupName,
+            'group_students': selectedStudents,
+            'announcements': announcements
+        };
+
+        addGroup(data,
             (res) => {
                 if (res && res.status === 201) {
+                    data.id = res.data.id;
+                    props.setGroups([...props.studentsGroups, data]);
                     setMessages(["تم إضافة المجموعة بنجاح"]);
                 }
             },
