@@ -95,7 +95,7 @@ export default function AddStandardForm(props) {
         if(e.target.value === ""){
             setSelectedSection(null);
         }else{
-            setSelectedSection(props.sections.results.filter(section => section.id === Number(e.target.value))[0]);
+            setSelectedSection(props.sections.filter(section => section.id === Number(e.target.value))[0]);
         }
     };
 
@@ -158,12 +158,12 @@ export default function AddStandardForm(props) {
 
 
                 <Formm onSubmit={handleAddStandardSubmit}>
-                    { props.sections && props.sections.count > 0
+                    { props.sections && props.sections.length > 0
                         ?
                         <DropdownDiv onChange={handleSelectedSectionChange}>
                             <DropdownListStanderd className='DropdownList'>
                                 <DropdownListItemStanderd key={0} value="">اختر القسم </DropdownListItemStanderd>
-                                { props.sections.results.map((section, index) => {
+                                { props.sections.map((section, index) => {
                                     return <DropdownListItemStanderd key={index + 1} value={section.id}>{section.label}</DropdownListItemStanderd>
                                 })
                                 }

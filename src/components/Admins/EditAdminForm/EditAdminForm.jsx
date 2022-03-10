@@ -71,7 +71,7 @@ export default function EditGroupForm(props) {
 
 
     const handleAdminSelectChange = (e) =>{
-        let admin = props.admins.results.filter(admin => admin.username === e.target.value)[0];
+        let admin = props.admins.filter(admin => admin.username === e.target.value)[0];
         if(admin){
             setSelectedUserName(admin.username);
             setFirstName(admin.first_name);
@@ -92,12 +92,12 @@ export default function EditGroupForm(props) {
         <Form onSubmit={handleEditAdminSubmit}>
 
             {
-                props.admins && props.admins.count > 0 &&
+                props.admins && props.admins.length > 0 &&
                         <DropdownDiv className="DropdownDiv" onChange={handleAdminSelectChange}>
                             <DropdownList className="DropdownList_editAdmin" >
                                 <DropdownListItem>اختر المسؤول</DropdownListItem>
                                 {
-                                    props.admins.results.map((admin, index) => (
+                                    props.admins.map((admin, index) => (
                                         <DropdownListItem key={index} value={admin.username}>{admin.first_name} {admin.last_name}</DropdownListItem>
                                     ))
                                 }

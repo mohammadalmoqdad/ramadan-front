@@ -38,7 +38,7 @@ export default function EditSectionForm(props){
             setPosition(-1);
             setSelectedSection(null);
         }else{
-            let sec = props.sections.results.filter(section => section.id === Number(e.target.value))[0];
+            let sec = props.sections.filter(section => section.id === Number(e.target.value))[0];
             setSelectedSection(sec);
             setLabel(sec.label);
             setPosition(sec.position);
@@ -82,12 +82,12 @@ export default function EditSectionForm(props){
     return(
         <Formm onSubmit={handleAddSectionSubmit}>
 
-            { props.sections && props.sections.count > 0
+            { props.sections && props.sections.length > 0
                 ?
                 <DropdownDiv onChange={handleSelectedSectionChange}>
                     <DropdownListStanderd className='DropdownList'>
                         <DropdownListItemStanderd key={0} value="">اختر القسم </DropdownListItemStanderd>
-                        { props.sections.results.map((section, index) => {
+                        { props.sections.map((section, index) => {
                             return <DropdownListItemStanderd key={index + 1} value={section.id}>{section.label}</DropdownListItemStanderd>
                         })
                         }
