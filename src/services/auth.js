@@ -1,11 +1,10 @@
 import axios from "axios";
 import cookie from "react-cookies";
-import { useNavigate } from "react-router-dom";
-import { AdminContext } from "contexts/AdminContext";
-import { useContext } from "react";
+// import { useNavigate } from "react-router-dom";
+
 const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
+
 export async function useLogin(username, password) {
-  // const context = useContext(AdminContext);
   try {
     const { data } = await axios.post(
       `${apiUrl}/token/`,
@@ -21,13 +20,14 @@ export async function useLogin(username, password) {
 
     cookie.save("token", data.access);
     cookie.save("refresh-token", data.refresh);
-    // context.setIsLogdedIn(true);
+    //TODO: This temporary, when getAdminInfo service is ready, no need to store the username in the cookie
+    cookie.save("username", username);
 
     // useNavigate("/");
 
-    return true; // not nessesary to return anything because I can get the token from cookies
+    return true; // not necessary to return anything because I can get the token from cookies
   } catch (err) {
-    console.log("in the catch of loggin");
+    console.log("in the catch of login");
     return false;
   }
 }

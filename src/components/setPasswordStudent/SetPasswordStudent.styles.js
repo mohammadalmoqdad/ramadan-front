@@ -5,7 +5,7 @@ import styled from "styled-components";
 // SetPasswordStudentContainer  SetPasswordStudent
 export default styled.div`
 
-background: linear-gradient(120deg, #2980b9, #2980b9);
+background: #FFF;
 
 display: flex;
 /* justify-content: center; */

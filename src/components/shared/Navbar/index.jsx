@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import HedarNavContainer, { Logo, HedarNav, Ul, Li, A, ButtonLogout } from "./navbar.styles"
 import cookie from "react-cookies";
 import { Redirect, Route, useNavigate } from "react-router-dom";
-import { AdminContext } from "../../../contexts/AdminContext";
+import { useAdminContext } from "../../../contexts/AdminContext";
 // import logo from '../../../assets/logo/'
 
 
 function Nav() {
-    const context = useContext(AdminContext);
+    const context = useAdminContext();
     let navigate = useNavigate();
     return <HedarNavContainer>
 

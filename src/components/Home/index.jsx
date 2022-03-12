@@ -9,12 +9,13 @@ import {
   VideoSection,
 } from "./home.styles";
 import { StatisticsContainer, Formm, H1Login, H3Login, DivCenter, Wird } from "../studentsPoints/StudentsPoints.styles"
-import { AdminContext } from "../../contexts/AdminContext";
 import Navbar from '../shared/Navbar/'
+import {useAdminContext} from "../../contexts/AdminContext";
 
 function Home(props) {
-  const context = useContext(AdminContext);
+  const context = useAdminContext();
   let navigate = useNavigate();
+
   useEffect(() => {
     console.log("inside the useeffect");
     if (!cookie.load("token")) {
