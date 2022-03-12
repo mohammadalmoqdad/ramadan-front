@@ -8,11 +8,11 @@ import {
     Form,
     InputSubmit,
     Span
-} from "./Group.styles";
+} from "../Groups.styles";
 import Multiselect from "multiselect-react-dropdown";
-import {DropdownList, DropdownListItem} from "../Admins/EditAdminForm.styles";
-import {DivPass} from "../Admins/Admins.styles";
-import {updateGroup} from "../../services/groupsServices";
+import {DropdownList, DropdownListItem} from "../../Admins/EditAdminForm/EditAdminForm.styles";
+import {DivPass} from "../../Admins/Admins.styles";
+import {updateGroup} from "../../../services/groupsServices";
 
 export default function EditGroupForm(props) {
 
@@ -31,13 +31,13 @@ export default function EditGroupForm(props) {
 
 
     const handleSelectedGroupChange = (e)=>{
-        let group = props.studentsGroups.results.filter(studentsGroup => studentsGroup.id === Number(e.target.value))[0];
+        let group = props.studentsGroups.filter(studentsGroup => studentsGroup.id === Number(e.target.value))[0];
         if(group){
             setSelectedAdminUserName(group.admin);
             setGroupName(group.name);
             setAnnouncements(group.announcements);
             if(group.group_students && group.group_students.length > 0){
-                setCurrentSelectedStudents(props.students.results.filter(student => group.group_students.includes(student.username)));
+                setCurrentSelectedStudents(props.students.filter(student => group.group_students.includes(student.username)));
             }else{
                 setCurrentSelectedStudents([]);
             }
@@ -100,6 +100,12 @@ export default function EditGroupForm(props) {
             },
             (res) => {
                 if (res && res.status === 200) {
+                    let updatedGroup = props.studentsGroups.filter( group => group.id === Number(selectedGroup.id))[0];
+                    updatedGroup.admin = selectedAdminUserName;
+                    updatedGroup.name = groupName;
+                    updatedGroup.group_students = selectedStudents;
+                    updatedGroup.announcements = announcements;
+                    props.setGroups([...props.studentsGroups.filter( group => group.id !== Number(selectedGroup.id)), updatedGroup]);
                     setMessages(["تم تعديل المجموعة بنجاح"]);
                 }
             },
@@ -122,12 +128,12 @@ export default function EditGroupForm(props) {
     return (
         <Form onSubmit={handleEditGroupSubmit}>
 
-            { props.studentsGroups && props.studentsGroups.count > 0 &&
+            { props.studentsGroups && props.studentsGroups.length > 0 &&
                 <DropdownDiv className="DropdownDiv" onChange={handleSelectedGroupChange}>
                     <DropdownList className="DropdownList_groups" >
                         <DropdownListItem>اختر المجموعة</DropdownListItem>
                         {
-                            props.studentsGroups.results.map((group, index) => (
+                            props.studentsGroups.map((group, index) => (
                                 <DropdownListItem key={index} value={group.id}>{group.name}</DropdownListItem>
                             ))
                         }
@@ -135,7 +141,7 @@ export default function EditGroupForm(props) {
                 </DropdownDiv>
 
             }
-            { props.students && props.students.count > 0 &&
+            { props.students && props.students.length > 0 &&
                 <DropdownDiv className='DropdownDiv'>
                     <DropdownDivSelect>
                         <Span>أسماء طلبة يكمن اضافتهم</Span>
@@ -144,7 +150,7 @@ export default function EditGroupForm(props) {
                                 onSelect={handleUpdateSelectedStudentsChange}
                                 onRemove={handleUpdateSelectedStudentsChange}
                                 selectedValues={currentSelectedStudents === [] ? [] : currentSelectedStudents}
-                                options={props.students.results}
+                                options={props.students}
                                 displayValue="full_name"
                                 placeholder=""
                                 popupHeight='1rem'
@@ -156,13 +162,13 @@ export default function EditGroupForm(props) {
                 </DropdownDiv>
             }
 
-            { props.admins && props.admins.count > 0 &&
+            { props.admins && props.admins.length > 0 &&
 
                     <DropdownDiv className="DropdownDiv">
                         <DropdownList className="DropdownList_groups" value={selectedAdminUserName !== "" ? selectedAdminUserName : ""} onChange={handleAdminSelectChange}>
                             <DropdownListItem key={0} value="">اختر المسؤول</DropdownListItem>
                             {
-                                props.admins.results.map((admin, index) => (
+                                props.admins.map((admin, index) => (
                                     <DropdownListItem key={index+1} value={admin.username}>{admin.first_name} {admin.last_name}</DropdownListItem>
                                 ))
                             }

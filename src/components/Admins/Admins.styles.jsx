@@ -81,11 +81,8 @@ export const Span = styled.span`
 text-align:center;
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
-font-size: 1.5rem;
-font-weight: bolder;
-display: block;
-
-
+font-size: 20px;
+width: 80%;
 @media (max-width:500px) {
   font-size: .8rem;
 }
@@ -138,7 +135,7 @@ transition: .3s;
 
 export const DropdownDiv = styled.div`
 width: 25rem;
-margin: auto;
+margin: 25px auto;
 /* box-shadow: 1px 3px 12px 0px #0000007a; */
 
 margin-bottom: 0rem;
@@ -175,34 +172,40 @@ margin-bottom: .5rem;
 `;
 
 export const DropdownList = styled.div`
- /* position: absolute; */
 width: 25rem;
-
-margin: auto;
+margin: 100px auto;
 /* display: flex; */
 justify-content: center;
-
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.3rem;
 box-shadow: 1px 3px 12px 0px #0000007a;
-
-
 border-radius: 4px;
 background-color: white;
 @media (max-width:500px) {
   font-size: 1rem;
   width: 15rem;
 }
+.title{
+    background-color: #e9e9e9;
+    border-bottom: 2px solid #fda400;
+}
+.title span{
+    width:100%;   
+    color: #000; 
+}
 `;
 
 export const DropdownListItem = styled.div`
 
-padding: 1rem ;
+padding: 12px ;
 text-align:center;
-
+display: flex;
 align-items: flex-start;
 border-bottom: 1px solid silver;
+#deleteBtn {
+    background-color: crimson;
+}
 `;
 
 export const I = styled.i`
@@ -269,4 +272,15 @@ display: block;
 margin: auto;
 flex-direction: column;
 
+`;
+
+export const Button = styled.button`
+    width: 45px;
+    height: 30px;
+    max-width: 150px;
+    border: none;
+    font-size: 15px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 8px;
 `;

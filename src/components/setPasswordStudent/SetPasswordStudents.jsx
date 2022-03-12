@@ -36,7 +36,7 @@ export default function SetPasswordStudents() {
         (res) => {
           setStudents(res.data);
         }, (err) => {
-          console.log("ERROR: "+JSON.stringify(err.response.data));
+          console.log("Failed to retrieve students: "+JSON.stringify(err.response.data));
         }
     );
 
@@ -52,7 +52,7 @@ export default function SetPasswordStudents() {
     if(e.target.value !== ""){
       setUserName(e.target.value);
       console.log(e.target.value);
-      let student = students.results.filter( student => student.username === e.target.value)[0];
+      let student = students.filter( student => student.username === e.target.value)[0];
       setSelectedUserFullName(student.first_name+" "+student.last_name);
     }else{
       setSelectedUserFullName("");
@@ -122,13 +122,13 @@ export default function SetPasswordStudents() {
   return (
     <SetPasswordStudentContainer>
       <SetPasswordStudent>
-        {students && students.count > 0 &&
+        {students && students.length > 0 &&
             <>
               <DropdownDiv className="DropdownDiv" onChange={selectedUser}>
                 <DropdownList className="DropdownList">
                   <DropdownListItem key={0} value="">اختر المتسابق لتغيير كلمة المرور</DropdownListItem>
                   {
-                    students.results.map((student, index) => (
+                    students.map((student, index) => (
                         <DropdownListItem key={index + 1}
                                           value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
                     ))

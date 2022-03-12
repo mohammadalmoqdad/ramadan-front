@@ -6,12 +6,12 @@ import  {
     FormInput,
     InputSubmit,
     Span
-} from "./Admins.styles";
+} from "../Admins.styles";
 
 import {DropdownDiv, DropdownList, DropdownListItem} from "./EditAdminForm.styles";
-import {updateAdmin} from "../../services/adminsServices";
+import {updateAdmin} from "../../../services/adminsServices";
 
-export default function AddAdminForm(props) {
+export default function EditGroupForm(props) {
 
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
@@ -37,6 +37,12 @@ export default function AddAdminForm(props) {
             },
             (res) => {
                 if (res && res.status === 200) {
+                    let updatedAdmin = props.admins.filter(admin => admin.username === selectedUserName)[0];
+                    updatedAdmin.first_name = firstName;
+                    updatedAdmin.last_name = lastName;
+                    updatedAdmin.email = email;
+                    updatedAdmin.phone_number = phoneNumber;
+                    props.setAdmins([...props.admins.filter(admin => admin.username !== selectedUserName), updatedAdmin]);
                     setMessages(["تم تعديل المسؤول"]);
                 }
             },
@@ -71,7 +77,7 @@ export default function AddAdminForm(props) {
 
 
     const handleAdminSelectChange = (e) =>{
-        let admin = props.admins.results.filter(admin => admin.username === e.target.value)[0];
+        let admin = props.admins.filter(admin => admin.username === e.target.value)[0];
         if(admin){
             setSelectedUserName(admin.username);
             setFirstName(admin.first_name);
@@ -92,12 +98,12 @@ export default function AddAdminForm(props) {
         <Form onSubmit={handleEditAdminSubmit}>
 
             {
-                props.admins && props.admins.count > 0 &&
+                props.admins && props.admins.length > 0 &&
                         <DropdownDiv className="DropdownDiv" onChange={handleAdminSelectChange}>
                             <DropdownList className="DropdownList_editAdmin" >
                                 <DropdownListItem>اختر المسؤول</DropdownListItem>
                                 {
-                                    props.admins.results.map((admin, index) => (
+                                    props.admins.map((admin, index) => (
                                         <DropdownListItem key={index} value={admin.username}>{admin.first_name} {admin.last_name}</DropdownListItem>
                                     ))
                                 }

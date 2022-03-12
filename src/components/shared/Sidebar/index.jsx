@@ -1,7 +1,6 @@
 import React from "react";
 import {
   SideBarContainer,
-  MenuList,
   MenuContainer,
   MenuLink,
   UserInfoContainer,
@@ -34,8 +33,7 @@ function Sidebar() {
         <MenuLink to="/">الصفحة الرئيسية</MenuLink>
         <MenuLink to="/Admins">المسؤولون</MenuLink>
         <MenuLink to="/set-student-password">باسورد جديد للطالب</MenuLink>
-        <MenuLink to="/AddNewStandards">إضافة معايير المسابقة</MenuLink>
-        <MenuLink to="/EditStandards">تعديل معايير المسابقة</MenuLink>
+        <MenuLink to="/Standards">المعايير</MenuLink>
         <MenuLink to="/StudentsPoints">مشاهدة النتائج</MenuLink>
         <MenuLink to="/Groups">المجموعات</MenuLink>
       </MenuContainer>
