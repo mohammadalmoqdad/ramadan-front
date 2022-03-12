@@ -69,18 +69,13 @@ export const DivCenter = styled.div`
 `;
 
 
-export const Form = styled.div`
+export const StatisticsContainer = styled.div`
 
 margin: auto;
-/* width:15rem; */
-justify-content: center;
-align-items: flex-start;
+/* margin-top: 20; */
 display: flex;
-/* justify-content: space-between; */
-@media (max-width:960px) {
- display: flex;
- 
-}
+justify-content: space-between;
+align-items: flex-start;
 @media (max-width:500px) {
   flex-direction: column;
 }
@@ -88,11 +83,10 @@ display: flex;
 export const Formm = styled.div`
 
 margin: auto;
-/* width:15rem; */
 justify-content: center;
 align-items: flex-start;
 display: flex;
-/* justify-content: space-between; */
+
 @media (max-width:960px) {
  display: flex;
 flex-direction: column;

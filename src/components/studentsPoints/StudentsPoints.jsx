@@ -17,7 +17,7 @@ export default function StudentsPoints() {
 
       <LoginForm>
         <Wird>نقاط الطلاب</Wird>
-        <Form>
+        {/* <Form>
           <Formm>
             <DivCenter>
               <H1Login>عدد الصفحات المقروءة<Wird>200</Wird></H1Login>
@@ -40,7 +40,7 @@ export default function StudentsPoints() {
               <H3Login>اللهم تقبل</H3Login>
             </DivCenter>
           </Formm>
-        </Form>
+        </Form> */}
 
         <DropdownDiv className='DropdownDiv' onChange={selectedUser} >
           {/* <DropdownDivSelect>

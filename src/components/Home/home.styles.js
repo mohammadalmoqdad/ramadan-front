@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
-  display: flex;
+  /* display: flex; */
   flex-direction: row-reverse;
 `;
 
 // **************** First section **********************
-export const StatisticsSection = styled.section`
-  border: 2px solid lightgray;
-  border-radius: 2rem;
+export const StatisticsSection = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;

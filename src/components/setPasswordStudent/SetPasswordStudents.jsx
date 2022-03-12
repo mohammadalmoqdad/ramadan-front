@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "components/shared/Sidebar";
+import Navbar from '../shared/Navbar/'
 
 
 import SetPasswordStudentContainer, {
@@ -121,6 +122,7 @@ export default function SetPasswordStudents() {
 
   return (
     <SetPasswordStudentContainer>
+      {/* <Navbar/> */}
       <SetPasswordStudent>
         {students && students.length > 0 &&
             <>
