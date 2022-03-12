@@ -1,18 +1,16 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import cookie from "react-cookies";
 import { Redirect, Route, useNavigate } from "react-router-dom";
 import Sidebar from "components/shared/Sidebar";
 import {
   HomeContainer,
   StatisticsSection,
-  StatisticsContainer,
-  StatisticsNumber,
-  StatisticsTitle,
-  StatiticsNote,
   IntroductionSection,
   VideoSection,
 } from "./home.styles";
+import { StatisticsContainer, Formm, H1Login, H3Login, DivCenter, Wird } from "../studentsPoints/StudentsPoints.styles"
 import { AdminContext } from "../../contexts/AdminContext";
+import Navbar from '../shared/Navbar/'
 
 function Home(props) {
   const context = useContext(AdminContext);
@@ -30,31 +28,35 @@ function Home(props) {
 
     <HomeContainer>
       <Sidebar />
-      <div>
+      <div style={{width:'100%'}}>
+      <Navbar/>
         <StatisticsSection>
-          <StatisticsContainer>
-            <StatisticsNumber>25</StatisticsNumber>
-            <StatisticsTitle>طالب</StatisticsTitle>
-            <StatiticsNote>عدد طلبة المسابقة</StatiticsNote>
-          </StatisticsContainer>
 
           <StatisticsContainer>
-            <StatisticsNumber>1400</StatisticsNumber>
-            <StatisticsTitle>صفحة</StatisticsTitle>
-            <StatiticsNote>عدد الصفحات المقروءة</StatiticsNote>
+            <Formm>
+              <DivCenter>
+                <H1Login>عدد الصفحات المقروءة<Wird>200</Wird></H1Login>
+                <H3Login>صفحة قران</H3Login>
+              </DivCenter>
+
+              <DivCenter>
+                <H1Login>عدد طلبة المسابقة<Wird>25</Wird> </H1Login>
+                <H3Login>طالب</H3Login>
+              </DivCenter>
+            </Formm>
+            <Formm>
+              <DivCenter>
+                <H1Login>المركز الأول لليوم السابق<Wird>أنس القاضي</Wird> </H1Login>
+                <H3Login>مبارك</H3Login>
+              </DivCenter>
+
+              <DivCenter>
+                <H1Login>التقويم الرمضاني<Wird>1</Wird> </H1Login>
+                <H3Login>اللهم تقبل</H3Login>
+              </DivCenter>
+            </Formm>
           </StatisticsContainer>
 
-          <StatisticsContainer>
-            <StatisticsNumber>1400</StatisticsNumber>
-            <StatisticsTitle>رمضان</StatisticsTitle>
-            <StatiticsNote>يوم</StatiticsNote>
-          </StatisticsContainer>
-
-          <StatisticsContainer>
-            <StatisticsNumber>25</StatisticsNumber>
-            <StatisticsTitle>المكز الأول</StatisticsTitle>
-            <StatiticsNote>عدد طلبة المسابقة</StatiticsNote>
-          </StatisticsContainer>
         </StatisticsSection>
 
         {/* Second Section */}
@@ -63,15 +65,7 @@ function Home(props) {
         {/* Third Section */}
         <VideoSection></VideoSection>
       </div>
-      <button
-        onClick={() => {
-          cookie.remove("token");
-          navigate("/login");
-          context.setIsLogdedIn(false);
-        }}
-      >
-        Logout
-      </button>
+      
     </HomeContainer>
 
   );

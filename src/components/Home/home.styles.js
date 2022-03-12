@@ -7,8 +7,6 @@ export const HomeContainer = styled.div`
 
 // **************** First section **********************
 export const StatisticsSection = styled.section`
-  border: 2px solid lightgray;
-  border-radius: 2rem;
   display: flex;
   justify-content: space-around;
   width: 100%;
