@@ -103,7 +103,7 @@ function Login(props) {
             <FormInput
               onChange={handleChangePassowrd}
               placeholder="كلمة المرور"
-              type="passowrd"
+              type="password"
               required
             />
           </DivTxtField>

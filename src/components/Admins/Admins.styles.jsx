@@ -5,7 +5,7 @@ import styled from "styled-components";
 // addNewAdmin 
 export default styled.div`
 width: 100%;
-height: 100%;
+height: 60rem;
 background: linear-gradient(120deg, #2980b9, #2980b9);
 
 display: flex;
@@ -19,8 +19,7 @@ flex-direction: column;
 }
 
 @media (max-width:500px) {
-  /* padding: 2rem; */
-  height: 60rem;
+  padding: 2rem;
   width: 30rem;
 }
 `;
@@ -58,7 +57,7 @@ color: #213C64;
 }
 `;
 
-export const Formm = styled.form`
+export const Form = styled.form`
 width:20rem;
 display: flex;
 flex-direction: column;
@@ -66,7 +65,6 @@ justify-content: space-between;
 margin: auto;
 
 `;
-
 
 export const DivTxtField = styled.div`
 position: relative;
@@ -78,64 +76,17 @@ margin: 1rem 0;
 }
 `;
 
-export const DivTxtFieldnumber = styled.div`
-/* position: relative; */
-display: flex;
-/* border-bottom: 2px solid #adadad; */
-margin: 1rem 0;
-
-@media (max-width:500px) {
-margin: 1rem 0;
-}
-`;
-
-export const DivTxtFieldDaynumber = styled.div`
-/* position: relative; */
-display: flex;
-/* border-bottom: 2px solid #adadad; */
-/* margin: 1rem 0; */
-
-@media (max-width:500px) {
-margin: 1rem 0;
-}
-`;
-
-export const Span = styled.div`
+export const Span = styled.span`
 
 text-align:center;
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
-font-size: 1.2rem;
-/* font-weight: bolder; */
-
+font-size: 20px;
+width: 80%;
 @media (max-width:500px) {
   font-size: .8rem;
 }
 `;
-
-
-export const Label = styled.section`
-width: 15rem;
-padding: 0 5px;
-height: 2.1rem;
-font-size: 1rem;
-border: none;
-background: none;
-outline: none;
-text-align:right;
-color: #213C64;
-/* border-bottom: 2px solid #2691d9; */
-:focus{
-transition: .1s;
-border-bottom: 3px solid orange;
-}
-
-@media (max-width:500px) {
-  width: 9rem;
-  font-size: .8rem;
-}
-`;
-
 
 export const FormInput = styled.input`
 width: 20rem;
@@ -155,35 +106,6 @@ border-bottom: 3px solid orange;
 
 @media (max-width:500px) {
   width: 11rem;
-  font-size: .8rem;
-}
-`;
-
-export const FormInputnumber = styled.input`
-
-width: 4rem;
-padding: 0 5px;
-height: 2.1rem;
-font-size: 1rem;
-border: none;
-/* background: none; */
-background: linear-gradient(120deg, #2980b9, #2980b9);
-
-outline: none;
-text-align:center;
-color: white;
-border: 2px solid #2691d9;
-border-radius: .5rem;
-:focus{
-transition: .1s;
-/* border-bottom: 3px solid orange; */
-}
-::placeholder {
-  color: white;
-}
-
-@media (max-width:500px) {
-  width: 3rem;
   font-size: .8rem;
 }
 `;
@@ -212,9 +134,8 @@ transition: .3s;
 `;
 
 export const DropdownDiv = styled.div`
-width: 20rem;
-height: auto;
-margin: auto;
+width: 25rem;
+margin: 25px auto;
 /* box-shadow: 1px 3px 12px 0px #0000007a; */
 
 margin-bottom: 0rem;
@@ -222,8 +143,8 @@ margin-top: 0rem;
 
 @media (max-width:500px) {
 width: 15rem;
-/* margin-bottom: 3rem;
-margin-top: 3rem; */
+margin-bottom: 3rem;
+margin-top: 3rem;
 }
 `;
 
@@ -233,8 +154,7 @@ export const DropdownDivSelect = styled.div`
 padding: 1rem;
 border-radius: 6px;
 background-color: white;
-margin-top: 1rem;
-/* display: flex; */
+margin-top: 3rem;
 
 box-shadow: 1px 3px 12px 0px #0000007a;
 
@@ -242,9 +162,7 @@ box-shadow: 1px 3px 12px 0px #0000007a;
 /* border: 2px;
 border-bottom-color: blue; */
 
-/* display: flex; */
 justify-content: center;
-align-items: flex-start;
 cursor: pointer;
 margin-bottom: .5rem;
 @media (max-width:500px) {
@@ -254,142 +172,59 @@ margin-bottom: .5rem;
 `;
 
 export const DropdownList = styled.div`
- /* position: absolute; */
 width: 25rem;
-
-margin: auto;
+margin: 100px auto;
 /* display: flex; */
 justify-content: center;
-
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.3rem;
 box-shadow: 1px 3px 12px 0px #0000007a;
-
-
 border-radius: 4px;
 background-color: white;
 @media (max-width:500px) {
   font-size: 1rem;
   width: 15rem;
 }
-`;
-
-export const DropdownListStanderd = styled.select`
-width: 20rem;
-font-family: 'Noto Kufi Arabic', sans-serif;
-color: white;
-font-size: 1rem;
-padding:1rem;
-margin-top: 1rem;
-border-radius: 4px;
-/* background-color: white; */
-box-shadow: 1px 1px 2px 0px #0000007a;
-outline: none;
-border: none;
-/* border: 2px solid  #213C64; */
-background: linear-gradient(120deg, #2980b9, #2980b9);
-:hover{
-  outline: none;
-  /* border: none; */
-  /* color: #213C64; */
+.title{
+    background-color: #e9e9e9;
+    border-bottom: 2px solid #fda400;
 }
-:focus{
-  outline: none;
-  /* border: none; */
-  color: #213C64;
-}
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 11rem;
+.title span{
+    width:100%;   
+    color: #000; 
 }
 `;
 
-export const AvailableDays = styled.div`
-position: fixed;
-width: 25rem;
-font-family: 'Noto Kufi Arabic', sans-serif;
-color: #213C64;
-font-size: 1rem;
-/* padding:1rem; */
-margin-top: 1rem;
-border-radius: 4px;
-/* background-color: white; */
-box-shadow: 1px 1px 2px 0px #0000007a;
-outline: none;
-border: none;
-/* border: 2px solid  #213C64; */
-background: white;
- /* opacity: 0;
- visibility: hidden;
- transition: opacity 0.2s linear,visibility 0.2s linear; */
+export const DropdownListItem = styled.div`
 
-:hover{
-  
-  outline: none;
-  /* border: none; */
-  /* color: #213C64; */
-}
-:focus{
-  outline: none;
-  /* border: none; */
-  color: #213C64;
-}
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 11rem;
-}
-`;
-// DropdownListItemDays
-export const DropdownListItemDays = styled.div`
-
-padding: .1rem ;
+padding: 12px ;
 text-align:center;
-
+display: flex;
 align-items: flex-start;
-/* border-bottom: 1px solid silver; */
-:hover{
-  background-color: orange;
-  color: white;
-}
-`;
-
-export const DropdownListItemStanderd = styled.option`
-
-padding: 1rem ;
-text-align:center;
-
-align-items: flex-start;
-/* border-bottom: 1px solid silver; */
-:hover{
-  background-color: orange;
-  color: white;
+border-bottom: 1px solid silver;
+#deleteBtn {
+    background-color: crimson;
 }
 `;
 
 export const I = styled.i`
 
-/* margin-right: 0.5rem; */
-/* text-align:left; */
+margin-right: 2rem;
+text-align:left;
 /* padding: 1rem ; */ 
 
 
 `;
 
-export const DropdownListItem = styled.div`
-
-padding: 1rem ;
-text-align:center;
-
-align-items: flex-start;
-border-bottom: 1px solid silver;
-`;
 
 export const DivPass = styled.h3`
 
 display: flex;
 justify-content: center;
 align-items: flex-start;
+word-break: break-word;
+direction: rtl;
 
 width: 100%;
 padding: 0 5px;
@@ -406,7 +241,7 @@ text-align: center;
 `;
 
 
-export const Checkboxes = styled.input`
+export const Checkboxes = styled.input `
 /* display: flex;
 justify-content: center;
 align-items: flex-start; */
@@ -425,15 +260,9 @@ flex-direction: column;
   background-color: orange;
 
 }
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 1rem;
-  margin: 0;
-
-}
 `;
 
-export const LabelSoper = styled.section`
+export const LabelSuper = styled.section `
 text-align: center;
 display: flex;
 justify-content: center;
@@ -443,20 +272,15 @@ display: block;
 margin: auto;
 flex-direction: column;
 
-@media (max-width:500px) {
-  font-size: .7rem;
-  width: 8rem;
-  margin-left: 1.5rem;
-}
 `;
 
-export const DivMultiselect = styled.div`
-/* display: none; */
-margin-top: 1rem;
-@media (max-width:500px) {
-  font-size: .7rem;
-  width: 12rem;
-
-}
+export const Button = styled.button`
+    width: 45px;
+    height: 30px;
+    max-width: 150px;
+    border: none;
+    font-size: 15px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 8px;
 `;
-// DivTxtFieldcheckbox 

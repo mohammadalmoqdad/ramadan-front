@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-// import AddNewAdmindefault,{ Wird, DivPass, DivCenter, H3Login, InputSubmit, Form, FormInput, H1Login, DivTxtField, FormLabel, Span } from "./AddNewAdmin.styles"
 
-// addNewAdmin 
 export default styled.div`
 width: 100%;
-height: 60rem;
+height: 100%;
 background: linear-gradient(120deg, #2980b9, #2980b9);
 
 display: flex;
@@ -19,7 +17,8 @@ flex-direction: column;
 }
 
 @media (max-width:500px) {
-  padding: 2rem;
+  /* padding: 2rem; */
+  height: 60rem;
   width: 30rem;
 }
 `;
@@ -66,6 +65,7 @@ margin: auto;
 
 `;
 
+
 export const DivTxtField = styled.div`
 position: relative;
 /* border-bottom: 2px solid #adadad; */
@@ -76,19 +76,30 @@ margin: 1rem 0;
 }
 `;
 
-export const Span = styled.span`
+export const DivTxtFieldDaynumber = styled.div`
+/* position: relative; */
+display: flex;
+/* border-bottom: 2px solid #adadad; */
+/* margin: 1rem 0; */
+
+@media (max-width:500px) {
+margin: 1rem 0;
+}
+`;
+
+export const Span = styled.div`
 
 text-align:center;
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
-font-size: 1.5rem;
-font-weight: bolder;
-
+font-size: 1.2rem;
+/* font-weight: bolder; */
 
 @media (max-width:500px) {
   font-size: .8rem;
 }
 `;
+
 
 export const FormInput = styled.input`
 width: 20rem;
@@ -136,7 +147,8 @@ transition: .3s;
 `;
 
 export const DropdownDiv = styled.div`
-width: 25rem;
+width: 20rem;
+height: auto;
 margin: auto;
 /* box-shadow: 1px 3px 12px 0px #0000007a; */
 
@@ -145,8 +157,8 @@ margin-top: 0rem;
 
 @media (max-width:500px) {
 width: 15rem;
-margin-bottom: 3rem;
-margin-top: 3rem;
+/* margin-bottom: 3rem;
+margin-top: 3rem; */
 }
 `;
 
@@ -156,8 +168,8 @@ export const DropdownDivSelect = styled.div`
 padding: 1rem;
 border-radius: 6px;
 background-color: white;
-margin-top: 3rem;
-display: flex;
+margin-top: 1rem;
+/* display: flex; */
 
 box-shadow: 1px 3px 12px 0px #0000007a;
 
@@ -165,7 +177,7 @@ box-shadow: 1px 3px 12px 0px #0000007a;
 /* border: 2px;
 border-bottom-color: blue; */
 
-display: flex;
+/* display: flex; */
 justify-content: center;
 align-items: flex-start;
 cursor: pointer;
@@ -198,6 +210,42 @@ background-color: white;
 }
 `;
 
+// DropdownListItemDays
+export const DropdownListItemDays = styled.div`
+
+padding: .1rem ;
+text-align:center;
+
+align-items: flex-start;
+/* border-bottom: 1px solid silver; */
+:hover{
+  background-color: orange;
+  color: white;
+}
+`;
+
+export const DropdownListItemStanderd = styled.option`
+
+padding: 1rem ;
+text-align:center;
+
+align-items: flex-start;
+/* border-bottom: 1px solid silver; */
+:hover{
+  background-color: orange;
+  color: white;
+}
+`;
+
+export const I = styled.i`
+
+/* margin-right: 0.5rem; */
+/* text-align:left; */
+/* padding: 1rem ; */ 
+
+
+`;
+
 export const DropdownListItem = styled.div`
 
 padding: 1rem ;
@@ -206,16 +254,6 @@ text-align:center;
 align-items: flex-start;
 border-bottom: 1px solid silver;
 `;
-
-export const I = styled.i`
-
-margin-right: 2rem;
-text-align:left;
-/* padding: 1rem ; */ 
-
-
-`;
-
 
 export const DivPass = styled.h3`
 
@@ -237,45 +275,13 @@ text-align: center;
   }
 `;
 
-
-export const Checkboxes = styled.input `
-/* display: flex;
-justify-content: center;
-align-items: flex-start; */
-
-margin: auto;
-display: block;
-margin-bottom: 0rem;
-width: 1.5rem;
-padding: 0 5px;
-height: 40px;
-margin-top: .5rem;
-font-size: 16px;
-flex-direction: column;
-
-:scope{
-  background-color: orange;
-
-}
-`;
-
-export const LabelSuper = styled.section `
-text-align: center;
-display: flex;
-justify-content: center;
-align-items: flex-start;
-display: block;
-
-margin: auto;
-flex-direction: column;
-
-`;
 export const DivMultiselect = styled.div`
 /* display: none; */
-.multiSelectContainer{
- text-align:right;
-}
+margin-top: 1rem;
 @media (max-width:500px) {
   font-size: .7rem;
   width: 12rem;
-}`;
+
+}
+`;
+// DivTxtFieldcheckbox 
