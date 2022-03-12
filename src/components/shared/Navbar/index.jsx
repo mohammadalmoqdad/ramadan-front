@@ -12,9 +12,8 @@ function Nav() {
     return <HedarNavContainer>
 
         <ButtonLogout onClick={() => {
-            cookie.remove("token");
+            context.logout();
             navigate("/login");
-            context.setIsLogdedIn(false);
         }}>تسجيل الخروج</ButtonLogout>
 
         <HedarNav>
