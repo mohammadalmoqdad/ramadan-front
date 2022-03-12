@@ -9,14 +9,18 @@ import Sidebar from "../shared/Sidebar";
 import Container from "./Standards.styles";
 import Modal from "../shared/Modal/Modal";
 import {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
+import {useAdminContext} from "../../contexts/AdminContext";
+import Navbar from "../shared/Navbar";
 export default function Standards() {
 
-    const [sections, setSections] = useState(null);
-    const [standards, setStandards] = useState(null);
+    const [sections, setSections] = useState([]);
+    const [standards, setStandards] = useState([]);
     const [openStandardModal, setOpenStandardModal] = useState(false);
     const [openSectionModal, setOpenSectionModal] = useState(false);
     const [standardIdToDelete, setStandardIdToDelete] = useState(null);
     const [sectionIdToDelete, setSectionIdToDelete] = useState(null);
+    const [hasPermission, setPermission] = useState(false);
+    const context = useAdminContext();
 
     useEffect(() => {
 
@@ -38,6 +42,10 @@ export default function Standards() {
         );
 
     }, []);
+
+    useEffect(() => {
+        setPermission(Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin);
+    }, [context.adminInfo]);
 
     const handleOpenStandardModelChange = (e)=>{
         setStandardIdToDelete(e.target.value);
@@ -87,58 +95,72 @@ export default function Standards() {
                 <Modal title="تأكيد الحذف" content="هل تريد حذف هذا المعييار؟" deleteBtn="حذف" cancelBtn="إلغاء"
                        setOpenModal={setOpenStandardModal} deleteFunction={deleteStandardFunction} />
             }
-
             <Container>
+                <div style={{width:'100%'}}>
+                    <Navbar/>
 
-                {   // TODO: We need to add images for both of other and checkbox types, for now
-                    //       there is just an image for numeric type.
+                    {   // TODO: We need to add images for both of other and checkbox types, for now
+                        //       there is just an image for numeric type.
 
-                    // <H3Login>نوع النموذج الذي تم اختياره</H3Login>
-                    // <Frame>
-                    //     <Framephone>
-                    //         <Imgtype src={typephoto + '.png'} alt=""/>
-                    //         {/* <Imgtype src="type2.png" alt="" /> */}
-                    //
-                    //     </Framephone>
-                    // </Frame>
-                }
+                        // <H3Login>نوع النموذج الذي تم اختياره</H3Login>
+                        // <Frame>
+                        //     <Framephone>
+                        //         <Imgtype src={typephoto + '.png'} alt=""/>
+                        //         {/* <Imgtype src="type2.png" alt="" /> */}
+                        //
+                        //     </Framephone>
+                        // </Frame>
+                    }
 
-                { standards && standards.length > 0 &&
-                    <DropdownList className='DropdownList'>
-                        <DropdownListItem  className="title"><Span>المعايير الحالية</Span></DropdownListItem>
-                        {
-                            standards.map((standard, index) => {
-                                return (<DropdownListItem key={index}>
-                                    <Button id="deleteBtn" onClick={handleOpenStandardModelChange} value={standard.id}>حذف</Button>
-                                    <Span>{standard.label}</Span>
-                                </DropdownListItem>)
-                            })
-                        }
-                    </DropdownList>
-                }
+                    { standards && standards.length > 0 &&
+                        <DropdownList className='DropdownList'>
+                            <DropdownListItem  className="title"><Span>المعايير الحالية</Span></DropdownListItem>
+                            {
+                                standards.map((standard, index) => {
+                                    return (<DropdownListItem key={index}>
+                                        { hasPermission
+                                            ?
+                                               <>
+                                                   <Button id="deleteBtn" onClick={handleOpenStandardModelChange} value={standard.id}>حذف</Button>
+                                                   <Span>{standard.label}</Span>
+                                               </>
+                                            :
+                                            <Span style={{width:'100%'}}>{standard.label}</Span>
+                                        }
+                                    </DropdownListItem>)
+                                })
+                            }
+                        </DropdownList>
+                    }
 
-                { sections && sections.length > 0 &&
-                    <DropdownList className='DropdownList'>
-                        <DropdownListItem  className="title"><Span>الأقسام الحالية</Span></DropdownListItem>
-                        {
-                            sections.map((section, index) => {
-                                return (<DropdownListItem key={index}>
-                                    <Button id="deleteBtn" onClick={handleOpenSectionModelChange} value={section.id}>حذف</Button>
-                                    <Span>{section.label}</Span>
-                                </DropdownListItem>)
-                            })
-                        }
-                    </DropdownList>
-                }
+                    { hasPermission &&
+                        <>
+                            { sections && sections.length > 0 &&
+                                <DropdownList className='DropdownList'>
+                                    <DropdownListItem  className="title"><Span>الأقسام الحالية</Span></DropdownListItem>
+                                    {
+                                        sections.map((section, index) => {
+                                            return (<DropdownListItem key={index}>
+                                                <Button id="deleteBtn" onClick={handleOpenSectionModelChange} value={section.id}>حذف</Button>
+                                                <Span>{section.label}</Span>
+                                            </DropdownListItem>)
+                                        })
+                                    }
+                                </DropdownList>
+                            }
 
-                <Tabs
-                    labels={['تعديل قسم','إضافة قسم','تعديل معيار','إضافة معيار']}
-                    contents={[
-                        <EditSectionForm sections={sections} setSections={setSections}/>,
-                        <AddSectionForm sections={sections} setSections={setSections}/>,
-                        <EditStandardForm  sections={sections} standards={standards} setStandards={setStandards} />,
-                        <AddStandardForm sections={sections} standards={standards} setStandards={setStandards} />
-                    ]}/>
+                            <Tabs
+                                labels={['تعديل قسم','إضافة قسم','تعديل معيار','إضافة معيار']}
+                                contents={[
+                                    <EditSectionForm sections={sections} setSections={setSections}/>,
+                                    <AddSectionForm sections={sections} setSections={setSections}/>,
+                                    <EditStandardForm  sections={sections} standards={standards} setStandards={setStandards} />,
+                                    <AddStandardForm sections={sections} standards={standards} setStandards={setStandards} />
+                                ]}
+                                toggleState={3}/>
+                        </>
+                    }
+                </div>
                 <Sidebar/>
             </Container>
         </>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default styled.div`
 width: 100%;
 height: 100%;
-background: linear-gradient(120deg, #2980b9, #2980b9);
+background: #FFF;
 
 display: flex;
 justify-content: center;
