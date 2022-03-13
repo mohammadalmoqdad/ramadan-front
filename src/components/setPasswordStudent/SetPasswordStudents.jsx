@@ -19,7 +19,7 @@ import SetPasswordStudentContainer, {
   SetPasswordStudent,
 } from "./SetPasswordStudent.styles";
 import "./Setpass.css";
-import {setStudentPassword, retrieveStudents} from "../../services/studentsServices";
+import { setStudentPassword, retrieveStudents } from "../../services/studentsServices";
 
 export default function SetPasswordStudents() {
   const [userName, setUserName] = useState("");
@@ -34,11 +34,11 @@ export default function SetPasswordStudents() {
   useEffect(() => {
 
     retrieveStudents(
-        (res) => {
-          setStudents(res.data);
-        }, (err) => {
-          console.log("Failed to retrieve students: "+JSON.stringify(err.response.data));
-        }
+      (res) => {
+        setStudents(res.data);
+      }, (err) => {
+        console.log("Failed to retrieve students: " + JSON.stringify(err.response.data));
+      }
     );
 
   }, []);
@@ -50,21 +50,21 @@ export default function SetPasswordStudents() {
 
 
   const selectedUser = (e) => {
-    if(e.target.value !== ""){
+    if (e.target.value !== "") {
       setUserName(e.target.value);
       console.log(e.target.value);
-      let student = students.filter( student => student.username === e.target.value)[0];
-      setSelectedUserFullName(student.first_name+" "+student.last_name);
-    }else{
+      let student = students.filter(student => student.username === e.target.value)[0];
+      setSelectedUserFullName(student.first_name + " " + student.last_name);
+    } else {
       setSelectedUserFullName("");
 
     }
   };
 
   const handleChangeStudentPassword1 = (e) => {
-    if(e.target.value.length < 8){
+    if (e.target.value.length < 8) {
       setValidPassword(false);
-    }else{
+    } else {
       setValidPassword(true);
     }
     setPasswordStudent1(e.target.value);
@@ -72,9 +72,9 @@ export default function SetPasswordStudents() {
 
   const handleChangeStudentPassword2 = (e) => {
     setPasswordStudent2(e.target.value);
-    if(PasswordStudent1 === e.target.value){
+    if (PasswordStudent1 === e.target.value) {
       setPasswordStudentEqual(true);
-    }else{
+    } else {
       setPasswordStudentEqual(false);
     }
   };
@@ -98,98 +98,101 @@ export default function SetPasswordStudents() {
     };
 
     setStudentPassword(
-        userName,
-        PasswordStudent,
-        (res)=>{
-          setMessages(['تم تغيير كلمة المرور بنجاح']);
-          console.log(res.data);
-        },
-        (err)=>{
-          let errMessages =[];
-          errMessages.push('لم يتم تغيير كلمة المرور');
-          if (err.response.data) {
-            let obj = err.response.data;
-            Object.keys(obj).forEach(e => {
-                  errMessages.push(obj[e]);
-                }
-            )
+      userName,
+      PasswordStudent,
+      (res) => {
+        setMessages(['تم تغيير كلمة المرور بنجاح']);
+        console.log(res.data);
+      },
+      (err) => {
+        let errMessages = [];
+        errMessages.push('لم يتم تغيير كلمة المرور');
+        if (err.response.data) {
+          let obj = err.response.data;
+          Object.keys(obj).forEach(e => {
+            errMessages.push(obj[e]);
           }
-          setMessages(errMessages)
+          )
         }
+        setMessages(errMessages)
+      }
     );
 
   };
 
   return (
-    <SetPasswordStudentContainer>
-      {/* <Navbar/> */}
-      <SetPasswordStudent>
-        {students && students.length > 0 &&
+    <>
+      <Navbar />
+
+      <SetPasswordStudentContainer>
+        <SetPasswordStudent>
+          {students && students.length > 0 &&
             <>
               <DropdownDiv className="DropdownDiv" onChange={selectedUser}>
                 <DropdownList className="DropdownList">
                   <DropdownListItem key={0} value="">اختر المتسابق لتغيير كلمة المرور</DropdownListItem>
                   {
                     students.map((student, index) => (
-                        <DropdownListItem key={index + 1}
-                                          value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
+                      <DropdownListItem key={index + 1}
+                        value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
                     ))
                   }
                 </DropdownList>
               </DropdownDiv>
 
               <StudantName>
-                : اسم المتسابق <br/> {selectedUserFullName}{" "}
+                : اسم المتسابق <br /> {selectedUserFullName}{" "}
               </StudantName>
             </>
-        }
-
-      <DivCenter>
-        <H3Login>أدخل كلمة مرور جديدة</H3Login>
-
-        <Form onSubmit={Set_Pas_St_Fun}>
-          <DivTxtField>
-            <Span />
-            <FormInput
-              onChange={handleChangeStudentPassword1}
-              type="password"
-              placeholder="أدخل كلمة مرور جديدة"
-              required
-            />
-          </DivTxtField>
-          {!isValidPassword &&
-              <DivPass>يجب أن تتكون كلمة المرور 8 أحرف على الأقل</DivPass>
           }
 
-          <DivTxtField>
-            <Span />
-            <FormInput
-              onChange={handleChangeStudentPassword2}
-              placeholder="تأكيد كلمة المرور"
-              type="password"
-              required
-            />
-          </DivTxtField>
+          <DivCenter>
+            <H3Login>أدخل كلمة مرور جديدة</H3Login>
 
-          { !PasswordStudentEqual &&
-              <DivPass>
-                الإدخال غير صحيح، تأكد من مطابقة كلمة المرور
-              </DivPass>
-          }
+            <Form onSubmit={Set_Pas_St_Fun}>
+              <DivTxtField>
+                <Span />
+                <FormInput
+                  onChange={handleChangeStudentPassword1}
+                  type="password"
+                  placeholder="أدخل كلمة مرور جديدة"
+                  required
+                />
+              </DivTxtField>
+              {!isValidPassword &&
+                <DivPass>يجب أن تتكون كلمة المرور 8 أحرف على الأقل</DivPass>
+              }
 
-          { messages.length > 0  &&
-              messages.map((message, index)=>{
-                return <DivPass key={index}>{message}</DivPass>
-              })
-          }
-          <InputSubmit type="submit" value="login">
-            تغيير كلمة المرور
-          </InputSubmit>
-        </Form>
-      </DivCenter>
-      </SetPasswordStudent>
-      <Sidebar/>
+              <DivTxtField>
+                <Span />
+                <FormInput
+                  onChange={handleChangeStudentPassword2}
+                  placeholder="تأكيد كلمة المرور"
+                  type="password"
+                  required
+                />
+              </DivTxtField>
 
-    </SetPasswordStudentContainer>
+              {!PasswordStudentEqual &&
+                <DivPass>
+                  الإدخال غير صحيح، تأكد من مطابقة كلمة المرور
+                </DivPass>
+              }
+
+              {messages.length > 0 &&
+                messages.map((message, index) => {
+                  return <DivPass key={index}>{message}</DivPass>
+                })
+              }
+              <InputSubmit type="submit" value="login">
+                تغيير كلمة المرور
+              </InputSubmit>
+            </Form>
+          </DivCenter>
+        </SetPasswordStudent>
+        <Sidebar />
+
+      </SetPasswordStudentContainer>
+    </>
   );
 }

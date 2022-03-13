@@ -7,6 +7,7 @@ import {
   StatisticsSection,
   IntroductionSection,
   VideoSection,
+  Div
 } from "./home.styles";
 import { StatisticsContainer, Formm, H1Login, H3Login, DivCenter, Wird } from "../studentsPoints/StudentsPoints.styles"
 import { AdminContext } from "../../contexts/AdminContext";
@@ -25,51 +26,55 @@ function Home(props) {
   console.log("inside the Home", cookie.load("token"));
 
   return (
+    <>
+      <Navbar />
 
-    <HomeContainer>
-      {/* <div> */}
-      <Navbar/>
+      <HomeContainer>
 
-        <StatisticsSection>
+        <Div>
+          <StatisticsSection>
 
-          <StatisticsContainer>
-            <Formm>
-              <DivCenter>
-                <H1Login>عدد الصفحات المقروءة<Wird>200</Wird></H1Login>
-                <H3Login>صفحة قران</H3Login>
-              </DivCenter>
+            <StatisticsContainer>
+              <Formm>
+                <DivCenter>
+                  <H1Login>عدد الصفحات المقروءة<Wird>200</Wird></H1Login>
+                  <H3Login>صفحة قران</H3Login>
+                </DivCenter>
 
-              <DivCenter>
-                <H1Login>عدد طلبة المسابقة<Wird>25</Wird> </H1Login>
-                <H3Login>طالب</H3Login>
-              </DivCenter>
-            </Formm>
-            <Formm>
-              <DivCenter>
-                <H1Login>المركز الأول لليوم السابق<Wird>أنس القاضي</Wird> </H1Login>
-                <H3Login>مبارك</H3Login>
-              </DivCenter>
+                <DivCenter>
+                  <H1Login>عدد طلبة المسابقة<Wird>25</Wird> </H1Login>
+                  <H3Login>طالب</H3Login>
+                </DivCenter>
+              </Formm>
+              <Formm>
+                <DivCenter>
+                  <H1Login>المركز الأول لليوم السابق<Wird>أنس القاضي</Wird> </H1Login>
+                  <H3Login>مبارك</H3Login>
+                </DivCenter>
 
-              <DivCenter>
-                <H1Login>التقويم الرمضاني<Wird>1</Wird> </H1Login>
-                <H3Login>اللهم تقبل</H3Login>
-              </DivCenter>
-            </Formm>
-          </StatisticsContainer>
-          
-          <Sidebar />
+                <DivCenter>
+                  <H1Login>التقويم الرمضاني<Wird>1</Wird> </H1Login>
+                  <H3Login>اللهم تقبل</H3Login>
+                </DivCenter>
+              </Formm>
+            </StatisticsContainer>
 
-        </StatisticsSection>
+          </StatisticsSection>
 
-        {/* Second Section */}
-        <IntroductionSection></IntroductionSection>
+          {/* Second Section  <Wird>أنس القاضي</Wird> */}
+          <IntroductionSection>
+            <Wird>منصة ورد </Wird>
+            <Wird>أهلا بك في موقع مسؤول المسابقة في منصة ورد، في هذا المكان متابعة تفاصيل المتسابقين، ومزيد من التفاصيل يرجى مشاهدة دليل الاستخدام من خلال الفيديو التالي</Wird>
+          </IntroductionSection>
 
-        {/* Third Section */}
-        <VideoSection></VideoSection>
-      {/* </div> */}
-      
-    </HomeContainer>
+          {/* Third Section */}
+          <VideoSection></VideoSection>
+        </Div>
 
+        <Sidebar />
+
+      </HomeContainer>
+    </>
   );
 }
 

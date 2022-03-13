@@ -36,6 +36,9 @@ export const SideBarContainer = styled.div`
   @media(max-width: 400px) {
       position: absolute;
     }
+    
+    /* position: absolute; */
+
   background-color: #2980b9;
   font-family: 'Noto Kufi Arabic', sans-serif !important;
   height: 100vh;
