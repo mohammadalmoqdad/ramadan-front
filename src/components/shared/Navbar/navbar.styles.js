@@ -2,9 +2,14 @@ import styled from "styled-components";
 
 // HedarNavContainer 
 export default styled.header`
+
+position: fixed;
+width:100%;
+top: 0;
+
 display:flex;
 /* min-width: 625px; */
-font-family: 'Noto Kufi Arabic', sans-serif !important;
+font-family: 'Noto Kufi Arabic', sans-serif;
 box-sizing: border-box;
 margin: 0;
 padding: 0;
@@ -57,21 +62,6 @@ color: orange;
 }
 `;
 
-export const A = styled.h4`
-transition: all .3s ease 0s;
-font-size: 1.3rem;
-color: #2980b9;
-padding-top: 0.5rem;
-:hover{
-transition: all .3s ease 0s;
-/* color: orange; */
-}
-
-@media (max-width:700px) {
-  display: none;
-}
-`;
-
 export const ButtonLogout = styled.button`
 width:8rem;
 height: 2.4rem;
@@ -100,10 +90,31 @@ export const NavDropdownli = styled.div`
 font-size: 1.3rem;
 display: none;
 
-@media (max-width:700px) {
+@media (max-width:550px) {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+`;
+
+export const A = styled.h4`
+transition: all .3s ease 0s;
+font-size: 1.3rem;
+color: #2980b9;
+padding-top: 0.5rem;
+/* :hover{
+transition: all .3s ease 0s;
+color: orange;
+} */
+/* display: none; */
+@media (max-width:550px) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  /* position: absolute;
+ transition: visibility hidden .3s ease 0s; */
 }
 
 `;

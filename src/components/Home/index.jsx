@@ -2,12 +2,23 @@ import React, { useContext, useEffect } from "react";
 import cookie from "react-cookies";
 import { Redirect, Route, useNavigate } from "react-router-dom";
 import Sidebar from "components/shared/Sidebar";
+import CarouselStatistics from "./Carousel/CarouselStatistics.jsx"
+import Img from "./Img/Img.jsx"
+
+import WirdLogo from '../../assets/Logo/WirdLogosvg.svg'
+
 import {
   HomeContainer,
   StatisticsSection,
   IntroductionSection,
   VideoSection,
-  Div
+  Div,
+  IntroductionSectionDiv,
+  WirdLogoInHome,
+  WirdMinIntroduction,
+  BorderBottom,
+  IntroductionDiv,
+  Introduction
 } from "./home.styles";
 import { StatisticsContainer, Formm, H1Login, H3Login, DivCenter, Wird } from "../studentsPoints/StudentsPoints.styles"
 import { AdminContext } from "../../contexts/AdminContext";
@@ -27,7 +38,9 @@ function Home(props) {
 
   return (
     <>
-      <Navbar />
+      {/* <CarouselStatistics /> */}
+      {/* <Img/> */}
+
 
       <HomeContainer>
 
@@ -61,15 +74,27 @@ function Home(props) {
 
           </StatisticsSection>
 
-          {/* Second Section  <Wird>أنس القاضي</Wird> */}
+          {/* Second Section  */}
           <IntroductionSection>
-            <Wird>منصة ورد </Wird>
-            <Wird>أهلا بك في موقع مسؤول المسابقة في منصة ورد، في هذا المكان متابعة تفاصيل المتسابقين، ومزيد من التفاصيل يرجى مشاهدة دليل الاستخدام من خلال الفيديو التالي</Wird>
+            <IntroductionDiv>
+              <WirdLogoInHome >
+                <img src={WirdLogo} alt="" width='200' />
+              </WirdLogoInHome>
+
+              <IntroductionSectionDiv>
+                <WirdMinIntroduction>منصة ورد </WirdMinIntroduction>
+                <Introduction>أهلا بك في موقع مسؤول المسابقة في منصة ورد، في هذا المكان يمكنك متابعة تفاصيل المتسابقين، ولمزيد من
+                  التفاصيل يرجى مشاهدة دليل الاستخدام من خلال الفيديو المرفق بالاسفل </Introduction>
+              </IntroductionSectionDiv>
+            </IntroductionDiv>
+            <BorderBottom></BorderBottom>
+
           </IntroductionSection>
 
           {/* Third Section */}
           <VideoSection></VideoSection>
         </Div>
+        <Navbar />
 
         <Sidebar />
 

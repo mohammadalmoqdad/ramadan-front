@@ -67,12 +67,6 @@ function Sidebar() {
             المعايير  
           </MenuItem>
           <CriteriasIcon />
-{/* //         </MenuLink>
-//         <MenuLink to="/EditStandards">
-//           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
-//             تعديل معايير المسابقة
-//           </MenuItem>
-//           <CriteriasIcon /> */}
         </MenuLink>
         <MenuLink to="/StudentsPoints">
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
@@ -84,14 +78,6 @@ function Sidebar() {
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>المجموعات</MenuItem>
           <GroupsIcon />
         </MenuLink>
-{/* ///////////////////////////////////
-        <MenuLink to="/">الصفحة الرئيسية</MenuLink>
-        <MenuLink to="/Admins">المسؤولون</MenuLink>
-        <MenuLink to="/set-student-password">باسورد جديد للطالب</MenuLink>
-        <MenuLink to="/Standards">المعايير</MenuLink>
-        <MenuLink to="/StudentsPoints">مشاهدة النتائج</MenuLink>
-        <MenuLink to="/Groups">المجموعات</MenuLink>
-//////////////////////////////// */}
       </MenuContainer>
     </SideBarContainer>
   );

@@ -55,16 +55,24 @@ flex-direction: column;
 
 export const DivCenter = styled.div`
 
- /* display: flex; */ 
+ /* display: flex; linear-gradient(120deg, #2980b9, #2980b9) */ 
  /* justify-content: center; */
  /* align-items: center; */
  box-shadow: 1px 3px 12px 0px #0000007a;
-
+/* border: 10rem;
+border-color: #E94f57; */
  margin: 1rem;
  margin-top: 2rem;
  width: 11rem;
- background: white;
+ background: white ;
+
  border-radius: 10px;
+
+ @media(max-width:1100px){
+  width: 8rem;
+  margin: .7rem;
+
+}
 
 `;
 
@@ -72,7 +80,7 @@ export const DivCenter = styled.div`
 export const StatisticsContainer = styled.div`
 
 margin: auto;
-/* margin-top: 20; */
+margin-top: -12rem;
 display: flex;
 justify-content: space-between;
 align-items: flex-start;
@@ -87,10 +95,14 @@ justify-content: center;
 align-items: flex-start;
 display: flex;
 
-@media (max-width:960px) {
+@media (max-width:900px) {
  display: flex;
 flex-direction: column;
 }
+/* @media (max-width:960px) {
+ display: flex;
+flex-direction: column;
+} */
 `;
 
 export const DivPass = styled.div`
@@ -112,11 +124,16 @@ text-align: center;
 
 export const H1Login = styled.h1`
 /* margin-top: 1.5rem; */
+color: #2980b9 !important;
 text-align: center;
 padding: 2rem 0 10px 0;
 font-family: 'Noto Kufi Arabic', sans-serif;
 font-size: .9rem;
 border-bottom:0.1px solid silver;
+@media(max-width:1100px){
+  font-size: .6rem;
+  font-weight: bold;
+}
 `;
 
 export const Wird = styled.h1`
@@ -126,6 +143,12 @@ text-align: center;
 font-family: 'Noto Kufi Arabic', sans-serif;
 font-size: 1.5rem;
 color: orange;
+
+@media(max-width:1100px){
+  font-size: 1rem;
+  font-weight: bold;
+
+}
 `;
 
 export const H3Login = styled.h3`
@@ -135,7 +158,11 @@ padding: 1rem 0 1rem 0;
 /* border-bottom: 1px solid silver; */
 font-family: 'Noto Kufi Arabic', sans-serif;
 font-size: 1rem;
-color: #213C64;
+color: #E94f57 !important;
+@media(max-width:1100px){
+  font-size: .8rem;
+  font-weight: bold;
+}
 `;
 
 export const DivTxtField = styled.div`

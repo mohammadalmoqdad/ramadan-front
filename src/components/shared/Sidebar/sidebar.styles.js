@@ -16,7 +16,7 @@ const fadeOut = keyframes`
     max-width: 4rem;
     /* max-height: 100vh; */
     &{
-      position: static;
+      /* position: static; */
     }
   }
   
@@ -26,33 +26,36 @@ const fadeOut = keyframes`
 `;
 
 export const SideBarContainer = styled.div`
-  animation: ${({ isSidebarCollapsed }) => {
+  /* animation: ${({ isSidebarCollapsed }) => {
     if (isSidebarCollapsed === true) return fadeIn;
     if (isSidebarCollapsed === false) return fadeOut;
     return "";
   }}
-    ease-in-out forwards;
+    ease-in-out forwards; */
   animation-duration: 0.2s;
-  @media(max-width: 400px) {
-      position: absolute;
-    }
-    
-    /* position: absolute; */
 
-  background-color: #2980b9;
+  margin-top: 5rem;
+  background-color: white;
   font-family: 'Noto Kufi Arabic', sans-serif !important;
-  height: 100vh;
+  
+  height: 100%;
   width: 15rem;
-  /* box-shadow: 1px 3px 12px 2px #0000007a; */
+  box-shadow: 2px 19px 10px 2px #00000063;
   text-align: center;
   color: lightgray;
   /* width: 15rem; */
   /* display: none; */
-
-@media (max-width:700px) {
+  position: fixed;
+  /* width:100%; */
+  right: 0;
+@media (max-width:550px) {
   display: none;
   
 }
+
+position: fixed;
+  width:15rem;
+  right: 0;
 `;
 
 export const UserInfoContainer = styled.div`
@@ -61,6 +64,7 @@ export const UserInfoContainer = styled.div`
     if (isSidebarCollapsed === false) return "flex";
     return "flex";
   }};
+  padding-top: 2.5rem;
   justify-content: space-around;
   flex-direction: row-reverse;
   align-items: center;

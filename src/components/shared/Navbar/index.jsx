@@ -25,25 +25,23 @@ function Nav() {
                 {/* <Li><A></A></Li> */}
                 <Li>
                     <NavDropdownlist >
-                    <NavDropdownli >
-                    <NavDropdown  className='NavDropdow' style={{ color: '#e9f4fb' }}>
-                        <NavDropdown.Item className='NavDropdow' href="/">الصفحة الرئيسية</NavDropdown.Item>
-                        <NavDropdown.Item href="/Admins">إضافة أدمن جديد</NavDropdown.Item>
-                        <NavDropdown.Item href="/set-student-password">باسورد جديد للطالب</NavDropdown.Item>
-                        <NavDropdown.Item href="/Standards">المعايير</NavDropdown.Item>
-                        <NavDropdown.Item href="/StudentsPoints">مشاهدة النتائج</NavDropdown.Item>
-                        <NavDropdown.Item href="/Groups">المجموعات</NavDropdown.Item>
+                        <NavDropdownli >
+                            <NavDropdown className='NavDropdow' style={{ color: '#e9f4fb' }}>
+                                <NavDropdown.Item className='NavDropdow' href="/">الصفحة الرئيسية</NavDropdown.Item>
+                                <NavDropdown.Item href="/Admins">إضافة أدمن جديد</NavDropdown.Item>
+                                <NavDropdown.Item href="/set-student-password">باسورد جديد للطالب</NavDropdown.Item>
+                                <NavDropdown.Item href="/Standards">المعايير</NavDropdown.Item>
+                                <NavDropdown.Item href="/StudentsPoints">مشاهدة النتائج</NavDropdown.Item>
+                                <NavDropdown.Item href="/Groups">المجموعات</NavDropdown.Item>
+                            </NavDropdown>
 
-                        {/* <NavDropdown.Divider /> title="انتقل الى صفحة جديدة" 
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
-                
-                    </NavDropdown>
-                    <div>أهلا بكم في منصة وِرد </div>
-                    </NavDropdownli>
-                    <A>أهلا بكم في منصة وِرد </A>
+                            <div>أهلا بكم في منصة وِرد </div>
+                        </NavDropdownli>
+                        <A>أهلا بكم في منصة وِرد </A>
+
                     </NavDropdownlist>
-                   
-  
+
+
                 </Li>
                 <Li></Li>
 
