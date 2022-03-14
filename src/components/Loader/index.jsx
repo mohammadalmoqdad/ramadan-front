@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import HedarNavContainer, { DivCenter, H1 } from "./loder.styles";
-import { AdminContext } from "contexts/AdminContext";
+import {useAdminContext} from "../../contexts/AdminContext";
 export default function Loder() {
   const [loading, setloading] = useState(true); // note: to open loading comp when the function start
-  const context = useContext(AdminContext);
+ const context = useAdminContext();
 
   // const API = async () => {
   //   setloading(true);

@@ -18,9 +18,11 @@ import { ReactComponent as PasswordIcon } from "assets/icons/change password.svg
 import { ReactComponent as CriteriasIcon } from "assets/icons/criterias.svg";
 import { ReactComponent as ResultsIcon } from "assets/icons/results.svg";
 import { ReactComponent as GroupsIcon } from "assets/icons/group.svg";
+import {useAdminContext} from "../../../contexts/AdminContext";
 
 function Sidebar() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState("");
+  const context = useAdminContext();
   return (
     <SideBarContainer isSidebarCollapsed={isSidebarCollapsed}>
       {/* {cookie.load("token")
@@ -50,12 +52,14 @@ function Sidebar() {
           </MenuItem>
           <HomeIcon />
         </MenuLink>
-        <MenuLink to="/Admins">
-          <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
-              المسؤولون
-          </MenuItem>
-          <AdminIcon />
-        </MenuLink>
+        { Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin &&
+            <MenuLink to="/Admins">
+              <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
+                المسؤولون
+              </MenuItem>
+              <AdminIcon />
+            </MenuLink>
+        }
         <MenuLink to="/set-student-password">
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
             باسورد جديد للطالب

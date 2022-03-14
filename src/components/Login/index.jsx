@@ -11,14 +11,14 @@ import LoginFormContainer, {
   DivTxtField,
   Span,
 } from "./login.styles";
-import { AdminContext } from "contexts/AdminContext";
+import { useAdminContext } from "contexts/AdminContext";
 import { useNavigate } from "react-router-dom";
 import cookie from "react-cookies";
 import Loader from "../Loader";
 
 function Login(props) {
   let Navigate = useNavigate();
-  const context = useContext(AdminContext);
+  const context = useAdminContext();
   const [username, setUsername] = useState(" ");
   const [password, setPassword] = useState(" ");
   const [loading, setloading] = useState(true); // note: to open loading comp when the function start

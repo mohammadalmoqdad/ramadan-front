@@ -10,14 +10,19 @@ import {retrieveAdmins} from "../../services/adminsServices";
 import {deleteGroup, retrieveGroups} from "../../services/groupsServices";
 import Modal from "../shared/Modal/Modal";
 import {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
+import {useAdminContext} from "../../contexts/AdminContext";
+import Navbar from "../shared/Navbar";
 
 export default function Groups() {
 
-    const [admins, setAdmins] = useState(null);
-    const [groups, setGroups] = useState(null);
-    const [students, setStudents] = useState(null);
+    const [admins, setAdmins] = useState([]);
+    const [groups, setGroups] = useState([]);
+    const [students, setStudents] = useState([]);
     const [groupIdToDelete, setGroupIdToDelete] = useState(-1);
     const [openGroupModal, setOpenGroupModal] = useState(false);
+    const [hasPermission, setPermission] = useState(false);
+
+    const context = useAdminContext();
 
     useEffect(() => {
 
@@ -50,6 +55,10 @@ export default function Groups() {
             }
     } , [students]);
 
+    useEffect(() => {
+            setPermission(Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin);
+    }, [context.adminInfo]);
+
     const handleOpenGroupModalChange = (e)=>{
         setGroupIdToDelete(e.target.value);
         setOpenGroupModal(true);
@@ -70,6 +79,32 @@ export default function Groups() {
         setOpenGroupModal(false);
     };
 
+    const getLabelsArray = ()=>{
+        let labels = [];
+        if(students && students.length > 0){
+            labels.push('تعديل مجموعة');
+        }
+
+        if(hasPermission){
+            labels.push('إضافة مجموعة');
+        }
+        return labels;
+    };
+
+    const getContentsArray = ()=>{
+        let contents = [];
+        if(students && students.length > 0){
+            contents.push(<EditGroupForm studentsGroups={groups} setGroups={setGroups} students={students}
+                                         admins={admins}/>);
+        }
+
+        if(hasPermission){
+            contents.push(<AddGroupForm students={students} admins={admins} studentsGroups={groups}
+                                        setGroups={setGroups}/>);
+        }
+        return contents;
+    };
+
     return (
         <>
             { openGroupModal &&
@@ -77,28 +112,31 @@ export default function Groups() {
                        setOpenModal={setOpenGroupModal} deleteFunction={deleteGroupFunction} />
             }
             <GroupsContainer>
+                <div style={{width:'100%'}}>
+                    <Navbar/>
+                    { groups && groups.length > 0 &&
+                        <DropdownList className='DropdownList'>
+                            <DropdownListItem  className="title"><Span>المجموعات الحالية</Span></DropdownListItem>
+                            {
+                                groups.map((group, index) => {
+                                    return (<DropdownListItem key={index}>
+                                        { hasPermission
+                                            ?
+                                                <>
+                                                    <Button id="deleteBtn" onClick={handleOpenGroupModalChange} value={group.id}>حذف</Button>
+                                                    <Span>{group.name}</Span>
+                                                </>
+                                            :
+                                            <Span style={{width:'100%'}}>{group.name}</Span>
+                                        }
+                                    </DropdownListItem>)
+                                })
+                            }
+                        </DropdownList>
+                    }
 
-                { groups && groups.length > 0 &&
-                    <DropdownList className='DropdownList'>
-                        <DropdownListItem  className="title"><Span>المجموعات الحالية</Span></DropdownListItem>
-                        {
-                            groups.map((group, index) => {
-                                return (<DropdownListItem key={index}>
-                                    <Button id="deleteBtn" onClick={handleOpenGroupModalChange} value={group.id}>حذف</Button>
-                                    <Span>{group.name}</Span>
-                                </DropdownListItem>)
-                            })
-                        }
-                    </DropdownList>
-                }
-
-                <Tabs labels={['تعديل مجموعة', 'إضافة مجموعة']}
-                      contents={
-                          [
-                              <EditGroupForm studentsGroups={groups} setGroups={setGroups} students={students} admins={admins}/>,
-                              <AddGroupForm students={students} admins={admins} studentsGroups={groups} setGroups={setGroups}/>
-                          ]
-                      }/>
+                    <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
+                </div>
                 <Sidebar/>
             </GroupsContainer>
         </>
