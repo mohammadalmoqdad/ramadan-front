@@ -12,7 +12,6 @@ import Standards from './components/Standards/Standards'
 import Admins from './components/Admins/Admins'
 import StudentsPoints from './components/studentsPoints/StudentsPoints'
 import { Route, BrowserRouter, Routes} from "react-router-dom";
-import React from "react";
 import SetPasswordStudents from "components/setPasswordStudent/SetPasswordStudents";
 function App() {
   // const [test, isTest] = useState(false);
