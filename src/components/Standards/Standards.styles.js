@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default styled.div`
 width: 100%;
 height: 60rem;
-background: #FFF;
+background: linear-gradient(120deg, #2980b9, #2980b9);
 
 display: flex;
 justify-content: center;
