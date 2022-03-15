@@ -30,12 +30,12 @@ function Sidebar() {
         : "nothing to do"} */}
 
       <MenuIconContainer>
-        <MenuIcon
+        {/* <MenuIcon
           onClick={() => {
             console.log("here I am in the on Click");
             setIsSidebarCollapsed(!isSidebarCollapsed);
           }}
-        />
+        /> */}
       </MenuIconContainer>
 
       <UserInfoContainer isSidebarCollapsed={isSidebarCollapsed}>
@@ -62,7 +62,7 @@ function Sidebar() {
         }
         <MenuLink to="/set-student-password">
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
-            باسورد جديد للطالب
+          تعيين كلمة مرور للطالب
           </MenuItem>
           <PasswordIcon />
         </MenuLink>

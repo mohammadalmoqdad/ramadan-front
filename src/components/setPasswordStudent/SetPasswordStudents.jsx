@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "components/shared/Sidebar";
+import Navbar from '../shared/Navbar/'
 
 
 import SetPasswordStudentContainer, {
@@ -33,11 +34,11 @@ export default function SetPasswordStudents() {
   useEffect(() => {
 
     retrieveStudents(
-        (res) => {
-          setStudents(res.data);
-        }, (err) => {
-          console.log("Failed to retrieve students: "+JSON.stringify(err.response.data));
-        }
+      (res) => {
+        setStudents(res.data);
+      }, (err) => {
+        console.log("Failed to retrieve students: " + JSON.stringify(err.response.data));
+      }
     );
 
   }, []);
@@ -52,10 +53,11 @@ export default function SetPasswordStudents() {
     if (e.target.value !== "") {
       setUserName(e.target.value);
       console.log(e.target.value);
-      let student = students.filter( student => student.username === e.target.value)[0];
-      setSelectedUserFullName(student.first_name+" "+student.last_name);
-    }else{
+      let student = students.filter(student => student.username === e.target.value)[0];
+      setSelectedUserFullName(student.first_name + " " + student.last_name);
+    } else {
       setSelectedUserFullName("");
+
     }
   };
 
@@ -119,74 +121,78 @@ export default function SetPasswordStudents() {
   };
 
   return (
-    <SetPasswordStudentContainer>
-      <SetPasswordStudent>
-        {students && students.length > 0 &&
+    <>
+      <Navbar />
+
+      <SetPasswordStudentContainer>
+        <SetPasswordStudent>
+          {students && students.length > 0 &&
             <>
               <DropdownDiv className="DropdownDiv" onChange={selectedUser}>
                 <DropdownList className="DropdownList">
                   <DropdownListItem key={0} value="">اختر المتسابق لتغيير كلمة المرور</DropdownListItem>
                   {
                     students.map((student, index) => (
-                        <DropdownListItem key={index + 1}
-                                          value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
+                      <DropdownListItem key={index + 1}
+                        value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
                     ))
                   }
                 </DropdownList>
               </DropdownDiv>
 
-            <StudantName>
-              : اسم المتسابق <br /> {selectedUserFullName}{" "}
-            </StudantName>
-          </>
-        }
+              <StudantName>
+                : اسم المتسابق <br /> {selectedUserFullName}{" "}
+              </StudantName>
+            </>
+          }
 
-        <DivCenter>
-          <H3Login>أدخل كلمة مرور جديدة</H3Login>
+          <DivCenter>
+            <H3Login>أدخل كلمة مرور جديدة</H3Login>
 
-          <Form onSubmit={Set_Pas_St_Fun}>
-            <DivTxtField>
-              <Span />
-              <FormInput
-                onChange={handleChangeStudentPassword1}
-                type="password"
-                placeholder="أدخل كلمة مرور جديدة"
-                required
-              />
-            </DivTxtField>
-            {!isValidPassword &&
-              <DivPass>يجب أن تتكون كلمة المرور 8 أحرف على الأقل</DivPass>
-            }
+            <Form onSubmit={Set_Pas_St_Fun}>
+              <DivTxtField>
+                <Span />
+                <FormInput
+                  onChange={handleChangeStudentPassword1}
+                  type="password"
+                  placeholder="أدخل كلمة مرور جديدة"
+                  required
+                />
+              </DivTxtField>
+              {!isValidPassword &&
+                <DivPass>يجب أن تتكون كلمة المرور 8 أحرف على الأقل</DivPass>
+              }
 
-            <DivTxtField>
-              <Span />
-              <FormInput
-                onChange={handleChangeStudentPassword2}
-                placeholder="تأكيد كلمة المرور"
-                type="password"
-                required
-              />
-            </DivTxtField>
+              <DivTxtField>
+                <Span />
+                <FormInput
+                  onChange={handleChangeStudentPassword2}
+                  placeholder="تأكيد كلمة المرور"
+                  type="password"
+                  required
+                />
+              </DivTxtField>
 
-            {!PasswordStudentEqual &&
-              <DivPass>
-                الإدخال غير صحيح، تأكد من مطابقة كلمة المرور
-              </DivPass>
-            }
+              {!PasswordStudentEqual &&
+                <DivPass>
+                  الإدخال غير صحيح، تأكد من مطابقة كلمة المرور
+                </DivPass>
+              }
 
-            {messages.length > 0 &&
-              messages.map((message, index) => {
-                return <DivPass key={index}>{message}</DivPass>
-              })
-            }
-            <InputSubmit type="submit" value="login">
-              تغيير كلمة المرور
-            </InputSubmit>
-          </Form>
-        </DivCenter>
-      </SetPasswordStudent>
-      <Sidebar />
+              {messages.length > 0 &&
+                messages.map((message, index) => {
+                  return <DivPass key={index}>{message}</DivPass>
+                })
+              }
+              <InputSubmit type="submit" value="login">
+                تغيير كلمة المرور
+              </InputSubmit>
+            </Form>
+          </DivCenter>
+        </SetPasswordStudent>
+        <Sidebar />
 
-    </SetPasswordStudentContainer>
+      </SetPasswordStudentContainer>
+    </>
   );
 }

@@ -3,7 +3,6 @@ import styled from "styled-components";
 export default styled.div`
 display: flex;
 background: linear-gradient(120deg, #2980b9, #2980b9);
-
 `;
 
 export const PointShow = styled.div`
@@ -30,13 +29,11 @@ export const LoginForm = styled.div`
 height: 60rem;
 width: 55rem;
 background: white;
-
  justify-content: center;
  align-items: center;
  display: flex;
  box-shadow: 1px 3px 12px 0px #0000007a;
  border-radius: 10px;
-
 padding: 1rem;
 flex-direction: column;
 @media (max-width:960px) {
@@ -54,24 +51,27 @@ flex-direction: column;
 
 
 export const DivCenter = styled.div`
-
- /* display: flex; */ 
+ /* display: flex; linear-gradient(120deg, #2980b9, #2980b9) */ 
  /* justify-content: center; */
  /* align-items: center; */
  box-shadow: 1px 3px 12px 0px #0000007a;
-
+/* border: 10rem;
+border-color: #E94f57; */
  margin: 1rem;
  margin-top: 2rem;
  width: 11rem;
- background: white;
+ background: white ;
  border-radius: 10px;
-
+ @media(max-width:1100px){
+  width: 8rem;
+  margin: .7rem;
+}
 `;
 
 
 export const StatisticsContainer = styled.div`
-
 margin: auto;
+margin-top: -12rem;
 display: flex;
 justify-content: space-between;
 align-items: flex-start;
@@ -80,21 +80,22 @@ align-items: flex-start;
 }
 `;
 export const Formm = styled.div`
-
 margin: auto;
 justify-content: center;
 align-items: flex-start;
 display: flex;
-
-@media (max-width:960px) {
+@media (max-width:900px) {
  display: flex;
 flex-direction: column;
 }
+/* @media (max-width:960px) {
+ display: flex;
+flex-direction: column;
+} */
 `;
 
 export const DivPass = styled.div`
 width: 100%;
-
 padding: 0 5px;
 height: 40px;
 font-size: 16px;
@@ -111,11 +112,16 @@ text-align: center;
 
 export const H1Login = styled.h1`
 /* margin-top: 1.5rem; */
+color: #2980b9 !important;
 text-align: center;
 padding: 2rem 0 10px 0;
 font-family: 'Noto Kufi Arabic', sans-serif;
 font-size: .9rem;
 border-bottom:0.1px solid silver;
+@media(max-width:1100px){
+  font-size: .6rem;
+  font-weight: bold;
+}
 `;
 
 export const Wird = styled.h1`
@@ -125,6 +131,10 @@ text-align: center;
 font-family: 'Noto Kufi Arabic', sans-serif;
 font-size: 1.5rem;
 color: orange;
+@media(max-width:1100px){
+  font-size: 1rem;
+  font-weight: bold;
+}
 `;
 
 export const H3Login = styled.h3`
@@ -134,7 +144,11 @@ padding: 1rem 0 1rem 0;
 /* border-bottom: 1px solid silver; */
 font-family: 'Noto Kufi Arabic', sans-serif;
 font-size: 1rem;
-color: #213C64;
+color: #E94f57 !important;
+@media(max-width:1100px){
+  font-size: .8rem;
+  font-weight: bold;
+}
 `;
 
 export const DivTxtField = styled.div`
@@ -212,10 +226,8 @@ transition: .3s;
 export const DropdownDiv = styled.div`
 width: 20rem;
 margin: auto;
-
 /* margin-bottom: 0rem; */
 margin-top: 1rem;
-
 @media (max-width:500px) {
 width: 15rem;
 margin-bottom: 1rem;
@@ -226,20 +238,17 @@ margin-top: 1rem;
 
 
 export const DropdownList = styled.select`
-
 width: 20rem;
 font-family: 'Noto Kufi Arabic', sans-serif;
 /* color: #213C64; */
 color: white;
 font-size: 1.3rem;
 padding:1rem;
-
 border-radius: 4px;
 background-color: #E94F57;
 box-shadow: 1px 3px 12px 0px #0000007a;
 border: none;
 outline: none;
-
 :hover{
   outline: none;
   border: none;
@@ -259,7 +268,6 @@ outline: none;
 `;
 
 export const DropdownListItem = styled.option`
-
 padding: 1rem ;
 text-align:center;
 /* :scope{
