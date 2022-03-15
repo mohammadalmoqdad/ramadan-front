@@ -2,13 +2,16 @@ import styled from "styled-components";
 
 // HedarNavContainer 
 export default styled.header`
+position: fixed;
+width:100%;
+top: 0;
 display:flex;
 /* min-width: 625px; */
 font-family: 'Noto Kufi Arabic', sans-serif;
 box-sizing: border-box;
 margin: 0;
 padding: 0;
-background-color: #2980b9;
+background-color: white;
 justify-content: space-between;
 align-items: center;
 padding: .5rem .5rem .5rem;
@@ -19,11 +22,11 @@ export const Logo = styled.h1`
 /* list-style: none; */
 color: orange;
 font-size: 1.5rem;
-border: 3px solid white;
+/* border: 3px solid white; */
 border-radius: 2rem;
 width:3.5rem;
 /* padding-right: 20rem; */
-/* margin-right:0; */
+margin-left:2rem;
 /* height: 3.5rem; */
 `;
 
@@ -31,9 +34,9 @@ export const HedarNav = styled.nav`
 display:flex;
 align-items: center;
 justify-content: center;
-width: 20rem;
+/* width: 20rem; */
 list-style: none;
-margin-right: 1rem;
+/* margin-right: 17rem; */
 `;
 
 
@@ -44,23 +47,13 @@ margin-right: 1rem;
 `;
 
 export const Li = styled.li`
-font-family: 'Noto Kufi Arabic', sans-serif;
 font-weight: 500;
-font-size: 1rem;
+/* font-size: 1rem; */
 color: white;
 text-decoration: none;
 display: inline-block;
-padding:1rem 0 0 ;
+padding:.5rem 0 0 ;
 transition: all .3s ease 0s;
-:hover{
-transition: all .3s ease 0s;
-color: orange;
-}
-`;
-
-export const A = styled.a`
-transition: all .3s ease 0s;
-color: white;
 :hover{
 transition: all .3s ease 0s;
 color: orange;
@@ -70,7 +63,7 @@ color: orange;
 export const ButtonLogout = styled.button`
 width:8rem;
 height: 2.4rem;
-background: orange;
+background: #E94f57;
 font-weight:bold;
 border-radius: 1.5rem;
 font-size: .9rem;
@@ -78,13 +71,44 @@ color: #e9f4fb;
 cursor: pointer;
 outline: none;
 margin-left: 2rem;
-border: 2px solid orange;
 transition: all .3s ease 0s;
 box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 :hover{
 background: #2980b9;
-border: 3px solid orange;
 transition: .3s;
 box-shadow: 0 4px 6px 0 rgba(0,0,0,.3);
+}
+`;
+export const NavDropdownlist = styled.div`
+font-size: 1.3rem;
+color: #2980b9 ;
+`;
+export const NavDropdownli = styled.div`
+font-size: 1.3rem;
+display: none;
+@media (max-width:550px) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+`;
+
+export const A = styled.h4`
+transition: all .3s ease 0s;
+font-size: 1.3rem;
+color: #2980b9;
+padding-top: 0.5rem;
+/* :hover{
+transition: all .3s ease 0s;
+color: orange;
+} */
+/* display: none; */
+@media (max-width:550px) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  /* position: absolute;
+ transition: visibility hidden .3s ease 0s; */
 }
 `;
