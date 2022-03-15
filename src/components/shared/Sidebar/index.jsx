@@ -39,7 +39,13 @@ function Sidebar() {
       </MenuIconContainer>
 
       <UserInfoContainer isSidebarCollapsed={isSidebarCollapsed}>
-        <Username>اسم المستخدم</Username>
+        { Object.keys(context.getAdminInfo()).length > 0
+            ?
+              <Username>{context.getAdminInfo().first_name} {context.getAdminInfo().last_name}</Username>
+            :
+              <Username>اسم المستخدم</Username>
+        }
+
         <UserPicContainer>
           <UserIcon />
         </UserPicContainer>
