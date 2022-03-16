@@ -13,6 +13,7 @@ import EditAdminForm from "./EditAdminForm/EditAdminForm";
 import {deleteAdmin, retrieveAdmins} from "../../services/adminsServices";
 import {useAdminContext} from "../../contexts/AdminContext";
 import Navbar from "../shared/Navbar";
+import ResetAdminPasswordForm from "./ResetAdminPasswordForm/ResetAdminPasswordForm";
 
 export default function Admins() {
 
@@ -77,10 +78,12 @@ export default function Admins() {
                     </DropdownList>
                 }
 
-                <Tabs labels={['تعديل مسؤول', 'إضافة مسؤول']}
+                <Tabs labels={['كلمة المرور','تعديل مسؤول', 'إضافة مسؤول']}
                       contents={
-                          [<EditAdminForm admins={admins} setAdmins={setAdmins}/>
-                              , <AddAdminForm admins={admins} setAdmins={setAdmins}/>
+                          [
+                              <ResetAdminPasswordForm admins={admins}/>,
+                              <EditAdminForm admins={admins} setAdmins={setAdmins}/>,
+                              <AddAdminForm admins={admins} setAdmins={setAdmins}/>
                           ]}
                       toggleState={1}/>
             </div>

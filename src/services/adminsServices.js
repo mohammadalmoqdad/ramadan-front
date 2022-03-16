@@ -60,3 +60,15 @@ export const deleteAdmin = (username,   successCallback, faiCallback) => {
         faiCallback,
         true);
 };
+
+export const resetAdminPassword = (username, data, successCallback, faiCallback)=>{
+    doRequest(data, `/comp-admin/comp-admins/${username}/change_password/`,
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "put",
+        successCallback,
+        faiCallback,
+        true);
+};
