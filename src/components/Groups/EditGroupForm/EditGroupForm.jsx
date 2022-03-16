@@ -13,6 +13,7 @@ import Multiselect from "multiselect-react-dropdown";
 import {DropdownList, DropdownListItem} from "../../Admins/EditAdminForm/EditAdminForm.styles";
 import {DivPass} from "../../Admins/Admins.styles";
 import {updateGroup} from "../../../services/groupsServices";
+import {useAdminContext} from "../../../contexts/AdminContext";
 
 export default function EditGroupForm(props) {
 
@@ -24,6 +25,7 @@ export default function EditGroupForm(props) {
     const [isValidGroupName, setValidGroupName] = useState(true);
     const [announcements, setAnnouncements] = useState("");
     const [messages, setMessages] = useState([]);
+    const context = useAdminContext();
 
     useEffect(()=>{
         setMessages([]);
@@ -141,7 +143,7 @@ export default function EditGroupForm(props) {
                 </DropdownDiv>
 
             }
-            { props.students && props.students.length > 0 &&
+            { Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin && props.students && props.students.length > 0 &&
                 <DropdownDiv className='DropdownDiv'>
                     <DropdownDivSelect>
                         <Span>أسماء طلبة يكمن اضافتهم</Span>

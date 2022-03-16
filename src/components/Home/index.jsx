@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import cookie from "react-cookies";
 import { Redirect, Route, useNavigate } from "react-router-dom";
 import Sidebar from "components/shared/Sidebar";
@@ -23,8 +23,11 @@ import {
 import { StatisticsContainer, Formm, H1Login, H3Login, DivCenter, Wird } from "../studentsPoints/StudentsPoints.styles"
 import Navbar from '../shared/Navbar/'
 import {useAdminContext} from "../../contexts/AdminContext";
+import {retrieveGeneralStatus} from "../../services/competitionsServices";
 
 function Home(props) {
+  const [generalStatus, setGeneralStatus] = useState({});
+
   const context = useAdminContext();
   let navigate = useNavigate();
 
@@ -34,6 +37,15 @@ function Home(props) {
       navigate("/login");
       console.log("not logged in ");
     }
+    retrieveGeneralStatus(
+        (res)=>{
+          if(res && res.status ===200){
+            setGeneralStatus(res.data);
+          }
+        }, (err)=>{
+          console.log("Failed to retrieve general status : ",err.data);
+        }
+    )
   }, []);
   console.log("inside the Home", cookie.load("token"));
 
@@ -51,23 +63,23 @@ function Home(props) {
             <StatisticsContainer>
               <Formm>
                 <DivCenter>
-                  <H1Login>عدد الصفحات المقروءة<Wird>200</Wird></H1Login>
-                  <H3Login>صفحة قران</H3Login>
+                  <H1Login>أعلى مجموع نقاط من أيام رمضان<Wird>{generalStatus.top_ramadan_day.total_day}</Wird></H1Login>
+                  <H3Login>{generalStatus.top_ramadan_day.ramadan_record_date} رمضان </H3Login>
                 </DivCenter>
 
                 <DivCenter>
-                  <H1Login>عدد طلبة المسابقة<Wird>25</Wird> </H1Login>
+                  <H1Login>عدد طلبة المسابقة<Wird>{generalStatus.students_count}</Wird> </H1Login>
                   <H3Login>طالب</H3Login>
                 </DivCenter>
               </Formm>
               <Formm>
                 <DivCenter>
-                  <H1Login>المركز الأول لليوم السابق<Wird>أنس القاضي</Wird> </H1Login>
+                  <H1Login>المركز الأول لليوم السابق<Wird>{generalStatus.top_student_last_day != null ? generalStatus.top_student_last_day : 'لا يوجد'}</Wird> </H1Login>
                   <H3Login>مبارك</H3Login>
                 </DivCenter>
 
                 <DivCenter>
-                  <H1Login>التقويم الرمضاني<Wird>1</Wird> </H1Login>
+                  <H1Login>التقويم الرمضاني<Wird>{generalStatus.ramadan_date}</Wird> </H1Login>
                   <H3Login>اللهم تقبل</H3Login>
                 </DivCenter>
               </Formm>
