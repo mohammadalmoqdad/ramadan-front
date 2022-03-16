@@ -28,6 +28,12 @@ width:3.5rem;
 /* padding-right: 20rem; */
 margin-left:2rem;
 /* height: 3.5rem; */
+
+@media (max-width:550px) {
+  font-size: 1rem;
+  border-radius: 1.6rem;
+  width:3rem;
+}
 `;
 
 export const HedarNav = styled.nav`
@@ -109,6 +115,29 @@ color: orange;
   align-items: center;
   display: none;
   /* position: absolute;
- transition: visibility hidden .3s ease 0s; */
+ transition: visibility hidden .3s ease 0s; H5*/
+}
+`;
+
+export const H5 = styled.h4`
+
+transition: all .3s ease 0s;
+font-size: 1.3rem;
+color: #2980b9;
+padding-top: 0.5rem;
+/* :hover{
+transition: all .3s ease 0s;
+color: orange;
+} */
+/* display: none; */
+@media (max-width:550px) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+ font-size: 1rem;
+
+  /* position: absolute;
+ transition: visibility hidden .3s ease 0s; H5*/
 }
 `;

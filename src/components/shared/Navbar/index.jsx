@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './NavStyle.css' // will see
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import HedarNavContainer, { NavDropdownli, NavDropdownlist, Logo, HedarNav, Ul, Li, A, ButtonLogout } from "./navbar.styles"
+import HedarNavContainer, { H5,NavDropdownli, NavDropdownlist, Logo, HedarNav, Ul, Li, A, ButtonLogout } from "./navbar.styles"
 import cookie from "react-cookies";
 import { Redirect, Route, useNavigate } from "react-router-dom";
 import { useAdminContext } from "../../../contexts/AdminContext";
@@ -34,7 +34,7 @@ function Nav() {
                                 <NavDropdown.Item href="/Groups">المجموعات</NavDropdown.Item>
                             </NavDropdown>
 
-                            <div>أهلا بكم في منصة وِرد </div>
+                            <H5>أهلا بكم في منصة وِرد </H5>
                         </NavDropdownli>
                         <A>أهلا بكم في منصة وِرد </A>
 

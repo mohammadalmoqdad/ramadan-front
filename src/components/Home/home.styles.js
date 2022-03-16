@@ -14,6 +14,15 @@ export const Div = styled.div`
   /* align-items: flex-start; */
   flex-direction: column;
   /* flex-direction: row-reverse; Div*/
+
+  @media(max-width:700px){ 
+    margin-right: 12rem;
+  }
+  @media(max-width:550px){ 
+    margin-right: 0rem;
+  /* width: 0; */
+
+  }
 `;
 
 // **************** First section **********************
@@ -21,7 +30,9 @@ export const StatisticsSection = styled.div`
 margin-top: 20rem;
   display: flex;
   justify-content: space-around;
-  width: 100%;
+  /* width: 100%; */
+
+
 `;
 
 export const StatisticsContainer = styled.div`
@@ -44,7 +55,7 @@ export const StatiticsNote = styled.p`
 // **************** Second section ********************** WirdMinIntroduction Introduction
 export const IntroductionSection = styled.section`
 margin: auto;
-margin-top: 5rem;
+margin-top: 7rem;
 justify-content: center;
 align-items: flex-start;
 display: flex;
@@ -73,28 +84,41 @@ align-items: flex-start;
   /* margin-right: -5rem; */
   justify-content: center;
   align-items: flex-start;
-/* display: flex; */
-  width: 35rem;
+  /* display: flex; */
+  /* width: 5rem; */
   text-align: center;
 }
+
+@media(max-width:650){
+margin: auto;
+width: 25rem ;
+}
 `;
+
 export const IntroductionDiv = styled.div`
 justify-content: center;
 align-items: flex-start;
 display: flex;
+
 @media(max-width:1100px){
 margin-right: 5rem;
 }
+
 @media(max-width:1000px){
-  margin: auto;
+margin: auto;
 flex-direction: column;
 justify-content: center;
 align-items: flex-start;
+}
+
+@media(max-width:1000px){
+  margin: auto;
 }
 `;
 export const WirdLogoInHome = styled.div`
 /* width: 50rem; */
 /* display: flex; */
+
 justify-content: center;
 align-items: flex-start;
 >img{
@@ -103,11 +127,14 @@ align-items: flex-start;
 }
 }
 @media(max-width:1000px){
-/* margin-right: 5rem; */
 margin: auto;
-/* display: flex; */
+/* margin-right: 6.5rem; */
 justify-content: center;
-/* align-items: flex-start; */
+}
+@media(max-width:550px){
+margin: auto;
+margin-right: 20%;
+
 }
 `;
 
@@ -120,23 +147,42 @@ font-weight:bolder;
 font-family: 'Noto Kufi Arabic', sans-serif;
 font-size: 1.8rem;
 color: #2980b9;
+
 @media(max-width:1100px){
   font-size: 1.4rem;
   font-weight: bold;
   width: 30rem;
 }
+
 @media(max-width:1000px){
 /* margin-right: 5rem; */
 margin: auto;
 /* display: flex; */
-justify-content: center;
-align-items: center;
+/* justify-content: center;
+align-items: center; */
 text-align: center;
 }
-@media(max-width:900){
-/* margin-right: 5rem; */
-margin: auto;
+@media(max-width:900px){
+  margin: auto;
+/* padding-right: 0rem; */
 }
+@media(max-width:650px){
+  /* width: 20rem; */
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding-right:10rem;
+}
+@media(max-width:550px){
+  /* width: 20rem; */
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-right:0rem;
+
+}
+
 `;
 
 export const Introduction = styled.div`
@@ -146,6 +192,7 @@ text-align: right;
 font-family: 'Noto Kufi Arabic', sans-serif;
 font-size: 1.4rem;
 color: orange;
+
 @media(max-width:1100px){
   font-size: 1rem;
   width: 30rem;
@@ -153,6 +200,20 @@ color: orange;
 }
 @media(max-width:1000px){
   text-align: center;
+}
+@media(max-width:750px){
+  width: 25rem;
+  margin: auto;
+  margin-right: 7rem;
+}
+@media(max-width:650px){
+  width: 20rem;
+    margin: auto;
+    margin-right: 13rem;
+}
+@media(max-width:550px){
+  margin: auto;
+
 }
 `;
 
@@ -167,6 +228,22 @@ border-radius: 20px;
 @media(max-width:1000px){
   width: 35rem;
 }
+@media(max-width:850px){
+  width: 25rem;
+}
+@media(max-width:650px){
+  width: 15rem;
+  margin-right: 10rem;
+}
+@media(max-width:550px){
+/* margin: auto; */
+margin-right: 19%;
+/* margin-top: 2ram; */
+justify-content: center;
+align-items: flex-start;
+display: flex; 
+}
+
 `;
 // **************** Third section **********************
 export const VideoSection = styled.section`
@@ -180,5 +257,23 @@ justify-content: center;
 margin-bottom: 5rem;
 @media(max-width:1000px){
   width: 35rem;
+}
+@media(max-width:850px){
+  width: 25rem;
+}
+
+@media(max-width:650px){
+  width: 17rem;
+  margin-right: 9rem;
+}
+
+@media(max-width:650px){
+/* margin: auto; */
+
+margin-right: -2rem;
+/* margin-top: 2ram; */
+justify-content: center;
+align-items: flex-start;
+display: flex; 
 }
 `;
