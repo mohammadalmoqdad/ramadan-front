@@ -75,8 +75,21 @@ margin-top: -12rem;
 display: flex;
 justify-content: space-between;
 align-items: flex-start;
+@media(max-width:700px){ 
+  margin-right: 7rem;
+  /* width: 30rem; */
+}
 @media (max-width:500px) {
   flex-direction: column;
+}
+@media(max-width:550px){ 
+  margin: auto;
+  margin-right: 4.2rem;
+  margin-top: -12rem;
+
+  /* width:auto; */
+  flex-direction: row;
+
 }
 `;
 export const Formm = styled.div`
@@ -84,10 +97,17 @@ margin: auto;
 justify-content: center;
 align-items: flex-start;
 display: flex;
+
 @media (max-width:900px) {
- display: flex;
+ /* display: flex; */
 flex-direction: column;
 }
+
+@media(max-width:700px){ 
+  /* margin-right: -5rem; */
+  /* width: 30rem; */
+}
+
 /* @media (max-width:960px) {
  display: flex;
 flex-direction: column;
@@ -113,6 +133,7 @@ text-align: center;
 export const H1Login = styled.h1`
 /* margin-top: 1.5rem; */
 color: #2980b9 !important;
+font-weight: bold;
 text-align: center;
 padding: 2rem 0 10px 0;
 font-family: 'Noto Kufi Arabic', sans-serif;

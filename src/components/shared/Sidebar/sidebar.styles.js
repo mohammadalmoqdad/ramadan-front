@@ -47,6 +47,9 @@ export const SideBarContainer = styled.div`
   position: fixed;
   /* width:100%; */
   right: 0;
+  @media(max-width:700px){ 
+  width: 12rem;
+}
 @media (max-width:550px) {
   display: none;
   
@@ -132,5 +135,8 @@ export const MenuItem = styled.span`
   padding: 0;
   border: none;
   width: 100%;
+  @media(max-width:700px){ 
+  font-size: .8rem;
+}
   /* margin-right: 1rem; */
 `;
