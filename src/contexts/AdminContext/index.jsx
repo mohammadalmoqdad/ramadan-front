@@ -15,13 +15,13 @@ function AdminProvider({ children }) {
 
   const getAdminInfo = () => {
     if (Object.keys(adminInfo).length === 0){
-      retrieveAdminInfo(cookie.load("username"),
+      retrieveAdminInfo(
           (res)=>{
             setAdminInfo(res.data);
           },
           (err)=>{
             if(err.response && err.response.status === 403){
-              setAdminInfo({username:cookie.load("username"), is_super_admin: false});
+              setAdminInfo({is_super_admin: false});
             }
             console.log("Failed to populate admin info: ", JSON.stringify(err.response.data));
           }
@@ -33,7 +33,6 @@ function AdminProvider({ children }) {
   const logout = () => {
     cookie.remove("token");
     cookie.remove("refresh-token");
-    cookie.remove("username");
     setAdminInfo({});
     return "logged out successfully";
   };

@@ -20,8 +20,6 @@ export async function useLogin(username, password) {
 
     cookie.save("token", data.access);
     cookie.save("refresh-token", data.refresh);
-    //TODO: This temporary, when getAdminInfo service is ready, no need to store the username in the cookie
-    cookie.save("username", username);
 
     // useNavigate("/");
 
