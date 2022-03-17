@@ -13,8 +13,8 @@ export const retrieveAdmins = (successCallback, faiCallback) => {
         true);
 };
 
-export const retrieveAdminInfo = (username, successCallback, faiCallback) => {
-    doRequest(null, `/comp-admin/comp-admins/${username}/`,
+export const retrieveAdminInfo = (successCallback, faiCallback) => {
+    doRequest(null, `/comp-admin/admin-info/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
