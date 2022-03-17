@@ -20,16 +20,13 @@ import TableData from './table/Table.jsx';
 export default function StudentsPoints() {
 
   const [Students, setStudents] = useState(null);
-  const [usarName, setUsarName] = useState("");
+  const [username, setUsername] = useState("");
+  const [day, setDay] = useState("");
 
   useEffect(() => {
-    // successCallback,
-    // faiCallback,
     retrieveStudents(
       (res) => {
         setStudents(res.data);
-        // console.log(res.data);
-        // console.log(Students);
       }, (err) => {
         console.log("ERROR: " + JSON.stringify(err.response.data));
       }
@@ -38,24 +35,26 @@ export default function StudentsPoints() {
   }, []);
 
 
-  const selectedUser = (e) => {
-    setUsarName(e.target.value)
-    console.log(e.target.value);
+  const handleSelectedUser = (e) => {
+    setUsername(e.target.value)
   }
-  // console.log(usarName);
+
+  const handleDayChange = (e) => {
+    setDay(e.target.value)
+  }
 
   return <LoginFormContainer>
     <PointShow>
 
       <LoginForm>
         <Wird>نقاط الطلاب</Wird>
-        <DropdownDiv className='DropdownDiv' onChange={selectedUser} >
-          <DropdownList className='DropdownList'>
-          <DropdownListItem key={0} value="">اختر المتسابق </DropdownListItem>
-            {Students && Students.count > 0 &&
+        <DropdownDiv className='DropdownDiv' >
+          <DropdownList className='DropdownList' onChange={handleSelectedUser}>
+            <DropdownListItem key={0} value="">اختر المتسابق </DropdownListItem>
+            {Students &&
               <>
                 {
-                  Students.results.map((student, index) => (
+                  Students.map((student, index) => (
                     <DropdownListItem key={index + 1}
                       value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
                   ))
@@ -67,21 +66,20 @@ export default function StudentsPoints() {
 
 
         <DropdownDiv className='DropdownDiv' >
-          <DropdownList className='DropdownList'>
+          <DropdownList className='DropdownList' onChange={handleDayChange}>
             <DropdownListItem>اختر اليوم من رمضان</DropdownListItem>
-            <DropdownListItem >1 رمضان</DropdownListItem>
-            <DropdownListItem value="bo">2 رمضان</DropdownListItem>
-            <DropdownListItem value="An">3 رمضان</DropdownListItem>
-
+            {
+              Array(30).fill(undefined).map((val, idx) => <DropdownListItem key={idx} value={idx}>{idx} رمضان</DropdownListItem>)
+            }
           </DropdownList>
 
         </DropdownDiv>
 
-        <TableData />
+        <TableData selectedUser={username} selectedDay={day} />
 
       </LoginForm>
     </PointShow>
-    <Sidebar />
+    {/* <Sidebar /> */}
 
-  </LoginFormContainer>;
+  </LoginFormContainer >;
 }
