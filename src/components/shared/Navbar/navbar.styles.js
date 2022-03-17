@@ -84,6 +84,11 @@ background: #2980b9;
 transition: .3s;
 box-shadow: 0 4px 6px 0 rgba(0,0,0,.3);
 }
+@media (max-width:450px) {
+  font-size: .7rem;
+  margin-left: 1rem;
+
+}
 `;
 export const NavDropdownlist = styled.div`
 font-size: 1.3rem;
