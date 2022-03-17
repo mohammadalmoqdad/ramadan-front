@@ -71,25 +71,43 @@ border-color: #E94f57; */
 
 export const StatisticsContainer = styled.div`
 margin: auto;
-margin-top: -12rem;
+margin-top: 7rem;
 display: flex;
 justify-content: space-between;
-align-items: flex-start;
-@media(max-width:700px){ 
-  margin-right: 7rem;
-  /* width: 30rem; */
+align-items: center;
+margin-right: 15rem ;
+
+@media(max-width:670px){ 
+  /* margin-right: 7rem; */
+
+  margin: auto ;
+  margin-right:15rem;
+  margin-top: 7rem;
+
 }
 @media (max-width:500px) {
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 @media(max-width:550px){ 
-  margin: auto;
-  margin-right: 4.2rem;
-  margin-top: -12rem;
+margin: auto !important;
+/* margin-top: 2rem; */
+padding-top: 8rem;
+padding-bottom: 2rem;
+}
+@media(max-width:375px){ 
+margin: auto !important;
+/* margin-top: 2rem; */
+padding-top: 8rem;
+padding-bottom: 2rem;
+}
 
+@media(max-width:600px){ 
+  /* margin: auto; */
+  /* margin-right: 6rem; */
+  /* margin-top: 7rem; */
+  margin-right:10rem;
   /* width:auto; */
-  flex-direction: row;
-
+  /* flex-direction: row; */
 }
 `;
 export const Formm = styled.div`
@@ -108,10 +126,6 @@ flex-direction: column;
   /* width: 30rem; */
 }
 
-/* @media (max-width:960px) {
- display: flex;
-flex-direction: column;
-} */
 `;
 
 export const DivPass = styled.div`

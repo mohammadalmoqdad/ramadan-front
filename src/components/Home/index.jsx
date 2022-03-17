@@ -103,11 +103,11 @@ function Home(props) {
               </IntroductionSectionDiv>
             </IntroductionDiv>
             <BorderBottom></BorderBottom>
-
+            <VideoSection></VideoSection>
           </IntroductionSection>
 
           {/* Third Section */}
-          <VideoSection></VideoSection>
+          {/* <VideoSection></VideoSection> */}
         </Div>
         <Navbar />
 

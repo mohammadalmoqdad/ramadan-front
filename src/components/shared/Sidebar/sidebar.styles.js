@@ -44,10 +44,10 @@ export const SideBarContainer = styled.div`
   color: lightgray;
   /* width: 15rem; */
   /* display: none; */
-  position: fixed;
+  /* position: fixed; */
   /* width:100%; */
   right: 0;
-  @media(max-width:700px){ 
+  @media(max-width:750px){ 
   width: 12rem;
 }
 @media (max-width:550px) {
@@ -135,7 +135,7 @@ export const MenuItem = styled.span`
   padding: 0;
   border: none;
   width: 100%;
-  @media(max-width:700px){ 
+  @media(max-width:750px){ 
   font-size: .8rem;
 }
   /* margin-right: 1rem; */
