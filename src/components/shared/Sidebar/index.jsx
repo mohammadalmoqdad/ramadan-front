@@ -66,9 +66,9 @@ function Sidebar() {
               <AdminIcon />
             </MenuLink>
         }
-        <MenuLink to="/set-student-password">
+        <MenuLink to="/Students">
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
-          تعيين كلمة مرور للطالب
+          الطلاب
           </MenuItem>
           <PasswordIcon />
         </MenuLink>

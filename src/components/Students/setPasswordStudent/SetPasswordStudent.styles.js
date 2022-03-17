@@ -29,7 +29,6 @@ flex-direction: column;
 `;
 
 export const DropdownDiv = styled.div`
-width: 25rem;
 margin: auto;
 
 margin-bottom: 0rem;
@@ -102,8 +101,6 @@ margin-right: 1rem;
 
 
 export const DropdownList = styled.select`
-
-width: 25rem;
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.3rem;
@@ -299,5 +296,25 @@ transition: .3s;
   width: 11rem;
   font-size: .8rem;
   
+}
+`;
+
+export const DivFileField = styled.div`
+input[type=file]{
+ color: black;
+ border-bottom: none;
+}
+padding-top: 5px;
+}
+`;
+
+export const H5 = styled.h5`
+
+text-align:center;
+font-family: 'Noto Kufi Arabic', sans-serif;
+color: #213C64;
+font-size: 1.3rem;
+@media (max-width:500px) {
+  font-size: .8rem;
 }
 `;

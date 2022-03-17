@@ -29,7 +29,7 @@ export const setStudentPassword = (username, data, successCallback, faiCallback)
 export const updateStudent = (username, data, successCallback, faiCallback) => {
     doRequest(data, `/comp-admin/students/${username}/`,
         {
-            "Content-Type": "application/json",
+            'Content-Type' : false,
             Authorization: `Bearer ${cookie.load('token')}`,
         },
         "put",
