@@ -3,12 +3,11 @@ import { kaReducer, Table } from 'ka-table';
 import { DataType, EditingMode, SortingMode } from 'ka-table/enums';
 import {
   deleteRow,
-  openAllEditors,
   saveAllEditors,
   validate
 } from 'ka-table/actionCreators';
 import './table-style.css'
-import { retrieveStudentsPointsPerDay, updateStudentPoint } from "../../../services/studentsServices";
+import { retrieveStudentsPointsPerDay, updateStudentPoint, deleteStudentPoint } from "../../../services/studentsServices";
 import { kaPropsUtils } from 'ka-table/utils';
 
 
@@ -57,9 +56,18 @@ import { kaPropsUtils } from 'ka-table/utils';
 //   );
 // };
 
+
+
 const DeleteRow = ({
-  dispatch, rowKeyValue,
+  dispatch, rowKeyValue, username, pointID
 }) => {
+  const [_pointID, set_pointID] = useState('');
+  useEffect(() => {
+    if (pointID) {
+      console.log('hiiiiii', pointID)
+      set_pointID(pointID)
+    }
+  }, [pointID]);
   return (
     <img
       src='https://komarovalexander.github.io/ka-table/static/icons/delete.svg'
@@ -68,13 +76,19 @@ const DeleteRow = ({
         dispatch(deleteRow(rowKeyValue))
         // ********************************************** here is hitting the API for the delete action
 
+        if (pointID) deleteStudentPoint(
+          username,
+          _pointID,
+          (res) => { console.log(res) },
+          (err) => { console.log(err) })
       }}
       alt=''
     />
   );
 };
 
-function getTablePropsInit(studentData) {
+// get the table component the 
+function getTableProps(studentData) {
   const dataArray = studentData.map(
     (element, index) => ({
       standard: `${element?.point_template?.label}`,
@@ -84,7 +98,6 @@ function getTablePropsInit(studentData) {
       id: index,
     }),
   );
-  // console.log("in getTablePropsInit:", studentData);
 
   const tablePropsInit = {
     columns: [
@@ -104,6 +117,7 @@ function getTablePropsInit(studentData) {
   return tablePropsInit;
 }
 
+// to get an object that have the difference between two arrays
 function getDifference(array2, array1) {
   return array1.filter(object1 => {
     return !array2.some(object2 => {
@@ -112,11 +126,20 @@ function getDifference(array2, array1) {
   });
 }
 
+function getDifferenceForDelete(array1, array2) {
+  return array1.filter(object1 => {
+    return !array2.some(object2 => {
+      return object1.id === object2.id;
+    });
+  });
+}
+
+
 function TableData({ selectedUser, selectedDay }) {
   const [tableData, setTableData] = useState([]);
   const [isTableShown, setIsTableShown] = useState(true);
-  const [tableProps, changeTableProps] = useState(getTablePropsInit(tableData));
-  const [editedOrRemovedPointData, setEditedOrRemovedPointData] = useState();
+  const [tableProps, changeTableProps] = useState(getTableProps(tableData));
+  const [editedOrRemovedPointData, setEditedOrRemovedPointData] = useState('');
   let flag = true;
   let tempPrevArr;
   const dispatch = (action) => {
@@ -125,7 +148,12 @@ function TableData({ selectedUser, selectedDay }) {
         tempPrevArr = prevState.data;
         flag = false;
       }
-      if (tempPrevArr) setEditedOrRemovedPointData(getDifference(tempPrevArr, prevState.data)[0])
+      if (action.columnKey === ':delete') { // because the delete have different comparison than the update in the arrays either in the id or the return.
+        if (tempPrevArr) setEditedOrRemovedPointData(getDifferenceForDelete(tempPrevArr, prevState.data)[0])
+      }
+      if (action.columnKey === 'point') {
+        if (tempPrevArr) setEditedOrRemovedPointData(getDifference(tempPrevArr, prevState.data)[0])
+      }
       return kaReducer(prevState, action)
     });
   };
@@ -142,6 +170,7 @@ function TableData({ selectedUser, selectedDay }) {
       }
     }
     else {
+      // for validation we can add another button to check the value restrictions. 
       dispatch(validate())
     }
   }
@@ -150,7 +179,7 @@ function TableData({ selectedUser, selectedDay }) {
       retrieveStudentsPointsPerDay(selectedUser, selectedDay,
         (res) => {
           setTableData(res.data.student_points)
-          if (res.data.student_points) changeTableProps(getTablePropsInit(res.data.student_points))
+          if (res.data.student_points) changeTableProps(getTableProps(res.data.student_points))
           setIsTableShown(true)
         },
         (err) => {
@@ -176,7 +205,7 @@ function TableData({ selectedUser, selectedDay }) {
                 content: (props) => {
                   // eslint-disable-next-line default-case
                   switch (props.column.key) {
-                    case ':delete': return <DeleteRow {...props} />;
+                    case ':delete': return <DeleteRow username={selectedUser} pointID={editedOrRemovedPointData?.pointID} {...props} />;
                   }
                 }
               },

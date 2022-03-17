@@ -74,3 +74,16 @@ export const updateStudentPoint = (username, pointID, data, successCallback, fai
         faiCallback,
         true);
 };
+
+
+export const deleteStudentPoint = (username, pointID, successCallback, faiCallback) => {
+    doRequest(null, `/comp-admin/students/${username}/update_or_delete_point/?id=${pointID}`,
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "delete",
+        successCallback,
+        faiCallback,
+        true);
+};
