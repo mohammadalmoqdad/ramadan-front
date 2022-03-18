@@ -8,6 +8,7 @@ import Groups from "../Groups/Groups";
 import Admins from "../Admins/Admins";
 import Standards from "../Standards/Standards";
 import StudentsPoints from "../studentsPoints/StudentsPoints";
+import Competition from "../Competition/competition";
 import {useAdminContext} from "../../contexts/AdminContext";
 export default function AppBrowserRouter(){
 
@@ -18,6 +19,7 @@ export default function AppBrowserRouter(){
                 {/* <Route exact path="/login" component={Login} /> */}
                 <Route exact path="/login" element={<Login />}/>
                 <Route exact path="/" element={<Home />} />
+                <Route exact path="/Competition" element={<Competition />} />
                 <Route exact path="/loading" element={<Loader />} />
                 <Route exact path= "/Students" element= {<Students/>}  />
                 <Route exact path= "/Groups" element= {<Groups/>}  />

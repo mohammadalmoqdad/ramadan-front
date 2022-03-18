@@ -36,7 +36,7 @@ export const DropdownList = styled.select`
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.3rem;
-padding:1rem;
+padding: 7px;
 
 border-radius: 4px;
 background-color: white;
