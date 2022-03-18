@@ -27,7 +27,8 @@ function Nav() {
                         <NavDropdownli >
                             <NavDropdown className='NavDropdow' style={{ color: '#e9f4fb' }}>
                                 <NavDropdown.Item className='NavDropdow' href="/">الصفحة الرئيسية</NavDropdown.Item>
-                                <NavDropdown.Item href="/Admins">إضافة أدمن جديد</NavDropdown.Item>
+                                <NavDropdown.Item href="/Admins">المسؤولون</NavDropdown.Item>
+                                <NavDropdown.Item href="/Competition">معلومات المسابقة</NavDropdown.Item>
                                 <NavDropdown.Item href="/Students">الطلاب</NavDropdown.Item>
                                 <NavDropdown.Item href="/Standards">المعايير</NavDropdown.Item>
                                 <NavDropdown.Item href="/StudentsPoints">مشاهدة النتائج</NavDropdown.Item>

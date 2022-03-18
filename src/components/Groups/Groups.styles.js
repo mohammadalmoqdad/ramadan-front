@@ -284,4 +284,36 @@ margin-top: 1rem;
 
 }
 `;
+const Btn =  styled.button`
+    position: relative;
+    float: right;
+    width: 30px;
+    height: 30px;
+    margin: 1px;
+    border: none;
+    font-size: 15px;
+    font-weight:bold;
+    padding: 1px;
+    color: white;
+    border-radius: 5px;
+    :hover{
+        background: orange;
+        transition: .3s;
+    }
+ `;
+
+export const AddBtn = styled(Btn)`
+    background-color: cornflowerblue;
+`;
+
+export const RemoveBtn = styled(Btn)`
+    background-color: #E94f57;
+`;
+
+export const AnnouncementsFormInput = styled(FormInput)`
+ width: 80%;
+ float: right;
+`;
+
+
 // DivTxtFieldcheckbox 

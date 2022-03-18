@@ -111,7 +111,7 @@ export default function SetPasswordStudents(props) {
                 <FormInput
                     onChange={handleChangeStudentPassword1}
                     type="password"
-                    placeholder="أدخل كلمة مرور جديدة"
+                    placeholder="ادخل كلمة مرور جديدة"
                     required
                 />
             </DivTxtField>

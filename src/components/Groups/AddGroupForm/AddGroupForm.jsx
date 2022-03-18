@@ -7,7 +7,7 @@ import {
     FormInput,
     Form,
     InputSubmit,
-    Span
+    Span, AnnouncementsFormInput, RemoveBtn, AddBtn
 } from "../Groups.styles";
 import Multiselect from "multiselect-react-dropdown";
 import {DropdownList, DropdownListItem} from "../../Admins/EditAdminForm/EditAdminForm.styles";
@@ -20,7 +20,8 @@ export default function AddGroupForm(props) {
     const [selectedAdminUserName, setSelectedAdminUserName] = useState("");
     const [groupName, setGroupName] = useState("");
     const [isValidGroupName, setValidGroupName] = useState(true);
-    const [announcements, setAnnouncements] = useState("");
+    const [announcements, setAnnouncements] = useState([""]);
+    const [isSemiColonExists, setSemiColonExists] = useState(false);
     const [messages, setMessages] = useState([]);
 
     useEffect(()=>{
@@ -48,8 +49,20 @@ export default function AddGroupForm(props) {
       setGroupName(e.target.value);
     };
 
-    const handleAnnouncementsChange = (e) => {
-      setAnnouncements(e.target.value);
+    const handleAnnouncementsChange = (e, index)=>{
+        let notesArray = [...announcements];
+        notesArray.splice(index, 1, e.target.value);
+        setAnnouncements(notesArray);
+    };
+
+    const handleAddBtnChange = ()=>{
+        setAnnouncements([...announcements, ""]);
+    };
+
+    const handleRemoveBtnChange = (index)=>{
+        let notesArray = [...announcements];
+        notesArray.splice(index, 1);
+        setAnnouncements(notesArray);
     };
 
     const handleAddGroupSubmit = (e) => {
@@ -60,11 +73,25 @@ export default function AddGroupForm(props) {
             return;
         }
 
+        let valid = true;
+        announcements.forEach(announcement =>{
+            if(announcement.includes(';')){
+                valid = false;
+            }
+        });
+
+        if(!valid){
+            setSemiColonExists(true);
+            return;
+        }else{
+            setSemiColonExists(false);
+        }
+
         let data = {
             'admin': selectedAdminUserName,
             'name': groupName,
             'group_students': selectedStudents,
-            'announcements': announcements
+            'announcements': announcements.filter(announcement => announcement.trim().length > 0).join(";")
         };
 
         addGroup(data,
@@ -138,11 +165,23 @@ export default function AddGroupForm(props) {
 
             }
 
-            <DivTxtField>
-                <Span/>
-                <FormInput placeholder='الإعلانات' onChange={handleAnnouncementsChange} type="text"/>
-            </DivTxtField>
-            <DivPass>استخدم ; للفصل بين الإعلانات في حالة إضافة أكثر من إعلان</DivPass>
+            {
+                announcements?.map((inputItem, index) => {
+                    return (
+
+                        <DivTxtField style={{width: '100%'}}>
+                            <Span/>
+                            <AnnouncementsFormInput placeholder='الإعلان' key={index} value={inputItem}
+                                                    onChange={(e) => handleAnnouncementsChange(e, index)} type="text"/>
+                            {announcements.length > 1 &&
+                                <RemoveBtn onClick={() => handleRemoveBtnChange(index)}>-</RemoveBtn>}
+                            {index === announcements.length - 1 && <AddBtn onClick={handleAddBtnChange}>+</AddBtn>}
+                        </DivTxtField>)
+                })
+            }
+            { isSemiColonExists &&
+                <DivPass>الإعلان يجب أن لا يحتوي على ;</DivPass>
+            }
 
             <Span/>
 
