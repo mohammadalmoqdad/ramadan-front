@@ -6,9 +6,9 @@ import EditSectionForm from "./EditSectionForm/EditSectionForm";
 import {deleteSection, deleteStandard, retrieveSections, retrieveStandards} from "../../services/standardServices";
 import Tabs from "./../shared/Tabs/Tabs";
 import Sidebar from "../shared/Sidebar";
-import Container from "./Standards.styles";
+import Container, {StandardsDropDownList} from "./Standards.styles";
 import Modal from "../shared/Modal/Modal";
-import {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
+import {Button, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
 import Navbar from "../shared/Navbar";
 export default function Standards() {
@@ -83,6 +83,57 @@ export default function Standards() {
         setOpenSectionModal(false);
     }
 
+    const getLabels = (standardsArray, isSuperAdmin, sectionsArray)=>{
+        let labels = [];
+
+        if(isSuperAdmin && sectionsArray && sectionsArray.length > 0){
+            labels.push('الأقسام الحالية');
+        }
+        if(standardsArray && standardsArray.length > 0){
+            labels.push('المعايير الحالية');
+        }
+        return labels;
+    }
+    const getContents= (standardsArray, isSuperAdmin, sectionsArray)=>{
+        let contents = [];
+
+        if(isSuperAdmin && sectionsArray && sectionsArray.length > 0){
+            contents.push(
+                <StandardsDropDownList className='DropdownList'>
+                    {
+                        sectionsArray.map((section, index) => {
+                            return (<DropdownListItem key={index}>
+                                <Button id="deleteBtn" onClick={handleOpenSectionModelChange} value={section.id}>حذف</Button>
+                                <Span>{section.label}</Span>
+                            </DropdownListItem>)
+                        })
+                    }
+                </StandardsDropDownList>
+            )
+        }
+        if(standardsArray && standardsArray.length > 0){
+            contents.push(
+                <StandardsDropDownList className='DropdownList'>
+                    {
+                        standardsArray.map((standard, index) => {
+                            return (<DropdownListItem key={index}>
+                                { hasPermission
+                                    ?
+                                    <>
+                                        <Button id="deleteBtn" onClick={handleOpenStandardModelChange} value={standard.id}>حذف</Button>
+                                        <Span>{standard.label}</Span>
+                                    </>
+                                    :
+                                    <Span style={{width:'100%'}}>{standard.label}</Span>
+                                }
+                            </DropdownListItem>)
+                        })
+                    }
+                </StandardsDropDownList>
+            );
+        }
+        return contents;
+    }
 
     return (
         <>
@@ -112,43 +163,11 @@ export default function Standards() {
                         // </Frame>
                     }
 
-                    { standards && standards.length > 0 &&
-                        <DropdownList className='DropdownList'>
-                            <DropdownListItem  className="title"><Span>المعايير الحالية</Span></DropdownListItem>
-                            {
-                                standards.map((standard, index) => {
-                                    return (<DropdownListItem key={index}>
-                                        { hasPermission
-                                            ?
-                                               <>
-                                                   <Button id="deleteBtn" onClick={handleOpenStandardModelChange} value={standard.id}>حذف</Button>
-                                                   <Span>{standard.label}</Span>
-                                               </>
-                                            :
-                                            <Span style={{width:'100%'}}>{standard.label}</Span>
-                                        }
-                                    </DropdownListItem>)
-                                })
-                            }
-                        </DropdownList>
-                    }
+                    <Tabs labels={getLabels(standards, hasPermission, sections)}
+                          contents={getContents(standards, hasPermission, sections)} />
 
                     { hasPermission &&
                         <>
-                            { sections && sections.length > 0 &&
-                                <DropdownList className='DropdownList'>
-                                    <DropdownListItem  className="title"><Span>الأقسام الحالية</Span></DropdownListItem>
-                                    {
-                                        sections.map((section, index) => {
-                                            return (<DropdownListItem key={index}>
-                                                <Button id="deleteBtn" onClick={handleOpenSectionModelChange} value={section.id}>حذف</Button>
-                                                <Span>{section.label}</Span>
-                                            </DropdownListItem>)
-                                        })
-                                    }
-                                </DropdownList>
-                            }
-
                             <Tabs
                                 labels={['تعديل قسم','إضافة قسم','تعديل معيار','إضافة معيار']}
                                 contents={[

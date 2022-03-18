@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {DropdownList} from "../Admins/Admins.styles";
 
 export default styled.div`
 width: 100%;
@@ -24,4 +25,9 @@ flex-direction: column;
   max-height: 750px;
 }
 
+`;
+
+export const StandardsDropDownList = styled(DropdownList)`
+width: auto;
+margin: 0;
 `;
