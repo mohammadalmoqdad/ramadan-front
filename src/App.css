@@ -127,3 +127,6 @@ button {
 .DropdownList_groups{
   width: 100%;
 }
+.no-padding{
+  padding: 0;
+}

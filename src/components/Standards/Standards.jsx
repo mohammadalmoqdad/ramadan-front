@@ -164,7 +164,7 @@ export default function Standards() {
                     }
 
                     <Tabs labels={getLabels(standards, hasPermission, sections)}
-                          contents={getContents(standards, hasPermission, sections)} />
+                          contents={getContents(standards, hasPermission, sections)} contentClass=" no-padding"/>
 
                     { hasPermission &&
                         <>
