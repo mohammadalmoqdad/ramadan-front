@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Form,
     DivTxtField,
@@ -9,7 +9,6 @@ import {
     RemoveBtn
 } from "../../Groups/Groups.styles";
 import {DivPass, FormInput} from "../../Admins/Admins.styles";
-import {DropdownList, DropdownListItem, DropdownDiv} from "../../Admins/EditAdminForm/EditAdminForm.styles";
 import {updateCompetition} from "../../../services/competitionsServices";
 import {Checkboxes, DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
 
@@ -22,6 +21,24 @@ export default function EditCompetitionForm(props){
     const [messages, setMessages] = useState([]);
     const [isSemiColonExists, setSemiColonExists] = useState(false);
 
+    useEffect(()=>{
+        let competition = props.competitions[0];
+        if(competition){
+            setSelectedCompetitionId(competition.id);
+            let notesArray = competition?.announcements.split(";").filter(item => item.trim().length > 0);
+            setNotes(notesArray.length > 0 ? notesArray: [""]);
+            setName(competition.name);
+            setReadOnlyMode(competition.readonly_mode);
+            setShowStanding(competition.show_standings);
+        }else{
+            setSelectedCompetitionId("");
+            setNotes([""]);
+            setMessages([]);
+            setName("");
+            setReadOnlyMode(false);
+            setShowStanding(true);
+        }
+    },[props.competitions]);
 
     const handleAddEditSubmit = (e)=>{
         e.preventDefault();
@@ -109,40 +126,9 @@ export default function EditCompetitionForm(props){
         setNotes(notesArray);
     };
 
-    const handleSelectedCompetitionChange = (e) => {
-        setSelectedCompetitionId(e.target.value);
-        if(e.target.value !== ""){
-            let competition =  props.competitions.filter(competition => competition.id === e.target.value)[0];
-            let notesArray = competition.announcements.split(";").filter(item => item.trim().length > 0);
-            setNotes(notesArray.length > 0 ? notesArray: [""]);
-            setName(competition.name);
-            setReadOnlyMode(competition.readonly_mode);
-            setShowStanding(competition.show_standings);
-        }else{
-            setNotes([""]);
-            setName("");
-            setReadOnlyMode(false);
-            setShowStanding(true);
-        }
-        setMessages([]);
-    };
 
     return(
         <Form onSubmit={handleAddEditSubmit}>
-
-            { props.competitions && props.competitions.length > 0 &&
-                <DropdownDiv className="DropdownDiv" onChange={handleSelectedCompetitionChange}>
-                    <DropdownList className="DropdownList_groups" >
-                        <DropdownListItem>اختر المسابقة</DropdownListItem>
-                        {
-                            props.competitions.map((competition, index) => (
-                                <DropdownListItem key={index} value={competition.id}>{competition.name}</DropdownListItem>
-                            ))
-                        }
-                    </DropdownList>
-                </DropdownDiv>
-
-            }
             <DivTxtField>
                 <Span />
                 <FormInput onChange={handleNameChange} placeholder='اسم المسابقة' type="text" value={name} required />
