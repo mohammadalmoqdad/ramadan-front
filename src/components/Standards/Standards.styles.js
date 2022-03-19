@@ -20,10 +20,6 @@ flex-direction: column;
   padding: 2rem;
   width: 30rem;
 }
-.content{
-  overflow: scroll;
-  max-height: 750px;
-}
 
 `;
 

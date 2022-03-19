@@ -36,16 +36,17 @@ function Home(props) {
     if (!cookie.load("token")) {
       navigate("/login");
       console.log("not logged in ");
-    }
-    retrieveGeneralStatus(
-        (res)=>{
-          if(res && res.status ===200){
-            setGeneralStatus(res.data);
+    } else{
+      retrieveGeneralStatus(
+          (res)=>{
+            if(res && res.status ===200){
+              setGeneralStatus(res.data);
+            }
+          }, (err)=>{
+            console.log("Failed to retrieve general status : ",err.data);
           }
-        }, (err)=>{
-          console.log("Failed to retrieve general status : ",err.data);
-        }
-    )
+      )
+    }
   }, []);
   console.log("inside the Home", cookie.load("token"));
 
