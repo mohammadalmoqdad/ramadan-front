@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Form, DivTxtField, Span, InputSubmit, AddBtn, AnnouncementsFormInput, RemoveBtn} from "../../Groups/Groups.styles";
 import {DivPass} from "../../Admins/Admins.styles";
-import {DropdownList, DropdownListItem, DropdownDiv} from "../../Admins/EditAdminForm/EditAdminForm.styles";
 import {updateCompetition} from "../../../services/competitionsServices";
 
 export default function AddEditAnnouncementForm(props){
@@ -10,6 +9,18 @@ export default function AddEditAnnouncementForm(props){
     const [messages, setMessages] = useState([]);
     const [isSemiColonExists, setSemiColonExists] = useState(false);
 
+    useEffect(()=>{
+        let competition = props.competitions[0];
+        if(competition){
+            setSelectedCompetitionId(competition.id);
+            let notesArray = competition?.announcements.split(";").filter(item => item.trim().length > 0);
+            setNotes(notesArray.length > 0 ? notesArray: [""]);
+        }else{
+            setSelectedCompetitionId("");
+            setNotes([""]);
+            setMessages([]);
+        }
+    },[props.competitions]);
 
     const handleAddEditSubmit = (e)=>{
         e.preventDefault();
@@ -77,34 +88,8 @@ export default function AddEditAnnouncementForm(props){
         setNotes(notesArray);
     }
 
-    const handleSelectedCompetitionChange = (e) => {
-      setSelectedCompetitionId(e.target.value);
-      if(e.target.value !== ""){
-          let competition =  props.competitions.filter(competition => competition.id === e.target.value)[0];
-          let notesArray = competition.announcements.split(";").filter(item => item.trim().length > 0);
-          setNotes(notesArray.length > 0 ? notesArray: [""]);
-      }else{
-          setNotes([""]);
-      }
-      setMessages([]);
-    }
-
     return(
         <Form onSubmit={handleAddEditSubmit}>
-
-            { props.competitions && props.competitions.length > 0 &&
-                <DropdownDiv className="DropdownDiv" onChange={handleSelectedCompetitionChange}>
-                    <DropdownList className="DropdownList_groups" >
-                        <DropdownListItem>اختر المسابقة</DropdownListItem>
-                        {
-                            props.competitions.map((competition, index) => (
-                                <DropdownListItem key={index} value={competition.id}>{competition.name}</DropdownListItem>
-                            ))
-                        }
-                    </DropdownList>
-                </DropdownDiv>
-
-            }
 
             { notes?.map((inputItem, index) =>{
                     return(
