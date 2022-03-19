@@ -1,7 +1,7 @@
 import axios from "axios";
 import cookie from "react-cookies";
 
-const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
+const apiUrl = process.env.REACT_APP_BASE_URL;
 
 /*
 *   TODO: This is a temporary implementation for refresh access-token after it's invalid/expire,
