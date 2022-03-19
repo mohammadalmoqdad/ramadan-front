@@ -2,7 +2,7 @@ import axios from "axios";
 import cookie from "react-cookies";
 // import { useNavigate } from "react-router-dom";
 
-const apiUrl = "https://ramadan-comp-rest.herokuapp.com";
+const apiUrl = process.env.REACT_APP_BASE_URL;
 
 export async function useLogin(username, password) {
   try {

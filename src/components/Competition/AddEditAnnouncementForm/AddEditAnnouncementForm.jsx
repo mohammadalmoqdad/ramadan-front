@@ -109,7 +109,7 @@ export default function AddEditAnnouncementForm(props){
             { notes?.map((inputItem, index) =>{
                     return(
 
-                        <DivTxtField style={{width: '100%'}}>
+                        <DivTxtField key={index} style={{width: '100%'}}>
                             <Span/>
                             <AnnouncementsFormInput placeholder='الإعلان' key={index} value={inputItem} onChange={(e) => handleAnnouncementsChange(e, index)} type="text"/>
                             { notes.length > 1 &&
