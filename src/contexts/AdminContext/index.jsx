@@ -14,15 +14,13 @@ function AdminProvider({ children }) {
 
 
   const getAdminInfo = () => {
-    if (Object.keys(adminInfo).length === 0){
+    if (Object.keys(adminInfo).length === 0 && cookie.load('token') && cookie.load("refresh-token")){
       retrieveAdminInfo(
           (res)=>{
             setAdminInfo(res.data);
           },
           (err)=>{
-            if(err.response && err.response.status === 403){
-              setAdminInfo({is_super_admin: false});
-            }
+            setAdminInfo({is_super_admin: false});
             console.log("Failed to populate admin info: ", JSON.stringify(err.response.data));
           }
       );

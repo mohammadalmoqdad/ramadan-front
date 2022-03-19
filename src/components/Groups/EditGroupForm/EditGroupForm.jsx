@@ -220,7 +220,7 @@ export default function EditGroupForm(props) {
                 announcements?.map((inputItem, index) => {
                     return (
 
-                        <DivTxtField style={{width: '100%'}}>
+                        <DivTxtField key={index} style={{width: '100%'}}>
                             <Span/>
                             <AnnouncementsFormInput placeholder='الإعلان' key={index} value={inputItem}
                                                     onChange={(e) => handleAnnouncementsChange(e, index)} type="text"/>

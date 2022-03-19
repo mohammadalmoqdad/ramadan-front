@@ -123,7 +123,7 @@ export default function AddGroupForm(props) {
                 props.students && props.students.length > 0 &&
                     <DropdownDiv className='DropdownDiv'>
                         <DropdownDivSelect>
-                            <Span>أسماء الطلبة يكمن اضافتهم</Span>
+                            <Span>أسماء طلبة يكمن اضافتهم</Span>
                             <DivMultiselect>
                                 <Multiselect
                                     onSelect={handleUpdateSelectedStudentsChange}
@@ -169,7 +169,7 @@ export default function AddGroupForm(props) {
                 announcements?.map((inputItem, index) => {
                     return (
 
-                        <DivTxtField style={{width: '100%'}}>
+                        <DivTxtField key={index} style={{width: '100%'}}>
                             <Span/>
                             <AnnouncementsFormInput placeholder='الإعلان' key={index} value={inputItem}
                                                     onChange={(e) => handleAnnouncementsChange(e, index)} type="text"/>
