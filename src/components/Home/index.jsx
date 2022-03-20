@@ -66,22 +66,22 @@ function Home(props) {
                   <Formm>
                     <DivCenter>
                       <H1Login>أعلى مجموع نقاط من <br/>أيام رمضان<Wird>{generalStatus.top_ramadan_day?.total_day}</Wird></H1Login>
-                      <H3Login>{generalStatus.top_ramadan_day.ramadan_record_date} رمضان </H3Login>
+                      <H3Login>{generalStatus.top_ramadan_day?.ramadan_record_date} رمضان </H3Login>
                     </DivCenter>
 
                     <DivCenter>
-                      <H1Login>عدد طلبة <br/>المسابقة<Wird>{generalStatus.students_count}</Wird> </H1Login>
+                      <H1Login>عدد طلبة <br/>المسابقة<Wird>{generalStatus?.students_count}</Wird> </H1Login>
                       <H3Login>طالب</H3Login>
                     </DivCenter>
                   </Formm>
                   <Formm>
                     <DivCenter>
-                      <H1Login>المركز الأول لليوم<br/> السابق<Wird>{generalStatus.top_student_last_day != null ? generalStatus.top_student_last_day : 'لا يوجد'}</Wird> </H1Login>
+                      <H1Login>المركز الأول لليوم<br/> السابق<Wird>{generalStatus?.top_student_last_day != null ? generalStatus.top_student_last_day : 'لا يوجد'}</Wird> </H1Login>
                       <H3Login>مبارك</H3Login>
                     </DivCenter>
 
                     <DivCenter>
-                      <H1Login>التقويم <br/>الرمضاني<Wird>{generalStatus.ramadan_date}</Wird> </H1Login>
+                      <H1Login>التقويم <br/>الرمضاني<Wird>{generalStatus?.ramadan_date}</Wird> </H1Login>
                       <H3Login>اللهم تقبل</H3Login>
                     </DivCenter>
                   </Formm>
