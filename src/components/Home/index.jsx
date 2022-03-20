@@ -65,7 +65,7 @@ function Home(props) {
                 <StatisticsContainer>
                   <Formm>
                     <DivCenter>
-                      <H1Login>أعلى مجموع نقاط من <br/>أيام رمضان<Wird>{generalStatus.top_ramadan_day.total_day}</Wird></H1Login>
+                      <H1Login>أعلى مجموع نقاط من <br/>أيام رمضان<Wird>{generalStatus.top_ramadan_day?.total_day}</Wird></H1Login>
                       <H3Login>{generalStatus.top_ramadan_day.ramadan_record_date} رمضان </H3Login>
                     </DivCenter>
 
