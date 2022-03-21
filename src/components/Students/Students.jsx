@@ -5,7 +5,7 @@ import EditStudentForm from "./EditStudentForm/EditStudentForm";
 import {retrieveStudents} from "../../services/studentsServices";
 import Navbar from "../shared/Navbar";
 import Sidebar from "../shared/Sidebar";
-import StudentsContainer from "./setPasswordStudent/SetPasswordStudent.styles";
+import StudentsContainer, {H5} from "./setPasswordStudent/SetPasswordStudent.styles";
 export default function Students(){
     const [students, setStudents] = useState([]);
 
@@ -25,7 +25,7 @@ export default function Students(){
         <>
             <Navbar />
             <StudentsContainer>
-                { students.length > 0
+                { students && students.length > 0
                     ?
                     <Tabs labels={['تعديل طالب','كلمة المرور']}
                           contents={
@@ -34,7 +34,11 @@ export default function Students(){
                                   <SetPasswordStudents students={students}/>
                               ]} />
                     :
-                    <h1>لا يوجد طلاب لعرضهم</h1>
+                    <Tabs labels={['الطلاب']}
+                          contents={
+                              [
+                                  <H5>لا يوجد طلاب لعرضهم</H5>
+                              ]} />
                 }
                 <Sidebar />
             </StudentsContainer>
