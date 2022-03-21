@@ -3,7 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from "components/shared/Sidebar";
 
 import { retrieveStudents } from "../../services/studentsServices";
-
+import TotalByPoints from './TotalByDayChart';
+import TotalByLabelChars from './TotalByLabelChart'
 import LoginFormContainer,
 {
   PointShow,
@@ -75,7 +76,11 @@ export default function StudentsPoints() {
 
         </DropdownDiv>
 
-        <TableData selectedUser={username} selectedDay={day} />
+
+        <TotalByPoints selectedUser={username} />
+        <TotalByLabelChars selectedUser={username} />
+
+        {/* <TableData selectedUser={username} selectedDay={day} /> */}
 
       </LoginForm>
     </PointShow>

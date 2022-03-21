@@ -38,6 +38,19 @@ export const retrieveStudentsPointsOfTypeOther = (username, day, successCallback
         true)
 };
 
+export const retrieveStudentsPointsPerLabelORPerDay = (username, typeOfReturnedResult, successCallback, faiCallback) => {
+    doRequest(null, `/comp-admin/students/${username}/points_stats/?type=total_points_by_${typeOfReturnedResult}`,
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "get",
+        successCallback,
+        faiCallback,
+        true)
+}
+
+
 export const setStudentPassword = (username, data, successCallback, faiCallback) => {
     doRequest(data, `/comp-admin/students/${username}/change_password/`,
         {
