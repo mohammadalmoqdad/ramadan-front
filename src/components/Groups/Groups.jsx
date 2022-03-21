@@ -12,6 +12,7 @@ import Modal from "../shared/Modal/Modal";
 import {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
 import Navbar from "../shared/Navbar";
+import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 
 export default function Groups() {
 
@@ -114,28 +115,34 @@ export default function Groups() {
             <GroupsContainer>
                 <div style={{width:'100%'}}>
                     <Navbar/>
-                    { groups && groups.length > 0 &&
-                        <DropdownList className='DropdownList'>
-                            <DropdownListItem  className="title"><Span>المجموعات الحالية</Span></DropdownListItem>
-                            {
-                                groups.map((group, index) => {
-                                    return (<DropdownListItem key={index}>
-                                        { hasPermission
-                                            ?
-                                                <>
-                                                    <Button id="deleteBtn" onClick={handleOpenGroupModalChange} value={group.id}>حذف</Button>
-                                                    <Span>{group.name}</Span>
-                                                </>
-                                            :
-                                            <Span style={{width:'100%'}}>{group.name}</Span>
-                                        }
-                                    </DropdownListItem>)
-                                })
-                            }
-                        </DropdownList>
+                    { groups && groups.length > 0
+                        ?
+                            <>
+                                <DropdownList className='DropdownList'>
+                                    <DropdownListItem  className="title"><Span>المجموعات الحالية</Span></DropdownListItem>
+                                    {
+                                        groups.map((group, index) => {
+                                            return (<DropdownListItem key={index}>
+                                                { hasPermission
+                                                    ?
+                                                    <>
+                                                        <Button id="deleteBtn" onClick={handleOpenGroupModalChange} value={group.id}>حذف</Button>
+                                                        <Span>{group.name}</Span>
+                                                    </>
+                                                    :
+                                                    <Span style={{width:'100%'}}>{group.name}</Span>
+                                                }
+                                            </DropdownListItem>)
+                                        })
+                                    }
+                                </DropdownList>
+                                <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
+                            </>
+                        :
+                        <Tabs labels={['المجموعات']} contents={[<H5>لا يوجد لديك مجموعات لعرضهم</H5>]}/>
                     }
 
-                    <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
+
                 </div>
                 <Sidebar/>
             </GroupsContainer>

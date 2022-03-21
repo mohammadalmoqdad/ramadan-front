@@ -54,18 +54,20 @@ function Sidebar() {
           </MenuItem>
           <HomeIcon />
         </MenuLink>
-        <MenuLink to="/Competition">
-          <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
-            معلومات المسابقة
-          </MenuItem>
-        </MenuLink>
         { Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin &&
-            <MenuLink to="/Admins">
-              <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
-                المسؤولون
-              </MenuItem>
-              <AdminIcon />
-            </MenuLink>
+            <>
+              <MenuLink to="/Competition">
+                <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
+                  معلومات المسابقة
+                </MenuItem>
+              </MenuLink>
+              <MenuLink to="/Admins">
+                <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
+                  المسؤولون
+                </MenuItem>
+                <AdminIcon />
+              </MenuLink>
+            </>
         }
         <MenuLink to="/Students">
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
