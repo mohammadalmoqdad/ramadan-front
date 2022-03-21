@@ -33,7 +33,7 @@ export const SideBarContainer = styled.div`
   }}
     ease-in-out forwards; */
   animation-duration: 0.2s;
-  margin-top: 5rem;
+  top: 5rem;
   background-color: white;
   font-family: 'Noto Kufi Arabic', sans-serif !important;
   
@@ -65,7 +65,6 @@ export const UserInfoContainer = styled.div`
     if (isSidebarCollapsed === false) return "flex";
     return "flex";
   }};
-  padding-top: 2.5rem;
   justify-content: space-around;
   flex-direction: row-reverse;
   align-items: center;
@@ -73,6 +72,7 @@ export const UserInfoContainer = styled.div`
 `;
 
 export const Username = styled.label`
+  width:100%;
   border-bottom: 1px solid lightgray;
   padding: 0.5rem;
   color: #213c64;

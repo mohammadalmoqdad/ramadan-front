@@ -100,6 +100,8 @@ border-bottom: 3px solid orange;
 `;
 
 export const Span = styled.span`
+text-align: center;
+margin: .5rem;
 /* content: '';
 position: absolute;
 top:2.1rem;

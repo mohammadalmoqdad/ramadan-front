@@ -45,10 +45,6 @@ function Sidebar() {
             :
               <Username>اسم المستخدم</Username>
         }
-
-        <UserPicContainer>
-          <UserIcon />
-        </UserPicContainer>
       </UserInfoContainer>
 
       <MenuContainer>
@@ -81,6 +77,11 @@ function Sidebar() {
             المعايير  
           </MenuItem>
           <CriteriasIcon />
+        </MenuLink>
+        <MenuLink to="/Review-other-points">
+          <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
+            مراجعة النتائج الأخرى
+          </MenuItem>
         </MenuLink>
         <MenuLink to="/StudentsPoints">
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>

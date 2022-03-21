@@ -24,7 +24,19 @@ export const retrieveStudentsPointsPerDay = (username, day, successCallback, fai
         successCallback,
         faiCallback,
         true)
-}
+};
+
+export const retrieveStudentsPointsOfTypeOther = (username, day, successCallback, faiCallback) => {
+    doRequest(null, `/comp-admin/students/${username}/get_user_input_records/?date=${day}`,
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "get",
+        successCallback,
+        faiCallback,
+        true)
+};
 
 export const setStudentPassword = (username, data, successCallback, faiCallback) => {
     doRequest(data, `/comp-admin/students/${username}/change_password/`,
