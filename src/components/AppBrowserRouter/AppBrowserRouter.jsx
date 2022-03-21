@@ -9,6 +9,7 @@ import Admins from "../Admins/Admins";
 import Standards from "../Standards/Standards";
 import StudentsPoints from "../studentsPoints/StudentsPoints";
 import Competition from "../Competition/competition";
+import ReviewOtherPoints from "../ReviewOtherPoints/ReviewOtherPoints";
 import {useAdminContext} from "../../contexts/AdminContext";
 export default function AppBrowserRouter(){
 
@@ -27,6 +28,7 @@ export default function AppBrowserRouter(){
                     <Route exact path= "/Admins" element= {<Admins/>}  />
                 }
                 <Route exact path= "/Standards" element= {<Standards/>}/>
+                <Route exact path= "/Review-other-points" element= {<ReviewOtherPoints/>}/>
                 <Route exact path= "/StudentsPoints" element= {<StudentsPoints/>}/>
 
             </Routes>

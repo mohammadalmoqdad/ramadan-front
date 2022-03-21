@@ -31,6 +31,7 @@ function Nav() {
                                 <NavDropdown.Item href="/Competition">معلومات المسابقة</NavDropdown.Item>
                                 <NavDropdown.Item href="/Students">الطلاب</NavDropdown.Item>
                                 <NavDropdown.Item href="/Standards">المعايير</NavDropdown.Item>
+                                <NavDropdown.Item href="/Review-other-points"> مراجعة النتائج الأخرى</NavDropdown.Item>
                                 <NavDropdown.Item href="/StudentsPoints">مشاهدة النتائج</NavDropdown.Item>
                                 <NavDropdown.Item href="/Groups">المجموعات</NavDropdown.Item>
                             </NavDropdown>
