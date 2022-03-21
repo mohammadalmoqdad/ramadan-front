@@ -82,7 +82,7 @@ export default function Groups() {
 
     const getLabelsArray = ()=>{
         let labels = [];
-        if(students && students.length > 0){
+        if(groups && groups.length > 0){
             labels.push('تعديل مجموعة');
         }
 
@@ -94,7 +94,7 @@ export default function Groups() {
 
     const getContentsArray = ()=>{
         let contents = [];
-        if(students && students.length > 0){
+        if(groups && groups.length > 0){
             contents.push(<EditGroupForm studentsGroups={groups} setGroups={setGroups} students={students}
                                          admins={admins}/>);
         }
@@ -136,10 +136,11 @@ export default function Groups() {
                                         })
                                     }
                                 </DropdownList>
-                                <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
                             </>
+                        : hasPermission ?
+                            <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
                         :
-                        <Tabs labels={['المجموعات']} contents={[<H5>لا يوجد لديك مجموعات لعرضهم</H5>]}/>
+                            <Tabs labels={['المجموعات']} contents={[<H5>لا يوجد لديك مجموعات لعرضهم</H5>]}/>
                     }
 
 
