@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import GroupsContainer from "./Groups.styles";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Tabs from "../shared/Tabs/Tabs";
 import AddGroupForm from "./AddGroupForm/AddGroupForm";

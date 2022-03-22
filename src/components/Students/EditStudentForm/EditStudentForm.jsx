@@ -119,7 +119,7 @@ export default function EditStudentForm(props){
             </DivTxtField>
 
             <DivTxtFieldnumber>
-                <Checkboxes type="checkbox" checked={isReadOnly} onChange={handleReadOnlyCheckboxChange}/> <LabelSoper>إضافته كطالب يستطيع المشاهدة فقط؟</LabelSoper>
+                <Checkboxes type="checkbox" checked={isReadOnly} onChange={handleReadOnlyCheckboxChange}/> <LabelSoper>إضافته كطالب يستطيع المشاهدة فقط</LabelSoper>
             </DivTxtFieldnumber>
 
             <Box>
