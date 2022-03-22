@@ -35,9 +35,8 @@ margin-bottom: 0rem;
 margin-top: 0rem;
 
 @media (max-width:500px) {
-width: 15rem;
-margin-bottom: 3rem;
-margin-top: 3rem;
+margin-bottom: 2rem;
+margin-top: 2rem;
 }
 `;
 
@@ -67,9 +66,7 @@ text-align:center;
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.3rem;
-@media (max-width:500px) {
-  font-size: .8rem;
-}
+
 `;
 
 export const I = styled.i`
@@ -117,10 +114,7 @@ box-shadow: 1px 3px 12px 0px #0000007a;
   outline: none;
   border: none;
 }
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 15rem;
-}
+
 `;
 
 export const DropdownListItem = styled.option`
@@ -163,9 +157,7 @@ box-shadow: 1px 3px 12px 0px #0000007a;
 
 
 @media (max-width:500px) {
- font-size: .8rem;
  margin-top: 0rem;
- width :15rem;
  padding:1rem;
 }
 `;
@@ -180,11 +172,6 @@ export const DivCenter = styled.div`
  background: white;
  border-radius: 10px;
 box-shadow: 1px 3px 12px 0px #0000007a;
- 
-@media (max-width:500px) {
-
-  width: 15rem;
-}
 `;
 
 export const Form = styled.form`
@@ -269,10 +256,7 @@ transition: .1s;
 border-bottom: 3px solid orange;
 }
 
-@media (max-width:500px) {
-  width: 11rem;
-  font-size: .8rem;
-}
+
 `;
 
 
@@ -292,11 +276,7 @@ background: orange;
 height: 3.2rem;
 transition: .3s;
 }
-@media (max-width:500px) {
-  width: 11rem;
-  font-size: .8rem;
-  
-}
+
 `;
 
 export const DivFileField = styled.div`
@@ -314,7 +294,5 @@ text-align:center;
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.3rem;
-@media (max-width:500px) {
-  font-size: .8rem;
-}
+
 `;

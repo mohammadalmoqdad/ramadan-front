@@ -51,12 +51,7 @@ flex-direction: column;
 
 
 export const DivCenter = styled.div`
- /* display: flex; linear-gradient(120deg, #2980b9, #2980b9) */ 
- /* justify-content: center; */
- /* align-items: center; */
  box-shadow: 1px 3px 12px 0px #0000007a;
-/* border: 10rem;
-border-color: #E94f57; */
  margin: 1rem;
  margin-top: 2rem;
  width: 11rem;
@@ -70,45 +65,9 @@ border-color: #E94f57; */
 
 
 export const StatisticsContainer = styled.div`
-margin: auto;
-margin-top: 7rem;
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin-right: 15rem ;
-
-@media(max-width:670px){ 
-  /* margin-right: 7rem; */
-
-  margin: auto ;
-  margin-right:15rem;
-  margin-top: 7rem;
-
-}
-@media (max-width:500px) {
-  /* flex-direction: column; */
-}
-@media(max-width:550px){ 
-margin: auto !important;
-/* margin-top: 2rem; */
-padding-top: 8rem;
-padding-bottom: 2rem;
-}
-@media(max-width:375px){ 
-margin: auto !important;
-/* margin-top: 2rem; */
-padding-top: 8rem;
-padding-bottom: 2rem;
-}
-
-@media(max-width:600px){ 
-  /* margin: auto; */
-  /* margin-right: 6rem; */
-  /* margin-top: 7rem; */
-  margin-right:10rem;
-  /* width:auto; */
-  /* flex-direction: row; */
-}
 `;
 export const Formm = styled.div`
 margin: auto;

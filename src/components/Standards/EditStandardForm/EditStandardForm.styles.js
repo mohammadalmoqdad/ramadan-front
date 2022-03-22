@@ -37,10 +37,6 @@ export const DivCenter = styled.div`
  border-radius: 10px;
  box-shadow: 1px 3px 12px 0px #0000007a;
  
- @media (max-width:500px) {
-
-  width: 15rem;
-}
 `;
 
 
@@ -108,9 +104,7 @@ color: #213C64;
 font-size: 1.2rem;
 /* font-weight: bolder; */
 
-@media (max-width:500px) {
-  font-size: .8rem;
-}
+
 `;
 
 
@@ -128,11 +122,6 @@ color: #213C64;
 :focus{
 transition: .1s;
 border-bottom: 3px solid orange;
-}
-
-@media (max-width:500px) {
-  width: 9rem;
-  font-size: .8rem;
 }
 `;
 
@@ -153,10 +142,6 @@ transition: .1s;
 border-bottom: 3px solid orange;
 }
 
-@media (max-width:500px) {
-  width: 11rem;
-  font-size: .8rem;
-}
 `;
 
 export const FormInputnumber = styled.input`
@@ -182,10 +167,6 @@ transition: .1s;
   color: white;
 }
 
-@media (max-width:500px) {
-  width: 3rem;
-  font-size: .8rem;
-}
 `;
 
 export const InputSubmit = styled.button`
@@ -204,11 +185,6 @@ background: orange;
 height: 3.2rem;
 transition: .3s;
 }
-@media (max-width:500px) {
-  width: 11rem;
-  font-size: .8rem;
-  
-}
 `;
 
 export const DropdownDiv = styled.div`
@@ -221,9 +197,8 @@ margin-bottom: 0rem;
 margin-top: 0rem;
 
 @media (max-width:500px) {
-width: 15rem;
-margin-bottom: 3rem;
-margin-top: 3rem;
+margin-bottom: 2rem;
+margin-top: 2rem;
 }
 `;
 
@@ -269,10 +244,6 @@ box-shadow: 1px 3px 12px 0px #0000007a;
 
 border-radius: 4px;
 background-color: white;
-@media (max-width:500px) {
-  font-size: 1rem;
-  width: 15rem;
-}
 `;
 
 export const DropdownListStanderd = styled.select`
@@ -299,10 +270,7 @@ background: linear-gradient(120deg, #2980b9, #2980b9);
   /* border: none; */
   color: #213C64;
 }
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 11rem;
-}
+
 `;
 
 export const AvailableDays = styled.div`
@@ -335,10 +303,7 @@ background: white;
   /* border: none; */
   color: #213C64;
 }
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 11rem;
-}
+
 `;
 // DropdownListItemDays
 export const DropdownListItemDays = styled.div`
@@ -425,10 +390,7 @@ flex-direction: column;
 
 }
 @media (max-width:500px) {
-  font-size: .8rem;
-  width: 1rem;
   margin: 0;
-
 }
 `;
 
@@ -449,11 +411,6 @@ flex-direction: column;
 `;
 export const DivMultiselect = styled.div`
 /* display: none; */
-@media (max-width:500px) {
-  font-size: .7rem;
-  width: 12rem;
-
-}
 `
 
 

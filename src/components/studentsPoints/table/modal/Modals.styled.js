@@ -59,9 +59,7 @@ color: #213C64;
 font-size: 1.2rem;
 /* font-weight: bolder; */
 
-@media (max-width:500px) {
-  font-size: .8rem;
-}
+
 `;
 export const FormInput = styled.input`
 width: 7rem;
@@ -80,8 +78,4 @@ transition: .1s;
 border-bottom: 3px solid orange;
 }
 
-@media (max-width:500px) {
-  width: 5rem;
-  font-size: .8rem;
-}
 `;

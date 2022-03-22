@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import cookie from "react-cookies";
 import { Redirect, Route, useNavigate } from "react-router-dom";
-import Sidebar from "components/shared/Sidebar";
 import CarouselStatistics from "./Carousel/CarouselStatistics.jsx"
 import Img from "./Img/Img.jsx"
 
@@ -21,7 +20,6 @@ import {
   Introduction
 } from "./home.styles";
 import { StatisticsContainer, Formm, H1Login, H3Login, DivCenter, Wird } from "../studentsPoints/StudentsPoints.styles"
-import Navbar from '../shared/Navbar/'
 import {useAdminContext} from "../../contexts/AdminContext";
 import {retrieveGeneralStatus} from "../../services/competitionsServices";
 
@@ -110,9 +108,6 @@ function Home(props) {
           {/* Third Section */}
           {/* <VideoSection></VideoSection> */}
         </Div>
-        <Navbar />
-
-        <Sidebar />
 
       </HomeContainer>
     </>

@@ -301,7 +301,7 @@ export default function EditStandardForm(props) {
             </DivTxtFieldnumber>
 
             <DivTxtFieldnumber>
-                <Checkboxes type="checkbox" checked={isCustomDaysChecked} onChange={handleCustomDaysCheckboxChange}/> <LabelSoper>متاح لأيام محددة؟</LabelSoper>
+                <Checkboxes type="checkbox" checked={isCustomDaysChecked} onChange={handleCustomDaysCheckboxChange}/> <LabelSoper>متاح لأيام محددة</LabelSoper>
             </DivTxtFieldnumber>
             { isCustomDaysChecked &&
                 <DivMultiselect>
@@ -319,17 +319,17 @@ export default function EditStandardForm(props) {
             }
 
             <DivTxtFieldnumber>
-                <Checkboxes type="checkbox" checked={isShown} onChange={handleShownCheckboxChange}/> <LabelSoper>هـل هـو مـرئـي؟</LabelSoper>
+                <Checkboxes type="checkbox" checked={isShown} onChange={handleShownCheckboxChange}/> <LabelSoper>عرض المعييار</LabelSoper>
             </DivTxtFieldnumber>
 
             { isShown
                 ?
                 <DivTxtFieldnumber>
-                    <Checkboxes type="checkbox" checked={isActive} onChange={handleActiveCheckboxChange}/> <LabelSoper>هـل هـو فـعـال؟</LabelSoper>
+                    <Checkboxes type="checkbox" checked={isActive} onChange={handleActiveCheckboxChange}/> <LabelSoper>تفعيل المعييار</LabelSoper>
                 </DivTxtFieldnumber>
                 :
                 <DivTxtFieldnumber>
-                    <Checkboxes type="checkbox" disabled={true} checked={false}/> <LabelSoper>هـل هـو فـعـال؟</LabelSoper>
+                    <Checkboxes type="checkbox" disabled={true} checked={false}/> <LabelSoper>تفعيل المعييار</LabelSoper>
                 </DivTxtFieldnumber>
             }
 

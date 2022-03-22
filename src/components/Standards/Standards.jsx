@@ -5,12 +5,10 @@ import AddSectionForm from "./AddSectionForm/AddSectionForm";
 import EditSectionForm from "./EditSectionForm/EditSectionForm";
 import {deleteSection, deleteStandard, retrieveSections, retrieveStandards} from "../../services/standardServices";
 import Tabs from "./../shared/Tabs/Tabs";
-import Sidebar from "../shared/Sidebar";
 import Container, {StandardsDropDownList} from "./Standards.styles";
 import Modal from "../shared/Modal/Modal";
 import {Button, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
-import Navbar from "../shared/Navbar";
 export default function Standards() {
 
     const [sections, setSections] = useState([]);
@@ -147,40 +145,35 @@ export default function Standards() {
                        setOpenModal={setOpenStandardModal} deleteFunction={deleteStandardFunction} />
             }
             <Container>
-                <div style={{width:'100%'}}>
-                    <Navbar/>
+                {   // TODO: We need to add images for both of other and checkbox types, for now
+                    //       there is just an image for numeric type.
 
-                    {   // TODO: We need to add images for both of other and checkbox types, for now
-                        //       there is just an image for numeric type.
+                    // <H3Login>نوع النموذج الذي تم اختياره</H3Login>
+                    // <Frame>
+                    //     <Framephone>
+                    //         <Imgtype src={typephoto + '.png'} alt=""/>
+                    //         {/* <Imgtype src="type2.png" alt="" /> */}
+                    //
+                    //     </Framephone>
+                    // </Frame>
+                }
 
-                        // <H3Login>نوع النموذج الذي تم اختياره</H3Login>
-                        // <Frame>
-                        //     <Framephone>
-                        //         <Imgtype src={typephoto + '.png'} alt=""/>
-                        //         {/* <Imgtype src="type2.png" alt="" /> */}
-                        //
-                        //     </Framephone>
-                        // </Frame>
-                    }
+                <Tabs labels={getLabels(standards, hasPermission, sections)}
+                      contents={getContents(standards, hasPermission, sections)} contentClass=" no-padding"/>
 
-                    <Tabs labels={getLabels(standards, hasPermission, sections)}
-                          contents={getContents(standards, hasPermission, sections)} contentClass=" no-padding"/>
-
-                    { hasPermission &&
-                        <>
-                            <Tabs
-                                labels={['تعديل قسم','إضافة قسم','تعديل معيار','إضافة معيار']}
-                                contents={[
-                                    <EditSectionForm sections={sections} setSections={setSections}/>,
-                                    <AddSectionForm sections={sections} setSections={setSections}/>,
-                                    <EditStandardForm  sections={sections} standards={standards} setStandards={setStandards} />,
-                                    <AddStandardForm sections={sections} standards={standards} setStandards={setStandards} />
-                                ]}
-                                toggleState={3}/>
-                        </>
-                    }
-                </div>
-                <Sidebar/>
+                { hasPermission &&
+                    <>
+                        <Tabs
+                            labels={['تعديل قسم','إضافة قسم','تعديل معيار','إضافة معيار']}
+                            contents={[
+                                <EditSectionForm sections={sections} setSections={setSections}/>,
+                                <AddSectionForm sections={sections} setSections={setSections}/>,
+                                <EditStandardForm  sections={sections} standards={standards} setStandards={setStandards} />,
+                                <AddStandardForm sections={sections} standards={standards} setStandards={setStandards} />
+                            ]}
+                            toggleState={3}/>
+                    </>
+                }
             </Container>
         </>
     );

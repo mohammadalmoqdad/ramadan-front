@@ -25,9 +25,8 @@ margin-bottom: 0rem;
 margin-top: 0rem;
 
 @media (max-width:500px) {
-width: 15rem;
-margin-bottom: 3rem;
-margin-top: 3rem;
+margin-bottom: 2rem;
+margin-top: 2rem;
 }
 `;
 
@@ -49,8 +48,5 @@ box-shadow: 1px 3px 12px 0px #0000007a;
   outline: none;
   border: none;
 }
-@media (max-width:500px) {
-  font-size: .8rem;
-  width: 15rem;
-}
+
 `;

@@ -25,18 +25,6 @@ function Sidebar() {
   const context = useAdminContext();
   return (
     <SideBarContainer isSidebarCollapsed={isSidebarCollapsed}>
-      {/* {cookie.load("token")
-        ? "loged in successfully + in the sidebar"
-        : "nothing to do"} */}
-
-      <MenuIconContainer>
-        {/* <MenuIcon
-          onClick={() => {
-            console.log("here I am in the on Click");
-            setIsSidebarCollapsed(!isSidebarCollapsed);
-          }}
-        /> */}
-      </MenuIconContainer>
 
       <UserInfoContainer isSidebarCollapsed={isSidebarCollapsed}>
         { Object.keys(context.getAdminInfo()).length > 0

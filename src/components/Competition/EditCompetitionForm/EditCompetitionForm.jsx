@@ -135,11 +135,11 @@ export default function EditCompetitionForm(props){
             </DivTxtField>
 
             <DivTxtFieldnumber>
-                <Checkboxes type="checkbox" checked={showStanding} onChange={handleShowStandingChange}/> <LabelSoper>عرض النتائج؟</LabelSoper>
+                <Checkboxes type="checkbox" checked={showStanding} onChange={handleShowStandingChange}/> <LabelSoper>عرض النتائج</LabelSoper>
             </DivTxtFieldnumber>
 
             <DivTxtFieldnumber>
-                <Checkboxes type="checkbox" checked={readOnlyMode} onChange={handleReadOnlyChange}/> <LabelSoper>قابلة للتعديل؟</LabelSoper>
+                <Checkboxes type="checkbox" checked={readOnlyMode} onChange={handleReadOnlyChange}/> <LabelSoper>قابلة للتعديل</LabelSoper>
             </DivTxtFieldnumber>
 
             { notes?.map((inputItem, index) =>{

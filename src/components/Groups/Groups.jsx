@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import GroupsContainer from "./Groups.styles";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Tabs from "../shared/Tabs/Tabs";
-import Sidebar from "components/shared/Sidebar";
 import AddGroupForm from "./AddGroupForm/AddGroupForm";
 import EditGroupForm from "./EditGroupForm/EditGroupForm";
 import {retrieveStudents} from "../../services/studentsServices";
@@ -11,7 +10,6 @@ import {deleteGroup, retrieveGroups} from "../../services/groupsServices";
 import Modal from "../shared/Modal/Modal";
 import {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
-import Navbar from "../shared/Navbar";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 
 export default function Groups() {
@@ -112,41 +110,34 @@ export default function Groups() {
                 <Modal title="تأكيد الحذف" content="هل تريد حذف هذه المجموعة؟" deleteBtn="حذف" cancelBtn="إلغاء"
                        setOpenModal={setOpenGroupModal} deleteFunction={deleteGroupFunction} />
             }
-            <GroupsContainer>
-                <div style={{width:'100%'}}>
-                    <Navbar/>
-                    { groups && groups.length > 0
-                        ?
-                            <>
-                                <DropdownList className='DropdownList'>
-                                    <DropdownListItem  className="title"><Span>المجموعات الحالية</Span></DropdownListItem>
-                                    {
-                                        groups.map((group, index) => {
-                                            return (<DropdownListItem key={index}>
-                                                { hasPermission
-                                                    ?
-                                                    <>
-                                                        <Button id="deleteBtn" onClick={handleOpenGroupModalChange} value={group.id}>حذف</Button>
-                                                        <Span>{group.name}</Span>
-                                                    </>
-                                                    :
-                                                    <Span style={{width:'100%'}}>{group.name}</Span>
-                                                }
-                                            </DropdownListItem>)
-                                        })
-                                    }
-                                </DropdownList>
-                            </>
-                        : hasPermission ?
-                            <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
-                        :
-                            <Tabs labels={['المجموعات']} contents={[<H5>لا يوجد لديك مجموعات لعرضهم</H5>]}/>
-                    }
-
-
-                </div>
-                <Sidebar/>
-            </GroupsContainer>
+            { groups && groups.length > 0
+                ?
+                    <>
+                        <DropdownList className='DropdownList'>
+                            <DropdownListItem  className="title"><Span>المجموعات الحالية</Span></DropdownListItem>
+                            {
+                                groups.map((group, index) => {
+                                    return (<DropdownListItem key={index}>
+                                        { hasPermission
+                                            ?
+                                            <>
+                                                <Button id="deleteBtn" onClick={handleOpenGroupModalChange} value={group.id}>حذف</Button>
+                                                <Span>{group.name}</Span>
+                                            </>
+                                            :
+                                            <Span style={{width:'100%'}}>{group.name}</Span>
+                                        }
+                                    </DropdownListItem>)
+                                })
+                            }
+                        </DropdownList>
+                        <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
+                    </>
+                : hasPermission ?
+                    <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
+                :
+                    <Tabs labels={['المجموعات']} contents={[<H5>لا يوجد لديك مجموعات لعرضهم</H5>]}/>
+            }
         </>
     )
 }

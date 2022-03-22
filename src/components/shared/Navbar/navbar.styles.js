@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 // HedarNavContainer 
 export default styled.header`
+  z-index: 2;
 position: fixed;
 width:100%;
 top: 0;

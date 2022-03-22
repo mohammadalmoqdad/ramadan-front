@@ -34,11 +34,7 @@ export const DivCenter = styled.div`
  background: white;
  border-radius: 10px;
  box-shadow: 1px 3px 12px 0px #0000007a;
- 
- @media (max-width:500px) {
 
-  width: 15rem;
-}
 `;
 
 
@@ -95,9 +91,7 @@ color: #213C64;
 font-size: 1.2rem;
 /* font-weight: bolder; */
 
-@media (max-width:500px) {
-  font-size: .8rem;
-}
+
 `;
 
 
@@ -117,10 +111,7 @@ transition: .1s;
 border-bottom: 3px solid orange;
 }
 
-@media (max-width:500px) {
-  width: 11rem;
-  font-size: .8rem;
-}
+
 `;
 
 export const InputSubmit = styled.button`
@@ -139,11 +130,7 @@ background: orange;
 height: 3.2rem;
 transition: .3s;
 }
-@media (max-width:500px) {
-  width: 11rem;
-  font-size: .8rem;
-  
-}
+
 `;
 
 export const DropdownDiv = styled.div`
@@ -156,9 +143,8 @@ margin-bottom: 0rem;
 margin-top: 0rem;
 
 @media (max-width:500px) {
-width: 15rem;
-/* margin-bottom: 3rem;
-margin-top: 3rem; */
+margin-bottom: 2rem;
+margin-top: 2rem; 
 }
 `;
 
@@ -206,7 +192,6 @@ border-radius: 4px;
 background-color: white;
 @media (max-width:500px) {
   font-size: 1rem;
-  width: 15rem;
 }
 `;
 
@@ -278,11 +263,6 @@ text-align: center;
 export const DivMultiselect = styled.div`
 /* display: none; */
 margin-top: 1rem;
-@media (max-width:500px) {
-  font-size: .7rem;
-  width: 12rem;
-
-}
 `;
 const Btn =  styled.button`
     position: relative;
@@ -311,6 +291,7 @@ export const RemoveBtn = styled(Btn)`
 `;
 
 export const AnnouncementsFormInput = styled(FormInput)`
+direction: rtl;
  width: 80%;
  float: right;
 `;

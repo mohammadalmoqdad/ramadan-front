@@ -36,26 +36,22 @@ export const SideBarContainer = styled.div`
   top: 5rem;
   background-color: white;
   font-family: 'Noto Kufi Arabic', sans-serif !important;
-  
   height: 100%;
-  width: 15rem;
   box-shadow: 2px 19px 10px 2px #00000063;
   text-align: center;
   color: lightgray;
-  /* width: 15rem; */
-  /* display: none; */
-  /* position: fixed; */
-  /* width:100%; */
   right: 0;
+  width: 15%;
+  @media(max-width:1000px){ 
+    width: 20%;
+  }
   @media(max-width:750px){ 
-  width: 12rem;
-}
+    width: 25%;
+  }
 @media (max-width:550px) {
   display: none;
-  
 }
 position: fixed;
-  width:15rem;
   right: 0;
 `;
 
@@ -135,8 +131,6 @@ export const MenuItem = styled.span`
   padding: 0;
   border: none;
   width: 100%;
-  @media(max-width:750px){ 
-  font-size: .8rem;
-}
+
   /* margin-right: 1rem; */
 `;
