@@ -39,7 +39,7 @@ export default function EditGroupForm(props) {
             setSelectedAdminUserName(group.admin);
             setGroupName(group.name);
             let announcementsArray = group.announcements.split(";").filter(item => item.trim().length > 0);
-            setAnnouncements(announcementsArray.length > 0 ? announcementsArray: [""]);
+            setAnnouncements(announcementsArray && announcementsArray.length > 0 ? announcementsArray: [""]);
             if(group.group_students && group.group_students.length > 0){
                 setCurrentSelectedStudents(props.students.filter(student => group.group_students.includes(student.username)));
             }else{
@@ -106,20 +106,22 @@ export default function EditGroupForm(props) {
             setSemiColonExists(false);
         }
 
+        let data = {
+            'admin': selectedAdminUserName,
+            'name': groupName,
+            'group_students': selectedStudents,
+            'announcements': announcements.filter(announcement => announcement.trim().length > 0).join(";")
+        };
+
         updateGroup(selectedGroup.id,
-            {
-                'admin': selectedAdminUserName,
-                'name': groupName,
-                'group_students': selectedStudents,
-                'announcements': announcements.filter(announcement => announcement.trim().length > 0).join(";")
-            },
+            data,
             (res) => {
                 if (res && res.status === 200) {
                     let updatedGroup = props.studentsGroups.filter( group => group.id === Number(selectedGroup.id))[0];
                     updatedGroup.admin = selectedAdminUserName;
                     updatedGroup.name = groupName;
                     updatedGroup.group_students = selectedStudents;
-                    updatedGroup.announcements = announcements;
+                    updatedGroup.announcements = data.announcements;
                     props.setGroups([...props.studentsGroups.filter( group => group.id !== Number(selectedGroup.id)), updatedGroup]);
                     setMessages(["تم تعديل المجموعة بنجاح"]);
                 }
@@ -180,7 +182,7 @@ export default function EditGroupForm(props) {
                             <Multiselect
                                 onSelect={handleUpdateSelectedStudentsChange}
                                 onRemove={handleUpdateSelectedStudentsChange}
-                                selectedValues={currentSelectedStudents === [] ? [] : currentSelectedStudents}
+                                selectedValues={currentSelectedStudents}
                                 options={props.students}
                                 displayValue="full_name"
                                 placeholder=""
