@@ -10,6 +10,7 @@ import  {
     Span
 } from "../Admins.styles";
 import {addAdmin} from "../../../services/adminsServices";
+import {DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
 
 
 export default function AddAdminForm(props) {
@@ -141,12 +142,12 @@ export default function AddAdminForm(props) {
 
             <DivTxtField>
               <Span />
-              <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email" required />
+              <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email"  />
             </DivTxtField>
 
             <DivTxtField>
                 <Span />
-                <FormInput onChange={handlePhoneNumberChange} placeholder='رقم الهاتف' type="text" required />
+                <FormInput onChange={handlePhoneNumberChange} placeholder='رقم الهاتف' type="text"  />
             </DivTxtField>
 
             <DivTxtField>
@@ -177,9 +178,9 @@ export default function AddAdminForm(props) {
             {/*    <DivPass>يجب أن تتكون الصلاحيات من أرقام وبينهم فواصل فقط وعددهم أقل من 10 أحرف</DivPass>*/}
             {/*}*/}
 
-            <DivTxtField>
-                <LabelSuper>إضافته كمسؤول رئيسي؟ </LabelSuper><Checkboxes onChange={handleSuperAdminCheckChange} type="checkbox"/>
-            </DivTxtField>
+            <DivTxtFieldnumber>
+                <Checkboxes type="checkbox" onChange={handleSuperAdminCheckChange}/> <LabelSoper>إضافته كمسؤول رئيسي</LabelSoper>
+            </DivTxtFieldnumber>
 
             {
                 messages.length > 0  &&

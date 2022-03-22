@@ -122,12 +122,12 @@ export default function EditGroupForm(props) {
 
             <DivTxtField>
                 <Span />
-                <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email" value={email == null ? "" : email} required />
+                <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email" value={email == null ? "" : email}  />
             </DivTxtField>
 
             <DivTxtField>
                 <Span />
-                <FormInput onChange={handlePhoneNumberChange} placeholder='رقم الهاتف' type="text" value={phoneNumber == null ? "" : phoneNumber} required />
+                <FormInput onChange={handlePhoneNumberChange} placeholder='رقم الهاتف' type="text" value={phoneNumber == null ? "" : phoneNumber}  />
             </DivTxtField>
 
 

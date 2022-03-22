@@ -41,13 +41,18 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 500px;
+  max-width: 500px;
   background: #f1f1f1;
   margin: 100px auto;
   word-break: break-word;
   border: 1px solid rgba(0, 0, 0, 0.274);
   padding-right: 0;
   padding-left: 0;
+}
+@media only screen and (max-width: 500px) {
+  #root .container {
+    margin: 50px auto;
+  }
 }
 
 .bloc-tabs {

@@ -18,10 +18,6 @@ align-items: flex-start;
 flex-direction: column;
 }
 
-@media (max-width:500px) {
-  padding: 2rem;
-  width: 30rem;
-}
 `;
 
 
@@ -36,10 +32,6 @@ export const DivCenter = styled.div`
  border-radius: 10px;
  box-shadow: 1px 3px 12px 0px #0000007a;
  
- @media (max-width:500px) {
-
-  width: 15rem;
-}
 `;
 
 
@@ -83,9 +75,7 @@ font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 20px;
 width: 80%;
-@media (max-width:500px) {
-  font-size: .8rem;
-}
+
 `;
 
 export const FormInput = styled.input`
@@ -104,10 +94,7 @@ transition: .1s;
 border-bottom: 3px solid orange;
 }
 
-@media (max-width:500px) {
-  width: 11rem;
-  font-size: .8rem;
-}
+
 `;
 
 export const InputSubmit = styled.button`
@@ -126,11 +113,7 @@ background: orange;
 height: 3.2rem;
 transition: .3s;
 }
-@media (max-width:500px) {
-  width: 11rem;
-  font-size: .8rem;
-  
-}
+
 `;
 
 export const DropdownDiv = styled.div`
@@ -142,9 +125,8 @@ margin-bottom: 0rem;
 margin-top: 0rem;
 
 @media (max-width:500px) {
-width: 15rem;
-margin-bottom: 3rem;
-margin-top: 3rem;
+margin-bottom: 2rem;
+margin-top: 2rem;
 }
 `;
 
@@ -182,10 +164,6 @@ font-size: 1.3rem;
 box-shadow: 1px 3px 12px 0px #0000007a;
 border-radius: 4px;
 background-color: white;
-@media (max-width:500px) {
-  font-size: 1rem;
-  width: 15rem;
-}
 .title{
     background-color: #e9e9e9;
     border-bottom: 2px solid #fda400;

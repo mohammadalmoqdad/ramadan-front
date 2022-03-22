@@ -26,8 +26,8 @@ export default function AddStandardForm(props) {
     const [formType, setFormType] = useState("");
     const [isCustomDaysChecked, setCustomDaysChecked] = useState(false);
     const [customDays, setCustomDays] = useState("");
-    const [isShown, setShown] = useState(false);
-    const [isActive, setActive] = useState(false);
+    const [isShown, setShown] = useState(true);
+    const [isActive, setActive] = useState(true);
     const [description, setDescription] = useState("");
     const [upperUnitsBound, setUpperUnitsBound] = useState(-1);
     const [lowerUnitsBound, setLowerUnitsBound] = useState(-1);
@@ -219,7 +219,7 @@ export default function AddStandardForm(props) {
                     </DivTxtFieldnumber>
 
                     <DivTxtFieldnumber>
-                        <Checkboxes type="checkbox" onChange={handleCustomDaysCheckboxChange}/> <LabelSoper>متاح لأيام محددة؟</LabelSoper>
+                        <Checkboxes type="checkbox" onChange={handleCustomDaysCheckboxChange}/> <LabelSoper>متاح لأيام محددة</LabelSoper>
                     </DivTxtFieldnumber>
                     { isCustomDaysChecked &&
                         <DivMultiselect>
@@ -236,17 +236,17 @@ export default function AddStandardForm(props) {
                     }
 
                     <DivTxtFieldnumber>
-                        <Checkboxes type="checkbox" onChange={handleShownCheckboxChange}/> <LabelSoper>هـل هـو مـرئـي؟</LabelSoper>
+                        <Checkboxes type="checkbox" checked={isShown} onChange={handleShownCheckboxChange}/> <LabelSoper>عرض المعييار</LabelSoper>
                     </DivTxtFieldnumber>
 
                     { isShown
                         ?
                         <DivTxtFieldnumber>
-                            <Checkboxes type="checkbox" onChange={handleActiveCheckboxChange}/> <LabelSoper>هـل هـو فـعـال؟</LabelSoper>
+                            <Checkboxes type="checkbox" checked={isActive}  onChange={handleActiveCheckboxChange}/> <LabelSoper>تفعيل المعييار</LabelSoper>
                         </DivTxtFieldnumber>
                         :
                         <DivTxtFieldnumber>
-                            <Checkboxes type="checkbox" disabled={true} checked={false}/> <LabelSoper>هـل هـو فـعـال؟</LabelSoper>
+                            <Checkboxes type="checkbox" disabled={true} checked={false}/> <LabelSoper>تفعيل المعييار</LabelSoper>
                         </DivTxtFieldnumber>
                     }
 

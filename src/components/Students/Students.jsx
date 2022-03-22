@@ -3,8 +3,6 @@ import Tabs from "../shared/Tabs/Tabs"
 import SetPasswordStudents from "./setPasswordStudent/SetPasswordStudents";
 import EditStudentForm from "./EditStudentForm/EditStudentForm";
 import {retrieveStudents} from "../../services/studentsServices";
-import Navbar from "../shared/Navbar";
-import Sidebar from "../shared/Sidebar";
 import StudentsContainer, {H5} from "./setPasswordStudent/SetPasswordStudent.styles";
 export default function Students(){
     const [students, setStudents] = useState([]);
@@ -23,7 +21,6 @@ export default function Students(){
     return(
 
         <>
-            <Navbar />
             <StudentsContainer>
                 { students && students.length > 0
                     ?
@@ -40,7 +37,6 @@ export default function Students(){
                                   <H5>لا يوجد طلاب لعرضهم</H5>
                               ]} />
                 }
-                <Sidebar />
             </StudentsContainer>
 
         </>

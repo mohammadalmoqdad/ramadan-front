@@ -4,8 +4,6 @@ import AddEditAnnouncementForm from "./AddEditAnnouncementForm/AddEditAnnounceme
 import EditCompetitionForm from "./EditCompetitionForm/EditCompetitionForm";
 import Tabs from "../shared/Tabs/Tabs"
 import CompetitionContainer from "../Admins/Admins.styles";
-import Navbar from "../shared/Navbar";
-import Sidebar from "../shared/Sidebar";
 
 export default function Competition(){
     const [competitions, setCompetitions] = useState([]);
@@ -25,8 +23,6 @@ export default function Competition(){
 
     return (
         <CompetitionContainer>
-            <div style={{width:'100%'}}>
-                <Navbar/>
 
                 <Tabs labels={['تعديل مسابقة', 'إضافة/تعديل إعلانات']}
                       contents={
@@ -35,8 +31,6 @@ export default function Competition(){
                               <AddEditAnnouncementForm competitions={competitions} setCompetitions={setCompetitions}/>
                           ]}
                       toggleState={1}/>
-            </div>
-            <Sidebar/>
         </CompetitionContainer>
     );
 }

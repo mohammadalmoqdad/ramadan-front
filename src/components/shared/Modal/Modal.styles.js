@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 
 export const Background = styled.div`
-  z-index: 2;
-  width: 100%;
-  height: 100%;
+  top: 0px;
+  right: 0;
+  z-index: 3;
+  width: 120%;
+  height: 120%;
   background-color: rgba(200, 200, 200);
   position: fixed;
   display: flex;
@@ -22,6 +24,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 25px 25px 25px;
+  margin: auto auto;
+  position: fixed;
+  top: 30%;
+  right: 40%;
+  @media (max-width:700px) {
+    right: 20%;
+  }
 `;
 
 export const TitleCloseBtn = styled.div`
