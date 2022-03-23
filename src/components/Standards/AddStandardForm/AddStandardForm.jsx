@@ -190,8 +190,8 @@ export default function AddStandardForm(props) {
                     <DropdownListStanderd className='DropdownList' onChange={handleFormTypeChange}>
                         <DropdownListItemStanderd value="">اختر نوع النموذج</DropdownListItemStanderd>
                         <DropdownListItemStanderd value="num">رقمي</DropdownListItemStanderd>
-                        <DropdownListItemStanderd value="chk">تحديدي - تحديد إنجاز المعيار من عدمه</DropdownListItemStanderd>
-                        <DropdownListItemStanderd value="oth">نوع أخر - يحتاج مراجعة من المسؤول</DropdownListItemStanderd>
+                        <DropdownListItemStanderd value="chk">خانة إختيار - صح أو خطأ</DropdownListItemStanderd>
+                        <DropdownListItemStanderd value="oth">نصي - يحتاج مراجعة من المسؤول</DropdownListItemStanderd>
                     </DropdownListStanderd>
 
 

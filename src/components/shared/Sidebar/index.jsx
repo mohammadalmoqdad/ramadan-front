@@ -18,6 +18,9 @@ import { ReactComponent as PasswordIcon } from "assets/icons/change password.svg
 import { ReactComponent as CriteriasIcon } from "assets/icons/criterias.svg";
 import { ReactComponent as ResultsIcon } from "assets/icons/results.svg";
 import { ReactComponent as GroupsIcon } from "assets/icons/group.svg";
+import {ReactComponent as FileTxtIcon} from "assets/icons/file-text.svg";
+import {ReactComponent as CompInfoIcon} from "assets/icons/competition-information.svg";
+import {ReactComponent as StudentsIcon} from "assets/icons/students.svg";
 import {useAdminContext} from "../../../contexts/AdminContext";
 
 function Sidebar() {
@@ -48,6 +51,7 @@ function Sidebar() {
                 <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
                   معلومات المسابقة
                 </MenuItem>
+                <CompInfoIcon/>
               </MenuLink>
               <MenuLink to="/Admins">
                 <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
@@ -61,6 +65,7 @@ function Sidebar() {
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
           الطلاب
           </MenuItem>
+          <StudentsIcon/>
         </MenuLink>
         <MenuLink to="/Standards">
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
@@ -70,8 +75,9 @@ function Sidebar() {
         </MenuLink>
         <MenuLink to="/Review-other-points">
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>
-            مراجعة النتائج الأخرى
+            مراجعة المدخلات النصية
           </MenuItem>
+          <FileTxtIcon/>
         </MenuLink>
         <MenuLink to="/StudentsPoints">
           <MenuItem isSidebarCollapsed={isSidebarCollapsed}>

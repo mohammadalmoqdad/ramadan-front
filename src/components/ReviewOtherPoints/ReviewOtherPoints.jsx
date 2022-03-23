@@ -121,7 +121,7 @@ export default function ReviewOtherPoints(){
 
     return (
 
-        <Tabs labels={['مراجعة النقاط من نوع الأخرى']} contents={[
+        <Tabs labels={['مراجعة المدخلات النصية']} contents={[
                 <>
                     {students && students.length > 0 ?
                         <Form onSubmit={handleSubmit}>
@@ -159,7 +159,7 @@ export default function ReviewOtherPoints(){
                                         :
                                         <>
                                             {otherPoints && otherPoints.length === 0 ?
-                                                <Span>لا يوجد نتائج من نوع الأخرى للطالب في هذا اليوم</Span>
+                                                <Span>لا يوجد مدخلات نصية للطالب في هذا اليوم</Span>
 
                                                 : otherPoints.length > 1 ?
                                                     <DropDownDiv className="DropdownDiv"
@@ -183,7 +183,7 @@ export default function ReviewOtherPoints(){
 
                                                     {selectedPoint.user_input?.length > 0
                                                         ? <Box>
-                                                            <H5>إدخال الطالب</H5>
+                                                            <H5>النص المدخل من الطالب</H5>
                                                             <TxtArea readOnly
                                                                      value={selectedPoint.user_input}/>
                                                         </Box>
