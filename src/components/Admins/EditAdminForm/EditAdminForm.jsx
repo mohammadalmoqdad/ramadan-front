@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
+    Checkboxes,
     DivPass,
     DivTxtField,
     Form,
@@ -10,12 +11,14 @@ import {
 
 import {DropdownDiv, DropdownList, DropdownListItem} from "./EditAdminForm.styles";
 import {updateAdmin} from "../../../services/adminsServices";
+import {DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
 
 export default function EditGroupForm(props) {
 
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
     const [messages, setMessages] = useState([]);
+    const [isSuperAdmin, setSuperAdmin] = useState(false);
     const [email, setEmail] = useState(null);
     const [phoneNumber, setPhoneNumber] = useState(null);
     const [selectedUserName, setSelectedUserName] = useState("");
@@ -34,6 +37,7 @@ export default function EditGroupForm(props) {
             'last_name': lastName,
             'email': email,
             'phone_number': phoneNumber,
+            'is_super_admin': isSuperAdmin
         },
             (res) => {
                 if (res && res.status === 200) {
@@ -59,21 +63,27 @@ export default function EditGroupForm(props) {
                 setMessages(errMessages);
             }
         );
+    };
+
+    const handleSuperAdminCheckChange = (e) => {
+        setSuperAdmin(e.target.checked);
     }
 
     const handleFirstNameChange = (e) => {
         setFirstName(e.target.value);
-    }
+    };
+
     const handleLastNameChange = (e) => {
         setLastName(e.target.value);
-    }
+    };
+
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
-    }
+    };
 
     const handlePhoneNumberChange = (e) => {
         setPhoneNumber(e.target.value);
-    }
+    };
 
 
     const handleAdminSelectChange = (e) =>{
@@ -84,12 +94,14 @@ export default function EditGroupForm(props) {
             setLastName(admin.last_name);
             setPhoneNumber(admin.phone_number);
             setEmail(admin.email);
+            setSuperAdmin(admin.is_super_admin);
         } else {
             setSelectedUserName("");
             setFirstName("");
             setLastName("");
             setPhoneNumber("");
-            setEmail("")
+            setEmail("");
+            setSuperAdmin(false);
         }
 
     }
@@ -130,6 +142,11 @@ export default function EditGroupForm(props) {
                 <FormInput onChange={handlePhoneNumberChange} placeholder='رقم الهاتف' type="text" value={phoneNumber == null ? "" : phoneNumber}  />
             </DivTxtField>
 
+            { props.hasPermission &&
+                <DivTxtFieldnumber>
+                    <Checkboxes type="checkbox" onChange={handleSuperAdminCheckChange} checked={isSuperAdmin}/> <LabelSoper>إضافته كمسؤول رئيسي</LabelSoper>
+                </DivTxtFieldnumber>
+            }
 
             {/*TODO: Uncomment when it's supported in backend-side*/}
             {/*<DivTxtField>*/}

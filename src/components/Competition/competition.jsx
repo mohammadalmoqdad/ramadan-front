@@ -30,7 +30,7 @@ export default function Competition(){
                               <EditCompetitionForm competitions={competitions} setCompetitions={setCompetitions}/>,
                               <AddEditAnnouncementForm competitions={competitions} setCompetitions={setCompetitions}/>
                           ]}
-                      toggleState={1}/>
+                      />
         </CompetitionContainer>
     );
 }

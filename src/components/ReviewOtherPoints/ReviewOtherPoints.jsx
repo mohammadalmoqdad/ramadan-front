@@ -225,7 +225,7 @@ export default function ReviewOtherPoints(){
 
                         </Form>
 
-                        : <H5> لا يوجد طلاب لعرضهم</H5>
+                        : <H5> لا يوجد طلاب </H5>
                     }
                 </>
 

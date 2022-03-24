@@ -7,7 +7,7 @@ import {retrieveStudents} from "../../services/studentsServices";
 import {retrieveAdmins} from "../../services/adminsServices";
 import {deleteGroup, retrieveGroups} from "../../services/groupsServices";
 import Modal from "../shared/Modal/Modal";
-import {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
+import Container, {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 
@@ -104,7 +104,7 @@ export default function Groups() {
     };
 
     return (
-        <>
+        <Container>
             { openGroupModal &&
                 <Modal title="تأكيد الحذف" content="هل تريد حذف هذه المجموعة؟" deleteBtn="حذف" cancelBtn="إلغاء"
                        setOpenModal={setOpenGroupModal} deleteFunction={deleteGroupFunction} />
@@ -135,8 +135,8 @@ export default function Groups() {
                 : hasPermission ?
                     <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
                 :
-                    <Tabs labels={['المجموعات']} contents={[<H5>لا يوجد لديك مجموعات لعرضهم</H5>]}/>
+                    <Tabs labels={['المجموعات']} contents={[<H5>لا يوجد لديك مجموعات </H5>]}/>
             }
-        </>
+        </Container>
     )
 }

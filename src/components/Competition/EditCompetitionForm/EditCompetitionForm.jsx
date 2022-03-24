@@ -98,10 +98,6 @@ export default function EditCompetitionForm(props){
 
     };
 
-    const handleNameChange = (e)=>{
-        setName(e.target.value);
-    };
-
     const handleShowStandingChange = (e)=>{
         setShowStanding(e.target.checked);
     };
@@ -131,7 +127,7 @@ export default function EditCompetitionForm(props){
         <Form onSubmit={handleAddEditSubmit}>
             <DivTxtField>
                 <Span />
-                <FormInput onChange={handleNameChange} placeholder='اسم المسابقة' type="text" value={name} required />
+                <FormInput placeholder='اسم المسابقة' type="text" value={name} readOnly/>
             </DivTxtField>
 
             <DivTxtFieldnumber>
