@@ -174,25 +174,30 @@ export default function EditGroupForm(props) {
                 </DropdownDiv>
 
             }
-            { Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin && props.students && props.students.length > 0 &&
-                <DropdownDiv className='DropdownDiv'>
-                    <DropdownDivSelect>
-                        <Span>أسماء طلبة يكمن اضافتهم</Span>
-                        <DivMultiselect>
-                            <Multiselect
-                                onSelect={handleUpdateSelectedStudentsChange}
-                                onRemove={handleUpdateSelectedStudentsChange}
-                                selectedValues={currentSelectedStudents}
-                                options={props.students}
-                                displayValue="full_name"
-                                placeholder=""
-                                popupHeight='1rem'
-                                popupwidth='5rem'
-                            />
-                        </DivMultiselect>
-                    </DropdownDivSelect>
-
-                </DropdownDiv>
+            { Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin
+                ?
+                    props.students && props.students.length > 0 ?
+                        <DropdownDiv className='DropdownDiv'>
+                            <DropdownDivSelect>
+                                <Span>أسماء طلبة يكمن اضافتهم</Span>
+                                <DivMultiselect>
+                                    <Multiselect
+                                        onSelect={handleUpdateSelectedStudentsChange}
+                                        onRemove={handleUpdateSelectedStudentsChange}
+                                        selectedValues={currentSelectedStudents}
+                                        options={props.students}
+                                        displayValue="full_name"
+                                        placeholder=""
+                                        popupHeight='1rem'
+                                        popupwidth='5rem'
+                                    />
+                                </DivMultiselect>
+                            </DropdownDivSelect>
+                        </DropdownDiv>
+                    :
+                        <Span style={{margin:'1rem'}}>لا يوجد طلاب</Span>
+                :
+                    <></>
             }
 
             { props.admins && props.admins.length > 0 &&

@@ -1,9 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 export default function Tabs(props) {
 
     const [toggleState, setToggleState] = useState(props.labels.length - 1 >= 0 ? props.labels.length - 1 : 0);
 
+    useEffect(()=>{
+        setToggleState(props.labels.length - 1 >= 0 ? props.labels.length - 1 : 0);
+    },[props.labels, props.contents])
 
     const toggleTab = (index) => {
         setToggleState(index);

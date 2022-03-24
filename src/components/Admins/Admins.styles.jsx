@@ -5,7 +5,7 @@ import styled from "styled-components";
 // addNewAdmin 
 export default styled.div`
 width: 100%;
-height: 60rem;
+
 background: linear-gradient(120deg, #2980b9, #2980b9);
 
 display: flex;
@@ -17,7 +17,9 @@ align-items: flex-start;
 @media (max-width:1000px) {
 flex-direction: column;
 }
-
+@media (max-width:500px) {
+padding: 1rem;
+}
 `;
 
 
@@ -154,7 +156,15 @@ margin-bottom: .5rem;
 `;
 
 export const DropdownList = styled.div`
+position: relative;
+max-height:700px;
+overflow: auto;
 width: 25rem;
+@media (max-width:500px) {
+    margin: 10px 0;
+    max-height:350px;
+}
+
 margin: 100px auto;
 /* display: flex; */
 justify-content: center;

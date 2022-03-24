@@ -18,6 +18,7 @@ function AdminProvider({ children }) {
       retrieveAdminInfo(
           (res)=>{
             setAdminInfo(res.data);
+            return res.data;
           },
           (err)=>{
             setAdminInfo({is_super_admin: false});

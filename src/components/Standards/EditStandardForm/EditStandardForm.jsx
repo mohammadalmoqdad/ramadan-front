@@ -229,16 +229,19 @@ export default function EditStandardForm(props) {
 
         <Formm onSubmit={handleEditStandardSubmit}>
 
-            { props.standards && props.standards.length > 0 &&
-                <DropdownDiv onChange={handleSelectedStandardChange}>
-                    <DropdownListStanderd className='DropdownList'>
-                        <DropdownListItemStanderd key={0} value="">اختر المعيار </DropdownListItemStanderd>
-                        { props.standards.map((standard, index) => {
-                            return <DropdownListItemStanderd key={index + 1}  value={standard.id}>{standard.label}</DropdownListItemStanderd>
-                            })
-                        }
-                    </DropdownListStanderd>
-                </DropdownDiv>
+            { props.standards && props.standards.length > 0
+                ?
+                    <DropdownDiv onChange={handleSelectedStandardChange}>
+                        <DropdownListStanderd className='DropdownList'>
+                            <DropdownListItemStanderd key={0} value="">اختر المعيار </DropdownListItemStanderd>
+                            { props.standards.map((standard, index) => {
+                                return <DropdownListItemStanderd key={index + 1}  value={standard.id}>{standard.label}</DropdownListItemStanderd>
+                                })
+                            }
+                        </DropdownListStanderd>
+                    </DropdownDiv>
+                :
+                    <Span>لا يوجد معايير لعرضها</Span>
             }
 
             { props.sections && props.sections.length > 0
@@ -253,8 +256,7 @@ export default function EditStandardForm(props) {
                     </DropdownListStanderd>
                 </DropdownDiv>
                 :
-                <DivTxtField>لا يوجد أقسام لعرضها</DivTxtField>
-
+                <Span>لا يوجد أقسام لعرضها</Span>
             }
 
             <DivTxtField>

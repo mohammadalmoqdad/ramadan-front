@@ -25,9 +25,7 @@ export default function AppBrowserRouter(){
                 <Route exact path="/loading" element={<Loader/>} />
                 <Route exact path= "/Students" element= {<AppLayout color="#2980b9;" children={<Students/>}/>}  />
                 <Route exact path= "/Groups" element= {<AppLayout color="#2980b9;" children={<Groups/>} /> }  />
-                { Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin &&
-                    <Route exact path= "/Admins" element={ <AppLayout color="#2980b9;" children={<Admins/>}/>}  />
-                }
+                <Route exact path= "/Admins" element={ <AppLayout color="#2980b9;" children={<Admins/>}/>}  />
                 <Route exact path= "/Standards" element= {<AppLayout color="#2980b9;" children={<Standards/>}/>}/>
                 <Route exact path= "/Review-other-points" element= {<AppLayout color="#2980b9;" children={<ReviewOtherPoints/>}/>}/>
                 <Route exact path= "/StudentsPoints" element= { <AppLayout color="#2980b9;" children={<StudentsPoints/>}/>} />

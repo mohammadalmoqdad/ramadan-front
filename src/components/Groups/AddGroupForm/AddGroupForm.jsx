@@ -119,8 +119,8 @@ export default function AddGroupForm(props) {
 
     return (
         <Form onSubmit={handleAddGroupSubmit}>
-            {
-                props.students && props.students.length > 0 &&
+            { props.students && props.students.length > 0
+                ?
                     <DropdownDiv className='DropdownDiv'>
                         <DropdownDivSelect>
                             <Span>أسماء طلبة يكمن اضافتهم</Span>
@@ -136,8 +136,9 @@ export default function AddGroupForm(props) {
                                 />
                             </DivMultiselect>
                         </DropdownDivSelect>
-
                     </DropdownDiv>
+                :
+                    <Span style={{margin:'1rem'}}>لا يوجد طلاب</Span>
             }
 
             {

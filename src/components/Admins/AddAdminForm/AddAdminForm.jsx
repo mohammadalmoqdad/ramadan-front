@@ -6,7 +6,6 @@ import  {
     Form,
     FormInput,
     InputSubmit,
-    LabelSuper,
     Span
 } from "../Admins.styles";
 import {addAdmin} from "../../../services/adminsServices";
@@ -31,7 +30,7 @@ export default function AddAdminForm(props) {
     useEffect(()=>{
             setMessages([]);
         }
-    ,[username, firstName, lastName, email, phoneNumber, password, confirmPassword]);
+    ,[username, firstName, lastName, email, phoneNumber, password, confirmPassword, isSuperAdmin]);
 
     const handleAddNewAdminSubmit = (e)=>{
         e.preventDefault();

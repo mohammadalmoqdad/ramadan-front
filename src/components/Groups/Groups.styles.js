@@ -17,9 +17,7 @@ flex-direction: column;
 }
 
 @media (max-width:500px) {
-  /* padding: 2rem; */
-  height: 60rem;
-  width: 30rem;
+  padding: 1rem;
 }
 `;
 

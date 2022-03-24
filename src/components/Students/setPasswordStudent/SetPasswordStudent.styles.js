@@ -24,7 +24,6 @@ flex-direction: column;
 
 @media (max-width:500px) {
   padding: 2rem;
-  width: 30rem;
 }
 `;
 

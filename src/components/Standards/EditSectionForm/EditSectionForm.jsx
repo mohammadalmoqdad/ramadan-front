@@ -98,7 +98,7 @@ export default function EditSectionForm(props){
                     </DropdownListStanderd>
                 </DropdownDiv>
                 :
-                <DivTxtField>لا يوجد أقسام لعرضها</DivTxtField>
+                <Span>لا يوجد أقسام لعرضها</Span>
 
             }
 
