@@ -40,12 +40,7 @@ function Home(props) {
       retrieveGeneralStatus(
           (res)=>{
             if(res && res.status ===200){
-              setTopDay(res.data.top_ramadan_day);
-              setTopStudentLastDay( res.data.top_student_last_day);
-              setGeneralStatus({
-                students_count: res.data.students_count,
-                ramadan_date: res.data.ramadan_date
-              });
+              setGeneralStatus(res.data);
             }
           }, (err)=>{
             console.log("Failed to retrieve general status : ",err.data);
@@ -64,14 +59,14 @@ function Home(props) {
       <HomeContainer>
 
         <Div>
-          { Object.keys(generalStatus).length +  Object.keys(topDay).length +  Object.keys(topStudentLastDay).length > 0 &&
+          { Object.keys(generalStatus).length > 0 &&
               <StatisticsSection>
 
                 <StatisticsContainer>
                   <Formm>
                     <DivCenter>
-                      <H1Login>أعلى مجموع نقاط من <br/>أيام رمضان<Wird>{topDay?.total_day}</Wird></H1Login>
-                      <H3Login>{topDay.top_ramadan_day?.ramadan_record_date} رمضان </H3Login>
+                      <H1Login>أعلى مجموع نقاط من <br/>أيام رمضان<Wird>{generalStatus.top_ramadan_day?.total_day}</Wird></H1Login>
+                      <H3Login>{generalStatus.top_ramadan_day?.ramadan_record_date} رمضان </H3Login>
                     </DivCenter>
 
                     <DivCenter>
@@ -81,7 +76,7 @@ function Home(props) {
                   </Formm>
                   <Formm>
                     <DivCenter>
-                      <H1Login>المركز الأول لليوم<br/> السابق<Wird>{topStudentLastDay?.top_student_last_day != null ? topStudentLastDay.top_student_last_day : 'لا يوجد'}</Wird> </H1Login>
+                      <H1Login>المركز الأول لليوم<br/> السابق<Wird>{generalStatus?.top_student_last_day != null ? generalStatus.top_student_last_day : 'لا يوجد'}</Wird> </H1Login>
                       <H3Login>مبارك</H3Login>
                     </DivCenter>
 
