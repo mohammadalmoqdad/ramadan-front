@@ -10,6 +10,8 @@ import Modal from "../shared/Modal/Modal";
 import Container, {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
+import {useNavigate} from "react-router-dom";
+import cookie from "react-cookies";
 
 export default function Groups() {
 
@@ -19,10 +21,29 @@ export default function Groups() {
     const [groupIdToDelete, setGroupIdToDelete] = useState(-1);
     const [openGroupModal, setOpenGroupModal] = useState(false);
     const [hasPermission, setPermission] = useState(false);
+    const [groupsLabels, setGroupsLabels] = useState([]);
+    const [groupsContents, setGroupsContents] = useState([]);
 
     const context = useAdminContext();
+    let navigate = useNavigate();
+
 
     useEffect(() => {
+        if (!cookie.load("token")) {
+            navigate("/login", {state:{redirectTo: "/Groups"}});
+            return;
+        }
+
+        if(Object.keys(context.adminInfo).length > 0){
+            setPermission( context.adminInfo.is_super_admin);
+        }else{
+            setTimeout(() => {
+                if(Object.keys(context.adminInfo).length === 0){
+                    // permission will be updated once context.adminInfo is updated.
+                    context.getAdminInfo();
+                }
+            }, 1000);
+        }
 
         retrieveStudents(
             (res) => {
@@ -54,8 +75,27 @@ export default function Groups() {
     } , [students]);
 
     useEffect(() => {
-            setPermission(Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin);
+        setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
     }, [context.adminInfo]);
+
+    useEffect( ()=>{
+        let labels = [];
+        let contents = [];
+
+        if(groups && groups.length > 0){
+            labels.push('تعديل مجموعة');
+            contents.push(<EditGroupForm studentsGroups={groups} setGroups={setGroups} students={students}
+                                     admins={admins} hasPermission={hasPermission}/>);
+        }
+        if(hasPermission){
+            labels.push('إضافة مجموعة');
+            contents.push(<AddGroupForm students={students} admins={admins} studentsGroups={groups}
+                                        setGroups={setGroups}/>);
+        }
+        setGroupsLabels(labels);
+        setGroupsContents(contents);
+
+    },[groups, hasPermission]);
 
     const handleOpenGroupModalChange = (e)=>{
         setGroupIdToDelete(e.target.value);
@@ -75,32 +115,6 @@ export default function Groups() {
             }
         );
         setOpenGroupModal(false);
-    };
-
-    const getLabelsArray = ()=>{
-        let labels = [];
-        if(groups && groups.length > 0){
-            labels.push('تعديل مجموعة');
-        }
-
-        if(hasPermission){
-            labels.push('إضافة مجموعة');
-        }
-        return labels;
-    };
-
-    const getContentsArray = ()=>{
-        let contents = [];
-        if(groups && groups.length > 0){
-            contents.push(<EditGroupForm studentsGroups={groups} setGroups={setGroups} students={students}
-                                         admins={admins}/>);
-        }
-
-        if(hasPermission){
-            contents.push(<AddGroupForm students={students} admins={admins} studentsGroups={groups}
-                                        setGroups={setGroups}/>);
-        }
-        return contents;
     };
 
     return (
@@ -130,10 +144,10 @@ export default function Groups() {
                                 })
                             }
                         </DropdownList>
-                        <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
+                        <Tabs labels={groupsLabels} contents={groupsContents}/>
                     </>
                 : hasPermission ?
-                    <Tabs labels={getLabelsArray()} contents={getContentsArray()}/>
+                    <Tabs labels={groupsLabels} contents={groupsContents}/>
                 :
                     <Tabs labels={['المجموعات']} contents={[<H5>لا يوجد لديك مجموعات </H5>]}/>
             }

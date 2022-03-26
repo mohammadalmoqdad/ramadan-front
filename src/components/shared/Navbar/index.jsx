@@ -1,18 +1,33 @@
-import React, { useContext } from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './NavStyle.css' // will see
+import './NavStyle.css'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import HedarNavContainer, { H5,NavDropdownli, NavDropdownlist, Logo, HedarNav, Ul, Li, A, ButtonLogout } from "./navbar.styles"
-import cookie from "react-cookies";
-import { Redirect, Route, useNavigate } from "react-router-dom";
+import HeaderNavContainer, {
+    H5,
+    NavDropdownli,
+    NavDropdownlist,
+    Logo,
+    HedarNav,
+    Ul,
+    Li,
+    A,
+    ButtonLogout
+} from "./navbar.styles"
+import {useNavigate } from "react-router-dom";
 import { useAdminContext } from "../../../contexts/AdminContext";
 import WirdLogo from '../../../assets/Logo/WirdLogosvg.svg'
 
 
 function Nav() {
+    const [hasPermission, setPermission] = useState(false);
     const context = useAdminContext();
     let navigate = useNavigate();
-    return <HedarNavContainer>
+
+    useEffect(()=>{
+        setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
+    },[context.adminInfo]);
+
+    return <HeaderNavContainer>
 
         <ButtonLogout onClick={() => {
             context.logout();
@@ -27,8 +42,11 @@ function Nav() {
                         <NavDropdownli >
                             <NavDropdown className='NavDropdow' style={{ color: '#e9f4fb' }}>
                                 <NavDropdown.Item className='NavDropdow' href="/">الصفحة الرئيسية</NavDropdown.Item>
+                                { hasPermission &&
+                                    <NavDropdown.Item href="/Competition">معلومات المسابقة</NavDropdown.Item>
+
+                                }
                                 <NavDropdown.Item href="/Admins">المسؤولون</NavDropdown.Item>
-                                <NavDropdown.Item href="/Competition">معلومات المسابقة</NavDropdown.Item>
                                 <NavDropdown.Item href="/Students">الطلاب</NavDropdown.Item>
                                 <NavDropdown.Item href="/Standards">المعايير</NavDropdown.Item>
                                 <NavDropdown.Item href="/Review-other-points"> مراجعة المدخلات النصية</NavDropdown.Item>
@@ -44,7 +62,6 @@ function Nav() {
 
 
                 </Li>
-                <Li></Li>
 
             </Ul>
             <Logo>
@@ -55,7 +72,7 @@ function Nav() {
             </Logo>
         </HedarNav>
 
-    </HedarNavContainer>;
+    </HeaderNavContainer>;
 
 }
 

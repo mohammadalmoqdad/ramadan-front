@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import LoginFormContainer, {
   Wird,
   DivPass,
@@ -12,7 +12,7 @@ import LoginFormContainer, {
   Span,
 } from "./login.styles";
 import { useAdminContext } from "contexts/AdminContext";
-import { useNavigate } from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import cookie from "react-cookies";
 import Loader from "../Loader";
 
@@ -23,6 +23,7 @@ function Login(props) {
   const [password, setPassword] = useState(" ");
   const [loading, setloading] = useState(true); // note: to open loading comp when the function start
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     // setloading(true); // noooooooooooooooot nessesry but because of Amin's mostach lol
@@ -45,7 +46,8 @@ function Login(props) {
     console.log(context, username, password);
     context.useLogin(username, password).then((isUsersLoggedIn) => {
       if (isUsersLoggedIn === true) {
-        Navigate("/");
+        Navigate(location?.state?.redirectTo?.length > 0 ? location.state.redirectTo : "/");
+        context.getAdminInfo();
       } else {
         setShowErrorMessage(true);
         e.target.reset();

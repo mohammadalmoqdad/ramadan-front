@@ -10,6 +10,8 @@ import Modal from "../shared/Modal/Modal";
 import {Button, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
+import cookie from "react-cookies";
+import {useNavigate} from "react-router-dom";
 export default function Standards() {
 
     const [sections, setSections] = useState([]);
@@ -24,8 +26,24 @@ export default function Standards() {
     const [contents, setContents] = useState([]);
     const [currentContents, setCurrentContents] = useState([]);
     const context = useAdminContext();
+    let navigate = useNavigate();
 
     useEffect(() => {
+
+        if (!cookie.load("token")) {
+            navigate("/login", {state:{redirectTo: "/Standards"}});
+        }
+
+        if(Object.keys(context.adminInfo).length > 0){
+            setPermission( context.adminInfo.is_super_admin);
+        }else{
+            setTimeout(() => {
+                if(Object.keys(context.adminInfo).length === 0){
+                    // permission will be updated once context.adminInfo is updated.
+                    context.getAdminInfo();
+                }
+            }, 1000);
+        }
 
         retrieveStandards(
             (res) => {
@@ -47,7 +65,7 @@ export default function Standards() {
     }, []);
 
     useEffect(() => {
-        setPermission(Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin);
+        setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
     }, [context.adminInfo]);
 
 
@@ -121,7 +139,7 @@ export default function Standards() {
         setLabels(labelsArray);
         setContents(contentsArray);
 
-    },[sections, standards]);
+    },[sections, standards, hasPermission]);
 
     const handleOpenStandardModelChange = (e)=>{
         setStandardIdToDelete(e.target.value);
@@ -188,7 +206,7 @@ export default function Standards() {
                     <Tabs labels={['المعايير']} contents={[ <H5>لا يوجد معايير</H5>]} />
 
                 }
-                <Tabs labels={currentLabels} contents={currentContents} contentClass="no-padding" />
+                <Tabs labels={currentLabels} contents={currentContents} contentClass=" no-padding" />
 
                 <Tabs labels={labels} contents={contents} />
             </Container>

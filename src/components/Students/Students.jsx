@@ -7,20 +7,21 @@ import  {H5} from "./setPasswordStudent/SetPasswordStudent.styles";
 import Modal from "../shared/Modal/Modal";
 import StudentsContainer, {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
+import {useNavigate} from "react-router-dom";
+import cookie from "react-cookies";
 export default function Students(){
     const [students, setStudents] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const [studentToDelete, setStudentToDelete] = useState("");
     const [hasPermission, setPermission] = useState(false);
-
     const context = useAdminContext();
-
-    useEffect( ()=>{
-        setPermission(Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin);
-    }, [context.adminInfo] )
-
+    let navigate = useNavigate();
 
     useEffect(()=>{
+        if (!cookie.load("token")) {
+            navigate("/login", {state:{redirectTo: "/Students"}});
+        }
+
         retrieveStudents(
             (res) => {
                 setStudents(res.data)
@@ -28,7 +29,23 @@ export default function Students(){
                 console.log("Failed to retrieve students: " + JSON.stringify(err.response.data));
             }
         );
+
+        if(Object.keys(context.adminInfo).length > 0){
+            setPermission( context.adminInfo.is_super_admin);
+        }else{
+            setTimeout(() => {
+                if(Object.keys(context.adminInfo).length === 0){
+                    // permission will be updated once context.adminInfo is updated.
+                    context.getAdminInfo();
+                }
+            }, 1000);
+        }
+
     },[]);
+
+    useEffect( ()=>{
+        setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
+    }, [context.adminInfo] )
 
     const handleDeleteStudentModalChange = (e)=>{
         setStudentToDelete(e.target.value);

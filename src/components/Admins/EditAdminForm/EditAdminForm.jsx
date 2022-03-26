@@ -12,6 +12,7 @@ import {
 import {DropdownDiv, DropdownList, DropdownListItem} from "./EditAdminForm.styles";
 import {updateAdmin} from "../../../services/adminsServices";
 import {DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
+import {useAdminContext} from "../../../contexts/AdminContext";
 
 export default function EditGroupForm(props) {
 
@@ -19,9 +20,10 @@ export default function EditGroupForm(props) {
     const [lastName, setLastName] = useState(null);
     const [messages, setMessages] = useState([]);
     const [isSuperAdmin, setSuperAdmin] = useState(false);
-    const [email, setEmail] = useState(null);
-    const [phoneNumber, setPhoneNumber] = useState(null);
+    const [email, setEmail] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
     const [selectedUserName, setSelectedUserName] = useState("");
+    const context = useAdminContext();
 
     useEffect(() => {
         setMessages([]);
@@ -47,6 +49,9 @@ export default function EditGroupForm(props) {
                     updatedAdmin.email = email;
                     updatedAdmin.phone_number = phoneNumber;
                     props.setAdmins([...props.admins.filter(admin => admin.username !== selectedUserName), updatedAdmin]);
+                    if(Object.keys(context.adminInfo).length > 0 && context.adminInfo.username === selectedUserName){
+                        context.setAdminInfo(updatedAdmin);
+                    }
                     setMessages(["تم تعديل المسؤول"]);
                 }
             },

@@ -13,7 +13,6 @@ import Multiselect from "multiselect-react-dropdown";
 import {DropdownList, DropdownListItem} from "../../Admins/EditAdminForm/EditAdminForm.styles";
 import {DivPass} from "../../Admins/Admins.styles";
 import {updateGroup} from "../../../services/groupsServices";
-import {useAdminContext} from "../../../contexts/AdminContext";
 
 export default function EditGroupForm(props) {
 
@@ -26,7 +25,6 @@ export default function EditGroupForm(props) {
     const [announcements, setAnnouncements] = useState([""]);
     const [isSemiColonExists, setSemiColonExists] = useState(false);
     const [messages, setMessages] = useState([]);
-    const context = useAdminContext();
 
     useEffect(()=>{
         setMessages([]);
@@ -152,7 +150,8 @@ export default function EditGroupForm(props) {
         setAnnouncements([...announcements, ""]);
     }
 
-    const handleRemoveBtnChange = (index)=>{
+    const handleRemoveBtnChange = (e, index)=>{
+        e.preventDefault();
         let notesArray = [...announcements];
         notesArray.splice(index, 1);
         setAnnouncements(notesArray);
@@ -174,7 +173,7 @@ export default function EditGroupForm(props) {
                 </DropdownDiv>
 
             }
-            { Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin
+            { props.hasPermission
                 ?
                     props.students && props.students.length > 0 ?
                         <DropdownDiv className='DropdownDiv'>
@@ -232,7 +231,7 @@ export default function EditGroupForm(props) {
                             <AnnouncementsFormInput placeholder='الإعلان' key={index} value={inputItem}
                                                     onChange={(e) => handleAnnouncementsChange(e, index)} type="text"/>
                             {announcements.length > 1 &&
-                                <RemoveBtn onClick={() => handleRemoveBtnChange(index)}>-</RemoveBtn>}
+                                <RemoveBtn onClick={(e) => handleRemoveBtnChange(e, index)}>-</RemoveBtn>}
                             {index === announcements.length - 1 && <AddBtn onClick={handleAddBtnChange}>+</AddBtn>}
                         </DivTxtField>)
                 })
