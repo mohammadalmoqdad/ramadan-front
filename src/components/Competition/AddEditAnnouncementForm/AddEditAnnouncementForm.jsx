@@ -72,7 +72,8 @@ export default function AddEditAnnouncementForm(props){
             }
         );
 
-    }
+    };
+
     const handleAnnouncementsChange = (e, index)=>{
         let notesArray = [...notes];
         notesArray.splice(index, 1, e.target.value);
@@ -82,7 +83,8 @@ export default function AddEditAnnouncementForm(props){
     const handleAddBtnChange = ()=>{
         setNotes([...notes, ""]);
     }
-    const handleRemoveBtnChange = (index)=>{
+    const handleRemoveBtnChange = (e, index)=>{
+        e.preventDefault();
         let notesArray = [...notes];
         notesArray.splice(index, 1);
         setNotes(notesArray);
@@ -98,7 +100,7 @@ export default function AddEditAnnouncementForm(props){
                             <Span/>
                             <AnnouncementsFormInput placeholder='الإعلان' key={index} value={inputItem} onChange={(e) => handleAnnouncementsChange(e, index)} type="text"/>
                             { notes.length > 1 &&
-                                <RemoveBtn onClick={()=>handleRemoveBtnChange(index)}>-</RemoveBtn>
+                                <RemoveBtn onClick={(e)=>handleRemoveBtnChange(e, index)}>-</RemoveBtn>
                             }
                             { index === notes.length -1 &&
                                 <AddBtn onClick={handleAddBtnChange}>+</AddBtn>

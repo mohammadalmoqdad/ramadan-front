@@ -4,11 +4,18 @@ import AddEditAnnouncementForm from "./AddEditAnnouncementForm/AddEditAnnounceme
 import EditCompetitionForm from "./EditCompetitionForm/EditCompetitionForm";
 import Tabs from "../shared/Tabs/Tabs"
 import CompetitionContainer from "../Admins/Admins.styles";
+import cookie from "react-cookies";
+import {useNavigate} from "react-router-dom";
 
 export default function Competition(){
     const [competitions, setCompetitions] = useState([]);
+    let navigate = useNavigate();
 
     useEffect(()=>{
+        if (!cookie.load("token")) {
+            navigate("/login", {state:{redirectTo: "/Competition"}});
+            return;
+        }
         retrieveCompetitions(
             (res)=>{
                 if(res && res.status === 200){

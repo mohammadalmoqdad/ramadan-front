@@ -13,6 +13,8 @@ import {deleteAdmin, retrieveAdmins} from "../../services/adminsServices";
 import {useAdminContext} from "../../contexts/AdminContext";
 import ResetAdminPasswordForm from "./ResetAdminPasswordForm/ResetAdminPasswordForm";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
+import cookie from "react-cookies";
+import {useNavigate} from "react-router-dom";
 
 export default function Admins() {
 
@@ -20,11 +22,28 @@ export default function Admins() {
     const [openModal, setOpenModal] = useState(false);
     const [adminToDelete, setAdminToDelete] = useState("");
     const [hasPermission, setPermission] = useState(false);
-    const context = useAdminContext();
     const [adminsLabels, setAdminsLabels] = useState([]);
     const [adminsContents, setAdminsContents] = useState([]);
+    const context = useAdminContext();
+    let navigate = useNavigate();
 
     useEffect(() => {
+        if (!cookie.load("token")) {
+            navigate("/login", {state:{redirectTo: "/Admins"}});
+            return;
+        }
+
+        if(Object.keys(context.adminInfo).length > 0){
+            setPermission(context.adminInfo.is_super_admin);
+        }else{
+            setTimeout(() => {
+                if(Object.keys(context.adminInfo).length === 0){
+                    // permission will be updated once context.adminInfo is updated.
+                    context.getAdminInfo();
+                }
+             }, 1000);
+        }
+
         retrieveAdmins(
             (res) => {
                 setAdmins(res.data);
@@ -35,15 +54,15 @@ export default function Admins() {
     }, []);
 
     useEffect(() => {
-        setPermission(Object.keys(context.getAdminInfo()).length > 0 && context.getAdminInfo().is_super_admin);
+        setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
     }, [context.adminInfo]);
 
     useEffect(()=>{
         let labels = [];
         let contents = [];
 
-        if(Object.keys(context.getAdminInfo()).length > 0 && !hasPermission && admins.length ===0) {
-            setAdmins([context.getAdminInfo()])
+        if(Object.keys(context.adminInfo).length > 0 && !context.adminInfo.is_super_admin && admins.length === 0) {
+            setAdmins([context.adminInfo])
         }
 
         if(admins.length > 0 ){
@@ -63,7 +82,7 @@ export default function Admins() {
         setAdminsLabels(labels);
         setAdminsContents(contents);
 
-    },[admins]);
+    },[admins, hasPermission]);
 
     const handleOpenModelChange = (e)=>{
         setAdminToDelete(e.target.value);
@@ -92,17 +111,17 @@ export default function Admins() {
             }
 
             { adminsLabels.length === 0 && admins.length === 0 &&
-                <Tabs labels={['']} contents={[ <H5>لا يوجد مسؤولون</H5>]} />
+                <Tabs labels={['المسؤولون']} contents={[ <H5>لا يوجد مسؤولون</H5>]} />
             }
 
             { admins && admins.length > 0 &&
-                admins.filter(admin => Object.keys(context.getAdminInfo()).length === 0 || context.getAdminInfo().username !== admin.username).length > 0 &&
+                admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.username !== admin.username).length > 0 &&
 
                 <DropdownList className='DropdownList'>
                     <DropdownListItem  className="title"><Span>المسؤولون</Span></DropdownListItem>
                     {
 
-                        admins.filter(admin => Object.keys(context.getAdminInfo()).length === 0 || context.getAdminInfo().username !== admin.username)
+                        admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.username !== admin.username)
                             .map((admin, index) => {
                                 return (<DropdownListItem key={index}>
                                     { hasPermission?

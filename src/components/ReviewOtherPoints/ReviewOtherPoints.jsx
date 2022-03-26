@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {retrieveStudents, retrieveStudentsPointsOfTypeOther, updateStudentPoint} from "../../services/studentsServices";
-import {Background, TxtArea, DropDownDiv, DropdownList} from "./ReviewOtherPoints.styles";
+import { TxtArea, DropDownDiv, DropdownList} from "./ReviewOtherPoints.styles";
 import { DropdownDivSelect as Box, Form} from "../Groups/Groups.styles"
 import Tabs from "../shared/Tabs/Tabs";
 import {DropdownListItem} from "../studentsPoints/StudentsPoints.styles";
@@ -13,6 +13,8 @@ import {
     FormInput,
     FormInputnumber, InputSubmit, Label
 } from "../Standards/AddStandardForm/AddStandardForm.styles";
+import cookie from "react-cookies";
+import {useNavigate} from "react-router-dom";
 
 export default function ReviewOtherPoints(){
     const [selectedStudentUsername, setSelectedStudentUsername] = useState("");
@@ -22,8 +24,12 @@ export default function ReviewOtherPoints(){
     const [messages, setMessages] = useState([]);
     const [selectedPoint, setSelectedPoint] = useState({});
     const [pointRecord, setPointRecord] = useState(-1);
+    let navigate = useNavigate();
 
     useEffect(()=>{
+        if (!cookie.load("token")) {
+            navigate("/login", {state:{redirectTo: "/Review-other-points"}});
+        }
         retrieveStudents(
             (res) => {
                 setStudents(res.data);

@@ -10,11 +10,9 @@ import Standards from "../Standards/Standards";
 import StudentsPoints from "../studentsPoints/StudentsPoints";
 import Competition from "../Competition/competition";
 import ReviewOtherPoints from "../ReviewOtherPoints/ReviewOtherPoints";
-import {useAdminContext} from "../../contexts/AdminContext";
 import AppLayout from "../AppLayout/AppLayout";
 export default function AppBrowserRouter(){
 
-    const context = useAdminContext();
     return(
         <BrowserRouter>
             <Routes>

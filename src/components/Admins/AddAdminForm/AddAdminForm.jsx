@@ -17,8 +17,8 @@ export default function AddAdminForm(props) {
     const [username, setUserName] = useState(null);
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [phoneNumber, setPhoneNumber] = useState(null);
+    const [email, setEmail] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
     const [isSuperAdmin, setSuperAdmin] = useState(false);
     const [password, setPassword] = useState(null);
     const [confirmPassword, setConfirmPassword] = useState(null);

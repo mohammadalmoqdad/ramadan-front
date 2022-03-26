@@ -59,7 +59,8 @@ export default function AddGroupForm(props) {
         setAnnouncements([...announcements, ""]);
     };
 
-    const handleRemoveBtnChange = (index)=>{
+    const handleRemoveBtnChange = (e, index)=>{
+        e.preventDefault();
         let notesArray = [...announcements];
         notesArray.splice(index, 1);
         setAnnouncements(notesArray);
@@ -175,7 +176,7 @@ export default function AddGroupForm(props) {
                             <AnnouncementsFormInput placeholder='الإعلان' key={index} value={inputItem}
                                                     onChange={(e) => handleAnnouncementsChange(e, index)} type="text"/>
                             {announcements.length > 1 &&
-                                <RemoveBtn onClick={() => handleRemoveBtnChange(index)}>-</RemoveBtn>}
+                                <RemoveBtn onClick={(e) => handleRemoveBtnChange(e, index)}>-</RemoveBtn>}
                             {index === announcements.length - 1 && <AddBtn onClick={handleAddBtnChange}>+</AddBtn>}
                         </DivTxtField>)
                 })
