@@ -6,11 +6,11 @@ import {
     InputSubmit,
     AddBtn,
     AnnouncementsFormInput,
-    RemoveBtn
+    RemoveBtn,
 } from "../../Groups/Groups.styles";
 import {DivPass, FormInput} from "../../Admins/Admins.styles";
 import {updateCompetition} from "../../../services/competitionsServices";
-import {Checkboxes, DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
+import {Checkboxes, DivTxtFieldnumber, LabelSoper, CheckBoxesContainer} from "../../Standards/AddStandardForm/AddStandardForm.styles";
 
 export default function EditCompetitionForm(props){
     const [name, setName] = useState("");
@@ -126,10 +126,10 @@ export default function EditCompetitionForm(props){
 
     return(
         <Form onSubmit={handleAddEditSubmit}>
-            <DivTxtField>
-                <Span />
-                <FormInput placeholder='اسم المسابقة' type="text" value={name} readOnly/>
-            </DivTxtField>
+            {/* <DivTxtField> */}
+                <LabelSoper placeholder='اسم المسابقة' type="text" value={name}>{name}</LabelSoper>
+            {/* </DivTxtField> */}
+            <CheckBoxesContainer >
 
             <DivTxtFieldnumber>
                 <Checkboxes type="checkbox" checked={showStanding} onChange={handleShowStandingChange}/> <LabelSoper>عرض النتائج</LabelSoper>
@@ -138,6 +138,7 @@ export default function EditCompetitionForm(props){
             <DivTxtFieldnumber>
                 <Checkboxes type="checkbox" checked={readOnlyMode} onChange={handleReadOnlyChange}/> <LabelSoper>قابلة للتعديل</LabelSoper>
             </DivTxtFieldnumber>
+            </CheckBoxesContainer>
 
             { notes?.map((inputItem, index) =>{
                 return(

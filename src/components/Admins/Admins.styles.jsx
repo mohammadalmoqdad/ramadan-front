@@ -5,9 +5,8 @@ import styled from "styled-components";
 // addNewAdmin 
 export default styled.div`
 width: 100%;
-
-background: linear-gradient(120deg, #2980b9, #2980b9);
-
+/* background: #fff; */
+height:calc(100vh - 80px);
 display: flex;
 justify-content: center;
 align-items: flex-start;
@@ -52,7 +51,7 @@ color: #213C64;
 `;
 
 export const Form = styled.form`
-width:20rem;
+width:100%
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -81,7 +80,7 @@ width: 80%;
 `;
 
 export const FormInput = styled.input`
-width: 20rem;
+width: 100%;
 padding: 0 5px;
 height: 2.1rem;
 font-size: 1rem;

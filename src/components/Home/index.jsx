@@ -17,9 +17,10 @@ import {
   WirdMinIntroduction,
   BorderBottom,
   IntroductionDiv,
-  Introduction
+  Introduction,
+  StatisticsNumber
 } from "./home.styles";
-import { StatisticsContainer, Formm, H1Login, H3Login, DivCenter, Wird } from "../studentsPoints/StudentsPoints.styles"
+import { StatisticsContainer, Formm, H1Login, H3Login, DivCenter } from "../studentsPoints/StudentsPoints.styles"
 import {useAdminContext} from "../../contexts/AdminContext";
 import {retrieveGeneralStatus} from "../../services/competitionsServices";
 
@@ -67,23 +68,23 @@ function Home(props) {
                 <StatisticsContainer>
                   <Formm>
                     <DivCenter>
-                      <H1Login>أعلى مجموع نقاط من <br/>أيام رمضان<Wird>{generalStatus.top_ramadan_day?.total_day}</Wird></H1Login>
+                      <H1Login>أعلى مجموع نقاط من <br/>أيام رمضان<StatisticsNumber>{generalStatus.top_ramadan_day?.total_day}</StatisticsNumber></H1Login>
                       <H3Login>{generalStatus.top_ramadan_day?.ramadan_record_date} رمضان </H3Login>
                     </DivCenter>
 
                     <DivCenter>
-                      <H1Login>عدد طلبة <br/>المسابقة<Wird>{generalStatus?.students_count}</Wird> </H1Login>
+                      <H1Login>عدد طلبة <br/>المسابقة<StatisticsNumber>{generalStatus?.students_count}</StatisticsNumber> </H1Login>
                       <H3Login>طالب</H3Login>
                     </DivCenter>
                   </Formm>
                   <Formm>
                     <DivCenter>
-                      <H1Login>المركز الأول لليوم<br/> السابق<Wird>{generalStatus?.top_student_last_day != null ? generalStatus.top_student_last_day : 'لا يوجد'}</Wird> </H1Login>
+                      <H1Login>المركز الأول لليوم<br/> السابق<StatisticsNumber>{generalStatus?.top_student_last_day != null ? generalStatus.top_student_last_day : 'لا يوجد'}</StatisticsNumber> </H1Login>
                       <H3Login>مبارك</H3Login>
                     </DivCenter>
 
                     <DivCenter>
-                      <H1Login>التقويم <br/>الرمضاني<Wird>{generalStatus?.ramadan_date}</Wird> </H1Login>
+                      <H1Login>التقويم <br/>الرمضاني<StatisticsNumber>{generalStatus?.ramadan_date}</StatisticsNumber> </H1Login>
                       <H3Login>اللهم تقبل</H3Login>
                     </DivCenter>
                   </Formm>

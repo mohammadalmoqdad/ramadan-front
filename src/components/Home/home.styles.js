@@ -41,7 +41,13 @@ export const StatisticsContainer = styled.div`
   text-align: center;
 `;
 
-export const StatisticsNumber = styled.p``;
+export const StatisticsNumber = styled.p`
+margin-top: .2rem;
+text-align: center;
+/* padding: 0 0 20px 0; */
+font-family: 'Noto Kufi Arabic', sans-serif;
+font-size: 2.3rem;
+color: orange;`;
 
 export const StatisticsTitle = styled.p``;
 
