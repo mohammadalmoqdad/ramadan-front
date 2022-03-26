@@ -51,17 +51,24 @@ color: #213C64;
 `;
 
 export const Form = styled.form`
-width:20rem;
+width:80%;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
+align-items:center;
 margin: auto;
+
+@media (max-width:500px) {
+  width:80%;
+
+}
 
 `;
 
 
 export const DivTxtField = styled.div`
 position: relative;
+width:100%;
 /* border-bottom: 2px solid #adadad; */
 margin: 1rem 0;
 
@@ -113,7 +120,7 @@ border-bottom: 3px solid orange;
 `;
 
 export const InputSubmit = styled.button`
-width:20rem;
+width:16rem;
 height: 3.1rem;
 border: 1px;
 background: linear-gradient(120deg, #2980b9, #2980b9);

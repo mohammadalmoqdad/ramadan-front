@@ -1,10 +1,54 @@
-table{
-width: 100%;
-border: 2px solid red;
-text-align: center;
-}
+ /* .ka-table-wrapper table {
+} */
+ .save-changes {
+     margin-top: 4rem;
+     margin-bottom: 0.1rem;
+     padding: 0.5rem;
+     width: 10rem;
+     font-family: 'Noto Kufi Arabic', sans-serif;
+     background-color: #f4b069;
+     color: #FFFFFF;
+     border-radius: 4px;
+ }
 
-table th, table td{
-    padding: 0.5rem;
-}
+ table {
+     width: 100%;
+     /* border: 2px solid gray; */
+     text-align: center;
+     font-family: 'Noto Kufi Arabic', sans-serif !important;
+ }
 
+ table th, table td {
+     padding: 0.5rem;
+     text-align: center;
+     width: 50%;
+ }
+
+ tr:nth-child(even) {
+     background-color: #f2f2f2;
+ }
+
+ th {
+     background-color: #94C3D9;
+     color: white;
+ }
+
+ input:focus {
+     /* border-inline-color: 1px solid lightgray; */
+     margin: 0;
+     padding: 0;
+     outline: none;
+     border: none;
+     background-color: #f4b069;
+     color: #FFFFFF;
+ }
+
+ input {
+     width: 100%;
+ }
+
+
+ /* the div of the updated  */
+ .ka-cell-editor input {
+     text-align: center;
+ }

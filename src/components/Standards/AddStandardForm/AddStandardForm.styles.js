@@ -75,10 +75,9 @@ export const DivTxtFieldnumber = styled.div`
 /* position: relative; */
 display: flex;
 /* border-bottom: 2px solid #adadad; */
-margin: 1rem 0;
-
+/* margin: 1rem 0; */
 @media (max-width:500px) {
-margin: 1rem 0;
+/* margin: 1rem 0; */
 }
 `;
 
@@ -380,7 +379,7 @@ export const Checkboxes = styled.input`
 justify-content: center;
 align-items: flex-start; */
 
-margin: auto;
+margin: 0 0.2rem;
 display: block;
 margin-bottom: 0rem;
 width: 1.5rem;
@@ -395,6 +394,22 @@ flex-direction: column;
 
 }
 `;
+
+export const CheckBoxesContainer= styled.div`
+display: flex;
+/* gap:1rem; */
+justify-content: space-between;
+width:80%;
+
+@media(max-width:500px) {
+width:100%
+ /* flex-direction: column; */
+}
+
+`;
+
+
+
 
 export const LabelSoper = styled.section`
 text-align: center;

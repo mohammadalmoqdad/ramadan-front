@@ -54,9 +54,9 @@ function Nav() {
                                 <NavDropdown.Item href="/Groups">المجموعات</NavDropdown.Item>
                             </NavDropdown>
 
-                            <H5>أهلا بكم في منصة وِرد </H5>
+                            <H5>menu</H5>
                         </NavDropdownli>
-                        <A>أهلا بكم في منصة وِرد </A>
+                        <A>أهلا بكم في منصة وِرد</A>
 
                     </NavDropdownlist>
 

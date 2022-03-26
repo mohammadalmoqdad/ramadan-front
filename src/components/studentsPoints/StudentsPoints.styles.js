@@ -3,14 +3,18 @@ import styled from "styled-components";
 export default styled.div`
 display: flex;
 background: linear-gradient(120deg, #2980b9, #2980b9);
+padding:0;
+margin:0;
+box-sizing:border-box;
 `;
 
 export const PointShow = styled.div`
  width: 100%;
-height: 70rem;
+/* height: 70rem; */
 background: linear-gradient(120deg, #2980b9, #2980b9);
-justify-content: center;
- align-items: center;
+/* justify-content: center; */
+ /* align-items: center; */
+
  display: flex;
  @media (max-width:960px) {
   /* padding: 3rem; */
@@ -19,33 +23,76 @@ justify-content: center;
   }
   @media (max-width:500px) {
   margin: auto;
-  margin-top: 1rem;
-  width: 25rem;
-  height: 115rem;
+  /* margin-top: 1rem; */
+  /* width: 25rem; */
+  /* height: 115rem; */
 }
 `;
 
 export const LoginForm = styled.div`
-height: 60rem;
-width: 55rem;
+/* height: 100%; */
+width: 100%;
 background: white;
- justify-content: center;
- align-items: center;
- display: flex;
- box-shadow: 1px 3px 12px 0px #0000007a;
- border-radius: 10px;
-padding: 1rem;
-flex-direction: column;
-@media (max-width:960px) {
-  padding: 2rem;
-  width: 30rem;
-  height: 80rem;
+padding: 3rem;
+text-align:center;
+ /* justify-content: flex-start; */
+ /* align-items: center; */
+ /* box-shadow: 1px 3px 12px 0px #0000007a; */
+ /* border-radius: 10px; */
+ /* padding: 1rem; */
+ /* flex-direction: column; */
+ /* @media (max-width:960px) {
+   padding: 2rem;
+   width: 30rem;
+   height: 80rem;
+  } */
+  @media (max-width:500px) {
+  /* display: flex; */
+  /* margin: auto; */
+  /* margin-top: 1rem; */
+  /* width: 18rem; */
+  /* height: 105rem; */
+padding: 0 1rem;
+
 }
-@media (max-width:500px) {
-  margin: auto;
-  margin-top: 1rem;
-  width: 18rem;
-  height: 105rem;
+`;
+
+export const ChartsContainer = styled.div`
+margin:1rem 0;
+display: flex;
+padding: 0;
+gap:4rem;
+flex-direction:row;
+
+.Target-root{
+    margin-top:1rem;
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+  flex-direction: column-reverse;
+    }
+.css-4dretl.Target-root{
+  flex-direction: column-reverse;
+  }
+
+@media(max-width:500px){
+  flex-direction: column-reverse;
+  gap:0rem;
+
+}
+`;
+
+
+export const SelectInputContainer = styled.div`
+display: flex;
+gap:4rem;
+
+/* margin:2rem; */
+/* justify-content:center; */
+width:100%;
+@media(max-width:1100px){
+  flex-direction: column;
+  gap:0rem;
+
+}
 }
 `;
 
@@ -69,6 +116,8 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 `;
+
+
 export const Formm = styled.div`
 margin: auto;
 justify-content: center;
@@ -119,15 +168,29 @@ border-bottom:0.1px solid silver;
 `;
 
 export const Wird = styled.h1`
-margin-top: 2rem;
 text-align: center;
 /* padding: 0 0 20px 0; */
 font-family: 'Noto Kufi Arabic', sans-serif;
-font-size: 1.5rem;
-color: orange;
+font-size: 1.2rem;
+display: inline-block;
+color: #fff;
+padding: 1.3rem;
+width: 20rem;
+cursor: pointer;
+border-radius: 4px;
+background-color: #94C3D9;
+box-shadow: 1px 1px 13px 0px #4235357a;
+
+
 @media(max-width:1100px){
   font-size: 1rem;
   font-weight: bold;
+}
+
+@media(max-width:500px){
+margin-top: 2rem;
+width: 15rem;
+
 }
 `;
 
