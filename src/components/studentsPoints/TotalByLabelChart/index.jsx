@@ -17,7 +17,6 @@ export default function TotalByLabelChart({ selectedUser }) {
         if (selectedUser) {
             retrieveStudentsPointsPerLabelORPerDay(selectedUser, 'type', // retrieve result for the student per day
                 (res) => {
-                    console.log(res.data.total_points_by_type)
                     setChartData(res.data.total_points_by_type)
                 },
                 (err) => {

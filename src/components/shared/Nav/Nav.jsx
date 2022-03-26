@@ -13,7 +13,7 @@ export class Nav extends Component {
       <HedarNav>
         <Ul>
           {/* <Li><A></A></Li> */}
-          <Li><A href="#a">أهلا بكم في منصة وِرد </A></Li>
+          <Li><A href="#a">menu</A></Li>
           {/* <Li><A href="#a">fg</A></Li> */}
         </Ul>
       <Logo>ورد</Logo>

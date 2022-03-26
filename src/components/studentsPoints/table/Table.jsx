@@ -61,11 +61,10 @@ import { kaPropsUtils } from 'ka-table/utils';
 const DeleteRow = ({
   dispatch, rowKeyValue, username, pointID
 }) => {
-  const [_pointID, set_pointID] = useState('');
+  const [_pointID, setPointID] = useState('');
   useEffect(() => {
     if (pointID) {
-      console.log('hiiiiii', pointID)
-      set_pointID(pointID)
+      setPointID(pointID);
     }
   }, [pointID]);
   return (
@@ -103,7 +102,7 @@ function getTableProps(studentData) {
     columns: [
       { key: 'standard', title: 'Standard Label', dataType: DataType.String },
       { key: 'point', title: 'Point', dataType: DataType.String },
-      { key: ':delete', width: 70, style: { textAlign: 'center' } },
+      { key: ':delete', style: { textAlign: 'center' } },
     ],
     data: dataArray,
     editingMode: EditingMode.Cell,
@@ -126,13 +125,6 @@ function getDifference(array2, array1) {
   });
 }
 
-function getDifferenceForDelete(array1, array2) {
-  return array1.filter(object1 => {
-    return !array2.some(object2 => {
-      return object1.id === object2.id;
-    });
-  });
-}
 
 
 function TableData({ selectedUser, selectedDay }) {
@@ -142,6 +134,29 @@ function TableData({ selectedUser, selectedDay }) {
   const [editedOrRemovedPointData, setEditedOrRemovedPointData] = useState('');
   let flag = true;
   let tempPrevArr;
+
+
+  function getDifferenceForDelete(array1, array2) {
+    return array1.filter(object1 => {
+      return !array2.some(object2 => {
+        let differentArr = object1.id === object2.id;
+        if (differentArr){
+          console.log(object1);
+          // deleteStudentPoint(
+          //   selectedUser,
+          //   differentArr[0].id,
+          //   (res) => { console.log(res) },
+          //   (err) => { console.log(err) })
+        }
+  
+        return differentArr;
+      });
+    });
+  }
+
+  
+
+
   const dispatch = (action) => {
     changeTableProps((prevState) => {
       if (flag) {
@@ -149,7 +164,12 @@ function TableData({ selectedUser, selectedDay }) {
         flag = false;
       }
       if (action.columnKey === ':delete') { // because the delete have different comparison than the update in the arrays either in the id or the return.
-        if (tempPrevArr) setEditedOrRemovedPointData(getDifferenceForDelete(tempPrevArr, prevState.data)[0])
+        let differentArr = getDifferenceForDelete(tempPrevArr, prevState.data);
+        deleteStudentPoint(
+            selectedUser,
+            differentArr[0].pointID,
+            (res) => { console.log(res) },
+            (err) => { })
       }
       if (action.columnKey === 'point') {
         if (tempPrevArr) setEditedOrRemovedPointData(getDifference(tempPrevArr, prevState.data)[0])
@@ -191,12 +211,13 @@ function TableData({ selectedUser, selectedDay }) {
 
 
   return (
-    // ******** TODO : try to limit the maximum value for the point in the front end or at least render a feild for that *************************** 
+    // ******** TODO : try to limit the maximum value for the point in the front end or at least render a felid for that *************************** 
+    // ******** TODO : and to limit the minimum to not be negative *************************** 
     <>
-      {isTableShown &&
+      {isTableShown && selectedUser && selectedDay &&
         <>
-          <button onClick={updateCells}>
-            Update and Save
+          <button onClick={updateCells} className='save-changes'>
+            Save Changes
           </button>
           <Table
             {...tableProps}
@@ -205,7 +226,15 @@ function TableData({ selectedUser, selectedDay }) {
                 content: (props) => {
                   // eslint-disable-next-line default-case
                   switch (props.column.key) {
-                    case ':delete': return <DeleteRow username={selectedUser} pointID={editedOrRemovedPointData?.pointID} {...props} />;
+                    case ':delete': return <img
+                      // case ':delete': return <DeleteRow username={selectedUser} pointID={editedOrRemovedPointData?.pointID} {...props} />;
+                      src='https://komarovalexander.github.io/ka-table/static/icons/delete.svg'
+                      className='delete-row-column-button'
+                      onClick={() => {
+                        dispatch(deleteRow(props.rowKeyValue));
+                      }}
+                      alt=''
+                    />;
                   }
                 }
               },
