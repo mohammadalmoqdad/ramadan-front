@@ -100,7 +100,7 @@ export default function Students(){
                                   contents={
                                       [
                                           <EditStudentForm students={students} setStudents={setStudents} />,
-                                          <SetPasswordStudents students={students}/>
+                                          <SetPasswordStudents students={students}  />
                                       ]} />
                         </>
                     :

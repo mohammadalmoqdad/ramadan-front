@@ -16,9 +16,10 @@ import {useAdminContext} from "../../../contexts/AdminContext";
 
 export default function EditGroupForm(props) {
 
-    const [firstName, setFirstName] = useState(null);
-    const [lastName, setLastName] = useState(null);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [messages, setMessages] = useState([]);
+    const [classColor, setClassColor] = useState("");
     const [isSuperAdmin, setSuperAdmin] = useState(false);
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -27,7 +28,12 @@ export default function EditGroupForm(props) {
 
     useEffect(() => {
         setMessages([]);
-    }, [firstName, lastName, email, phoneNumber]);
+        setClassColor("");
+    }, [firstName, lastName, email, phoneNumber, selectedUserName]);
+
+    useEffect(()=>{
+        resetEditAdminForm();
+    },[props.reset]);
 
     const handleEditAdminSubmit = (e) => {
         e.preventDefault();
@@ -48,11 +54,20 @@ export default function EditGroupForm(props) {
                     updatedAdmin.last_name = lastName;
                     updatedAdmin.email = email;
                     updatedAdmin.phone_number = phoneNumber;
-                    props.setAdmins([...props.admins.filter(admin => admin.username !== selectedUserName), updatedAdmin]);
-                    if(Object.keys(context.adminInfo).length > 0 && context.adminInfo.username === selectedUserName){
-                        context.setAdminInfo(updatedAdmin);
-                    }
+
+                    resetEditAdminForm();
+
+                    setClassColor("green");
                     setMessages(["تم تعديل المسؤول"]);
+
+                    setTimeout(()=>{
+                        props.setAdmins([...props.admins.filter(admin => admin.username !== selectedUserName), updatedAdmin]);
+                        if(Object.keys(context.adminInfo).length > 0 && context.adminInfo.username === selectedUserName){
+                            context.setAdminInfo(updatedAdmin);
+                        }
+                        setClassColor("");
+                        setMessages([]);
+                    },2000);
                 }
             },
             (err) => {
@@ -61,13 +76,23 @@ export default function EditGroupForm(props) {
                 if (err.response.data) {
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
-                        errMessages.push(obj[e]);
-                    }
+                        errMessages.push(`${obj[e]} : ${e}`);
+                        }
                     )
                 }
+                setClassColor("red");
                 setMessages(errMessages);
             }
         );
+    };
+
+    const resetEditAdminForm = ()=>{
+        setSelectedUserName("");
+        setFirstName("");
+        setLastName("");
+        setPhoneNumber("");
+        setEmail("");
+        setSuperAdmin(false);
     };
 
     const handleSuperAdminCheckChange = (e) => {
@@ -101,12 +126,7 @@ export default function EditGroupForm(props) {
             setEmail(admin.email);
             setSuperAdmin(admin.is_super_admin);
         } else {
-            setSelectedUserName("");
-            setFirstName("");
-            setLastName("");
-            setPhoneNumber("");
-            setEmail("");
-            setSuperAdmin(false);
+            resetEditAdminForm();
         }
 
     }
@@ -116,8 +136,8 @@ export default function EditGroupForm(props) {
 
             {
                 props.admins && props.admins.length > 0 &&
-                        <DropdownDiv className="DropdownDiv" onChange={handleAdminSelectChange}>
-                            <DropdownList className="DropdownList_editAdmin" >
+                        <DropdownDiv className="DropdownDiv">
+                            <DropdownList className="DropdownList_editAdmin" onChange={handleAdminSelectChange} value={selectedUserName}>
                                 <DropdownListItem>اختر المسؤول</DropdownListItem>
                                 {
                                     props.admins.map((admin, index) => (
@@ -129,22 +149,22 @@ export default function EditGroupForm(props) {
             }
             <DivTxtField>
                 <Span />
-                <FormInput onChange={handleFirstNameChange} placeholder='الاسم الأول' type="text" value={firstName == null ? "" : firstName} required />
+                <FormInput onChange={handleFirstNameChange} placeholder='الاسم الأول' type="text" value={firstName} required />
             </DivTxtField>
 
             <DivTxtField>
                 <Span />
-                <FormInput onChange={handleLastNameChange} placeholder='اسم العائلة' type="text" value={lastName == null ? "" : lastName} required />
+                <FormInput onChange={handleLastNameChange} placeholder='اسم العائلة' type="text" value={lastName} required />
             </DivTxtField>
 
             <DivTxtField>
                 <Span />
-                <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email" value={email == null ? "" : email}  />
+                <FormInput onChange={handleEmailChange} placeholder='البريد الإلكتروني' type="email" value={email}  />
             </DivTxtField>
 
             <DivTxtField>
                 <Span />
-                <FormInput onChange={handlePhoneNumberChange} placeholder='رقم الهاتف' type="text" value={phoneNumber == null ? "" : phoneNumber}  />
+                <FormInput onChange={handlePhoneNumberChange} placeholder='رقم الهاتف' type="text" value={phoneNumber}  />
             </DivTxtField>
 
             { props.hasPermission &&
@@ -161,7 +181,7 @@ export default function EditGroupForm(props) {
 
             {messages.length > 0 &&
                 messages.map((message, index) => {
-                    return <DivPass key={index}>{message}</DivPass>
+                    return <DivPass className={classColor} key={index}>{message}</DivPass>
                 })
             }
             <InputSubmit type="submit" value='login'>تعديل المسؤول</InputSubmit>

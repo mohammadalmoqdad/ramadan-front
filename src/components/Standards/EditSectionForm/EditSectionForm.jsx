@@ -14,15 +14,21 @@ import {updateSection} from "../../../services/standardServices";
 
 export default function EditSectionForm(props){
 
-    const [selectedSection, setSelectedSection] = useState(null);
+    const [selectedSection, setSelectedSection] = useState({});
     const [label, setLabel] = useState("");
     const [position, setPosition] = useState(-1);
     const [messages, setMessages] = useState([]);
-
+    const [classColor, setClassColor] = useState("");
 
     useEffect(()=>{
-        setMessages([]);
-    },[label, position]);
+        resetEditSectionForm();
+    },[props.reset]);
+
+    const resetEditSectionForm = ()=>{
+        setLabel("");
+        setSelectedSection({});
+        setPosition(-1);
+    };
 
     const handleLabelChange = (e)=>{
         setLabel(e.target.value);
@@ -34,9 +40,7 @@ export default function EditSectionForm(props){
 
     const handleSelectedSectionChange = (e)=>{
         if(e.target.value ===""){
-            setLabel("");
-            setPosition(-1);
-            setSelectedSection(null);
+            resetEditSectionForm();
         }else{
             let sec = props.sections.filter(section => section.id === Number(e.target.value))[0];
             setSelectedSection(sec);
@@ -48,8 +52,9 @@ export default function EditSectionForm(props){
     const handleAddSectionSubmit = (e)=>{
         e.preventDefault();
 
-        if(selectedSection == null){
+        if(Object.keys(selectedSection).length === 0){
             setMessages(['يجب عليك إختيار قسم لتعديله']);
+            setClassColor("red");
             return;
         }
 
@@ -63,8 +68,18 @@ export default function EditSectionForm(props){
                     let updatedSection = props.sections.filter( section => section.id === Number(selectedSection.id))[0];
                     updatedSection.label = label;
                     updatedSection.position = position;
-                    props.setSections([...props.sections.filter( section => section.id !== Number(selectedSection.id)), updatedSection]);
+                    resetEditSectionForm();
+
+                    setClassColor("green");
                     setMessages(['تم تعديل القسم بنجاح']);
+
+                    setTimeout(()=>{
+                        props.setSections(
+                            [...props.sections.filter( section => section.id !== Number(selectedSection.id)), updatedSection]
+                        );
+                        setClassColor("");
+                        setMessages([]);
+                    },2000);
                 }
             },
             (err) => {
@@ -77,6 +92,7 @@ export default function EditSectionForm(props){
                         }
                     )
                 }
+                setClassColor("red");
                 setMessages(errMessages);
             }
         );
@@ -88,8 +104,9 @@ export default function EditSectionForm(props){
 
             { props.sections && props.sections.length > 0
                 ?
-                <DropdownDiv onChange={handleSelectedSectionChange}>
-                    <DropdownListStanderd className='DropdownList'>
+                <DropdownDiv >
+                    <DropdownListStanderd className='DropdownList' onChange={handleSelectedSectionChange}
+                                          value={Object.keys(selectedSection).length ===0 ? "" : setSelectedSection.id}>
                         <DropdownListItemStanderd key={0} value="">اختر القسم </DropdownListItemStanderd>
                         { props.sections.map((section, index) => {
                             return <DropdownListItemStanderd key={index + 1} value={section.id}>{section.label}</DropdownListItemStanderd>
@@ -113,9 +130,9 @@ export default function EditSectionForm(props){
                 <Label>ترتيب القسم داخل المسابقة</Label>
             </DivTxtFieldnumber>
 
-            { messages.length > 0  &&
-                messages.map((message, index)=>{
-                    return <DivPass key={index}>{message}</DivPass>
+            {messages.length > 0 &&
+                messages.map((message, index) => {
+                    return <DivPass className={classColor} key={index}>{message}</DivPass>
                 })
             }
             <InputSubmit type="submit">تعديل القسم</InputSubmit>

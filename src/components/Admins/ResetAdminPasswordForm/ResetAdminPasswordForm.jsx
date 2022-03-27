@@ -10,33 +10,50 @@ export default function ResetAdminPasswordForm(props){
     const [unmatchedPasswords, setUnmatchedPasswords] = useState(false);
     const [selectedAdminUsername, setSelectedAdminUsername] = useState("");
     const [messages, setMessages] = useState([]);
+    const [classColor, setClassColor] = useState("");
 
 
     useEffect(()=>{
             setMessages([]);
+            setClassColor("");
     },[selectedAdminUsername, password, confirmPassword]);
+
+    useEffect(()=>{
+        resetPasswordForm();
+    },[props.reset]);
 
     const handleResetAdminPasswordSubmit = (e)=>{
         e.preventDefault();
 
         if(password !== confirmPassword){
             setUnmatchedPasswords(true);
+            setClassColor("red");
             return;
         }
 
         if(!isValidPassword ){
+            setClassColor("red");
             return;
         }
 
         if(selectedAdminUsername === ""){
-            setMessages(['يجب عليك إختار مسؤول إعادة تعيين كلمة المرور'])
+            setMessages(['يجب عليك إختار مسؤول إعادة تعيين كلمة المرور']);
+            setClassColor("red");
             return;
         }
 
         resetAdminPassword(selectedAdminUsername, {password: password},
             (res)=>{
                 if(res && res.status ===200){
-                    setMessages(['تم إعادة تعيين كلمة المرور بنجاح'])
+
+                    setClassColor("green");
+                    setMessages(['تم إعادة تعيين كلمة المرور بنجاح']);
+
+                    setTimeout(()=>{
+                        resetPasswordForm();
+                        setClassColor("");
+                        setMessages([]);
+                    },2000);
                 }
             },(err)=>{
                 let errMessages = [];
@@ -44,16 +61,26 @@ export default function ResetAdminPasswordForm(props){
                 if(err.response.data){
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
-                            errMessages.push(obj[e]);
+                        errMessages.push(`${obj[e]} : ${e}`);
                         }
                     )
                 }
+                setClassColor("red");
                 setMessages(errMessages);
             }
         );
 
     };
 
+    const resetPasswordForm  = ()=>{
+        setPassword("");
+        setConfirmPassword("");
+        setSelectedAdminUsername("");
+        setValidPassword(true);
+        setUnmatchedPasswords(false);
+        setMessages([]);
+        setClassColor("");
+    };
     const handlePasswordChange = (e) => {
         if(e.target.value.length < 8){
             setValidPassword(false);
@@ -87,8 +114,8 @@ export default function ResetAdminPasswordForm(props){
         <Form onSubmit={handleResetAdminPasswordSubmit}>
             {
                 props.admins && props.admins.length > 0 &&
-                <DropdownDiv className="DropdownDiv" onChange={handleSelectedAdminChange}>
-                    <DropdownList className="DropdownList_editAdmin" >
+                <DropdownDiv className="DropdownDiv">
+                    <DropdownList className="DropdownList_editAdmin" onChange={handleSelectedAdminChange} value={selectedAdminUsername}>
                         <DropdownListItem>اختر المسؤول</DropdownListItem>
                         {
                             props.admins.map((admin, index) => (
@@ -101,27 +128,26 @@ export default function ResetAdminPasswordForm(props){
 
             <DivTxtField>
                 <Span/>
-                <FormInput onChange={handlePasswordChange} placeholder='كلمة المرور' type="password" required/>
+                <FormInput onChange={handlePasswordChange} placeholder='كلمة المرور' type="password" value={password} required/>
             </DivTxtField>
             {!isValidPassword &&
-                <DivPass>يجب أن تتكون كلمة المرور 8 أحرف على الأقل</DivPass>
+                <DivPass>يجب أن تتكون كلمة المرور من 8 أحرف على الأقل</DivPass>
             }
 
             <DivTxtField>
                 <Span/>
                 <FormInput onChange={handleConfirmPasswordChange} placeholder='تأكيد كلمة المرور' type="password"
-                           required/>
+                           value={confirmPassword} required/>
             </DivTxtField>
 
             {unmatchedPasswords &&
                 <DivPass>الإدخال غير صحيح، تأكد من مطابقة كلمة المرور</DivPass>
             }
 
-            {
-                messages.length > 0  &&
-                    messages.map((message, index)=>{
-                        return <DivPass key={index}>{message}</DivPass>
-                    })
+            {messages.length > 0 &&
+                messages.map((message, index) => {
+                    return <DivPass className={classColor} key={index}>{message}</DivPass>
+                })
             }
             <InputSubmit type="submit" value='login'>إعادة نعيين</InputSubmit>
 

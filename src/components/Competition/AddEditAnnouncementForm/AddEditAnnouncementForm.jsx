@@ -8,6 +8,8 @@ export default function AddEditAnnouncementForm(props){
     const [notes, setNotes] = useState([""]);
     const [messages, setMessages] = useState([]);
     const [isSemiColonExists, setSemiColonExists] = useState(false);
+    const [classColor, setClassColor] = useState("");
+
 
     useEffect(()=>{
         let competition = props.competitions[0];
@@ -20,7 +22,12 @@ export default function AddEditAnnouncementForm(props){
             setNotes([""]);
             setMessages([]);
         }
-    },[props.competitions]);
+    },[props.competitions, props.reset]);
+
+    useEffect(()=>{
+        setMessages([]);
+        setClassColor("");
+    },[ notes, props.reset]);
 
     const handleAddEditSubmit = (e)=>{
         e.preventDefault();
@@ -54,8 +61,15 @@ export default function AddEditAnnouncementForm(props){
                 if(res?.status === 200){
                     let updatedCompetition = props.competitions.filter(competition => competition.id === selectedCompetitionId)[0];
                     updatedCompetition.announcements = data.announcements;
-                    props.setCompetitions([...props.competitions.filter(comp => comp.id !== selectedCompetitionId), updatedCompetition]);
-                    setMessages(['تم تعديل الإعلانات بنجاح'])
+
+                    setMessages(['تم تعديل الإعلانات بنجاح']);
+                    setClassColor("green");
+
+                    setTimeout(()=>{
+                        props.setCompetitions(
+                            [...props.competitions.filter(comp => comp.id !== selectedCompetitionId), updatedCompetition]
+                        );
+                    },2000);
                 }
             },
             (err)=>{
@@ -64,10 +78,11 @@ export default function AddEditAnnouncementForm(props){
                 if(err.response.data){
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
-                            errMessages.push(obj[e]);
+                        errMessages.push(`${obj[e]} : ${e}`);
                         }
                     )
                 }
+                setClassColor("red");
                 setMessages(errMessages);
             }
         );
@@ -110,11 +125,11 @@ export default function AddEditAnnouncementForm(props){
                 })
             }
             { isSemiColonExists &&
-                <DivPass>الإعلان يجب أن لا يحتوي على ;</DivPass>
+                <DivPass className={classColor}>الإعلان يجب أن لا يحتوي على ;</DivPass>
             }
             {messages.length > 0 &&
-                messages.map((message, index)=>{
-                    return <DivPass key={index}>{message}</DivPass>
+                messages.map((message, index) => {
+                    return <DivPass className={classColor} key={index}>{message}</DivPass>
                 })
             }
             <InputSubmit type="submit" value='login'>تعديل الإعلانات</InputSubmit>

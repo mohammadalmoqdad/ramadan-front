@@ -112,7 +112,7 @@ function Login(props) {
 
           {/* TODO: style the error message */}
           {showErrorMessage && (
-            <DivPass>اسم المستخدم أو كلمة المرور خاطآن</DivPass>
+            <DivPass className="red">اسم المستخدم أو كلمة المرور خاطآن</DivPass>
           )}
           <DivPass>
             هل تواجه مشكلة تقنية أو نسيت كلمة المرور؟ تواصل مع الدعم الفني

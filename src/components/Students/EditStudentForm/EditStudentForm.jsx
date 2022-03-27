@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     DivPass,
     DivTxtField,
@@ -17,17 +17,36 @@ import {updateStudent} from "../../../services/studentsServices";
 
 export default function EditStudentForm(props){
     const [messages, setMessages] = useState([]);
+    const [classColor, setClassColor] = useState("");
     const [selectedUsername, setSelectedUsername] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [photo, setPhoto] = useState(null);
     const [isReadOnly, setReadOnly] = useState(false);
 
+    useEffect(()=>{
+        resetEditStudentsForm();
+    },[props.reset]);
+
+    useEffect(()=>{
+        setMessages([]);
+        setClassColor("");
+    },[selectedUsername, firstName, lastName, isReadOnly]);
+
+    const resetEditStudentsForm = ()=>{
+        setPhoto(null);
+        setSelectedUsername("");
+        setFirstName("");
+        setLastName("");
+        setReadOnly(false);
+    };
+
     const handleEditStudentSubmit = (e)=>{
         e.preventDefault();
 
         if(selectedUsername === ""){
             setMessages(['يجب عليك إختيار طالب للتعديل']);
+            setClassColor("red");
             return;
         }
         let formData = new FormData();
@@ -46,8 +65,16 @@ export default function EditStudentForm(props){
                     updatedStudent.first_name = firstName;
                     updatedStudent.last_name = lastName;
                     updatedStudent.read_only = isReadOnly;
-                    props.setStudents([...props.students.filter(student => student.username !== selectedUsername), updatedStudent]);
+                    resetEditStudentsForm();
+
                     setMessages(['تم تعديل الطالب بنجاح']);
+                    setClassColor("green");
+
+                    setTimeout(()=>{
+                        props.setStudents(
+                            [...props.students.filter(student => student.username !== selectedUsername), updatedStudent]
+                        );
+                    },2000);
                 }
             },(err)=>{
                 let errMessages = [];
@@ -55,10 +82,11 @@ export default function EditStudentForm(props){
                 if(err && err.response && err.response.data){
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
-                            errMessages.push(obj[e]);
+                        errMessages.push(`${obj[e]} : ${e}`);
                         }
                     )
                 }
+                setClassColor("red");
                 setMessages(errMessages);
             }
         )
@@ -131,7 +159,7 @@ export default function EditStudentForm(props){
 
             {messages.length > 0 &&
                 messages.map((message, index) => {
-                    return <DivPass key={index}>{message}</DivPass>
+                    return <DivPass className={classColor} key={index}>{message}</DivPass>
                 })
             }
             <InputSubmit type="submit" value="login">

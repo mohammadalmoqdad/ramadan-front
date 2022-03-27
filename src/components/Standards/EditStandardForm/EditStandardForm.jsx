@@ -22,22 +22,24 @@ import { updateStandard} from "../../../services/standardServices";
 
 export default function EditStandardForm(props) {
 
-    const [selectedStandard, setSelectedStandard] = useState(null);
-    const [selectedSection, setSelectedSection] = useState(null);
+    const [selectedSection, setSelectedSection] = useState({});
+    const [selectedStandard, setSelectedStandard] = useState({});
     const [label, setLabel] = useState("");
     const [order, setOrder] = useState(-1);
     const [formType, setFormType] = useState("");
     const [isCustomDaysChecked, setCustomDaysChecked] = useState(false);
     const [customDays, setCustomDays] = useState("");
-    const [isShown, setShown] = useState(false);
-    const [isActive, setActive] = useState(false);
+    const [isShown, setShown] = useState(true);
+    const [isActive, setActive] = useState(true);
     const [description, setDescription] = useState("");
     const [upperUnitsBound, setUpperUnitsBound] = useState(-1);
     const [lowerUnitsBound, setLowerUnitsBound] = useState(-1);
     const [pointsPerUnit, setPointsPerUnit] = useState(-1);
     const [messages, setMessages] = useState([]);
+    const [classColor, setClassColor] = useState("");
     const [days, setDays] = useState([]);
     const [currentSelectedDays, setCurrentSelectedDays] = useState([]);
+    const multiselectRef = React.createRef();
 
     useEffect(()=>{
         let array = [];
@@ -49,12 +51,36 @@ export default function EditStandardForm(props) {
 
     useEffect(() => {
             setMessages([]);
+            setClassColor("");
         }
         , [
             selectedSection, label, order, formType, isCustomDaysChecked, customDays, isShown,
             isActive, description, lowerUnitsBound, pointsPerUnit, days
         ]
     );
+
+    useEffect(()=>{
+        resetEditStandardForm();
+    },[props.reset]);
+
+    const resetEditStandardForm = ()=>{
+        if(multiselectRef && multiselectRef.current){
+            multiselectRef.current.resetSelectedValues();
+        }
+        setSelectedSection({});
+        setSelectedStandard({});
+        setActive(true);
+        setShown(true);
+        setOrder(-1);
+        setLabel("");
+        setDescription("");
+        setFormType("");
+        setUpperUnitsBound(-1);
+        setLowerUnitsBound(-1);
+        setPointsPerUnit(-1);
+        setCustomDaysChecked(false);
+        setCustomDays("");
+    }
 
     const updateStandardItem = (item, data)=>{
         item.section = data.section;
@@ -73,8 +99,9 @@ export default function EditStandardForm(props) {
     const handleEditStandardSubmit = (e)=>{
         e.preventDefault();
 
-        if(selectedStandard === null){
+        if(Object.keys(selectedStandard).length === 0 ){
             setMessages(['يجب عليك اختيار معيار لتعديله']);
+            setClassColor("red");
             return;
         }
 
@@ -97,8 +124,18 @@ export default function EditStandardForm(props) {
                 if (res && res.status === 200) {
                     let updatedStandard = props.standards.filter(standard => standard.id === Number(selectedStandard.id))[0];
                     updateStandardItem(updatedStandard, data);
-                    props.setStandards([...props.standards.filter(standard => standard.id !== Number(selectedStandard.id)), updatedStandard]);
+                    resetEditStandardForm();
+
+                    setClassColor("green");
                     setMessages(['تم تعديل المعيار بنجاح']);
+
+                    setTimeout(()=>{
+                        props.setStandards(
+                            [...props.standards.filter(standard => standard.id !== Number(selectedStandard.id)), updatedStandard]
+                        );
+                        setClassColor("");
+                        setMessages([]);
+                    },2000);
                 }
             },
             (err) => {
@@ -107,10 +144,11 @@ export default function EditStandardForm(props) {
                 if (err.response.data) {
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
-                            errMessages.push(obj[e]);
+                        errMessages.push(`${obj[e]} : ${e}`);
                         }
                     )
                 }
+                setClassColor("red");
                 setMessages(errMessages);
             }
         );
@@ -119,19 +157,7 @@ export default function EditStandardForm(props) {
 
     const handleSelectedStandardChange = (e)=>{
         if(e.target.value === ""){
-            setSelectedSection(null);
-            setSelectedStandard(null);
-            setActive(false);
-            setShown(false);
-            setOrder(-1);
-            setLabel("");
-            setDescription("");
-            setFormType("");
-            setUpperUnitsBound(-1);
-            setLowerUnitsBound(-1);
-            setPointsPerUnit(-1);
-            setCustomDaysChecked(false);
-            setCustomDays("");
+            resetEditStandardForm();
 
         }else{
             let standard = props.standards.filter(standard => standard.id === Number(e.target.value))[0];
@@ -160,7 +186,7 @@ export default function EditStandardForm(props) {
 
     const handleSelectedSectionChange = (e)=>{
         if(e.target.value === ""){
-            selectedSection(null);
+            selectedSection({});
         }else{
             setSelectedSection(props.sections.filter(section => section.id === Number(e.target.value))[0]);
         }
@@ -231,8 +257,9 @@ export default function EditStandardForm(props) {
 
             { props.standards && props.standards.length > 0
                 ?
-                    <DropdownDiv onChange={handleSelectedStandardChange}>
-                        <DropdownListStanderd className='DropdownList'>
+                    <DropdownDiv >
+                        <DropdownListStanderd className='DropdownList' onChange={handleSelectedStandardChange}
+                                              value={Object.keys(selectedStandard).length > 0 ? selectedStandard.id : ""}>
                             <DropdownListItemStanderd key={0} value="">اختر المعيار </DropdownListItemStanderd>
                             { props.standards.map((standard, index) => {
                                 return <DropdownListItemStanderd key={index + 1}  value={standard.id}>{standard.label}</DropdownListItemStanderd>
@@ -247,7 +274,8 @@ export default function EditStandardForm(props) {
             { props.sections && props.sections.length > 0
                 ?
                 <DropdownDiv>
-                    <DropdownListStanderd className='DropdownList' value={selectedSection !== null ? selectedSection.id : ""}  onChange={handleSelectedSectionChange}>
+                    <DropdownListStanderd className='DropdownList'
+                                          value={Object.keys(selectedSection).length > 0 ? selectedSection.id : ""}  onChange={handleSelectedSectionChange}>
                         <DropdownListItemStanderd key={0} value="">اختر القسم </DropdownListItemStanderd>
                         { props.sections.map((section, index) => {
                             return <DropdownListItemStanderd key={index + 1} value={section.id}>{section.label}</DropdownListItemStanderd>
@@ -312,6 +340,7 @@ export default function EditStandardForm(props) {
                         onRemove={handleCustomDaysChange}
                         placeholder='اختر الايام ليكون متاحا'
                         options={days}
+                        ref={multiselectRef}
                         selectedValues={currentSelectedDays}
                         displayValue='label'
                         popupHeight='1rem'
@@ -335,9 +364,9 @@ export default function EditStandardForm(props) {
                 </DivTxtFieldnumber>
             }
 
-            { messages.length > 0  &&
-                messages.map((message, index)=>{
-                    return <DivPass key={index}>{message}</DivPass>
+            {messages.length > 0 &&
+                messages.map((message, index) => {
+                    return <DivPass className={classColor} key={index}>{message}</DivPass>
                 })
             }
             <InputSubmit type="submit" value='login'>تعديل المعيار</InputSubmit>

@@ -108,7 +108,7 @@ border: none;
 background: none;
 outline: none;
 text-align:right;
-color: orange;
+color: #213C64;
 border-bottom: 2px solid #2691d9;
 :focus{
 transition: .1s;
@@ -245,6 +245,13 @@ border-bottom: 1px solid silver;
 `;
 
 export const DivPass = styled.h3`
+
+&.green{
+  color: #088444;
+}
+&.red{
+  color: #eb2b2b;
+}
 
 display: flex;
 justify-content: center;

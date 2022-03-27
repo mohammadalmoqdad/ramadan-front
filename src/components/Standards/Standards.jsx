@@ -25,6 +25,7 @@ export default function Standards() {
     const [currentLabels, setCurrentLabels] = useState([]);
     const [contents, setContents] = useState([]);
     const [currentContents, setCurrentContents] = useState([]);
+
     const context = useAdminContext();
     let navigate = useNavigate();
 
@@ -78,10 +79,10 @@ export default function Standards() {
         if(hasPermission){
             if(sections && sections.length > 0){
                 labelsArray.push('تعديل قسم');
-                contentsArray.push(<EditSectionForm sections={sections} setSections={setSections}/>);
+                contentsArray.push(<EditSectionForm sections={sections} setSections={setSections} />);
             }
             labelsArray.push('إضافة قسم');
-            contentsArray.push(<AddSectionForm sections={sections} setSections={setSections}/>);
+            contentsArray.push(<AddSectionForm sections={sections} setSections={setSections} />);
             if(standards && standards.length > 0){
                 labelsArray.push('تعديل معييار');
                 contentsArray.push(<EditStandardForm  sections={sections} standards={standards} setStandards={setStandards} />);
@@ -208,7 +209,7 @@ export default function Standards() {
                 }
                 <Tabs labels={currentLabels} contents={currentContents} contentClass=" no-padding" />
 
-                <Tabs labels={labels} contents={contents} />
+                <Tabs labels={labels} contents={contents}/>
             </Container>
         </>
     );

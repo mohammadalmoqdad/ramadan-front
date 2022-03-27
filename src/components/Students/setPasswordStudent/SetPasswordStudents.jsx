@@ -20,14 +20,26 @@ export default function SetPasswordStudents(props) {
     const [PasswordStudent2, setPasswordStudent2] = useState("");
     const [PasswordStudentEqual, setPasswordStudentEqual] = useState(true);
     const [messages, setMessages] = useState([]);
+    const [classColor, setClassColor] = useState("");
     const [isValidPassword, setValidPassword] = useState(true);
 
 
     useEffect(() => {
-
         setMessages([]);
+        setClassColor("");
     }, [userName, PasswordStudent1, PasswordStudent2]);
 
+    useEffect(()=>{
+        resetStudentChangePasswordForm();
+    },[props.reset]);
+
+    const resetStudentChangePasswordForm = ()=>{
+        setUserName("");
+        setPasswordStudent1("");
+        setPasswordStudent2("");
+        setPasswordStudentEqual(true);
+        setValidPassword(true);
+    };
 
     const selectedUser = (e) => {
         setUserName(e.target.value);
@@ -56,11 +68,13 @@ export default function SetPasswordStudents(props) {
         e.preventDefault();
 
         if (!PasswordStudentEqual || !isValidPassword) {
+            setClassColor("red");
             return;
         }
 
         if (userName === "") {
             setMessages(["يجب عليك اختيار متسابق لتغيير كلمة المرور"]);
+            setClassColor("red");
             return;
         }
 
@@ -72,8 +86,10 @@ export default function SetPasswordStudents(props) {
             userName,
             PasswordStudent,
             (res) => {
-                setMessages(['تم تغيير كلمة المرور بنجاح']);
-                console.log(res.data);
+                if(res && res.status === 200){
+                    setMessages(['تم تغيير كلمة المرور بنجاح']);
+                    setClassColor("green");
+                }
             },
             (err) => {
                 let errMessages = [];
@@ -81,10 +97,11 @@ export default function SetPasswordStudents(props) {
                 if (err.response.data) {
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
-                            errMessages.push(obj[e]);
+                        errMessages.push(`${obj[e]} : ${e}`);
                         }
                     )
                 }
+                setClassColor("red");
                 setMessages(errMessages)
             }
         );
@@ -94,8 +111,8 @@ export default function SetPasswordStudents(props) {
     return (
         <Form onSubmit={Set_Pas_St_Fun}>
 
-            <DropdownDiv className="DropdownDiv" onChange={selectedUser}>
-                <DropdownList className="DropdownList">
+            <DropdownDiv className="DropdownDiv">
+                <DropdownList className="DropdownList" onChange={selectedUser} value={userName}>
                     <DropdownListItem key={0} value="">اختر الطالب</DropdownListItem>
                     {
                         props.students.map((student, index) => (
@@ -112,11 +129,12 @@ export default function SetPasswordStudents(props) {
                     onChange={handleChangeStudentPassword1}
                     type="password"
                     placeholder="ادخل كلمة مرور جديدة"
+                    value={PasswordStudent1}
                     required
                 />
             </DivTxtField>
             {!isValidPassword &&
-                <DivPass>يجب أن تتكون كلمة المرور 8 أحرف على الأقل</DivPass>
+                <DivPass className={classColor}>يجب أن تتكون كلمة المرور من 8 أحرف على الأقل</DivPass>
             }
 
             <DivTxtField>
@@ -125,19 +143,20 @@ export default function SetPasswordStudents(props) {
                     onChange={handleChangeStudentPassword2}
                     placeholder="تأكيد كلمة المرور"
                     type="password"
+                    value={PasswordStudent2}
                     required
                 />
             </DivTxtField>
 
             {!PasswordStudentEqual &&
-                <DivPass>
+                <DivPass className={classColor}>
                     الإدخال غير صحيح، تأكد من مطابقة كلمة المرور
                 </DivPass>
             }
 
             {messages.length > 0 &&
                 messages.map((message, index) => {
-                    return <DivPass key={index}>{message}</DivPass>
+                    return <DivPass className={classColor} key={index}>{message}</DivPass>
                 })
             }
             <InputSubmit type="submit" value="login">
