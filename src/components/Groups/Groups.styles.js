@@ -51,24 +51,20 @@ color: #213C64;
 `;
 
 export const Form = styled.form`
-width:80%;
+width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-align-items:center;
 margin: auto;
-
-@media (max-width:500px) {
-  width:80%;
-
-}
 
 `;
 
 
 export const DivTxtField = styled.div`
 position: relative;
-width:100%;
 /* border-bottom: 2px solid #adadad; */
 margin: 1rem 0;
 
@@ -102,6 +98,9 @@ font-size: 1.2rem;
 
 export const FormInput = styled.input`
 width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 padding: 0 5px;
 height: 2.1rem;
 font-size: 1rem;
@@ -120,7 +119,10 @@ border-bottom: 3px solid orange;
 `;
 
 export const InputSubmit = styled.button`
-width:16rem;
+width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 height: 3.1rem;
 border: 1px;
 background: linear-gradient(120deg, #2980b9, #2980b9);
@@ -139,9 +141,6 @@ transition: .3s;
 `;
 
 export const DropdownDiv = styled.div`
-width: 20rem;
-height: auto;
-margin: auto;
 /* box-shadow: 1px 3px 12px 0px #0000007a; */
 
 margin-bottom: 0rem;

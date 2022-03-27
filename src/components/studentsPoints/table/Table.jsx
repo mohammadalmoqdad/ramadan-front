@@ -217,7 +217,7 @@ function TableData({ selectedUser, selectedDay }) {
       {isTableShown && selectedUser && selectedDay &&
         <>
           <button onClick={updateCells} className='save-changes'>
-            Save Changes
+            حفظ التغيرات
           </button>
           <Table
             {...tableProps}

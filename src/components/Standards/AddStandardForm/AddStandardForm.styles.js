@@ -53,6 +53,9 @@ color: #213C64;
 
 export const Formm = styled.form`
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -75,9 +78,10 @@ export const DivTxtFieldnumber = styled.div`
 /* position: relative; */
 display: flex;
 /* border-bottom: 2px solid #adadad; */
-/* margin: 1rem 0; */
+margin: 1rem 0;
+
 @media (max-width:500px) {
-/* margin: 1rem 0; */
+margin: 1rem 0;
 }
 `;
 
@@ -128,6 +132,9 @@ border-bottom: 3px solid orange;
 
 export const FormInput = styled.input`
 width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 padding: 0 5px;
 height: 2.1rem;
 font-size: 1rem;
@@ -174,6 +181,9 @@ transition: .1s;
 
 export const InputSubmit = styled.button`
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 height: 3.1rem;
 border: 1px;
 background: linear-gradient(120deg, #2980b9, #2980b9);
@@ -192,9 +202,6 @@ transition: .3s;
 `;
 
 export const DropdownDiv = styled.div`
-width: 25rem;
-height: auto;
-margin: auto;
 /* box-shadow: 1px 3px 12px 0px #0000007a; */
 
 margin-bottom: 0rem;
@@ -252,6 +259,9 @@ background-color: white;
 
 export const DropdownListStanderd = styled.select`
 width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: white;
 font-size: 1rem;
@@ -379,7 +389,7 @@ export const Checkboxes = styled.input`
 justify-content: center;
 align-items: flex-start; */
 
-margin: 0 0.2rem;
+margin: auto;
 display: block;
 margin-bottom: 0rem;
 width: 1.5rem;
@@ -394,22 +404,6 @@ flex-direction: column;
 
 }
 `;
-
-export const CheckBoxesContainer= styled.div`
-display: flex;
-/* gap:1rem; */
-justify-content: space-between;
-width:80%;
-
-@media(max-width:500px) {
-width:100%
- /* flex-direction: column; */
-}
-
-`;
-
-
-
 
 export const LabelSoper = styled.section`
 text-align: center;

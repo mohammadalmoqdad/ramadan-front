@@ -33,19 +33,7 @@
      color: white;
  }
 
- input:focus {
-     /* border-inline-color: 1px solid lightgray; */
-     margin: 0;
-     padding: 0;
-     outline: none;
-     border: none;
-     background-color: #f4b069;
-     color: #FFFFFF;
- }
 
- input {
-     width: 100%;
- }
 
 
  /* the div of the updated  */

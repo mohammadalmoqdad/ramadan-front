@@ -10,17 +10,25 @@ box-sizing:border-box;
 
 export const PointShow = styled.div`
  width: 100%;
+  input:focus {
+     /* border-inline-color: 1px solid lightgray; */
+     margin: 0;
+     padding: 0;
+     outline: none;
+     border: none;
+     background-color: #f4b069;
+     color: #FFFFFF;
+ }
+
+ input {
+     width: 100%;
+ }
 /* height: 70rem; */
 background: linear-gradient(120deg, #2980b9, #2980b9);
 /* justify-content: center; */
  /* align-items: center; */
 
  display: flex;
- @media (max-width:960px) {
-  /* padding: 3rem; */
-  /* width: 30rem; */
-  height:85rem;
-  }
   @media (max-width:500px) {
   margin: auto;
   /* margin-top: 1rem; */
@@ -215,6 +223,9 @@ margin: 1rem 0;
 
 export const FormInput = styled.input`
 width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 padding: 0 5px;
 height: 2.1rem;
 font-size: 1rem;
@@ -236,6 +247,9 @@ position: absolute;
 top:2.1rem;
 left: 0;
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 height: 2px;
 background: #2691d9;
 :hover{
@@ -247,6 +261,9 @@ transition: .1s;
 
 export const InputSubmit = styled.button`
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 height: 3.1rem;
 border: 1px;
 background: linear-gradient(120deg, #2980b9, #2980b9);
@@ -282,6 +299,9 @@ transition: .3s;
 
 export const DropdownDiv = styled.div`
 width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 margin: auto;
 /* margin-bottom: 0rem; */
 margin-top: 1rem;
@@ -296,6 +316,9 @@ margin-top: 1rem;
 
 export const DropdownList = styled.select`
 width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 font-family: 'Noto Kufi Arabic', sans-serif;
 /* color: #213C64; */
 color: white;

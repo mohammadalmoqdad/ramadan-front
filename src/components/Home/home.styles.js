@@ -41,13 +41,7 @@ export const StatisticsContainer = styled.div`
   text-align: center;
 `;
 
-export const StatisticsNumber = styled.p`
-margin-top: .2rem;
-text-align: center;
-/* padding: 0 0 20px 0; */
-font-family: 'Noto Kufi Arabic', sans-serif;
-font-size: 2.3rem;
-color: orange;`;
+export const StatisticsNumber = styled.p``;
 
 export const StatisticsTitle = styled.p``;
 
@@ -158,6 +152,19 @@ justify-content: center;
 margin-top: 1rem;
 justify-content: center;
 align-items: center;
+}
+`;
+
+export const Wird = styled.h1`
+margin-top: 2rem;
+text-align: center;
+/* padding: 0 0 20px 0; */
+font-family: 'Noto Kufi Arabic', sans-serif;
+font-size: 1.5rem;
+color: orange;
+@media(max-width:1100px){
+  font-size: 1rem;
+  font-weight: bold;
 }
 `;
 

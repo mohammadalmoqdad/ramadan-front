@@ -52,10 +52,10 @@ export default function StudentsPoints() {
     <PointShow>
       <LoginForm>
         {
-          Students?.length === 0 || !Students ? <p style={{ textAlign: 'center', margin: 0 }}> no students to show </p> : <>
+          Students?.length === 0 || !Students ? <p style={{ textAlign: 'center', margin: 0 }}> لا يوجد طلاب لعرضهم </p> : <>
             {studentsResultsFlag ?
-              <Wird onClick={() => SetStudentsResultsFlag(!studentsResultsFlag)}>Show Students Table</Wird> :
-              <Wird onClick={() => SetStudentsResultsFlag(!studentsResultsFlag)}>Show Students Chart</Wird>
+              <Wird onClick={() => SetStudentsResultsFlag(!studentsResultsFlag)}>إضغط لعرض الجدول</Wird> :
+              <Wird onClick={() => SetStudentsResultsFlag(!studentsResultsFlag)}>إضغط لعرض الرسم البياني</Wird>
             }
             <SelectInputContainer>
 
@@ -81,7 +81,7 @@ export default function StudentsPoints() {
                   <DropdownList className='DropdownList' onChange={handleDayChange}>
                     <DropdownListItem>اختر اليوم من رمضان</DropdownListItem>
                     {
-                      Array(30).fill(undefined).map((val, idx) => <DropdownListItem key={idx} value={idx}>{idx} رمضان</DropdownListItem>)
+                      Array(30).fill(undefined).map((val, idx) => <DropdownListItem key={idx} value={idx+1}>{idx+1} رمضان</DropdownListItem>)
                     }
                   </DropdownList>
 

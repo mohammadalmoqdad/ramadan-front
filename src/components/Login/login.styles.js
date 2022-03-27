@@ -28,6 +28,9 @@ export const DivCenter = styled.div`
 
 export const Form = styled.form`
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -84,6 +87,9 @@ margin: 1rem 0;
 
 export const FormInput = styled.input`
 width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 padding: 0 5px;
 height: 2.1rem;
 font-size: 1rem;
@@ -107,6 +113,9 @@ position: absolute;
 top:2.1rem;
 left: 0;
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 height: 2px;
 background: #2691d9;
 :hover{
@@ -118,6 +127,9 @@ transition: .1s;
 
 export const InputSubmit = styled.button`
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 height: 3.1rem;
 border: 1px;
 background: linear-gradient(120deg, #2980b9, #2980b9);
