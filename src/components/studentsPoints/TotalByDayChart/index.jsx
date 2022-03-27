@@ -39,7 +39,7 @@ export default function TotalByPoints({ selectedUser }) {
               valueField="total_day"
               argumentField="ramadan_record_date"
             />
-            <Title text="Student Statistics Per Day" />
+            <Title text="الإحصائيات لكل يوم" />
             <Animation />
           </Chart>
         </>

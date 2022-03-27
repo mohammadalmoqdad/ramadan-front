@@ -39,7 +39,7 @@ export default function TotalByLabelChart({ selectedUser }) {
                 valueField="total_point"
                 argumentField="point_template__label"
               />
-              <Title text="Student Statistics Per Label" />
+              <Title text="الإحصائيات لكل معييار" />
               <Animation />
             </Chart>
           </>
