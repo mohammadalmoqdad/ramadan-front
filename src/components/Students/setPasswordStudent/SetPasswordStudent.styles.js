@@ -175,6 +175,9 @@ box-shadow: 1px 3px 12px 0px #0000007a;
 
 export const Form = styled.form`
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -241,6 +244,9 @@ margin: 1rem 0;
 
 export const FormInput = styled.input`
 width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 padding: 0 5px;
 height: 2.1rem;
 font-size: 1rem;
@@ -261,6 +267,9 @@ border-bottom: 3px solid orange;
 
 export const InputSubmit = styled.button`
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 height: 3.1rem;
 border: 1px;
 background: linear-gradient(120deg, #2980b9, #2980b9);

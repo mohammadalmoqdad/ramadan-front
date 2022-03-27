@@ -5,8 +5,9 @@ import styled from "styled-components";
 // addNewAdmin 
 export default styled.div`
 width: 100%;
-/* background: #fff; */
-height:calc(100vh - 80px);
+
+background: linear-gradient(120deg, #2980b9, #2980b9);
+
 display: flex;
 justify-content: center;
 align-items: flex-start;
@@ -51,7 +52,10 @@ color: #213C64;
 `;
 
 export const Form = styled.form`
-width:100%
+width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -80,7 +84,10 @@ width: 80%;
 `;
 
 export const FormInput = styled.input`
-width: 100%;
+width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 padding: 0 5px;
 height: 2.1rem;
 font-size: 1rem;
@@ -100,6 +107,9 @@ border-bottom: 3px solid orange;
 
 export const InputSubmit = styled.button`
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 height: 3.1rem;
 border: 1px;
 background: linear-gradient(120deg, #2980b9, #2980b9);
@@ -162,6 +172,8 @@ width: 25rem;
 @media (max-width:500px) {
     margin: 10px 0;
     max-height:350px;
+    width: 100%;
+
 }
 
 margin: 100px auto;

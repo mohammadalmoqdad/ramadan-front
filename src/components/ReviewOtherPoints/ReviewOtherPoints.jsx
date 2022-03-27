@@ -13,6 +13,7 @@ import {
     FormInput,
     FormInputnumber, InputSubmit, Label
 } from "../Standards/AddStandardForm/AddStandardForm.styles";
+import Container from '../Standards/Standards.styles';
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";
 
@@ -127,7 +128,8 @@ export default function ReviewOtherPoints(){
 
     return (
 
-        <Tabs labels={['مراجعة المدخلات النصية']} contents={[
+        <Container>
+            <Tabs labels={['مراجعة المدخلات النصية']} contents={[
                 <>
                     {students && students.length > 0 ?
                         <Form onSubmit={handleSubmit}>
@@ -236,5 +238,6 @@ export default function ReviewOtherPoints(){
                 </>
 
             ]}/>
+        </Container>
     );
 }

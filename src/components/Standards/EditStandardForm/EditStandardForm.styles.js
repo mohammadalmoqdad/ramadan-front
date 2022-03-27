@@ -55,6 +55,9 @@ color: #213C64;
 
 export const Formm = styled.form`
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -127,6 +130,9 @@ border-bottom: 3px solid orange;
 
 export const FormInput = styled.input`
 width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 padding: 0 5px;
 height: 2.1rem;
 font-size: 1rem;
@@ -170,6 +176,9 @@ transition: .1s;
 
 export const InputSubmit = styled.button`
 width:20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 height: 3.1rem;
 border: 1px;
 background: linear-gradient(120deg, #2980b9, #2980b9);
@@ -187,9 +196,6 @@ transition: .3s;
 `;
 
 export const DropdownDiv = styled.div`
-width: 25rem;
-height: auto;
-margin: auto;
 /* box-shadow: 1px 3px 12px 0px #0000007a; */
 
 margin-bottom: 0rem;
@@ -247,6 +253,9 @@ background-color: white;
 
 export const DropdownListStanderd = styled.select`
 width: 20rem;
+@media (max-width:550px) {
+    width: 100%;
+}
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: white;
 font-size: 1rem;

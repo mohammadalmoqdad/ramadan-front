@@ -38,30 +38,23 @@
   }
 }
 #root .container {
-  box-shadow: 1px 3px 12px 0px #0000007a;
-  font-family: 'Noto Kufi Arabic', sans-serif !important;
-
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
   flex-direction: column;
   position: relative;
-  max-width: 35rem;
-  /* background: #f1f1f1; */
+  max-width: 500px;
+  background: #f1f1f1;
   margin: 100px auto;
   word-break: break-word;
   border: 1px solid rgba(0, 0, 0, 0.274);
-  /* padding-right: 0;
-  padding-left: 0; */
-  padding: 2rem 0;
+  padding-right: 0;
+  padding-left: 0;
 }
 @media only screen and (max-width: 500px) {
   #root .container {
-    /* margin: 50px 0; */
+    margin: 50px 0;
   }
   #root .container .content {
-    /* max-height: 350px; */
-    /* width: fit-content; */
+    max-height: 350px;
   }
 }
 
