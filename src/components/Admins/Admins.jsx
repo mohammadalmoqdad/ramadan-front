@@ -71,7 +71,8 @@ export default function Admins() {
             contents.push(<ResetAdminPasswordForm admins={admins}/>);
 
             labels.push('تعديل مسؤول');
-            contents.push(<EditAdminForm admins={admins} setAdmins={setAdmins} hasPermission={hasPermission}/>);
+            contents.push(<EditAdminForm admins={admins} setAdmins={setAdmins}
+                                         hasPermission={hasPermission}/>);
 
             if(hasPermission){
                 labels.push('إضافة مسؤول');

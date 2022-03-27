@@ -144,10 +144,10 @@ export default function Groups() {
                                 })
                             }
                         </DropdownList>
-                        <Tabs labels={groupsLabels} contents={groupsContents}/>
+                        <Tabs labels={groupsLabels} contents={groupsContents} />
                     </>
                 : hasPermission ?
-                    <Tabs labels={groupsLabels} contents={groupsContents}/>
+                    <Tabs labels={groupsLabels} contents={groupsContents} />
                 :
                     <Tabs labels={['المجموعات']} contents={[<H5>لا يوجد لديك مجموعات </H5>]}/>
             }

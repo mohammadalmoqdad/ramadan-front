@@ -20,7 +20,7 @@ import {DivPass} from "../../Admins/Admins.styles";
 import {addStandard} from "../../../services/standardServices";
 
 export default function AddStandardForm(props) {
-    const [selectedSection, setSelectedSection] = useState(null);
+    const [selectedSection, setSelectedSection] = useState({});
     const [label, setLabel] = useState("");
     const [order, setOrder] = useState(-1);
     const [formType, setFormType] = useState("");
@@ -33,7 +33,10 @@ export default function AddStandardForm(props) {
     const [lowerUnitsBound, setLowerUnitsBound] = useState(-1);
     const [pointsPerUnit, setPointsPerUnit] = useState(-1);
     const [messages, setMessages] = useState([]);
+    const [classColor, setClassColor] = useState("");
     const [days, setDays] = useState([]);
+    const [currentDays, setCurrentDays] = useState([]);
+    const multiselectRef = React.createRef();
 
     useEffect(()=>{
         let array = [];
@@ -45,12 +48,35 @@ export default function AddStandardForm(props) {
 
     useEffect(() => {
             setMessages([]);
+            setClassColor("");
         }
         , [
             selectedSection, label, order, formType, isCustomDaysChecked, customDays, isShown,
             isActive, description, lowerUnitsBound, pointsPerUnit, days
         ]
     );
+    useEffect(()=>{
+        resetAddStandardForm();
+    },[props.reset]);
+
+    const resetAddStandardForm = ()=>{
+        setSelectedSection({});
+        setActive(true);
+        setShown(true);
+        setOrder(-1);
+        setLabel("");
+        setDescription("");
+        setFormType("");
+        setUpperUnitsBound(-1);
+        setLowerUnitsBound(-1);
+        setPointsPerUnit(-1);
+        setCustomDaysChecked(false);
+        setCustomDays("");
+        setCurrentDays([]);
+        if(multiselectRef && multiselectRef.current){
+            multiselectRef.current.resetSelectedValues();
+        }
+    };
 
     const handleAddStandardSubmit = (e)=>{
         e.preventDefault();
@@ -73,8 +99,17 @@ export default function AddStandardForm(props) {
             (res) => {
                 if(res && res.status === 201){
                     data.id = res.data.id;
-                    props.setStandards([...props.standards, data]);
+                    resetAddStandardForm();
+
+                    setClassColor("green");
                     setMessages(['تم إضافة المعيار بنجاح']);
+
+                    setTimeout(()=>{
+                        props.setStandards([...props.standards, data]);
+                        setClassColor("");
+                        setMessages([]);
+
+                    },2000);
                 }
             },
             (err) => {
@@ -83,10 +118,11 @@ export default function AddStandardForm(props) {
                 if (err.response.data) {
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
-                            errMessages.push(obj[e]);
+                        errMessages.push(`${obj[e]} : ${e}`);
                         }
                     )
                 }
+                setClassColor("red");
                 setMessages(errMessages);
             }
         );
@@ -95,7 +131,7 @@ export default function AddStandardForm(props) {
 
     const handleSelectedSectionChange = (e)=>{
         if(e.target.value === ""){
-            setSelectedSection(null);
+            setSelectedSection({});
         }else{
             setSelectedSection(props.sections.filter(section => section.id === Number(e.target.value))[0]);
         }
@@ -162,8 +198,8 @@ export default function AddStandardForm(props) {
                 <Formm onSubmit={handleAddStandardSubmit}>
                     { props.sections && props.sections.length > 0
                         ?
-                        <DropdownDiv onChange={handleSelectedSectionChange}>
-                            <DropdownListStanderd className='DropdownList'>
+                        <DropdownDiv>
+                            <DropdownListStanderd className='DropdownList'  value={Object.keys(selectedSection).length > 0 ? selectedSection.id : ""}  onChange={handleSelectedSectionChange}>
                                 <DropdownListItemStanderd key={0} value="">اختر القسم </DropdownListItemStanderd>
                                 { props.sections.map((section, index) => {
                                     return <DropdownListItemStanderd key={index + 1} value={section.id}>{section.label}</DropdownListItemStanderd>
@@ -178,16 +214,16 @@ export default function AddStandardForm(props) {
 
                     <DivTxtField>
                         <Span/>
-                        <FormInput placeholder='ادخل العنوان ' type="text" required onChange={handleLabelChange}/>
+                        <FormInput placeholder='ادخل العنوان ' value={label} type="text" required onChange={handleLabelChange}/>
                     </DivTxtField>
 
                     <DivTxtFieldnumber>
                         <Span/>
-                        <FormInputnumber type="number"  min='1' required onChange={handleOrderChange}/>
+                        <FormInputnumber type="number" value={order!== -1 ? (order+"") : ""}  min='1' required onChange={handleOrderChange}/>
                         <Label>ترتيب المعيار داخل القسم</Label>
                     </DivTxtFieldnumber>
 
-                    <DropdownListStanderd className='DropdownList' onChange={handleFormTypeChange}>
+                    <DropdownListStanderd className='DropdownList' value={formType} onChange={handleFormTypeChange}>
                         <DropdownListItemStanderd value="">اختر نوع النموذج</DropdownListItemStanderd>
                         <DropdownListItemStanderd value="num">رقمي</DropdownListItemStanderd>
                         <DropdownListItemStanderd value="chk">خانة إختيار - صح أو خطأ</DropdownListItemStanderd>
@@ -197,29 +233,30 @@ export default function AddStandardForm(props) {
 
                     <DivTxtField>
                         <Span/>
-                        <FormInput placeholder='وصف النقاط - مثال : نقطتان لكل صفحة ' type="text" required onChange={handleDescriptionChange}/>
+                        <FormInput placeholder='وصف النقاط - مثال : نقطتان لكل صفحة ' type="text" required value={description} onChange={handleDescriptionChange}/>
                     </DivTxtField>
 
                     <DivTxtFieldnumber>
                         <Span/>
-                        <FormInputnumber  min="0" type="number" required onChange={handleLowerBoundPointUnitsChange}/>
+                        <FormInputnumber  min="0" type="number" required value={lowerUnitsBound !== -1 ? (""+lowerUnitsBound) : ""} onChange={handleLowerBoundPointUnitsChange}/>
                         <Label>الحد الأدنى للتكرار</Label>
                     </DivTxtFieldnumber>
 
                     <DivTxtFieldnumber>
                         <Span/>
-                        <FormInputnumber min={lowerUnitsBound !== -1 ? lowerUnitsBound : 0} type="number" required onChange={handleUpperBoundPointUnitsChange}/>
+                        <FormInputnumber min={lowerUnitsBound !== -1 ? lowerUnitsBound : 0}
+                                         type="number" value={upperUnitsBound !==-1 ? (upperUnitsBound+"") : ""} required onChange={handleUpperBoundPointUnitsChange}/>
                         <Label>الحد الأعلى للتكرار</Label>
                     </DivTxtFieldnumber>
 
                     <DivTxtFieldnumber>
                         <Span/>
-                        <FormInputnumber type="number" min="1" required onChange={handlePointUnitChange}/>
+                        <FormInputnumber type="number" min="1" required value={pointsPerUnit !==-1 ? (pointsPerUnit+"") : ""} onChange={handlePointUnitChange}/>
                         <Label>ادخل عدد نقاط لكل تكرار</Label>
                     </DivTxtFieldnumber>
 
                     <DivTxtFieldnumber>
-                        <Checkboxes type="checkbox" onChange={handleCustomDaysCheckboxChange}/> <LabelSoper>متاح لأيام محددة</LabelSoper>
+                        <Checkboxes type="checkbox" onChange={handleCustomDaysCheckboxChange} checked={isCustomDaysChecked}/> <LabelSoper>متاح لأيام محددة</LabelSoper>
                     </DivTxtFieldnumber>
                     { isCustomDaysChecked &&
                         <DivMultiselect>
@@ -228,6 +265,8 @@ export default function AddStandardForm(props) {
                                 onRemove={handleCustomDaysChange}
                                 placeholder='اختر الايام ليكون متاحا'
                                 options={days}
+                                ref={multiselectRef}
+                                selectedValues={currentDays}
                                 displayValue='label'
                                 popupHeight='1rem'
                                 popupwidth='5rem'
@@ -250,9 +289,9 @@ export default function AddStandardForm(props) {
                         </DivTxtFieldnumber>
                     }
 
-                    { messages.length > 0  &&
-                          messages.map((message, index)=>{
-                            return <DivPass key={index}>{message}</DivPass>
+                    {messages.length > 0 &&
+                        messages.map((message, index) => {
+                            return <DivPass className={classColor} key={index}>{message}</DivPass>
                         })
                     }
                     <InputSubmit type="submit" value='login'>إضافة المعيار</InputSubmit>

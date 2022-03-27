@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 export default function Tabs(props) {
 
     const [toggleState, setToggleState] = useState(props.labels.length - 1 >= 0 ? props.labels.length - 1 : 0);
+    const [reset , setReset] = useState(false);
 
     useEffect(()=>{
         setToggleState(props.labels.length - 1 >= 0 ? props.labels.length - 1 : 0);
@@ -10,6 +11,7 @@ export default function Tabs(props) {
 
     const toggleTab = (index) => {
         setToggleState(index);
+        setReset(!reset);
     };
 
 
@@ -35,7 +37,7 @@ export default function Tabs(props) {
                                     <div
                                         className={(toggleState === index ? "content  active-content" : "content")
                                             + (props.contentClass ? props.contentClass : "") }
-                                        key={index}>{content}</div>
+                                        key={index}>{React.cloneElement(content, {reset: reset})}</div>
                                 )
                             })
                         }

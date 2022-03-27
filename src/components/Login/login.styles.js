@@ -38,6 +38,13 @@ margin: auto;
 `;
 
 export const DivPass = styled.div`
+&.green{
+  color: #088444;
+}
+&.red{
+  color: #eb2b2b;
+}
+
 width: 100%;
 padding: 0 5px;
 height: 40px;
@@ -97,7 +104,7 @@ border: none;
 background: none;
 outline: none;
 text-align:right;
-color: orange;
+color: #213C64;
 border-bottom: 2px solid #2691d9;
 :focus{
 transition: .1s;

@@ -139,7 +139,7 @@ export const StudantName = styled.div`
 width :25rem;
 text-align:right;
 font-family: 'Noto Kufi Arabic', sans-serif;
-color: orange;
+color: 2691d9;
 font-size: 1.3rem;
 font-weight: bolder;
 padding: 1.7rem;
@@ -186,6 +186,12 @@ margin: auto;
 `;
 
 export const DivPass = styled.div`
+&.green{
+  color: #088444;
+}
+&.red{
+  color: #eb2b2b;
+}
 width: 100%;
 padding: 0 5px;
 height: 40px;
@@ -254,7 +260,7 @@ border: none;
 background: none;
 outline: none;
 text-align:right;
-color: orange;
+color: 2691d9;
 border-bottom: 2px solid #2691d9;
 :focus{
 transition: .1s;

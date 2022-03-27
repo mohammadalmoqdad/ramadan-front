@@ -8,7 +8,7 @@ import {
     AnnouncementsFormInput,
     RemoveBtn
 } from "../../Groups/Groups.styles";
-import {DivPass, FormInput} from "../../Admins/Admins.styles";
+import {DivPass} from "../../Admins/Admins.styles";
 import {updateCompetition} from "../../../services/competitionsServices";
 import {Checkboxes, DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
 
@@ -19,6 +19,7 @@ export default function EditCompetitionForm(props){
     const [selectedCompetitionId, setSelectedCompetitionId] = useState("");
     const [notes, setNotes] = useState([""]);
     const [messages, setMessages] = useState([]);
+    const [classColor, setClassColor] = useState("");
     const [isSemiColonExists, setSemiColonExists] = useState(false);
 
     useEffect(()=>{
@@ -38,13 +39,19 @@ export default function EditCompetitionForm(props){
             setReadOnlyMode(false);
             setShowStanding(true);
         }
-    },[props.competitions]);
+    },[props.competitions, props.reset]);
+
+    useEffect(()=>{
+        setMessages([]);
+        setClassColor("");
+    },[name, showStanding, readOnlyMode, notes, props.reset]);
 
     const handleAddEditSubmit = (e)=>{
         e.preventDefault();
 
         if(selectedCompetitionId === ""){
             setMessages(['يجب عليك إختيار مسابقة']);
+            setClassColor("red");
             return;
         }
 
@@ -57,6 +64,7 @@ export default function EditCompetitionForm(props){
 
         if(!valid){
             setSemiColonExists(true);
+            setClassColor("red");
             return;
         }else{
             setSemiColonExists(false);
@@ -78,8 +86,14 @@ export default function EditCompetitionForm(props){
                     updatedCompetition.name = name;
                     updatedCompetition.readonly_mode = readOnlyMode;
                     updatedCompetition.show_standings = showStanding;
-                    props.setCompetitions([...props.competitions.filter(comp => comp.id !== selectedCompetitionId), updatedCompetition]);
-                    setMessages(['تم تعديل المسابقة بنجاح'])
+
+                    setClassColor("green");
+                    setMessages(['تم تعديل المسابقة بنجاح']);
+
+                    setTimeout(()=>{
+                        props.setCompetitions([...props.competitions.filter(comp => comp.id !== selectedCompetitionId), updatedCompetition]);
+
+                    },2000);
                 }
             },
             (err)=>{
@@ -88,10 +102,11 @@ export default function EditCompetitionForm(props){
                 if(err.response.data){
                     let obj = err.response.data;
                     Object.keys(obj).forEach(e => {
-                            errMessages.push(obj[e]);
+                        errMessages.push(`${obj[e]} : ${e}`);
                         }
                     )
                 }
+                setClassColor("red");
                 setMessages(errMessages);
             }
         );
@@ -154,11 +169,11 @@ export default function EditCompetitionForm(props){
             })
             }
             { isSemiColonExists &&
-                <DivPass>الإعلان يجب أن لا يحتوي على ;</DivPass>
+                <DivPass className={classColor}>الإعلان يجب أن لا يحتوي على ;</DivPass>
             }
             {messages.length > 0 &&
-                messages.map((message, index)=>{
-                    return <DivPass key={index}>{message}</DivPass>
+                messages.map((message, index) => {
+                    return <DivPass className={classColor} key={index}>{message}</DivPass>
                 })
             }
             <InputSubmit type="submit" value='login'>تعديل المسابقة</InputSubmit>

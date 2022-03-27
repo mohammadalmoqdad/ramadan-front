@@ -23,6 +23,7 @@ export default function ReviewOtherPoints(){
     const [students, setStudents] = useState([]);
     const [otherPoints, setOtherPoints] = useState([]);
     const [messages, setMessages] = useState([]);
+    const [classColor, setClassColor] = useState("");
     const [selectedPoint, setSelectedPoint] = useState({});
     const [pointRecord, setPointRecord] = useState(-1);
     let navigate = useNavigate();
@@ -41,6 +42,7 @@ export default function ReviewOtherPoints(){
 
     useEffect(()=>{
         setMessages([]);
+        setClassColor("");
     },[selectedStudentUsername, selectedDay, otherPoints, selectedPoint, pointRecord]);
 
     const handleSubmit = (e)=>{
@@ -48,6 +50,7 @@ export default function ReviewOtherPoints(){
 
         if(pointRecord < 0){
             setMessages(['يجب عليك إدخال نتيجة لإضافتها']);
+            setClassColor("red");
             return;
         }
 
@@ -60,8 +63,13 @@ export default function ReviewOtherPoints(){
             (res)=>{
                 if(res && res.status === 200){
                     let filteredOtherPoints = otherPoints.filter(otherPoint => otherPoint.id !== selectedPoint.id);
-                    setOtherPoints(filteredOtherPoints);
+
                     setMessages(['تم إضافة النتيجة بنجاح']);
+                    setClassColor("green");
+
+                    setTimeout(()=>{
+                        setOtherPoints(filteredOtherPoints);
+                    },2000);
                 }
             },
             (err)=>{
@@ -74,6 +82,7 @@ export default function ReviewOtherPoints(){
                         }
                     )
                 }
+                setClassColor("red");
                 setMessages(errMessages);
             }
         );
@@ -217,9 +226,9 @@ export default function ReviewOtherPoints(){
                                                         <Label>ادخل النتيجة</Label>
                                                     </DivTxtFieldnumber>
 
-                                                    { messages.length > 0  &&
-                                                        messages.map((message, index)=>{
-                                                            return <DivPass key={index}>{message}</DivPass>
+                                                    {messages.length > 0 &&
+                                                        messages.map((message, index) => {
+                                                            return <DivPass className={classColor} key={index}>{message}</DivPass>
                                                         })
                                                     }
                                                     <InputSubmit type="submit">إضافةالنتيجة</InputSubmit>

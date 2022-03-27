@@ -145,6 +145,12 @@ flex-direction: column;
 `;
 
 export const DivPass = styled.div`
+&.green{
+  color: #088444;
+}
+&.red{
+  color: #eb2b2b;
+}
 width: 100%;
 padding: 0 5px;
 height: 40px;
