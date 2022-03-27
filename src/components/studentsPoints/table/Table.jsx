@@ -100,8 +100,8 @@ function getTableProps(studentData) {
 
   const tablePropsInit = {
     columns: [
-      { key: 'standard', title: 'Standard Label', dataType: DataType.String },
-      { key: 'point', title: 'Point', dataType: DataType.String },
+      { key: 'standard', title: 'عنوان المعييار', dataType: DataType.String },
+      { key: 'point', title: 'النتيجة', dataType: DataType.String },
       { key: ':delete', style: { textAlign: 'center' } },
     ],
     data: dataArray,
