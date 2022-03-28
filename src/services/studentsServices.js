@@ -114,7 +114,7 @@ export const deleteStudentPoint = (username, pointID, successCallback, faiCallba
 };
 
 export const deleteStudent = (username, successCallback, faiCallback) => {
-    doRequest(null, `/comp-admin/students/${username}/}`,
+    doRequest(null, `/comp-admin/students/${username}/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
