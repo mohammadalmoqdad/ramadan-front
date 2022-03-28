@@ -25,6 +25,21 @@ export const Div = styled.div`
 `;
 
 // **************** First section **********************
+export const StatisticItemBody =styled.div`
+/* margin-top: 1.5rem; */
+color: #2980b9 !important;
+font-weight: bold;
+text-align: center;
+padding: 2rem 0 10px 0;
+font-family: 'Noto Kufi Arabic', sans-serif;
+font-size: .9rem;
+border-bottom:0.1px solid silver;
+@media(max-width:1100px){
+  font-size: .6rem;
+  font-weight: bold;
+}
+`;
+
 export const StatisticsSection = styled.div`
   display: flex;
   width: 100%;
@@ -156,6 +171,7 @@ align-items: center;
 `;
 
 export const Wird = styled.h1`
+min-height: 55px;
 margin-top: 2rem;
 text-align: center;
 /* padding: 0 0 20px 0; */

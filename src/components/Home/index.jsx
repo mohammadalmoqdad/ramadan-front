@@ -1,11 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import cookie from "react-cookies";
-import { Redirect, Route, useNavigate } from "react-router-dom";
-import CarouselStatistics from "./Carousel/CarouselStatistics.jsx"
-import Img from "./Img/Img.jsx"
-
+import { useNavigate } from "react-router-dom";
 import WirdLogo from '../../assets/Logo/WirdLogosvg.svg'
-
 import {
   HomeContainer,
   StatisticsSection,
@@ -18,32 +14,46 @@ import {
   BorderBottom,
   IntroductionDiv,
   Introduction,
-  Wird
+  Wird, StatisticItemBody
 } from "./home.styles";
-import { StatisticsContainer, Formm, H1Login, H3Login, DivCenter } from "../studentsPoints/StudentsPoints.styles"
-import {useAdminContext} from "../../contexts/AdminContext";
+
+import {
+  StatisticsContainer,
+  Formm,
+  H3Login,
+  DivCenter
+} from "../studentsPoints/StudentsPoints.styles";
+
 import {retrieveGeneralStatus} from "../../services/competitionsServices";
 
-function Home(props) {
+function Home() {
   const [generalStatus, setGeneralStatus] = useState({});
   const [topDay, setTopDay] = useState({});
   const [topStudentLastDay, setTopStudentLastDay] = useState({});
-  const context = useAdminContext();
   let navigate = useNavigate();
 
 
   useEffect(() => {
-    console.log("inside the useeffect");
     if (!cookie.load("token")) {
       navigate("/login");
-      console.log("not logged in ");
       return;
     }
 
     retrieveGeneralStatus(
         (res)=>{
           if(res && res.status === 200){
-            setGeneralStatus(res.data);
+            if(res?.data?.top_student_last_day){
+              setTopStudentLastDay(res.data.top_student_last_day);
+            }
+            if(res?.data?.top_ramadan_day){
+              setTopDay(res.data.top_ramadan_day);
+            }
+            if(res?.data?.students_count || res?.data?.ramadan_date){
+              setGeneralStatus({
+                students_count: res.data.students_count,
+                ramadan_date: res?.data?.ramadan_date
+              })
+            }
           }
         }, (err)=>{
           console.log("Failed to retrieve general status : ",err.data);
@@ -51,7 +61,6 @@ function Home(props) {
     );
 
   }, []);
-  console.log("inside the Home", cookie.load("token"));
 
   return (
     <>
@@ -67,24 +76,38 @@ function Home(props) {
 
                 <StatisticsContainer>
                   <Formm>
-                    <DivCenter>
-                      <H1Login>أعلى مجموع نقاط من <br/>أيام رمضان<Wird>{generalStatus.top_ramadan_day?.total_day}</Wird></H1Login>
-                      <H3Login>{generalStatus.top_ramadan_day?.ramadan_record_date} رمضان </H3Login>
-                    </DivCenter>
+
+                    { topDay && Object.keys(topDay).length > 0 &&
+                      <DivCenter>
+                        <StatisticItemBody>أعلى مجموع نقاط من <br/>أيام رمضان<Wird>{topDay.total_day}</Wird></StatisticItemBody>
+                        <H3Login>{topDay.ramadan_record_date} رمضان </H3Login>
+                      </DivCenter>
+                    }
+
 
                     <DivCenter>
-                      <H1Login>عدد طلبة <br/>المسابقة<Wird>{generalStatus?.students_count}</Wird> </H1Login>
+                      <StatisticItemBody>عدد طلبة <br/>المسابقة<Wird>{generalStatus?.students_count}</Wird> </StatisticItemBody>
                       <H3Login>طالب</H3Login>
                     </DivCenter>
                   </Formm>
                   <Formm>
-                    <DivCenter>
-                      <H1Login>المركز الأول لليوم<br/> السابق<Wird>{generalStatus?.top_student_last_day != null ? generalStatus.top_student_last_day : 'لا يوجد'}</Wird> </H1Login>
-                      <H3Login>مبارك</H3Login>
-                    </DivCenter>
+
+                    { topStudentLastDay && Object.keys(topStudentLastDay).length > 0
+                        ?
+                        <DivCenter>
+                          <StatisticItemBody>المركز الأول لليوم<br/> السابق<Wird>{ topStudentLastDay.first_name + " " + topStudentLastDay.last_name}</Wird> </StatisticItemBody>
+                          <H3Login>مبارك</H3Login>
+                        </DivCenter>
+                        :
+                        <DivCenter>
+                          <StatisticItemBody>المركز الأول لليوم<br/> السابق<Wird>لا يوجد</Wird> </StatisticItemBody>
+                          <H3Login>مبارك</H3Login>
+                        </DivCenter>
+
+                    }
 
                     <DivCenter>
-                      <H1Login>التقويم <br/>الرمضاني<Wird>{generalStatus?.ramadan_date}</Wird> </H1Login>
+                      <StatisticItemBody>التقويم <br/>الرمضاني<Wird>{generalStatus?.ramadan_date}</Wird> </StatisticItemBody>
                       <H3Login>اللهم تقبل</H3Login>
                     </DivCenter>
                   </Formm>
@@ -106,8 +129,8 @@ function Home(props) {
                   التفاصيل يرجى مشاهدة دليل الاستخدام من خلال الفيديو المرفق بالاسفل </Introduction>
               </IntroductionSectionDiv>
             </IntroductionDiv>
-            <BorderBottom></BorderBottom>
-            <VideoSection></VideoSection>
+            <BorderBottom/>
+            <VideoSection/>
           </IntroductionSection>
 
           {/* Third Section */}

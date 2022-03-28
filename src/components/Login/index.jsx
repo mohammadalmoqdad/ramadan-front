@@ -29,7 +29,6 @@ function Login(props) {
     // setloading(true); // noooooooooooooooot nessesry but because of Amin's mostach lol
     // console.log("inside the login useeffect");
     if (cookie.load("token")) {
-      console.log("is logged in ");
       Navigate("/");
     }
     setloading(false);
