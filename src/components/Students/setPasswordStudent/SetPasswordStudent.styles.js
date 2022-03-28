@@ -97,6 +97,7 @@ margin-right: 1rem;
 
 
 export const DropdownList = styled.select`
+text-align: center;
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.3rem;
@@ -139,7 +140,7 @@ export const StudantName = styled.div`
 width :25rem;
 text-align:right;
 font-family: 'Noto Kufi Arabic', sans-serif;
-color: 2691d9;
+color: #2691d9;
 font-size: 1.3rem;
 font-weight: bolder;
 padding: 1.7rem;
@@ -260,16 +261,17 @@ border: none;
 background: none;
 outline: none;
 text-align:right;
-color: 2691d9;
+color: #213c64;
 border-bottom: 2px solid #2691d9;
 :focus{
 transition: .1s;
 border-bottom: 3px solid orange;
 }
-
-
 `;
 
+export const FileFormInput = styled(FormInput)`
+text-align: center;
+`;
 
 export const InputSubmit = styled.button`
 width:20rem;

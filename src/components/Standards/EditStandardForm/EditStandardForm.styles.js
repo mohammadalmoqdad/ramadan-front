@@ -140,7 +140,7 @@ border: none;
 background: none;
 outline: none;
 text-align:right;
-color: 2691d9;
+color: #213c64;
 border-bottom: 2px solid #2691d9;
 :focus{
 transition: .1s;

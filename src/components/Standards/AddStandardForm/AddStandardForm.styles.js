@@ -142,7 +142,7 @@ border: none;
 background: none;
 outline: none;
 text-align:right;
-color: 2691d9;
+color: #213c64;
 border-bottom: 2px solid #2691d9;
 :focus{
 transition: .1s;
@@ -258,6 +258,7 @@ background-color: white;
 `;
 
 export const DropdownListStanderd = styled.select`
+text-align: center;
 width: 20rem;
 @media (max-width:550px) {
     width: 100%;
