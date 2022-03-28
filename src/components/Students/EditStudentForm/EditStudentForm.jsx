@@ -9,7 +9,9 @@ import {
     FormInput,
     InputSubmit,
     Span,
-    DivFileField, H5
+    DivFileField,
+    H5,
+    FileFormInput
 } from "../setPasswordStudent/SetPasswordStudent.styles";
 import {DropdownDivSelect as Box} from '../../Groups/Groups.styles';
 import {Checkboxes, DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
@@ -153,7 +155,7 @@ export default function EditStudentForm(props){
             <Box>
                 <H5>تحميل صورة شخصية</H5>
                 <DivFileField>
-                    <FormInput type="file" onChange={handlePhotoChange}/>
+                    <FileFormInput type="file" onChange={handlePhotoChange}/>
                 </DivFileField>
             </Box>
 

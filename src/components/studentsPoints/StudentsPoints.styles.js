@@ -321,6 +321,7 @@ margin-top: 1rem;
 
 
 export const DropdownList = styled.select`
+text-align: center;
 width: 20rem;
 @media (max-width:550px) {
     width: 100%;

@@ -56,18 +56,19 @@ export default function SetPasswordStudents(props) {
 
     const handleChangeStudentPassword2 = (e) => {
         setPasswordStudent2(e.target.value);
-        if (PasswordStudent1 === e.target.value) {
-            setPasswordStudentEqual(true);
-        } else {
-            setPasswordStudentEqual(false);
-        }
     };
 
 
     const Set_Pas_St_Fun = async (e) => {
         e.preventDefault();
 
-        if (!PasswordStudentEqual || !isValidPassword) {
+        if(PasswordStudent1 !== PasswordStudent2){
+            setPasswordStudentEqual(false);
+            setClassColor("red");
+            return;
+        }
+
+        if (!isValidPassword) {
             setClassColor("red");
             return;
         }
