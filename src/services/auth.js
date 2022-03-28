@@ -16,7 +16,6 @@ export async function useLogin(username, password) {
         "Content-Type": "application/json",
       }
     );
-    console.log("inside the login function ", data);
 
     cookie.save("token", data.access);
     cookie.save("refresh-token", data.refresh);
@@ -25,7 +24,7 @@ export async function useLogin(username, password) {
 
     return true; // not necessary to return anything because I can get the token from cookies
   } catch (err) {
-    console.log("in the catch of login");
+    console.log("Failed to login: ", err?.response?.data);
     return false;
   }
 }
