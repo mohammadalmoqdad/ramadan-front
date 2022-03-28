@@ -22,7 +22,16 @@ function Sidebar() {
   const [hasPermission, setPermission] = useState(false);
 
   useEffect(()=>{
-    setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
+    if(Object.keys(context.adminInfo).length > 0){
+      setPermission(context.adminInfo.is_super_admin);
+    }else {
+      setTimeout(() => {
+        if (Object.keys(context.adminInfo).length === 0) {
+          // permission will be updated once context.adminInfo is updated.
+          context.getAdminInfo();
+        }
+      }, 1000);
+    }
   },[context.adminInfo]);
 
   return (
