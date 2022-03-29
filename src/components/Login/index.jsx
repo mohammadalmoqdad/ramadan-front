@@ -7,9 +7,8 @@ import LoginFormContainer, {
   InputSubmit,
   Form,
   FormInput,
-  H1Login,
   DivTxtField,
-  Span, PageLink,
+  Span, PageLink, TitleLogin,
 } from "./login.styles";
 import { useAdminContext } from "contexts/AdminContext";
 import {useNavigate, useLocation} from "react-router-dom";
@@ -83,14 +82,13 @@ function Login() {
   return (
     <LoginFormContainer>
       <DivCenter>
-        <H1Login>
+        <TitleLogin>
           أهلا بك في موقع<Wird>وِرد</Wird>{" "}
-        </H1Login>
+        </TitleLogin>
         <H3Login>تسجيل الدخول</H3Login>
 
         <Form onSubmit={handleSubmit}>
           <DivTxtField>
-            <Span />
             <FormInput
               onChange={handleChangeUsername}
               type="text"
@@ -100,7 +98,6 @@ function Login() {
           </DivTxtField>
 
           <DivTxtField>
-            <Span />
             <FormInput
               onChange={handleChangePassowrd}
               placeholder="كلمة المرور"

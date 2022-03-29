@@ -54,6 +54,7 @@ export default function EditGroupForm(props) {
                     updatedAdmin.last_name = lastName;
                     updatedAdmin.email = email;
                     updatedAdmin.phone_number = phoneNumber;
+                    updatedAdmin.is_super_admin = isSuperAdmin;
 
                     resetEditAdminForm();
 
