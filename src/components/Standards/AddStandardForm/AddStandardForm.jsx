@@ -90,8 +90,8 @@ export default function AddStandardForm(props) {
             "label": label,
             "description": description,
             "form_type": formType,
-            "upper_units_bound": upperUnitsBound,
-            "lower_units_bound": lowerUnitsBound,
+            "upper_units_bound": formType !== 'chk' ? upperUnitsBound : 1,
+            "lower_units_bound": formType !== 'chk' ? lowerUnitsBound : 0,
             "points_per_unit": pointsPerUnit
         };
 
@@ -236,23 +236,28 @@ export default function AddStandardForm(props) {
                         <FormInput placeholder='وصف النقاط - مثال : نقطتان لكل صفحة ' type="text" required value={description} onChange={handleDescriptionChange}/>
                     </DivTxtField>
 
-                    <DivTxtFieldnumber>
-                        <Span/>
-                        <FormInputnumber  min="0" type="number" required value={lowerUnitsBound !== -1 ? (""+lowerUnitsBound) : ""} onChange={handleLowerBoundPointUnitsChange}/>
-                        <Label>الحد الأدنى للتكرار</Label>
-                    </DivTxtFieldnumber>
+                    { formType !== 'chk' &&
+                        <>
+                            <DivTxtFieldnumber>
+                                <Span/>
+                                <FormInputnumber  min="0" type="number" required value={lowerUnitsBound !== -1 ? (""+lowerUnitsBound) : ""} onChange={handleLowerBoundPointUnitsChange}/>
+                                <Label>الحد الأدنى للتكرار</Label>
+                            </DivTxtFieldnumber>
 
-                    <DivTxtFieldnumber>
-                        <Span/>
-                        <FormInputnumber min={lowerUnitsBound !== -1 ? lowerUnitsBound : 0}
-                                         type="number" value={upperUnitsBound !==-1 ? (upperUnitsBound+"") : ""} required onChange={handleUpperBoundPointUnitsChange}/>
-                        <Label>الحد الأعلى للتكرار</Label>
-                    </DivTxtFieldnumber>
+                            <DivTxtFieldnumber>
+                                <Span/>
+                                <FormInputnumber min={lowerUnitsBound !== -1 ? lowerUnitsBound : 0}
+                                                 type="number" value={upperUnitsBound !==-1 ? (upperUnitsBound+"") : ""} required onChange={handleUpperBoundPointUnitsChange}/>
+                                <Label>الحد الأعلى للتكرار</Label>
+                            </DivTxtFieldnumber>
+
+                        </>
+                    }
 
                     <DivTxtFieldnumber>
                         <Span/>
                         <FormInputnumber type="number" min="1" required value={pointsPerUnit !==-1 ? (pointsPerUnit+"") : ""} onChange={handlePointUnitChange}/>
-                        <Label>ادخل عدد نقاط لكل تكرار</Label>
+                        <Label>{formType !== 'chk' ? 'ادخل عدد نقاط لكل تكرار' : 'ادخل النقاط لهذا المعييار'}</Label>
                     </DivTxtFieldnumber>
 
                     <DivTxtFieldnumber>
