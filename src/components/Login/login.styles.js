@@ -27,11 +27,8 @@ export const DivCenter = styled.div`
 `;
 
 export const Form = styled.form`
-width:20rem;
-@media (max-width:550px) {
-    width: 100%;
-}
 display: flex;
+padding: 25px;
 flex-direction: column;
 justify-content: space-between;
 margin: auto;
@@ -76,6 +73,14 @@ text-align: center;
     border:0.2px solid #213C64;
   } */
 `;
+export const TitleLogin = styled.div`
+margin-top: 1.5rem;
+text-align: center;
+padding: 0 0 10px 0;
+font-family: 'Noto Kufi Arabic', sans-serif;
+font-size: 2rem;
+`;
+
 export const H1Login = styled.h1`
 margin-top: 1.5rem;
 text-align: center;
@@ -109,7 +114,7 @@ margin: 1rem 0;
 `;
 
 export const FormInput = styled.input`
-width: 20rem;
+width: 100%;
 @media (max-width:550px) {
     width: 100%;
 }
@@ -149,7 +154,6 @@ transition: .1s;
 `;
 
 export const InputSubmit = styled.button`
-width:20rem;
 @media (max-width:550px) {
     width: 100%;
 }

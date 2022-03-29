@@ -280,6 +280,11 @@ const Btn =  styled.button`
     float: right;
     width: 30px;
     height: 30px;
+    @media (max-width:400px) {
+       width: 22px;
+       height: 22px;
+       top: 10px;
+    }
     margin: 1px;
     border: none;
     font-size: 15px;

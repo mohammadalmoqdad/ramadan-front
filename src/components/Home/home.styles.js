@@ -25,8 +25,7 @@ export const Div = styled.div`
 `;
 
 // **************** First section **********************
-export const StatisticItemBody =styled.div`
-/* margin-top: 1.5rem; */
+export const StatisticItemBody = styled.div`
 color: #2980b9 !important;
 font-weight: bold;
 text-align: center;
@@ -91,10 +90,6 @@ margin-left: 2rem;
 margin-right: 2rem;
 justify-content: center;
 align-items: flex-start;
-@media(max-width:1100px){ 
-  /* margin-right: -5rem; */
-  /* width: 30rem; */
-}
 @media(max-width:1000px){ 
   /* margin-right: -5rem; */
   justify-content: center;
@@ -121,7 +116,6 @@ justify-content: center;
 align-items: center;
 text-align: center;
 
-/* width: 25rem ; */
 }
 `;
 
@@ -197,7 +191,6 @@ color: #2980b9;
 @media(max-width:1100px){
   font-size: 1.4rem;
   font-weight: bold;
-  width: 30rem;
 }
 
 @media(max-width:1000px){
@@ -213,10 +206,6 @@ text-align: center;
 padding-right: 0rem;
 
 /* padding-right: 0rem; */
-}
-@media(max-width:700px){
-  width: 25rem;
-
 }
 @media(max-width:650px){
 padding-right: 0rem;
@@ -249,7 +238,6 @@ color: orange;
 
 @media(max-width:1100px){
   font-size: 1rem;
-  /* width: 30rem; */
   margin-top: 1rem;
 }
 @media(max-width:1000px){
@@ -257,15 +245,10 @@ color: orange;
 }
 @media(max-width:700px){
   margin-left: 1rem;
-  /* width: 25rem; */
-  /* margin: auto; */
-  /* margin-right: 7rem; */
 }
 @media(max-width:650px){
-  width: 25rem;
     margin: auto;
     margin-top:1rem;
-    /* margin-right: 13rem; */
 }
 @media(max-width:600px){
   /* margin: auto; */
@@ -301,7 +284,6 @@ align-items: center;
 margin-bottom: 5rem;
 margin-top: 3rem;
 @media(max-width:650px){
-  width: 25rem;
   justify-content: center;
   align-items: flex-start;
   display: flex; 
