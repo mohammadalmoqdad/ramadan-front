@@ -60,6 +60,22 @@ text-align: center;
   } */
 `;
 
+export const PageLink = styled.a`
+text-decoration: none;
+width: 100%;
+padding: 0 5px;
+height: 40px;
+font-size: 16px;
+border: none;
+background: none;
+outline: none;
+color: gray;
+margin-top: .3rem;
+text-align: center;
+  /* :focus{
+    border:0.2px solid #213C64;
+  } */
+`;
 export const H1Login = styled.h1`
 margin-top: 1.5rem;
 text-align: center;

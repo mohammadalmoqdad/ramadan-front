@@ -9,14 +9,14 @@ import LoginFormContainer, {
   FormInput,
   H1Login,
   DivTxtField,
-  Span,
+  Span, PageLink,
 } from "./login.styles";
 import { useAdminContext } from "contexts/AdminContext";
 import {useNavigate, useLocation} from "react-router-dom";
 import cookie from "react-cookies";
 import Loader from "../Loader";
 
-function Login(props) {
+function Login() {
   let Navigate = useNavigate();
   const context = useAdminContext();
   const [username, setUsername] = useState(" ");
@@ -113,9 +113,9 @@ function Login(props) {
           {showErrorMessage && (
             <DivPass className="red">اسم المستخدم أو كلمة المرور خاطآن</DivPass>
           )}
-          <DivPass>
+          <PageLink href="https://www.facebook.com/Wird.Competition/" target="_blank">
             هل تواجه مشكلة تقنية أو نسيت كلمة المرور؟ تواصل مع الدعم الفني
-          </DivPass>
+          </PageLink>
           <InputSubmit type="submit" value="login">
             تسجيل الدخول
           </InputSubmit>
