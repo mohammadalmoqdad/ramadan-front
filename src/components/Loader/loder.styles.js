@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-// HedarNavContainer 
-export default styled.div`
+export default styled.main`
 display:flex;
 width: 100%;
+background-color: #FFF;
 height: 100%;
 align-items: center;
 justify-content: center;
 position: absolute;
-
+top: 0;
  @media (max-width:500px) {
   display: flex;
   flex-direction: column;

@@ -20,7 +20,7 @@ function Login() {
   const context = useAdminContext();
   const [username, setUsername] = useState(" ");
   const [password, setPassword] = useState(" ");
-  const [loading, setloading] = useState(true); // note: to open loading comp when the function start
+  const [loading, setLoading] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const location = useLocation();
 
@@ -30,7 +30,6 @@ function Login() {
     if (cookie.load("token")) {
       Navigate("/");
     }
-    setloading(false);
   }, []);
 
   // useEffect(() => {
@@ -41,16 +40,25 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(context, username, password);
-    context.useLogin(username, password).then((isUsersLoggedIn) => {
-      if (isUsersLoggedIn === true) {
-        Navigate(location?.state?.redirectTo?.length > 0 ? location.state.redirectTo : "/");
-        context.getAdminInfo();
-      } else {
-        setShowErrorMessage(true);
-        e.target.reset();
-      }
-    });
+
+    setLoading(true);
+
+    context.useLogin(username, password).then(
+        (isUsersLoggedIn) => {
+          if (isUsersLoggedIn === true) {
+            Navigate(location?.state?.redirectTo?.length > 0 ? location.state.redirectTo : "/");
+            context.getAdminInfo();
+          } else {
+            setShowErrorMessage(true);
+            e.target.reset();
+          }
+          setLoading(false);
+        },
+        (err) =>{
+          setLoading(false);
+           console.log("Failed to login : ",err?.response?.data);
+        }
+    );
 
     // setTimeout(() => {
     // }, 1000);
@@ -71,6 +79,7 @@ function Login() {
   const handleChangePassowrd = (e) => {
     setPassword(e.target.value);
   };
+
   if (loading) {
     // to render loading if the 'loading' true and to be unreadable if it false
     return (
@@ -79,6 +88,7 @@ function Login() {
       </main>
     );
   }
+
   return (
     <LoginFormContainer>
       <DivCenter>

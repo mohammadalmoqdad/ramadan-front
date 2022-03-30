@@ -12,6 +12,7 @@ import {useAdminContext} from "../../contexts/AdminContext";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";
+import Loader from "../Loader";
 export default function Standards() {
 
     const [sections, setSections] = useState([]);
@@ -27,6 +28,7 @@ export default function Standards() {
     const [currentContents, setCurrentContents] = useState([]);
     const [showStandardDeleteFailedMsg, setShowStandardDeleteFailedMsg] = useState(false);
     const [showSectionDeleteFailedMsg, setShowSectionDeleteFailedMsg] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const context = useAdminContext();
     let navigate = useNavigate();
@@ -37,6 +39,7 @@ export default function Standards() {
             navigate("/login", {state:{redirectTo: "/Standards"}});
         }
 
+        setLoading(true);
         if(Object.keys(context.adminInfo).length > 0){
             setPermission( context.adminInfo.is_super_admin);
         }else{
@@ -51,9 +54,11 @@ export default function Standards() {
         retrieveStandards(
             (res) => {
                 setStandards(res.data);
+                setLoading(false);
             },
             (err) => {
                 console.log("Failed to retrieve standards, ERROR: ", JSON.stringify(err.response.data));
+                setLoading(false);
             }
         );
 
@@ -202,6 +207,14 @@ export default function Standards() {
             }
         );
         setOpenSectionModal(false);
+    }
+
+    if(loading) {
+        return (
+            <main>
+                <Loader />
+            </main>
+        );
     }
 
     return (

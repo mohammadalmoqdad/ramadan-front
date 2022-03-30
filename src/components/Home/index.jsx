@@ -25,11 +25,13 @@ import {
 } from "../studentsPoints/StudentsPoints.styles";
 
 import {retrieveGeneralStatus} from "../../services/competitionsServices";
+import Loader from "../Loader";
 
 function Home() {
   const [generalStatus, setGeneralStatus] = useState({});
   const [topDay, setTopDay] = useState({});
   const [topStudentLastDay, setTopStudentLastDay] = useState({});
+  const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
 
 
@@ -39,6 +41,7 @@ function Home() {
       return;
     }
 
+    setLoading(true);
     retrieveGeneralStatus(
         (res)=>{
           if(res && res.status === 200){
@@ -55,12 +58,22 @@ function Home() {
               })
             }
           }
+          setLoading(false);
         }, (err)=>{
           console.log("Failed to retrieve general status : ",err.data);
+          setLoading(false);
         }
     );
 
   }, []);
+
+  if(loading) {
+    return (
+        <main>
+          <Loader />
+        </main>
+    );
+  }
 
   return (
     <>
