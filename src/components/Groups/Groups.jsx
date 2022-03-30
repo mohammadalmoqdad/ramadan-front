@@ -12,17 +12,19 @@ import {useAdminContext} from "../../contexts/AdminContext";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import {useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
+import {DivPass} from "./Groups.styles";
 
 export default function Groups() {
 
     const [admins, setAdmins] = useState([]);
     const [groups, setGroups] = useState([]);
     const [students, setStudents] = useState([]);
-    const [groupIdToDelete, setGroupIdToDelete] = useState(-1);
+    const [groupIdToDelete, setGroupIdToDelete] = useState("");
     const [openGroupModal, setOpenGroupModal] = useState(false);
     const [hasPermission, setPermission] = useState(false);
     const [groupsLabels, setGroupsLabels] = useState([]);
     const [groupsContents, setGroupsContents] = useState([]);
+    const [showDeleteGroupFailedMsg, setShowDeleteGroupFailedMsg] = useState(false);
 
     const context = useAdminContext();
     let navigate = useNavigate();
@@ -112,6 +114,12 @@ export default function Groups() {
             },
             (err) => {
                 console.log("Failed to delete group: ", JSON.stringify(err.response.data));
+                if(err?.response?.status === 500){
+                    setShowDeleteGroupFailedMsg(true);
+                    setTimeout(()=>{
+                        setShowDeleteGroupFailedMsg(false);
+                    },7000);
+                }
             }
         );
         setOpenGroupModal(false);
@@ -142,6 +150,11 @@ export default function Groups() {
                                         }
                                     </DropdownListItem>)
                                 })
+                            }
+                            { showDeleteGroupFailedMsg &&
+                                <DropdownListItem>
+                                    <DivPass className='red'>يرجى إزالة أو نقل الطلاب لمجموعة أخرى قبل حذف هذه المجموعة</DivPass>
+                                </DropdownListItem>
                             }
                         </DropdownList>
                         <Tabs labels={groupsLabels} contents={groupsContents} />

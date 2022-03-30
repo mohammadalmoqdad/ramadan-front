@@ -33,6 +33,13 @@ export default function SetPasswordStudents(props) {
         resetStudentChangePasswordForm();
     },[props.reset]);
 
+    useEffect(()=>{
+        setPasswordStudent1("");
+        setPasswordStudent2("");
+        setPasswordStudentEqual(true);
+        setValidPassword(true);
+    },[userName]);
+
     const resetStudentChangePasswordForm = ()=>{
         setUserName("");
         setPasswordStudent1("");
@@ -88,6 +95,8 @@ export default function SetPasswordStudents(props) {
             PasswordStudent,
             (res) => {
                 if(res && res.status === 200){
+                    resetStudentChangePasswordForm();
+
                     setMessages(['تم تغيير كلمة المرور بنجاح']);
                     setClassColor("green");
                 }

@@ -139,7 +139,7 @@ export default function EditGroupForm(props) {
                     updatedGroup.name = groupName;
                     updatedGroup.group_students = selectedStudents;
                     updatedGroup.announcements = data.announcements;
-                    e.target.rest();
+                    resetEditGroupForm();
 
                     setClassColor("green");
                     setMessages(["تم تعديل المجموعة بنجاح"]);
