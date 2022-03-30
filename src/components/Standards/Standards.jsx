@@ -7,7 +7,7 @@ import {deleteSection, deleteStandard, retrieveSections, retrieveStandards} from
 import Tabs from "./../shared/Tabs/Tabs";
 import Container, {StandardsDropDownList} from "./Standards.styles";
 import Modal from "../shared/Modal/Modal";
-import {Button, DropdownListItem, Span} from "../Admins/Admins.styles";
+import {Button, DivPass, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import cookie from "react-cookies";
@@ -18,13 +18,15 @@ export default function Standards() {
     const [standards, setStandards] = useState([]);
     const [openStandardModal, setOpenStandardModal] = useState(false);
     const [openSectionModal, setOpenSectionModal] = useState(false);
-    const [standardIdToDelete, setStandardIdToDelete] = useState(null);
-    const [sectionIdToDelete, setSectionIdToDelete] = useState(null);
+    const [standardIdToDelete, setStandardIdToDelete] = useState("");
+    const [sectionIdToDelete, setSectionIdToDelete] = useState("");
     const [hasPermission, setPermission] = useState(false);
     const [labels, setLabels] = useState([]);
     const [currentLabels, setCurrentLabels] = useState([]);
     const [contents, setContents] = useState([]);
     const [currentContents, setCurrentContents] = useState([]);
+    const [showStandardDeleteFailedMsg, setShowStandardDeleteFailedMsg] = useState(false);
+    const [showSectionDeleteFailedMsg, setShowSectionDeleteFailedMsg] = useState(false);
 
     const context = useAdminContext();
     let navigate = useNavigate();
@@ -111,6 +113,12 @@ export default function Standards() {
                         </DropdownListItem>)
                     })
                 }
+                { showSectionDeleteFailedMsg &&
+                    <DropdownListItem>
+                        <DivPass className='red'>يرجى حذف جميع المعايير المسجلة في هذا القسم قبل حذفه</DivPass>
+                    </DropdownListItem>
+
+                }
             </StandardsDropDownList>);
         }
 
@@ -132,6 +140,12 @@ export default function Standards() {
                         </DropdownListItem>)
                     })
                 }
+                { showStandardDeleteFailedMsg &&
+                    <DropdownListItem>
+                        <DivPass className='red'>يرجى حذف جميع نقاط الطلاب المسجلة لهذا المعييار قبل حذفه</DivPass>
+                    </DropdownListItem>
+
+                }
             </StandardsDropDownList>);
         }
 
@@ -140,7 +154,7 @@ export default function Standards() {
         setLabels(labelsArray);
         setContents(contentsArray);
 
-    },[sections, standards, hasPermission]);
+    },[sections, standards, hasPermission, showStandardDeleteFailedMsg, showSectionDeleteFailedMsg]);
 
     const handleOpenStandardModelChange = (e)=>{
         setStandardIdToDelete(e.target.value);
@@ -160,6 +174,12 @@ export default function Standards() {
                 }
             }, (err)=>{
                 console.log("Failed to delete standard: ", JSON.stringify(err.response.data));
+                if(err?.response?.status === 500){
+                    setShowStandardDeleteFailedMsg(true);
+                    setTimeout(()=>{
+                        setShowStandardDeleteFailedMsg(false);
+                    },7000);
+                }
             }
         );
         setOpenStandardModal(false);
@@ -173,6 +193,12 @@ export default function Standards() {
                 }
             }, (err)=>{
                 console.log("Failed to delete section: ", JSON.stringify(err.response.data));
+                if(err?.response?.status === 500){
+                    setShowSectionDeleteFailedMsg(true);
+                    setTimeout(()=>{
+                        setShowSectionDeleteFailedMsg(false);
+                    },7000);
+                }
             }
         );
         setOpenSectionModal(false);
