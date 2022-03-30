@@ -6,9 +6,11 @@ import Tabs from "../shared/Tabs/Tabs"
 import CompetitionContainer from "../Admins/Admins.styles";
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";
+import Loader from "../Loader";
 
 export default function Competition(){
     const [competitions, setCompetitions] = useState([]);
+    const [loading, setLoading] = useState(false);
     let navigate = useNavigate();
 
     useEffect(()=>{
@@ -16,17 +18,28 @@ export default function Competition(){
             navigate("/login", {state:{redirectTo: "/Competition"}});
             return;
         }
+        setLoading(true);
         retrieveCompetitions(
             (res)=>{
                 if(res && res.status === 200){
                     setCompetitions(res.data);
+                    setLoading(false);
                 }
             },
             (err)=>{
                 console.log("Failed to retrieve competitions: ", err?.response?.data);
+                setLoading(false);
             }
         )
     }, []);
+
+    if(loading) {
+        return (
+            <main>
+                <Loader />
+            </main>
+        );
+    }
 
     return (
         <CompetitionContainer>

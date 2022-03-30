@@ -13,6 +13,7 @@ import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import {useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
 import {DivPass} from "./Groups.styles";
+import Loader from "../Loader";
 
 export default function Groups() {
 
@@ -25,6 +26,7 @@ export default function Groups() {
     const [groupsLabels, setGroupsLabels] = useState([]);
     const [groupsContents, setGroupsContents] = useState([]);
     const [showDeleteGroupFailedMsg, setShowDeleteGroupFailedMsg] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const context = useAdminContext();
     let navigate = useNavigate();
@@ -47,12 +49,17 @@ export default function Groups() {
             }, 1000);
         }
 
+        setLoading(true);
         retrieveStudents(
             (res) => {
-            setStudents(res.data)
-        }, (err) => {
-            console.log("Failed to retrieve students: " + JSON.stringify(err.response.data));
-        });
+                setStudents(res.data);
+                setLoading(false);
+            },
+            (err) => {
+                console.log("Failed to retrieve students: " + JSON.stringify(err.response.data));
+                setLoading(false);
+            }
+        );
 
         retrieveAdmins(
             (res) => {
@@ -124,6 +131,14 @@ export default function Groups() {
         );
         setOpenGroupModal(false);
     };
+
+    if(loading) {
+        return (
+            <main>
+                <Loader />
+            </main>
+        );
+    }
 
     return (
         <Container>

@@ -16,6 +16,7 @@ import {
 import Container from '../Standards/Standards.styles';
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";
+import Loader from "../Loader";
 
 export default function ReviewOtherPoints(){
     const [selectedStudentUsername, setSelectedStudentUsername] = useState("");
@@ -26,17 +27,22 @@ export default function ReviewOtherPoints(){
     const [classColor, setClassColor] = useState("");
     const [selectedPoint, setSelectedPoint] = useState({});
     const [pointRecord, setPointRecord] = useState(-1);
+    const [loading, setLoading] = useState(false);
+
     let navigate = useNavigate();
 
     useEffect(()=>{
         if (!cookie.load("token")) {
             navigate("/login", {state:{redirectTo: "/Review-other-points"}});
         }
+        setLoading(true);
         retrieveStudents(
             (res) => {
                 setStudents(res.data);
+                setLoading(false);
             }, (err) => {
                 console.log("Failed to retrieve students: " + JSON.stringify(err.response.data));
+                setLoading(false);
             });
     },[]);
 
@@ -133,6 +139,14 @@ export default function ReviewOtherPoints(){
 
     const handlePointRecordChange = (e) => {
       setPointRecord(Number(e.target.value));
+    }
+
+    if(loading) {
+        return (
+            <main>
+                <Loader />
+            </main>
+        );
     }
 
     return (

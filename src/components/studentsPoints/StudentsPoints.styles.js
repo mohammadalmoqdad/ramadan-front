@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export default styled.div`
 display: flex;
+bottom: 2rem;
+position: relative;
 background: linear-gradient(120deg, #2980b9, #2980b9);
 padding:0;
 margin:0;

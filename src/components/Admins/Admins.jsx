@@ -15,6 +15,7 @@ import ResetAdminPasswordForm from "./ResetAdminPasswordForm/ResetAdminPasswordF
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";
+import Loader from "../Loader";
 
 export default function Admins() {
 
@@ -24,6 +25,7 @@ export default function Admins() {
     const [hasPermission, setPermission] = useState(false);
     const [adminsLabels, setAdminsLabels] = useState([]);
     const [adminsContents, setAdminsContents] = useState([]);
+    const [loading, setLoading] = useState(false);
     const context = useAdminContext();
     let navigate = useNavigate();
 
@@ -32,6 +34,7 @@ export default function Admins() {
             navigate("/login", {state:{redirectTo: "/Admins"}});
             return;
         }
+
 
         if(Object.keys(context.adminInfo).length > 0){
             setPermission(context.adminInfo.is_super_admin);
@@ -44,11 +47,14 @@ export default function Admins() {
              }, 1000);
         }
 
+        setLoading(true);
         retrieveAdmins(
             (res) => {
                 setAdmins(res.data);
+                setLoading(false);
             }, (err) => {
                 console.log("Failed to retrieve admins: " + JSON.stringify(err.response.data));
+                setLoading(false);
             }
         );
     }, []);
@@ -102,6 +108,14 @@ export default function Admins() {
             }
         );
         setOpenModal(false);
+    };
+
+    if (loading) {
+        return (
+            <main>
+                <Loader />
+            </main>
+        );
     }
 
     return (

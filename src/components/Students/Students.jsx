@@ -9,11 +9,13 @@ import StudentsContainer, {Button, DropdownList, DropdownListItem, Span} from ".
 import {useAdminContext} from "../../contexts/AdminContext";
 import {useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
+import Loader from "../Loader";
 export default function Students(){
     const [students, setStudents] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const [studentToDelete, setStudentToDelete] = useState("");
     const [hasPermission, setPermission] = useState(false);
+    const [loading, setLoading] = useState(false);
     const context = useAdminContext();
     let navigate = useNavigate();
 
@@ -22,11 +24,14 @@ export default function Students(){
             navigate("/login", {state:{redirectTo: "/Students"}});
         }
 
+        setLoading(true);
         retrieveStudents(
             (res) => {
-                setStudents(res.data)
+                setStudents(res.data);
+                setLoading(false);
             }, (err) => {
                 console.log("Failed to retrieve students: " + JSON.stringify(err.response.data));
+                setLoading(false);
             }
         );
 
@@ -65,6 +70,15 @@ export default function Students(){
         );
         setOpenModal(false);
     }
+
+    if(loading) {
+        return (
+            <main>
+                <Loader />
+            </main>
+        );
+    }
+
     return(
 
         <>

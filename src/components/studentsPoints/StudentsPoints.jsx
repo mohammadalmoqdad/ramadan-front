@@ -18,6 +18,9 @@ import LoginFormContainer,
 } from "./StudentsPoints.styles"
 
 import TableData from './table/Table.jsx';
+import cookie from "react-cookies";
+import {useNavigate} from "react-router-dom";
+import Loader from "../Loader";
 
 
 export default function StudentsPoints() {
@@ -26,14 +29,22 @@ export default function StudentsPoints() {
   const [username, setUsername] = useState("");
   const [day, setDay] = useState("");
   const [studentsResultsFlag, SetStudentsResultsFlag] = useState(true);
-
-
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
+    if(!cookie.load("token")) {
+      navigate("/login", {state:{redirectTo: "/StudentsPoints"}});
+      return;
+    }
+
+    setLoading(true);
     retrieveStudents(
       (res) => {
         setStudents(res.data);
+        setLoading(false);
       }, (err) => {
         console.log("ERROR: " + JSON.stringify(err.response.data));
+        setLoading(false);
       }
     );
 
@@ -46,6 +57,14 @@ export default function StudentsPoints() {
 
   const handleDayChange = (e) => {
     setDay(e.target.value)
+  }
+
+  if(loading) {
+    return (
+        <main>
+          <Loader />
+        </main>
+    );
   }
 
   return <LoginFormContainer>
