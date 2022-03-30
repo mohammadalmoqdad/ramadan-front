@@ -97,7 +97,7 @@ export default function Groups() {
         setGroupsLabels(labels);
         setGroupsContents(contents);
 
-    },[groups, hasPermission]);
+    },[groups, students, hasPermission]);
 
     const handleOpenGroupModalChange = (e)=>{
         setGroupIdToDelete(e.target.value);
