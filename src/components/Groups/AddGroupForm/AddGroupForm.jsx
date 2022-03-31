@@ -178,10 +178,13 @@ export default function AddGroupForm(props) {
                         <DropdownList className="DropdownList_groups" onChange={handleAdminSelectChange} value={selectedAdminUserName}>
                             <DropdownListItem key={0} value="">اختر المسؤول</DropdownListItem>
                             {
-                                props.admins.map((admin, index) => (
-                                    <DropdownListItem key={index+1}
-                                                      value={admin.username}>{admin.first_name} {admin.last_name}</DropdownListItem>
-                                ))
+                                props.admins.map((admin, index) => {
+                                    if(admin?.first_name?.length > 0 || admin?.last_name?.length > 0){
+                                        return <DropdownListItem key={index} value={admin.username}>{admin.first_name} {admin.last_name}</DropdownListItem>
+                                    }else{
+                                        return <DropdownListItem key={index} value={admin.username}>{admin.username}</DropdownListItem>
+                                    }
+                                })
                             }
                         </DropdownList>
                     </DropdownDiv>
