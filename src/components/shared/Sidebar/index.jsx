@@ -39,10 +39,16 @@ function Sidebar() {
 
       <UserInfoContainer>
         { Object.keys(context.adminInfo).length > 0
-            ?
-              <Username>{context.adminInfo.first_name} {context.adminInfo.last_name}</Username>
+            ? context.adminInfo?.first_name?.length > 0 || context.adminInfo?.last_name?.length > 0
+              ?
+                <Username>{context.adminInfo.first_name} {context.adminInfo.last_name}</Username>
+              : context.adminInfo?.username?.length > 0
+                    ?
+                      <Username>{context.adminInfo.username}</Username>
+                    :
+                      <Username>مسؤول</Username>
             :
-              <Username>اسم المستخدم</Username>
+              <Username>مسؤول</Username>
         }
       </UserInfoContainer>
 
