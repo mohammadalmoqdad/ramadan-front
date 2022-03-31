@@ -64,7 +64,7 @@ function TableData({selectedUser, selectedDay}) {
                 tempPrevArr = prevState.data;
                 flag = false;
             }
-            if (action.row && action.data) {
+            if (!isNaN(action.row) && action.data) {
                 let selectedPoint = tableProps.data.filter(point => point.pointID === action.data.pointID)[0];
                 if(selectedPoint){
                     setPointIdToDelete(selectedPoint.pointID);
