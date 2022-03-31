@@ -149,8 +149,10 @@ export default function EditCompetitionForm(props){
             </DivTxtFieldnumber>
 
             <DivTxtFieldnumber>
-                <Checkboxes type="checkbox" checked={readOnlyMode} onChange={handleReadOnlyChange}/> <LabelSoper>قابلة للتعديل</LabelSoper>
+                <Checkboxes type="checkbox" checked={readOnlyMode} onChange={handleReadOnlyChange}/> <LabelSoper>وضع القراءة فقط</LabelSoper>
             </DivTxtFieldnumber>
+            <DivPass>لا يستطيع الطلاب تسجيل النقاط في وضع القراءة فقط</DivPass>
+
 
             { notes?.map((inputItem, index) =>{
                 return(
