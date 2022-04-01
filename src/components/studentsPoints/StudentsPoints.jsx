@@ -98,9 +98,9 @@ export default function StudentsPoints() {
               {!studentsResultsFlag &&
                 <DropdownDiv className='DropdownDiv' >
                   <DropdownList className='DropdownList' onChange={handleDayChange}>
-                    <DropdownListItem>اختر اليوم من رمضان</DropdownListItem>
+                    <DropdownListItem key={0} value="">اختر اليوم من رمضان</DropdownListItem>
                     {
-                      Array(30).fill(undefined).map((val, idx) => <DropdownListItem key={idx} value={idx+1}>{idx+1} رمضان</DropdownListItem>)
+                      Array(30).fill(undefined).map((val, idx) => <DropdownListItem key={idx+1} value={idx+1}>{idx+1} رمضان</DropdownListItem>)
                     }
                   </DropdownList>
 

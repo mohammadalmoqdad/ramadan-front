@@ -6,6 +6,8 @@ import './table-style.css'
 import {deleteStudentPoint, retrieveStudentsPointsPerDay, updateStudentPoint} from "../../../services/studentsServices";
 import {kaPropsUtils} from 'ka-table/utils';
 import Modal from "../../shared/Modal/Modal";
+import {H5} from "../../Students/setPasswordStudent/SetPasswordStudent.styles";
+import {DivPass} from "../../Standards/AddStandardForm/AddStandardForm.styles";
 
 // get the table component the 
 function getTableProps(studentData) {
@@ -48,12 +50,14 @@ function getDifference(array2, array1) {
 
 function TableData({selectedUser, selectedDay}) {
     const [tableData, setTableData] = useState([]);
-    const [isTableShown, setIsTableShown] = useState(true);
+    const [isTableShown, setIsTableShown] = useState(false);
     const [tableProps, changeTableProps] = useState(getTableProps(tableData));
     const [editedOrRemovedPointData, setEditedOrRemovedPointData] = useState('');
     const [openModal, setOpenModal] = useState(false);
     const [pointIdToDelete, setPointIdToDelete] = useState(-1);
     const [rowToDelete, setRowToDelete] = useState(-1);
+    const [messages, setMessages] = useState([]);
+    const [classColor, setClassColor] = useState("");
     let flag = true;
     let tempPrevArr;
 
@@ -88,33 +92,66 @@ function TableData({selectedUser, selectedDay}) {
                         ramadan_record_date: selectedDay,
                         point_template: editedOrRemovedPointData?.pointTemplateID
                     },
-                    () => {
-                        dispatch(saveAllEditors())
+                    (res) => {
+                        if (res && res.status === 200) {
+
+                            dispatch(saveAllEditors());
+                            setMessages(['تم حفظ التغيرات بنجاح']);
+                            setClassColor('green');
+
+                            setTimeout(()=>{
+                                setMessages([]);
+                                setClassColor("");
+                            },5000);
+                        }
                     },
-                    () => {
-                        dispatch(validate())
-                    },
-                    true
+                    (err) => {
+                        dispatch(validate());
+                        let errMessages = [];
+                        errMessages.push(["لم يتم حفظ التغيرات"]);
+                        if(err.response.data){
+                            let obj = err.response.data;
+                            Object.keys(obj).forEach(e => {
+                                    errMessages.push(`${obj[e]} : ${e}`);
+                                }
+                            )
+                        }
+
+                        setClassColor("red");
+                        setMessages(errMessages);
+
+                        setTimeout(()=>{
+                            setMessages([]);
+                            setClassColor("");
+                        },5000);
+                    }
                 )
+            }else{
+                setMessages(['لم يحدث تغيير لحفظه']);
+                setTimeout(()=>{
+                    setMessages([]);
+                },3000);
             }
         } else {
             // for validation, we can add another button to check the value restrictions.
-            dispatch(validate())
+            dispatch(validate());
         }
     }
     useEffect(() => {
-        if (selectedDay && selectedUser) {
+        if (selectedDay !== "" && selectedUser !== "") {
             retrieveStudentsPointsPerDay(selectedUser, selectedDay,
                 (res) => {
                     setTableData(res.data.student_points)
                     if (res.data.student_points) changeTableProps(getTableProps(res.data.student_points))
-                    setIsTableShown(true)
+                    setIsTableShown(res.data.student_points.length > 0);
                 },
                 (err) => {
                     // *************** TODO: need to show message if no data within that day and that student ***************
                     console.log("ERROR: " + JSON.stringify(err.response.data));
                 })
         }
+        setMessages([]);
+        setClassColor("");
     }, [selectedUser, selectedDay]);
 
     const deleteFunction = ()=>{
@@ -123,14 +160,48 @@ function TableData({selectedUser, selectedDay}) {
             selectedUser,
             pointIdToDelete,
             (res) => {
-                dispatch(deleteRow(rowToDelete));
-                console.log(res)
+                if(res.status === 204){
+                    dispatch(deleteRow(rowToDelete));
+                    setMessages(['تم الحذف بنجاح']);
+                    setClassColor('green');
+
+                    setTimeout(()=>{
+                        setMessages([]);
+                        setClassColor("");
+                    },5000);
+                }
             },
             (err) => {
-                console.log(JSON.stringify(err));
+                let errMessages = [];
+                errMessages.push(["لم يتم الحذف"]);
+                if(err.response.data){
+                    let obj = err.response.data;
+                    Object.keys(obj).forEach(e => {
+                            errMessages.push(`${obj[e]} : ${e}`);
+                        }
+                    )
+                }
+
+                setClassColor("red");
+                setMessages(errMessages);
+
+                setTimeout(()=>{
+                    setMessages([]);
+                    setClassColor("");
+                },5000);
             });
         setOpenModal(false);
     };
+
+    if(selectedUser === "" && selectedDay === ""){
+        return <div className="table-msg-text-section"><H5>اختر اليوم والطالب</H5></div>;
+    } else if (selectedUser === ""){
+        return <div className="table-msg-text-section"><H5>اختر الطالب</H5></div>;
+    } else if(selectedDay === ""){
+        return <div className="table-msg-text-section"><H5>اختر اليوم</H5></div>;
+    } else if(!isTableShown){
+        return <div className="table-msg-text-section"><H5>لا يوجد نقاط لهذا اليوم</H5></div>;
+    }
 
     return (
         // ******** TODO : try to limit the maximum value for the point in the front end or at least render a field for that ***************************
@@ -140,37 +211,40 @@ function TableData({selectedUser, selectedDay}) {
                 <Modal title="تأكيد الحذف" content="هل تريد حذف هذه النتيجة؟" deleteBtn="حذف" cancelBtn="إلغاء"
                        setOpenModal={setOpenModal} deleteFunction={deleteFunction} />
             }
-            {isTableShown && selectedUser && selectedDay &&
-                <>
-                    <button onClick={updateCells} className='save-changes'>
-                        حفظ التغيرات
-                    </button>
-                    <Table
-                        {...tableProps}
-                        childComponents={{
-                            cellText: {
-                                content: (props) => {
-                                    // eslint-disable-next-line default-case
-                                    switch (props.column.key) {
-                                        case 'delete':
-                                            return <img
-                                                // case ':delete': return <DeleteRow username={selectedUser} pointID={editedOrRemovedPointData?.pointID} {...props} />;
-                                                src='https://komarovalexander.github.io/ka-table/static/icons/delete.svg'
-                                                className='delete-row-column-button'
-                                                onClick={() => {
-                                                    dispatch({row: props.rowKeyValue, data: props.rowData});
-                                                }}
-                                                alt=''
-                                            />;
-                                    }
+            <>
+                <Table
+                    {...tableProps}
+                    childComponents={{
+                        cellText: {
+                            content: (props) => {
+                                // eslint-disable-next-line default-case
+                                switch (props.column.key) {
+                                    case 'delete':
+                                        return <img
+                                            // case ':delete': return <DeleteRow username={selectedUser} pointID={editedOrRemovedPointData?.pointID} {...props} />;
+                                            src='https://komarovalexander.github.io/ka-table/static/icons/delete.svg'
+                                            className='delete-row-column-button'
+                                            onClick={() => {
+                                                dispatch({row: props.rowKeyValue, data: props.rowData});
+                                            }}
+                                            alt=''
+                                        />;
                                 }
-                            },
-                        }}
-                        dispatch={dispatch}
-                        width='100%'
-                    />
-                </>
-            }
+                            }
+                        },
+                    }}
+                    dispatch={dispatch}
+                    width='100%'
+                />
+                {messages.length > 0 &&
+                    messages.map((message, index) => {
+                        return <DivPass className={classColor} key={index}>{message}</DivPass>
+                    })
+                }
+                <button onClick={updateCells} className='save-changes'>
+                    حفظ التغيرات
+                </button>
+            </>
         </>
     );
 }
