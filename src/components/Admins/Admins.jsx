@@ -139,14 +139,26 @@ export default function Admins() {
                         admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.username !== admin.username)
                             .map((admin, index) => {
                                 return (<DropdownListItem key={index}>
-                                    { hasPermission?
+                                    { hasPermission
+                                      ?
                                         <>
                                             <Button id="deleteBtn" onClick={handleOpenModelChange} value={admin.username}>حذف</Button>
-                                            <Span>{admin.first_name} {admin.last_name}</Span>
+                                            { admin.first_name?.length > 0 || admin.last_name?.length > 0
+                                                ?
+                                                <Span>{admin.first_name} {admin.last_name}</Span>
+                                                :
+                                                <Span>{admin.username}</Span>
+                                            }
                                         </>
                                       :
-                                        <Span style={{width: '100%'}}>{admin.first_name} {admin.last_name}</Span>
-
+                                        <>
+                                            { admin.first_name?.length > 0 || admin.last_name?.length > 0
+                                                ?
+                                                <Span style={{width: '100%'}}>{admin.first_name} {admin.last_name}</Span>
+                                                :
+                                                <Span style={{width: '100%'}}>{admin.username}</Span>
+                                            }
+                                        </>
                                     }
                                 </DropdownListItem>)
                             })

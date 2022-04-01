@@ -24,8 +24,11 @@ const refreshTokenThenRetry = (data, uri, config, method, successCallback, failC
             config.Authorization = `Bearer ${res.data.access}`;
             doRequest(data, uri, config, method, successCallback, failCallback, beforeRefresh);
         }, (err) => {
-            // Navigate to login page with saving location info to redirect back to
             console.log("ERROR refreshTokenThenRetry: " + JSON.stringify(err.response.data));
+            if (err.response && [401, 403].includes(err.response.status)){
+                cookie.remove("token");
+                cookie.remove("refresh-token");
+            }
         }
     );
 }

@@ -1,23 +1,29 @@
  /* .ka-table-wrapper table {
 } */
  .save-changes {
-     margin-top: 4rem;
-     margin-bottom: 0.1rem;
      padding: 0.5rem;
      width: 10rem;
      font-family: 'Noto Kufi Arabic', sans-serif;
-     background-color: #f4b069;
+     background-color: #2980b9;
+
      color: #FFFFFF;
      border-radius: 4px;
  }
-
+ .save-changes:hover{
+     background-color: #f4b069;
+ }
  table {
      width: 100%;
      /* border: 2px solid gray; */
      text-align: center;
      font-family: 'Noto Kufi Arabic', sans-serif !important;
+     margin-top: 4rem;
+     margin-bottom: 0.1rem;
  }
-
+.table-msg-text-section{
+    margin-top: 4rem;
+    margin-bottom: 0.1rem;
+}
  table th, table td {
      padding: 0.5rem;
      text-align: center;
