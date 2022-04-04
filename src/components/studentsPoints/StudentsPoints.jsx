@@ -73,8 +73,8 @@ export default function StudentsPoints() {
         {
           Students?.length === 0 || !Students ? <p style={{ textAlign: 'center', margin: 0 }}> لا يوجد طلاب لعرضهم </p> : <>
             {studentsResultsFlag ?
-              <Wird onClick={() => SetStudentsResultsFlag(!studentsResultsFlag)}>إضغط لعرض الجدول</Wird> :
-              <Wird onClick={() => SetStudentsResultsFlag(!studentsResultsFlag)}>إضغط لعرض الرسم البياني</Wird>
+              <Wird onClick={() => SetStudentsResultsFlag(!studentsResultsFlag)}>اضغط لعرض الجدول</Wird> :
+              <Wird onClick={() => SetStudentsResultsFlag(!studentsResultsFlag)}>اضغط لعرض الرسم البياني</Wird>
             }
             <SelectInputContainer>
 
