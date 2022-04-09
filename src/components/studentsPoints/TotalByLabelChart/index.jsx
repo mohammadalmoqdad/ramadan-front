@@ -6,12 +6,25 @@ import {
   Title,
   ArgumentAxis,
   ValueAxis,
+  Tooltip
 } from "@devexpress/dx-react-chart-material-ui";
 import { Animation } from "@devexpress/dx-react-chart";
 import { H5 } from "../../Students/setPasswordStudent/SetPasswordStudent.styles";
+import { EventTracker } from '@devexpress/dx-react-chart';
 
 export default function TotalByLabelChart({ selectedUser }) {
   const [chartData, setChartData] = useState([]);
+  const [targetItem, setTargetItem] = useState(undefined);
+
+  function Content({ text, targetItem, ...restProps }) {
+    const displayText = chartData[targetItem?.point]?.point_template__label;
+
+    return <Tooltip.Content // we had to get the Content from the Tooltip because it seems to be a higher order component.
+      {...restProps}
+      text={displayText}
+      targetItem={targetItem}
+    />
+  }
 
   useEffect(() => {
     if (selectedUser !== "") {
@@ -22,7 +35,6 @@ export default function TotalByLabelChart({ selectedUser }) {
           setChartData(res.data.total_points_by_type);
         },
         (err) => {
-          // *************** TODO: need to show message if no data within that day and that student ***************
           console.log("ERROR: " + JSON.stringify(err.response.data));
         }
       );
@@ -49,16 +61,23 @@ export default function TotalByLabelChart({ selectedUser }) {
 
   return (
     <div style={{ width: "auto" }}>
-      <Chart data={chartData} rotated>
-        <ArgumentAxis />
+      <Chart data={chartData} >
+        <ArgumentAxis showLabels={false} />
         <ValueAxis max={1000} />
 
         <BarSeries
           valueField="total_point"
           argumentField="point_template__label"
         />
+
+        <EventTracker />
+
         <Title text="الإحصائيات لكل معييار" />
+
         <Animation />
+
+        <Tooltip contentComponent={Content} targetItem={targetItem} onTargetItemChange={setTargetItem} />
+
       </Chart>
     </div>
   );
