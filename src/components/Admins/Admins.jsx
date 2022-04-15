@@ -134,8 +134,8 @@ export default function Admins() {
 
                 <DropdownList className='DropdownList'>
                     <DropdownListItem  className="title"><Span>المسؤولون</Span></DropdownListItem>
+                    <div className="dropdown-scroll-container">
                     {
-
                         admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.username !== admin.username)
                             .map((admin, index) => {
                                 return (<DropdownListItem key={index}>
@@ -163,6 +163,7 @@ export default function Admins() {
                                 </DropdownListItem>)
                             })
                     }
+                    </div>
                 </DropdownList>
             }
 

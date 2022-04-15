@@ -36,21 +36,6 @@ export const DivCenter = styled.div`
  
 `;
 
-
-export const H3Login = styled.h3`
-text-align: center;
-/* margin-bottom: .5rem; */
-padding: 0 0 20px 0;
-border-bottom: 1px solid silver;
-font-family: 'Noto Kufi Arabic', sans-serif;
-font-size: 1.5rem;
-color: #213C64;
-@media (max-width:500px) {
- font-size: 1rem;
- padding: 0 0 10px 0;
-}
-`;
-
 export const Form = styled.form`
 width:20rem;
 @media (max-width:550px) {
@@ -141,39 +126,20 @@ margin-top: 2rem;
 }
 `;
 
-
-export const DropdownDivSelect = styled.div`
-
-padding: 1rem;
-border-radius: 6px;
-background-color: white;
-margin-top: 3rem;
-
-box-shadow: 1px 3px 12px 0px #0000007a;
-
-/* width: fit-content; */
-/* border: 2px;
-border-bottom-color: blue; */
-
-justify-content: center;
-cursor: pointer;
-margin-bottom: .5rem;
-@media (max-width:500px) {
-  padding: .8rem;
-  margin-bottom: 0rem;
-}
-`;
-
 export const DropdownList = styled.div`
 position: relative;
-max-height:700px;
-overflow: auto;
+.dropdown-scroll-container{
+    overflow: auto;
+    max-height:700px;
+}
+
 width: 25rem;
 @media (max-width:500px) {
     margin: 10px 0;
-    max-height:350px;
     width: 100%;
-
+    .dropdown-scroll-container{
+        max-height:350px;
+    }
 }
 
 margin: 100px auto;
@@ -272,18 +238,6 @@ flex-direction: column;
   background-color: orange;
 
 }
-`;
-
-export const LabelSuper = styled.section `
-text-align: center;
-display: flex;
-justify-content: center;
-align-items: flex-start;
-display: block;
-
-margin: auto;
-flex-direction: column;
-
 `;
 
 export const Button = styled.button`

@@ -9,6 +9,7 @@ import Admins from "../Admins/Admins";
 import Standards from "../Standards/Standards";
 import StudentsPoints from "../studentsPoints/StudentsPoints";
 import Competition from "../Competition/competition";
+import TopStudents from "../TopStudents/TopStudents";
 import ReviewOtherPoints from "../ReviewOtherPoints/ReviewOtherPoints";
 import AppLayout from "../AppLayout/AppLayout";
 export default function AppBrowserRouter(){
@@ -20,6 +21,7 @@ export default function AppBrowserRouter(){
                 <Route exact path="/login" element={<Login/>}/>
                 <Route exact path="/" element={ <AppLayout color="#FFF;" children={<Home/>}/>} />
                 <Route exact path="/Competition" element={<AppLayout color="#2980b9;" children={<Competition/>}/>} />
+                <Route exact path="/TopStudents" element={<AppLayout color="#2980b9;" children={<TopStudents/>}/>} />
                 <Route exact path="/loading" element={<Loader/>} />
                 <Route exact path= "/Students" element= {<AppLayout color="#2980b9;" children={<Students/>}/>}  />
                 <Route exact path= "/Groups" element= {<AppLayout color="#2980b9;" children={<Groups/>} /> }  />

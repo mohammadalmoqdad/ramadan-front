@@ -93,6 +93,7 @@ export default function Students(){
                         <>
                             <DropdownList className='DropdownList'>
                                 <DropdownListItem  className="title"><Span>الطلاب</Span></DropdownListItem>
+                                <div className="dropdown-scroll-container">
                                 {
 
                                     students.map((student, index) => {
@@ -108,6 +109,7 @@ export default function Students(){
                                             </DropdownListItem>)
                                         })
                                 }
+                                </div>
                             </DropdownList>
 
                             <Tabs labels={['تعديل طالب','كلمة المرور']}
