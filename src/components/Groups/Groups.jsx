@@ -151,6 +151,7 @@ export default function Groups() {
                     <>
                         <DropdownList className='DropdownList'>
                             <DropdownListItem  className="title"><Span>المجموعات الحالية</Span></DropdownListItem>
+                            <div className="dropdown-scroll-container">
                             {
                                 groups.map((group, index) => {
                                     return (<DropdownListItem key={index}>
@@ -171,6 +172,7 @@ export default function Groups() {
                                     <DivPass className='red'>يرجى إزالة أو نقل الطلاب لمجموعة أخرى قبل حذف هذه المجموعة</DivPass>
                                 </DropdownListItem>
                             }
+                            </div>
                         </DropdownList>
                         <Tabs labels={groupsLabels} contents={groupsContents} />
                     </>

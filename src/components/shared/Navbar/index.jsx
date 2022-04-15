@@ -46,6 +46,7 @@ function Nav() {
                                     <NavDropdown.Item href="/Competition">معلومات المسابقة</NavDropdown.Item>
 
                                 }
+                                <NavDropdown.Item href="/TopStudents">الأوائل</NavDropdown.Item>
                                 <NavDropdown.Item href="/Admins">المسؤولون</NavDropdown.Item>
                                 <NavDropdown.Item href="/Students">الطلاب</NavDropdown.Item>
                                 <NavDropdown.Item href="/Standards">المعايير</NavDropdown.Item>

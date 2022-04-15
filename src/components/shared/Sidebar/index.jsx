@@ -15,6 +15,7 @@ import { ReactComponent as GroupsIcon } from "assets/icons/group.svg";
 import {ReactComponent as FileTxtIcon} from "assets/icons/file-text.svg";
 import {ReactComponent as CompInfoIcon} from "assets/icons/competition-information.svg";
 import {ReactComponent as StudentsIcon} from "assets/icons/students.svg";
+import {ReactComponent as Winners} from "assets/icons/winners.svg";
 import {useAdminContext} from "../../../contexts/AdminContext";
 
 function Sidebar() {
@@ -67,6 +68,12 @@ function Sidebar() {
                 <CompInfoIcon/>
               </MenuLink>
         }
+        <MenuLink to="/TopStudents">
+          <MenuItem >
+            الأوائل
+          </MenuItem>
+          <Winners/>
+        </MenuLink>
         <MenuLink to="/Admins">
           <MenuItem >
             المسؤولون
