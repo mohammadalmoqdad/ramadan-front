@@ -6,6 +6,7 @@ import Container, {DropdownList, DropdownListItem, Span, Form, InputSubmit, DivP
 import {ReactComponent as FileDownload} from "assets/icons/fileDownload.svg";
 import {exportPoints} from "../../services/adminsServices";
 import {DropDownDiv, DropdownList as List} from "../ReviewOtherPoints/ReviewOtherPoints.styles";
+import {saveAs} from "file-saver";
 import Loader from "../Loader";
 
 export default  function ExportPoints() {
@@ -59,13 +60,11 @@ export default  function ExportPoints() {
               setClassColor("green");
 
               try {
-                  const href = window.URL.createObjectURL(new Blob([res.data]));
-                  const link = document.createElement('a');
-                  link.href = href;
-                  link.setAttribute('download', `Points_${fromDay}_${toDay}.xlsx`);
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
+                  let blob = new Blob([res.data],
+                      { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                      }
+                  );
+                  saveAs(blob, `Points_${fromDay}_${toDay}.xlsx`);
               }catch (err){
                   console.log(JSON.stringify(err))
               }
