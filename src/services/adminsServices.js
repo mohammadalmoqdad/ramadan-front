@@ -76,7 +76,6 @@ export const resetAdminPassword = (username, data, successCallback, faiCallback)
 export const exportPoints = (fromDay, toDay, successCallback, faiCallback)=>{
     doRequest(null, `/comp-admin/export-comp-info/?from_date=${fromDay}&to_date=${toDay}`,
         {
-            responseType: 'arraybuffer',
             Authorization: `Bearer ${cookie.load('token')}`,
         },
         "get",
