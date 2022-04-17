@@ -16,6 +16,7 @@ import {ReactComponent as FileTxtIcon} from "assets/icons/file-text.svg";
 import {ReactComponent as CompInfoIcon} from "assets/icons/competition-information.svg";
 import {ReactComponent as StudentsIcon} from "assets/icons/students.svg";
 import {ReactComponent as Winners} from "assets/icons/winners.svg";
+import {ReactComponent as FileDownload} from "assets/icons/fileDownload.svg";
 import {useAdminContext} from "../../../contexts/AdminContext";
 
 function Sidebar() {
@@ -104,6 +105,14 @@ function Sidebar() {
           </MenuItem>
           <ResultsIcon />
         </MenuLink>
+        {hasPermission &&
+            <MenuLink to="/ExportPoints">
+              <MenuItem>
+                استخراج النتائج
+              </MenuItem>
+              <FileDownload/>
+            </MenuLink>
+        }
         <MenuLink to="/Groups">
           <MenuItem >المجموعات</MenuItem>
           <GroupsIcon />
