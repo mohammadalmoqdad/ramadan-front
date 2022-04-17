@@ -58,16 +58,7 @@ export default  function ExportPoints() {
 
               setMessages(["تم استخراج النتائج بنجاح"]);
               setClassColor("green");
-
-              try {
-                  let blob = new Blob([res.data],
-                      { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                      }
-                  );
-                  saveAs(blob, `Points_${fromDay}_${toDay}.xlsx`);
-              }catch (err){
-                  console.log(JSON.stringify(err))
-              }
+              saveAs(res.data, `Points_${fromDay}_${toDay}.xlsx`);
 
               setLoading(false);
 
