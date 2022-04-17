@@ -58,13 +58,24 @@ export default  function ExportPoints() {
               setMessages(["تم استخراج النتائج بنجاح"]);
               setClassColor("green");
 
-              const href = window.URL.createObjectURL(res.data);
-              const link = document.createElement('a');
-              link.href = href;
-              link.setAttribute('download', `Points_${fromDay}_${toDay}.xlsx`);
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
+              try {
+                  let href;
+                  if(res && res.data && res.data.blob()){
+                      href = window.URL.createObjectURL(res.data.blob());
+                  }else if(res && res.blob){
+                      href = window.URL.createObjectURL(res.blob());
+                  }else{
+                      href = window.URL.createObjectURL(res.data.blob);
+                  }
+                  const link = document.createElement('a');
+                  link.href = href;
+                  link.setAttribute('download', `Points_${fromDay}_${toDay}.xlsx`);
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+              }catch (err){
+                  console.log(JSON.stringify(err))
+              }
 
               setLoading(false);
 
