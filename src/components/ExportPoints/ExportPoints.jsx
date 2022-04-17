@@ -59,17 +59,7 @@ export default  function ExportPoints() {
               setClassColor("green");
 
               try {
-                  let href;
-                  if(res.blob()){
-                      href = window.URL.createObjectURL(res.blob());
-                  }
-                  else if(res && res.data && res.data.blob()){
-                      href = window.URL.createObjectURL(res.data.blob());
-                  }else if(res && res.blob){
-                      href = window.URL.createObjectURL(res.blob());
-                  }else{
-                      href = window.URL.createObjectURL(res.data.blob);
-                  }
+                  const href = window.URL.createObjectURL(new Blob([res.data]));
                   const link = document.createElement('a');
                   link.href = href;
                   link.setAttribute('download', `Points_${fromDay}_${toDay}.xlsx`);
