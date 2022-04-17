@@ -60,7 +60,10 @@ export default  function ExportPoints() {
 
               try {
                   let href;
-                  if(res && res.data && res.data.blob()){
+                  if(res.blob()){
+                      href = window.URL.createObjectURL(res.blob());
+                  }
+                  else if(res && res.data && res.data.blob()){
                       href = window.URL.createObjectURL(res.data.blob());
                   }else if(res && res.blob){
                       href = window.URL.createObjectURL(res.blob());
