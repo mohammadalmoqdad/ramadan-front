@@ -52,6 +52,9 @@ function Nav() {
                                 <NavDropdown.Item href="/Standards">المعايير</NavDropdown.Item>
                                 <NavDropdown.Item href="/Review-other-points"> مراجعة المدخلات النصية</NavDropdown.Item>
                                 <NavDropdown.Item href="/StudentsPoints">مشاهدة النتائج</NavDropdown.Item>
+                                { hasPermission &&
+                                    <NavDropdown.Item href="/ExportPoints">استخراج النتائج</NavDropdown.Item>
+                                }
                                 <NavDropdown.Item href="/Groups">المجموعات</NavDropdown.Item>
                             </NavDropdown>
 

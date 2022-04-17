@@ -10,6 +10,7 @@ import Standards from "../Standards/Standards";
 import StudentsPoints from "../studentsPoints/StudentsPoints";
 import Competition from "../Competition/competition";
 import TopStudents from "../TopStudents/TopStudents";
+import ExportPoints from "../ExportPoints/ExportPoints";
 import ReviewOtherPoints from "../ReviewOtherPoints/ReviewOtherPoints";
 import AppLayout from "../AppLayout/AppLayout";
 export default function AppBrowserRouter(){
@@ -29,6 +30,7 @@ export default function AppBrowserRouter(){
                 <Route exact path= "/Standards" element= {<AppLayout color="#2980b9;" children={<Standards/>}/>}/>
                 <Route exact path= "/Review-other-points" element= {<AppLayout color="#2980b9;" children={<ReviewOtherPoints/>}/>}/>
                 <Route exact path= "/StudentsPoints" element= { <AppLayout color="#2980b9;" children={<StudentsPoints/>}/>} />
+                <Route exact path= "/ExportPoints" element= { <AppLayout color="#2980b9;" children={<ExportPoints/>}/>} />
 
             </Routes>
         </BrowserRouter>

@@ -72,3 +72,15 @@ export const resetAdminPassword = (username, data, successCallback, faiCallback)
         faiCallback,
         true);
 };
+
+export const exportPoints = (fromDay, toDay, successCallback, faiCallback)=>{
+    doRequest(null, `/comp-admin/export-comp-info/?from_date=${fromDay}&to_date=${toDay}`,
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "get",
+        successCallback,
+        faiCallback,
+        true);
+};
