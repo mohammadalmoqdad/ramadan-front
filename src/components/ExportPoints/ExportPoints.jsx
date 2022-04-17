@@ -57,6 +57,15 @@ export default  function ExportPoints() {
 
               setMessages(["تم استخراج النتائج بنجاح"]);
               setClassColor("green");
+
+              const href = window.URL.createObjectURL(res.data);
+              const link = document.createElement('a');
+              link.href = href;
+              link.setAttribute('download', `Points_${fromDay}_${toDay}.xlsx`);
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+
               setLoading(false);
 
               setTimeout(()=>{
