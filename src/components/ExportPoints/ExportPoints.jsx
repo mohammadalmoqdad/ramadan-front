@@ -141,7 +141,7 @@ export default  function ExportPoints() {
                             }
                             { fromDay !== "" && toDay !== "" &&
                                 <>
-                                    <DivPass>يمكنك استخراج النتائج مرة واحدة يوميا</DivPass>
+                                    <DivPass style={{color:'#000'}}>يمكنك استخراج النتائج مرة واحدة يوميا</DivPass>
                                     <InputSubmit type="submit" value='exportPoints'> استخراج <FileDownload style={{fill: 'white'}}/></InputSubmit>
                                 </>
                             }
