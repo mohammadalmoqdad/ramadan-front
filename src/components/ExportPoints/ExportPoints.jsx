@@ -140,8 +140,10 @@ export default  function ExportPoints() {
                                 })
                             }
                             { fromDay !== "" && toDay !== "" &&
-                                <InputSubmit type="submit" value='exportPoints'> استخراج <FileDownload style={{fill: 'white'}}/></InputSubmit>
-
+                                <>
+                                    <DivPass>يمكنك استخراج النتائج مرة واحدة يوميا</DivPass>
+                                    <InputSubmit type="submit" value='exportPoints'> استخراج <FileDownload style={{fill: 'white'}}/></InputSubmit>
+                                </>
                             }
 
                         </Form>
