@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import Tabs from "../shared/Tabs/Tabs"
-import SetPasswordStudents from "./setPasswordStudent/SetPasswordStudents";
-import EditStudentForm from "./EditStudentForm/EditStudentForm";
+import Tabs from "../shared/Tabs"
+import SetPasswordStudents from "./setPasswordStudent";
+import EditStudentForm from "./EditStudentForm";
 import {deleteStudent, retrieveStudents} from "../../services/studentsServices";
 import  {H5} from "./setPasswordStudent/SetPasswordStudent.styles";
-import Modal from "../shared/Modal/Modal";
+import Modal from "../shared/Modal";
 import StudentsContainer, {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
 import {useNavigate} from "react-router-dom";

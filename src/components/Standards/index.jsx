@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import AddStandardForm from "./AddStandardForm/AddStandardForm";
-import EditStandardForm from "./EditStandardForm/EditStandardForm";
-import AddSectionForm from "./AddSectionForm/AddSectionForm";
-import EditSectionForm from "./EditSectionForm/EditSectionForm";
+import AddStandardForm from "./AddStandardForm";
+import EditStandardForm from "./EditStandardForm";
+import AddSectionForm from "./AddSectionForm";
+import EditSectionForm from "./EditSectionForm";
 import {deleteSection, deleteStandard, retrieveSections, retrieveStandards} from "../../services/standardServices";
-import Tabs from "./../shared/Tabs/Tabs";
+import Tabs from "../shared/Tabs";
 import Container, {StandardsDropDownList} from "./Standards.styles";
-import Modal from "../shared/Modal/Modal";
+import Modal from "../shared/Modal";
 import {Button, DivPass, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";

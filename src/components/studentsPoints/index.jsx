@@ -17,7 +17,7 @@ import LoginFormContainer,
   ChartsContainer
 } from "./StudentsPoints.styles"
 
-import TableData from './table/Table.jsx';
+import TableData from './table';
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";
 import Loader from "../Loader";

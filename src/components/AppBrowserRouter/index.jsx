@@ -3,16 +3,16 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Login from "../Login";
 import Home from "../Home";
 import Loader from "../Loader";
-import Students from "../Students/Students";
-import Groups from "../Groups/Groups";
+import Students from "../Students";
+import Groups from "../Groups";
 import Admins from "../Admins/Admins";
-import Standards from "../Standards/Standards";
-import StudentsPoints from "../studentsPoints/StudentsPoints";
-import Competition from "../Competition/competition";
-import TopStudents from "../TopStudents/TopStudents";
-import ExportPoints from "../ExportPoints/ExportPoints";
-import ReviewOtherPoints from "../ReviewOtherPoints/ReviewOtherPoints";
-import AppLayout from "../AppLayout/AppLayout";
+import Standards from "../Standards";
+import StudentsPoints from "../studentsPoints";
+import Competition from "../Competition";
+import TopStudents from "../TopStudents";
+import ExportPoints from "../ExportPoints";
+import ReviewOtherPoints from "../ReviewOtherPoints";
+import AppLayout from "../AppLayout";
 export default function AppBrowserRouter(){
 
     return(

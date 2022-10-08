@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {retrieveCompetitions} from "../../services/competitionsServices";
-import AddEditAnnouncementForm from "./AddEditAnnouncementForm/AddEditAnnouncementForm";
-import EditCompetitionForm from "./EditCompetitionForm/EditCompetitionForm";
-import Tabs from "../shared/Tabs/Tabs"
+import AddEditAnnouncementForm from "./AddEditAnnouncementForm";
+import EditCompetitionForm from "./EditCompetitionForm";
+import Tabs from "../shared/Tabs"
 import CompetitionContainer from "../Admins/Admins.styles";
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";

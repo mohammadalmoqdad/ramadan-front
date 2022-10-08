@@ -5,7 +5,7 @@ import {deleteRow, saveAllEditors, validate} from 'ka-table/actionCreators';
 import './table-style.css'
 import {deleteStudentPoint, retrieveStudentsPointsPerDay, updateStudentPoint} from "../../../services/studentsServices";
 import {kaPropsUtils} from 'ka-table/utils';
-import Modal from "../../shared/Modal/Modal";
+import Modal from "../../shared/Modal";
 import {H5} from "../../Students/setPasswordStudent/SetPasswordStudent.styles";
 import {DivPass} from "../../Standards/AddStandardForm/AddStandardForm.styles";
 
