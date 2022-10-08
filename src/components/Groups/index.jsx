@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Tabs from "../shared/Tabs/Tabs";
-import AddGroupForm from "./AddGroupForm/AddGroupForm";
-import EditGroupForm from "./EditGroupForm/EditGroupForm";
+import Tabs from "../shared/Tabs";
+import AddGroupForm from "./AddGroupForm";
+import EditGroupForm from "./EditGroupForm";
 import {retrieveStudents} from "../../services/studentsServices";
 import {retrieveAdmins} from "../../services/adminsServices";
 import {deleteGroup, retrieveGroups} from "../../services/groupsServices";
-import Modal from "../shared/Modal/Modal";
+import Modal from "../shared/Modal";
 import Container, {Button, DropdownList, DropdownListItem, Span} from "../Admins/Admins.styles";
 import {useAdminContext} from "../../contexts/AdminContext";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";

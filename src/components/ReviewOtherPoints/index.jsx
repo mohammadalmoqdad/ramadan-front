@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {retrieveStudents, retrieveStudentsPointsOfTypeOther, updateStudentPoint} from "../../services/studentsServices";
 import { TxtArea, DropDownDiv, DropdownList} from "./ReviewOtherPoints.styles";
 import { DropdownDivSelect as Box, Form} from "../Groups/Groups.styles"
-import Tabs from "../shared/Tabs/Tabs";
+import Tabs from "../shared/Tabs";
 import {DropdownListItem} from "../studentsPoints/StudentsPoints.styles";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import {Span} from "../Login/login.styles";

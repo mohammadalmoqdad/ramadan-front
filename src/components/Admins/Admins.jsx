@@ -5,10 +5,10 @@ import AdminsDefault, {
     Span,
     Button
 } from "./Admins.styles"
-import Tabs from "../shared/Tabs/Tabs";
-import Modal from "../shared/Modal/Modal";
-import AddAdminForm from "./AddAdminForm/AddAdminForm";
-import EditAdminForm from "./EditAdminForm/EditAdminForm";
+import Tabs from "../shared/Tabs";
+import Modal from "../shared/Modal";
+import AddAdminForm from "./AddAdminForm";
+import EditAdminForm from "./EditAdminForm";
 import {deleteAdmin, retrieveAdmins} from "../../services/adminsServices";
 import {useAdminContext} from "../../contexts/AdminContext";
 import ResetAdminPasswordForm from "./ResetAdminPasswordForm/ResetAdminPasswordForm";
