@@ -25,8 +25,6 @@ display:flex;
   border: 10px solid #dddddd;
   border-top-color: blue;
   border-right-color: orange ;
-  /* border-bottom-color: blue;
-  border-left-color: orange; */
 
   border-radius: 50%;
   animation: loading 1s linear infinite;
@@ -45,7 +43,6 @@ display:flex;
 `;
 
 export const H1 = styled.h1`
-
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 3rem;

@@ -1,16 +1,18 @@
 import React, {useState, useEffect} from "react";
 
 import {
-    InputSubmit,
     DivPass,
-    FormInput,
+    DropdownDiv,
+    Span,
+} from "./SetPasswordStudent.styles";
+import {
+    InputSubmit,
     DivTxtField,
     Form,
     DropdownListItem,
     DropdownList,
-    DropdownDiv,
-    Span,
-} from "./SetPasswordStudent.styles";
+    FormInput
+} from "../../shared/styles";
 import "./Setpass.css";
 import {setStudentPassword} from "../../../services/studentsServices";
 

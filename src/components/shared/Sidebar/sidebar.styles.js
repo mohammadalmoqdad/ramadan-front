@@ -1,37 +1,7 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-const fadeIn = keyframes`
-  from {
-    max-width: 15rem;
-  }
-  
-  to {
-    /* max-height: 3.8rem; */
-    max-width: 4rem;
-  }`;
-
-const fadeOut = keyframes`
-  from {
-    max-width: 4rem;
-    /* max-height: 100vh; */
-    &{
-      /* position: static; */
-    }
-  }
-  
-  to {  
-    max-width: 15rem;
-  }
-`;
-
 export const SideBarContainer = styled.div`
-  /* animation: ${({ isSidebarCollapsed }) => {
-    if (isSidebarCollapsed === true) return fadeIn;
-    if (isSidebarCollapsed === false) return fadeOut;
-    return "";
-  }}
-    ease-in-out forwards; */
   animation-duration: 0.2s;
   top: 5rem;
   background-color: white;
@@ -64,7 +34,6 @@ export const UserInfoContainer = styled.div`
   justify-content: space-around;
   flex-direction: row-reverse;
   align-items: center;
-  /* color: lightgray; */
 `;
 
 export const Username = styled.label`
@@ -76,21 +45,6 @@ export const Username = styled.label`
   font-weight: bold;
 `;
 
-export const UserPicContainer = styled.span`
-  > svg {
-    width: 2rem;
-  }
-`;
-
-export const MenuIconContainer = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  > svg {
-    width: 2rem;
-  }
-`;
-
 export const MenuContainer = styled.div`
   width: 100%;
 `;
@@ -100,7 +54,6 @@ export const MenuLink = styled(NavLink)`
   text-decoration: none;
   justify-content: flex-end;
   align-items: center;
-  /* padding: 1rem; */
   color: #213c64;
   white-space: nowrap;
   width: 100%;
@@ -131,6 +84,4 @@ export const MenuItem = styled.span`
   padding: 0;
   border: none;
   width: 100%;
-
-  /* margin-right: 1rem; */
 `;

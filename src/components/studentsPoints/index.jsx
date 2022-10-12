@@ -9,13 +9,13 @@ import LoginFormContainer,
 {
   PointShow,
   LoginForm,
-  DropdownListItem,
   DropdownList,
   DropdownDiv,
   Wird,
   SelectInputContainer,
   ChartsContainer
 } from "./StudentsPoints.styles"
+import {DropdownListItem} from "../shared/styles";
 
 import TableData from './table';
 import cookie from "react-cookies";

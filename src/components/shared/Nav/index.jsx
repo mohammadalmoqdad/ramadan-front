@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import HedarNavContainer, { Logo, HedarNav, Ul, Li, A, ButtonLogout } from "./nav.styles"
-
-// import Logout from '../img/Baseline_logout_white_24dp.png'
-
+import  {  HedarNav, Li, A, } from "./nav.styles"
+import {
+  Header as HedarNavContainer,
+  Logo,
+  Ul,
+  ButtonLogout
+} from "../styles";
 
 export class Nav extends Component {
   render() {

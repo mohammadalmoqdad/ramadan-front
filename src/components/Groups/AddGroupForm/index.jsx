@@ -1,16 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import {
     DivMultiselect,
-    DivTxtField,
-    DropdownDiv,
     DropdownDivSelect,
-    FormInput,
-    Form,
-    InputSubmit,
     Span, AnnouncementsFormInput, RemoveBtn, AddBtn
 } from "../Groups.styles";
+import {
+    DivTxtField,
+    Form,
+    FormInput,
+    InputSubmit,
+    DropdownListItem,
+    DropdownDiv
+} from "../../shared/styles";
 import Multiselect from "multiselect-react-dropdown";
-import {DropdownList, DropdownListItem} from "../../Admins/EditAdminForm/EditAdminForm.styles";
+import {DropdownList} from "../../Admins/EditAdminForm/EditAdminForm.styles";
 import {DivPass} from "../../Admins/Admins.styles";
 import {addGroup} from "../../../services/groupsServices";
 

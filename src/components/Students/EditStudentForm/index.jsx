@@ -1,20 +1,24 @@
 import React, {useEffect, useState} from "react";
 import {
     DivPass,
-    DivTxtField,
     DropdownDiv,
-    DropdownList,
-    DropdownListItem,
-    Form,
-    FormInput,
-    InputSubmit,
     Span,
     DivFileField,
     H5,
     FileFormInput
 } from "../setPasswordStudent/SetPasswordStudent.styles";
+import {
+    DivTxtField,
+    DropdownList,
+    DropdownListItem,
+    Form,
+    FormInput,
+    InputSubmit,
+    Checkboxes,
+    DivTxtFieldnumber,
+    LabelSoper
+} from "../../shared/styles";
 import {DropdownDivSelect as Box} from '../../Groups/Groups.styles';
-import {Checkboxes, DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
 import {updateStudent} from "../../../services/studentsServices";
 
 export default function EditStudentForm(props){

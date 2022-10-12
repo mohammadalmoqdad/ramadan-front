@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {
+    Span,
+    DropdownListStanderd,
+} from "../AddStandardForm/AddStandardForm.styles";
+
+import {
     DivTxtFieldnumber,
     FormInputnumber,
     Label,
@@ -7,9 +12,11 @@ import {
     FormInput,
     DivTxtField,
     Formm,
-    Span,
-    DivPass, DropdownDiv, DropdownListStanderd, DropdownListItemStanderd,
-} from "../AddStandardForm/AddStandardForm.styles"
+    H3Pass,
+    DropdownDiv,
+    DropdownListItemStanderd
+} from "../../shared/styles";
+
 import {updateSection} from "../../../services/standardServices";
 
 export default function EditSectionForm(props){
@@ -132,7 +139,7 @@ export default function EditSectionForm(props){
 
             {messages.length > 0 &&
                 messages.map((message, index) => {
-                    return <DivPass className={classColor} key={index}>{message}</DivPass>
+                    return <H3Pass className={classColor} key={index}>{message}</H3Pass>
                 })
             }
             <InputSubmit type="submit">تعديل القسم</InputSubmit>

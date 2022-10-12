@@ -7,12 +7,16 @@ import HeaderNavContainer, {
     NavDropdownli,
     NavDropdownlist,
     Logo,
-    HedarNav,
-    Ul,
-    Li,
     A,
     ButtonLogout
-} from "./navbar.styles"
+} from "./navbar.styles";
+
+import {
+    HedarNav,
+    Ul,
+    Li
+} from "../styles";
+
 import {useNavigate } from "react-router-dom";
 import { useAdminContext } from "../../../contexts/AdminContext";
 import WirdLogo from '../../../assets/Logo/WirdLogosvg.svg'
