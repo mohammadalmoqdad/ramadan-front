@@ -1,15 +1,14 @@
 import styled from "styled-components";
+import {FormInput as DefaultFormInput}  from '../../../shared/styles'
 
 export default styled.div`
 justify-content: center;
 flex-direction: column;
 text-align:center;
-/* display: flex; */
 `;
 
 export const Divvv = styled.div`
 justify-content: center;
-
 align-items: flex-start;
 display: flex;
 `;
@@ -40,42 +39,13 @@ transition: .3s;
 }
 `;
 
-
-export const DivTxtField = styled.div`
-position: relative;
-/* border-bottom: 2px solid #adadad; */
-margin: 1rem 0;
-
-@media (max-width:500px) {
-margin: 1rem 0;
-}
-`;
-
 export const Span = styled.div`
-
 text-align:center;
 font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.2rem;
-/* font-weight: bolder; */
-
-
 `;
-export const FormInput = styled.input`
-width: 7rem;
-padding: 0 5px;
-height: 2.1rem;
-font-size: 1rem;
-border: none;
-background: none;
-outline: none;
-text-align:right;
-color: orange;
-border-bottom: 2px solid #2691d9;
-margin-right: 2rem;
-:focus{
-transition: .1s;
-border-bottom: 3px solid orange;
-}
 
+export const FormInput = styled(DefaultFormInput)`
+width: 7rem;
 `;

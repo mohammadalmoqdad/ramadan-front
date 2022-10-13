@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import LoginFormContainer, {
-  Wird,
-  DivPass,
   DivCenter,
   H3Login,
   InputSubmit,
   Form,
-  FormInput,
-  DivTxtField,
-  Span, PageLink, TitleLogin,
+  PageLink,
+  TitleLogin,
 } from "./login.styles";
+
+import {
+  Wird,
+  DivPass,
+  FormInput,
+  DivTxtField
+} from "../shared/styles";
 import { useAdminContext } from "contexts/AdminContext";
 import {useNavigate, useLocation} from "react-router-dom";
 import cookie from "react-cookies";

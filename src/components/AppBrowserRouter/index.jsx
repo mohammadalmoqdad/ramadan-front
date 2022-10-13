@@ -5,7 +5,7 @@ import Home from "../Home";
 import Loader from "../Loader";
 import Students from "../Students";
 import Groups from "../Groups";
-import Admins from "../Admins/Admins";
+import Admins from "../Admins";
 import Standards from "../Standards";
 import StudentsPoints from "../studentsPoints";
 import Competition from "../Competition";

@@ -7,7 +7,7 @@ import {deleteStudentPoint, retrieveStudentsPointsPerDay, updateStudentPoint} fr
 import {kaPropsUtils} from 'ka-table/utils';
 import Modal from "../../shared/Modal";
 import {H5} from "../../Students/setPasswordStudent/SetPasswordStudent.styles";
-import {DivPass} from "../../Standards/AddStandardForm/AddStandardForm.styles";
+import {H3Pass} from '../../shared/styles';
 
 // get the table component the 
 function getTableProps(studentData) {
@@ -238,7 +238,7 @@ function TableData({selectedUser, selectedDay}) {
                 />
                 {messages.length > 0 &&
                     messages.map((message, index) => {
-                        return <DivPass className={classColor} key={index}>{message}</DivPass>
+                        return <H3Pass className={classColor} key={index}>{message}</H3Pass>
                     })
                 }
                 <button onClick={updateCells} className='save-changes'>

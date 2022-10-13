@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {Form, DivTxtField, Span, InputSubmit, AddBtn, AnnouncementsFormInput, RemoveBtn} from "../../Groups/Groups.styles";
+import {Span, AddBtn, AnnouncementsFormInput, RemoveBtn} from "../../Groups/Groups.styles";
+import {
+    DivTxtField,
+    Form,
+    InputSubmit
+} from "../../shared/styles";
 import {DivPass} from "../../Admins/Admins.styles";
 import {updateCompetition} from "../../../services/competitionsServices";
 

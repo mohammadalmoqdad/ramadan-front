@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";
-import {  DropdownListItem as Item} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
-import Container, {DropdownList, DropdownListItem, Span, Form, InputSubmit, DivPass} from "../Admins/Admins.styles";
+import {
+    Form,
+    InputSubmit,
+    DropdownListItem as Item
+} from "../shared/styles";
+import Container, {DropdownList, Span, DivPass, DropdownListItem} from "../Admins/Admins.styles";
 import {ReactComponent as FileDownload} from "assets/icons/fileDownload.svg";
 import {exportPoints} from "../../services/adminsServices";
 import {DropDownDiv, DropdownList as List} from "../ReviewOtherPoints/ReviewOtherPoints.styles";

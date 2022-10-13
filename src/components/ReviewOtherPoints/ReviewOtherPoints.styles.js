@@ -1,18 +1,6 @@
 import styled from "styled-components";
-import GroupsContainer from "../Groups/Groups.styles";
-import {LoginForm} from "../studentsPoints/StudentsPoints.styles";
-import {DropdownDiv, DropdownList as List, DropdownListItem} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
-
-export const Background = styled(GroupsContainer)`
-margin-top : 80px;
-padding-top: 25px;
-`;
-
-export const FormLayer = styled(LoginForm)`
-padding: 5px;
-max-height: 750px;
-overflow: auto;
-`;
+import {DropdownDiv} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
+import {DropdownList as List} from "../shared/styles";
 
 export const TxtArea = styled.textarea`
 width: 100%;

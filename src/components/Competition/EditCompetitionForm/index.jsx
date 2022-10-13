@@ -1,16 +1,20 @@
 import React, {useEffect, useState} from "react";
 import {
-    Form,
-    DivTxtField,
     Span,
-    InputSubmit,
     AddBtn,
     AnnouncementsFormInput,
     RemoveBtn
 } from "../../Groups/Groups.styles";
+import {
+    DivTxtFieldnumber,
+    LabelSoper,
+    Checkboxes,
+    DivTxtField,
+    Form,
+    InputSubmit
+} from "../../shared/styles";
 import {DivPass} from "../../Admins/Admins.styles";
 import {updateCompetition} from "../../../services/competitionsServices";
-import {Checkboxes, DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
 
 export default function EditCompetitionForm(props){
     const [name, setName] = useState("");

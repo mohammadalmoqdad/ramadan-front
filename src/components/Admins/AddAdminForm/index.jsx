@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react'
-import  {
+import  {DivPass, Span} from "../Admins.styles";
+import {addAdmin} from "../../../services/adminsServices";
+import {
+    DivTxtFieldnumber,
+    LabelSoper,
     Checkboxes,
-    DivPass,
     DivTxtField,
     Form,
     FormInput,
-    InputSubmit,
-    Span
-} from "../Admins.styles";
-import {addAdmin} from "../../../services/adminsServices";
-import {DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
+    InputSubmit
+} from "../../shared/styles";
 
 
 export default function AddAdminForm(props) {

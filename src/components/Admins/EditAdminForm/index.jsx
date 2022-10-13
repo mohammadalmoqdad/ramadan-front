@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import {
-    Checkboxes,
     DivPass,
+    Span
+} from "../Admins.styles";
+import {
+    DivTxtFieldnumber,
+    LabelSoper,
+    Checkboxes,
     DivTxtField,
     Form,
     FormInput,
     InputSubmit,
-    Span
-} from "../Admins.styles";
+    DropdownListItem
+} from "../../shared/styles";
 
-import {DropdownDiv, DropdownList, DropdownListItem} from "./EditAdminForm.styles";
+import {DropdownDiv, DropdownList} from "./EditAdminForm.styles";
 import {updateAdmin} from "../../../services/adminsServices";
-import {DivTxtFieldnumber, LabelSoper} from "../../Standards/AddStandardForm/AddStandardForm.styles";
 import {useAdminContext} from "../../../contexts/AdminContext";
 
 export default function EditGroupForm(props) {

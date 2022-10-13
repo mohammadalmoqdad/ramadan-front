@@ -11,7 +11,7 @@ import AddAdminForm from "./AddAdminForm";
 import EditAdminForm from "./EditAdminForm";
 import {deleteAdmin, retrieveAdmins} from "../../services/adminsServices";
 import {useAdminContext} from "../../contexts/AdminContext";
-import ResetAdminPasswordForm from "./ResetAdminPasswordForm/ResetAdminPasswordForm";
+import ResetAdminPasswordForm from "./ResetAdminPasswordForm";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";

@@ -1,5 +1,6 @@
 import React from 'react'
-import Divv, { Divvv,InputSubmit,FormInput, Span, DivTxtField } from "./Modals.styled"
+import Divv, { Divvv,InputSubmit,FormInput, Span} from "./Modals.styled"
+import {DivTxtField} from '../../../shared/styles'
 
 
 export default function Modals() {

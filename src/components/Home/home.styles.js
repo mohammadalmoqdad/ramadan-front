@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import {
+    WirdMinIntroduction as DefaultWirdMinIntroduction,
+    Introduction as DefaultIntroduction,
+    BorderBottom as DefaultBorderBottom
+} from '../shared/styles';
 
 export const HomeContainer = styled.div`
  display: flex;
@@ -46,23 +51,6 @@ export const StatisticsSection = styled.div`
   align-items: center;
 `;
 
-export const StatisticsContainer = styled.div`
-  padding: 1rem;
-  min-width: 8rem;
-  max-height: 10rem;
-  border: 5px solid black;
-  border-radius: 6rem;
-  text-align: center;
-`;
-
-export const StatisticsNumber = styled.p``;
-
-export const StatisticsTitle = styled.p``;
-
-export const StatiticsNote = styled.p`
-  font-size: small;
-`;
-
 // **************** Second section ********************** WirdMinIntroduction Introduction
 export const IntroductionSection = styled.div`
 margin: auto;
@@ -85,25 +73,18 @@ margin-top: 2rem;
 `;
 
 export const IntroductionSectionDiv = styled.div`
-/* width: 35rem; */
 margin-left: 2rem;
 margin-right: 2rem;
 justify-content: center;
 align-items: flex-start;
 @media(max-width:1000px){ 
-  /* margin-right: -5rem; */
   justify-content: center;
   align-items: flex-start;
-/* display: flex; */
-  /* width: 35rem; */
   text-align: center;
 }
 @media(max-width:700px){ 
-  /* margin-right: -5rem; */
   justify-content: center;
   align-items: flex-start;
-  /* display: flex; */
-  /* width: 5rem; */
   text-align: center;
   margin: auto;
 }
@@ -142,8 +123,6 @@ align-items: flex-start;
 }
 `;
 export const WirdLogoInHome = styled.div`
-/* width: 50rem; */
-/* display: flex; */
 
 justify-content: center;
 align-items: flex-start;
@@ -153,14 +132,13 @@ align-items: flex-start;
 }
 }
 @media(max-width:1000px){
-margin: auto;
-/* margin-right: 6.5rem; */
-justify-content: center;
+  margin: auto;
+  justify-content: center;
 }
 @media(max-width:550px){
-margin-top: 1rem;
-justify-content: center;
-align-items: center;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 `;
 
@@ -168,7 +146,6 @@ export const Wird = styled.h1`
 min-height: 55px;
 margin-top: 2rem;
 text-align: center;
-/* padding: 0 0 20px 0; */
 font-family: 'Noto Kufi Arabic', sans-serif;
 font-size: 1.5rem;
 color: orange;
@@ -178,64 +155,36 @@ color: orange;
 }
 `;
 
-export const WirdMinIntroduction = styled.div`
-margin-top: 1.5rem;
-padding-right: 2rem;
-text-align:right;
-font-weight:bolder;
-/* padding: 0 0 20px 0; */
-font-family: 'Noto Kufi Arabic', sans-serif;
-font-size: 1.8rem;
-color: #2980b9;
-
+export const WirdMinIntroduction = styled(DefaultWirdMinIntroduction)`
 @media(max-width:1100px){
   font-size: 1.4rem;
   font-weight: bold;
 }
 
 @media(max-width:1000px){
-/* margin-right: 5rem; */
 margin: auto;
-/* display: flex; */
-/* justify-content: center;
-align-items: center; */
 text-align: center;
 }
 @media(max-width:900px){
   margin: auto;
 padding-right: 0rem;
 
-/* padding-right: 0rem; */
 }
 @media(max-width:650px){
 padding-right: 0rem;
 
-  /* width: 20rem; */
   margin: auto;
   margin-top: 2rem;
-  /* margin-bottom: 1rem; */
   text-align: center;
-  /* padding-right:10rem; */
 }
 @media(max-width:550px){
-  /* width: 20rem; */
   margin: auto;
   margin-top: 2rem;
-  /* margin-bottom: 1rem; */
-  /* padding-right:0rem; */
-
 }
 
 `;
 
-export const Introduction = styled.div`
-margin-top: 2rem;
-text-align: right;
-/* padding: 0 0 20px 0; */
-font-family: 'Noto Kufi Arabic', sans-serif;
-font-size: 1.4rem;
-color: orange;
-
+export const Introduction = styled(DefaultIntroduction)`
 @media(max-width:1100px){
   font-size: 1rem;
   margin-top: 1rem;
@@ -251,25 +200,20 @@ color: orange;
     margin-top:1rem;
 }
 @media(max-width:600px){
-  /* margin: auto; */
   width: 17rem;
-
 }
 `;
 
-export const BorderBottom = styled.div`
+export const BorderBottom = styled(DefaultBorderBottom)`
 width:80%;
-height: .3rem;
-background-color: #E94f57;
-margin: auto;
-margin-top: 4rem;
-border-radius: 20px;
+margin-right: auto;
 justify-content: center;
 align-items: center;
 @media(max-width:650px){
     margin-top: 2rem;
 }
 `;
+
 // **************** Third section **********************
 export const VideoSection = styled.div`
 width: 90%;
@@ -290,9 +234,7 @@ margin-top: 3rem;
   margin: auto;
   margin-top: 2rem;
 }
-
 @media(max-width:600px){
   width: 80%;
-
 }
 `;

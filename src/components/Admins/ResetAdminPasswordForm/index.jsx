@@ -1,7 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {resetAdminPassword} from "../../../services/adminsServices";
-import {DropdownDiv, DropdownList, DropdownListItem} from "../EditAdminForm/EditAdminForm.styles";
-import {DivPass, DivTxtField, Form, FormInput, InputSubmit, Span} from "../Admins.styles";
+import {DropdownDiv, DropdownList} from "../EditAdminForm/EditAdminForm.styles";
+import {DivPass, Span} from "../Admins.styles";
+import {
+    DivTxtField,
+    Form,
+    FormInput,
+    InputSubmit,
+    DropdownListItem
+} from "../../shared/styles";
 
 export default function ResetAdminPasswordForm(props){
     const [password, setPassword] = useState("");

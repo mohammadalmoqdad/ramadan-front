@@ -1,18 +1,21 @@
 import React, {useEffect, useState} from "react";
 import {retrieveStudents, retrieveStudentsPointsOfTypeOther, updateStudentPoint} from "../../services/studentsServices";
 import { TxtArea, DropDownDiv, DropdownList} from "./ReviewOtherPoints.styles";
-import { DropdownDivSelect as Box, Form} from "../Groups/Groups.styles"
+import { DropdownDivSelect as Box} from "../Groups/Groups.styles"
 import Tabs from "../shared/Tabs";
-import {DropdownListItem} from "../studentsPoints/StudentsPoints.styles";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import {Span} from "../Login/login.styles";
 import {
+    Form,
     DivPass,
     DivTxtField,
     DivTxtFieldnumber,
     FormInput,
-    FormInputnumber, InputSubmit, Label
-} from "../Standards/AddStandardForm/AddStandardForm.styles";
+    FormInputnumber,
+    InputSubmit,
+    Label,
+    DropdownListItem
+} from "../shared/styles";
 import Container from '../Standards/Standards.styles';
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";

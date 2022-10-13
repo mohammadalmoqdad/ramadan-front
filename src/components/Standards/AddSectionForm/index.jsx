@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Span} from "../AddStandardForm/AddStandardForm.styles"
 import {
     DivTxtFieldnumber,
     FormInputnumber,
@@ -7,9 +8,8 @@ import {
     FormInput,
     DivTxtField,
     Formm,
-    Span,
-    DivPass,
-} from "../AddStandardForm/AddStandardForm.styles"
+    H3Pass
+} from "../../shared/styles";
 import {addSection} from "../../../services/standardServices";
 
 export default function AddSectionForm(props){
@@ -89,7 +89,7 @@ export default function AddSectionForm(props){
 
             {messages.length > 0 &&
                 messages.map((message, index) => {
-                    return <DivPass className={classColor} key={index}>{message}</DivPass>
+                    return <H3Pass className={classColor} key={index}>{message}</H3Pass>
                 })
             }
             <InputSubmit type="submit">إضافة قسم جديد</InputSubmit>

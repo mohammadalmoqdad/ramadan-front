@@ -1,25 +1,11 @@
 import styled from "styled-components";
 import {DropdownList} from "../Admins/Admins.styles";
+import Default from "../shared/styles"
 
-export default styled.div`
+export default styled(Default)`
 width: 100%;
 height: 60rem;
-background: linear-gradient(120deg, #2980b9, #2980b9);
-
-display: flex;
-justify-content: center;
-align-items: flex-start;
-/* padding: 5rem; */
-/* flex-direction: column; */
-
-@media (max-width:1000px) {
-flex-direction: column;
-}
-
-@media (max-width:500px) {
-  padding: 2rem;
-}
-
+padding: 0; 
 `;
 
 export const StandardsDropDownList = styled(DropdownList)`

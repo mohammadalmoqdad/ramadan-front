@@ -3,19 +3,22 @@ import Multiselect from 'multiselect-react-dropdown';
 
 import {
     DivMultiselect,
+    DropdownListStanderd,
+    Span,
+} from "../AddStandardForm/AddStandardForm.styles"
+import {
     DivTxtFieldnumber,
     FormInputnumber,
     Label,
     LabelSoper,
-    DropdownListStanderd,
-    DropdownListItemStanderd,
-    Checkboxes,
-    InputSubmit,
     FormInput,
     DivTxtField,
     Formm,
-    Span, DropdownDiv
-} from "../AddStandardForm/AddStandardForm.styles"
+    DropdownListItemStanderd,
+    Checkboxes,
+    InputSubmit,
+    DropdownDiv
+} from "../../shared/styles";
 import {DivPass} from "../../Admins/Admins.styles";
 import { updateStandard} from "../../../services/standardServices";
 

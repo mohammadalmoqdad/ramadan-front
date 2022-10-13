@@ -12,7 +12,7 @@ import {useAdminContext} from "../../contexts/AdminContext";
 import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import {useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
-import {DivPass} from "./Groups.styles";
+import {H3Pass} from "../shared/styles";
 import Loader from "../Loader";
 
 export default function Groups() {
@@ -169,7 +169,7 @@ export default function Groups() {
                             }
                             { showDeleteGroupFailedMsg &&
                                 <DropdownListItem>
-                                    <DivPass className='red'>يرجى إزالة أو نقل الطلاب لمجموعة أخرى قبل حذف هذه المجموعة</DivPass>
+                                    <H3Pass className='red'>يرجى إزالة أو نقل الطلاب لمجموعة أخرى قبل حذف هذه المجموعة</H3Pass>
                                 </DropdownListItem>
                             }
                             </div>
