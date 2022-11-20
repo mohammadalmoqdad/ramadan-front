@@ -29,7 +29,9 @@ margin: auto;
 
 export const DivTxtField = styled.div`
 position: relative;
-margin: 1rem 0;
+margin: 0.4rem 0;
+
+
 `;
 
 export const DivTxtFieldnumber = styled.div`
@@ -69,7 +71,26 @@ color: #213C64;
 
 
 export const FormInput = styled.input`
-width: 20rem;
+/* Frame 3 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 21px 24px;
+/* gap: 12px; */
+
+width: 536px;
+height: 61px;
+
+background: #FFFFFF;
+border: 1px solid #F9EAEA;
+border-radius: 12px;
+
+/* width: 20rem;
 @media (max-width:550px) {
     width: 100%;
 }
@@ -85,7 +106,8 @@ border-bottom: 2px solid #2691d9;
 :focus{
     transition: .1s;
     border-bottom: 3px solid orange;
-}
+} */
+
 `;
 
 export const FormInputnumber = styled.input`
@@ -109,6 +131,8 @@ transition: .1s;
 `;
 
 export const InputSubmit = styled.button`
+
+
 width:20rem;
 @media (max-width:550px) {
     width: 100%;
