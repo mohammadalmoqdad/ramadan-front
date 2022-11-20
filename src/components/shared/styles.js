@@ -132,20 +132,8 @@ transition: .1s;
 
 export const InputSubmit = styled.button`
 
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 20px 24px 21px;
-gap: 10px;
 
-width: 536px;
-height: 60px;
-
-background: #FDD561;
-border-radius: 100px;
-
-/* width:20rem;
+width:20rem;
 @media (max-width:550px) {
     width: 100%;
 }
@@ -162,7 +150,7 @@ margin-top: 1rem;
     background: orange;
     height: 3.2rem;
     transition: .3s;
-} */
+}
 `;
 
 export const DropdownDiv = styled.div`

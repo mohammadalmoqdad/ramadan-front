@@ -61,6 +61,7 @@ text-align: center;
 export const HeadLogIn = styled.div`
 
 display: flex;
+font-weight: 500;
 flex-direction: column;
 justify-content: center;
 align-items: center;
@@ -76,7 +77,6 @@ text-align: center;
 padding: 0 0 10px 0;
 font-family: 'Noto Kufi Arabic', sans-serif;
 font-size: 2rem; */
-
 
 width: 85px;
 height: 36px;
@@ -123,11 +123,12 @@ width: 287px;
 height: 19px;
 font-family: 'Montserrat';
 font-style: normal;
-font-weight: 400;
+font-weight: 500;
 font-size: 16px;
 line-height: 20px;
 text-align: center;
 color: #000000;
+font-size: 16px;
 
 :hover{
     color: #A79F97;
@@ -203,6 +204,20 @@ margin: .5rem;
 
 export const InputSubmit = styled(DefaultInputSubmit)`
 width:auto;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 20px 24px 21px;
+gap: 10px;
+
+width: 536px;
+height: 60px;
+
+background: #FDD561;
+color: #000000;
+font-weight: 700;
+border-radius: 100px;
 margin-top: 0.3rem;
 margin-bottom: 0.5rem;
 `;
