@@ -9,8 +9,8 @@ display:flex;
 margin: 0;
 padding: 0;
 font-family: 'Noto Kufi Arabic', sans-serif;
-background: #FDFDFB;
-/* background: lightWheat; */
+/* background: #FDFDFB; */
+background: #dddddd;
 height: 100vh;
 overflow: hidden;
 `;
@@ -33,6 +33,12 @@ gap: 20px;
 background: #FFFFFF;
 border-radius: 24px;
 
+@media (max-width:700px) {
+ width: 18rem;
+ /* height: 60rem; */
+ margin-top: 3rem;
+
+}
 `;
 
 
@@ -68,7 +74,7 @@ align-items: center;
 padding: 20px;
 gap: 5px;
 
-background: #FFFFFF;
+/* background: #FFFFFF; */
 border-radius: 24px;
 `;
 export const TitleLogin = styled.div`
@@ -128,7 +134,6 @@ font-size: 16px;
 line-height: 20px;
 text-align: center;
 color: #000000;
-font-size: 16px;
 
 :hover{
     color: #A79F97;
@@ -156,6 +161,12 @@ flex: none;
 order: 2;
 flex-grow: 0;
 
+@media (max-width:700px) {
+padding: 18px 24px;
+gap: 12px;
+width: 102.67px;
+height: 60px;
+}
 `;
 
 export const MediaOneLine = styled.div`
