@@ -19,7 +19,7 @@ export const DivCenter = styled.div`
  width: 608px;
  /* width: 408px; */
 
- height: 532px;
+ height: 552px;
  background: white;
  border-radius: 10px;
 
@@ -36,7 +36,7 @@ border-radius: 24px;
 @media (max-width:700px) {
  width: 18rem;
  /* height: 60rem; */
- margin-top: 3rem;
+ /* margin-top: 3rem; */
 
 }
 `;
@@ -152,7 +152,7 @@ align-items: center;
 padding: 18px 24px;
 gap: 12px;
 width: 170.67px;
-height: 60px;
+height: 50px;
 background: #FFFFFF;
 border: 1px solid #F9EAEA;
 border-radius: 12px;
@@ -164,8 +164,8 @@ flex-grow: 0;
 @media (max-width:700px) {
 padding: 18px 24px;
 gap: 12px;
-width: 102.67px;
-height: 60px;
+width: 75px;
+height: 40px;
 }
 `;
 
@@ -223,7 +223,7 @@ padding: 20px 24px 21px;
 gap: 10px;
 
 width: 536px;
-height: 60px;
+height: 50px;
 
 background: #FDD561;
 color: #000000;
@@ -231,4 +231,11 @@ font-weight: 700;
 border-radius: 100px;
 margin-top: 0.3rem;
 margin-bottom: 0.5rem;
+
+@media (max-width:500px) {
+width: 219px;
+height: 50px;
+/* margin-top: 0.8rem; */
+
+}
 `;

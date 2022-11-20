@@ -84,12 +84,17 @@ padding: 21px 24px;
 /* gap: 12px; */
 
 width: 536px;
-height: 61px;
+height: 51px;
 
 background: #FFFFFF;
 border: 1px solid #F9EAEA;
 border-radius: 12px;
 
+@media (max-width:500px) {
+width: 219px;
+height: 50px;
+
+}
 /* width: 20rem;
 @media (max-width:550px) {
     width: 100%;
@@ -378,6 +383,9 @@ export const DivPass = styled.div`
   color: gray;
   margin-top: 0.3rem;
   text-align: center;
+  @media (max-width:550px) {
+    font-size: 13px;
+}
 `;
 
 export const DropdownListItem = styled.option`
