@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import LoginFormContainer, {
   DivCenter,
-  H3Login,
+  SignupNowAccount,
   InputSubmit,
   Form,
   PageLink,
   TitleLogin,
+  SignupNow,
+  MediaLogIn,
+  MediaOneLine,
+  OrWayToLogIn,
+  HeadLogIn,
 } from "./login.styles";
 
 import {
@@ -15,9 +20,15 @@ import {
   DivTxtField
 } from "../shared/styles";
 import { useAdminContext } from "contexts/AdminContext";
-import {useNavigate, useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import cookie from "react-cookies";
 import Loader from "../Loader";
+
+import AppleLogo from '../../assets/icons/Login/apple.svg';
+import GoogleLogo from '../../assets/icons/Login/Google.svg';
+import FBLogo from '../../assets/icons/Login/FB.svg';
+
+
 
 function Login() {
   let Navigate = useNavigate();
@@ -48,20 +59,20 @@ function Login() {
     setLoading(true);
 
     context.useLogin(username, password).then(
-        (isUsersLoggedIn) => {
-          if (isUsersLoggedIn === true) {
-            Navigate(location?.state?.redirectTo?.length > 0 ? location.state.redirectTo : "/");
-            context.getAdminInfo();
-          } else {
-            setShowErrorMessage(true);
-            e.target.reset();
-          }
-          setLoading(false);
-        },
-        (err) =>{
-          setLoading(false);
-           console.log("Failed to login : ",err?.response?.data);
+      (isUsersLoggedIn) => {
+        if (isUsersLoggedIn === true) {
+          Navigate(location?.state?.redirectTo?.length > 0 ? location.state.redirectTo : "/");
+          context.getAdminInfo();
+        } else {
+          setShowErrorMessage(true);
+          e.target.reset();
         }
+        setLoading(false);
+      },
+      (err) => {
+        setLoading(false);
+        console.log("Failed to login : ", err?.response?.data);
+      }
     );
 
     // setTimeout(() => {
@@ -96,17 +107,28 @@ function Login() {
   return (
     <LoginFormContainer>
       <DivCenter>
+        <HeadLogIn>
         <TitleLogin>
-          أهلا بك في موقع<Wird>وِرد</Wird>{" "}
+          Login
+          {/* <Wird>وِرد</Wird>{" "} */}
         </TitleLogin>
-        <H3Login>تسجيل الدخول</H3Login>
+        <SignupNowAccount>Don’t have an account? <SignupNow>Signup now!</SignupNow></SignupNowAccount>
+        </HeadLogIn>
+
+        <MediaOneLine>
+          <MediaLogIn> <img src={AppleLogo} alt='' /></MediaLogIn>
+          <MediaLogIn> <img src={GoogleLogo} alt='' /></MediaLogIn>
+          <MediaLogIn><img src={FBLogo} alt='' /></MediaLogIn>
+        </MediaOneLine>
+
+        <OrWayToLogIn>Or</OrWayToLogIn>
 
         <Form onSubmit={handleSubmit}>
           <DivTxtField>
             <FormInput
               onChange={handleChangeUsername}
               type="text"
-              placeholder="اسم المستخدم"
+              placeholder="Email address"
               required
             />
           </DivTxtField>
@@ -114,7 +136,7 @@ function Login() {
           <DivTxtField>
             <FormInput
               onChange={handleChangePassowrd}
-              placeholder="كلمة المرور"
+              placeholder="Password"
               type="password"
               required
             />
@@ -124,11 +146,11 @@ function Login() {
           {showErrorMessage && (
             <DivPass className="red">اسم المستخدم أو كلمة المرور خاطآن</DivPass>
           )}
-          <PageLink href="https://www.facebook.com/Wird.Competition/" target="_blank">
+          {/* <PageLink href="https://www.facebook.com/Wird.Competition/" target="_blank">
             هل تواجه مشكلة تقنية أو نسيت كلمة المرور؟ تواصل مع الدعم الفني
-          </PageLink>
+          </PageLink> */}
           <InputSubmit type="submit" value="login">
-            تسجيل الدخول
+            Log in
           </InputSubmit>
         </Form>
       </DivCenter>
