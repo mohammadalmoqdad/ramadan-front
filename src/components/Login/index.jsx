@@ -27,6 +27,7 @@ import Loader from "../Loader";
 import AppleLogo from '../../assets/icons/Login/apple.svg';
 import GoogleLogo from '../../assets/icons/Login/Google.svg';
 import FBLogo from '../../assets/icons/Login/FB.svg';
+import WirdLogo from '../../assets/Logo/WirdLogoV2.svg';
 
 
 
@@ -121,7 +122,10 @@ function Login() {
           <MediaLogIn><img src={FBLogo} alt='' /></MediaLogIn>
         </MediaOneLine>
 
+        {/* <HeadLogIn> */}
+        {/* <img src={WirdLogo} alt='' /> */}
         <OrWayToLogIn>Or</OrWayToLogIn>
+        {/* </HeadLogIn> */}
 
         <Form onSubmit={handleSubmit}>
           <DivTxtField>
@@ -144,15 +148,17 @@ function Login() {
 
           {/* TODO: style the error message */}
           {showErrorMessage && (
-            <DivPass className="red">اسم المستخدم أو كلمة المرور خاطآن</DivPass>
+            <DivPass className="red">Check your email and password or create an account.</DivPass>
           )}
           {/* <PageLink href="https://www.facebook.com/Wird.Competition/" target="_blank">
             هل تواجه مشكلة تقنية أو نسيت كلمة المرور؟ تواصل مع الدعم الفني
           </PageLink> */}
           <InputSubmit type="submit" value="login">
-            Log in
+            Login
           </InputSubmit>
         </Form>
+        <SignupNowAccount>Or<SignupNow> Forgot Password</SignupNow></SignupNowAccount>
+
       </DivCenter>
     </LoginFormContainer>
   );
