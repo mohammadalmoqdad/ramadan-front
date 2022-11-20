@@ -123,8 +123,11 @@ color: #A79F97;
 order: 1;
 flex-grow: 0;  */
 `;
-export const SignupNow = styled.span`
-
+export const SignupNow = styled.a`
+text-decoration: none;
+border: none;
+background: none;
+outline: none;
 width: 287px;
 height: 19px;
 font-family: 'Montserrat';
