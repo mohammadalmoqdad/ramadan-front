@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../Login";
+import Signup from "../Signup";
 import Home from "../Home";
 import Loader from "../Loader";
 import Students from "../Students";
@@ -17,14 +18,18 @@ export default function AppBrowserRouter({ changeTheme }) {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route exact path="/login" component={Login} /> */}
-        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/login" element={<Signup />} />
         <Route exact path="/" element={<AppLayout children={<Home />} />} />
         <Route
           exact
           path="/Competition"
           element={<AppLayout children={<Competition />} />}
         />
+        {/* <Route
+          exact
+          path="/Signup"
+          element={<AppLayout children={<Signup />} />}
+        /> */}
         <Route
           exact
           path="/TopStudents"

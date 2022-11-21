@@ -9,8 +9,8 @@ display:flex;
 margin: 0;
 padding: 0;
 font-family: 'Noto Kufi Arabic', sans-serif;
-/* background: #FDFDFB; */
-background: #dddddd;
+background: #FDFDFB;
+/* background: #dddddd; */
 height: 100vh;
 overflow: hidden;
 `;
