@@ -90,7 +90,7 @@ background: #FFFFFF;
 border: 1px solid #F9EAEA;
 border-radius: 12px;
 
-@media (max-width:500px) {
+@media (max-width:700px) {
 width: 219px;
 height: 50px;
 
@@ -383,7 +383,7 @@ export const DivPass = styled.div`
   color: gray;
   margin-top: 0.3rem;
   text-align: center;
-  @media (max-width:550px) {
+  @media (max-width:700px) {
     font-size: 13px;
 }
 `;

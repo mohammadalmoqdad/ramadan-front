@@ -157,7 +157,7 @@ function Login() {
             Login
           </InputSubmit>
         </Form>
-        <SignupNowAccount>Or<SignupNow> Forgot Password</SignupNow></SignupNowAccount>
+        <SignupNowAccount>Or<SignupNow href="/ForgotPassword"> Forgot Password</SignupNow></SignupNowAccount>
 
       </DivCenter>
     </LoginFormContainer>
