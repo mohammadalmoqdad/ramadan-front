@@ -42,7 +42,7 @@ function Signup() {
           <TitleSignup>
             Signup
           </TitleSignup>
-          <SignupNowAccount>Already have an account? <SignupNow>Login now!</SignupNow></SignupNowAccount>
+          <SignupNowAccount>Already have an account? <SignupNow href="/Login">Login now!</SignupNow></SignupNowAccount>
         </HeadSignup>
 
         <CreatorOrParticipant>

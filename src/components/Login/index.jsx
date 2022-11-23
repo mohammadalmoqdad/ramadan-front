@@ -113,7 +113,7 @@ function Login() {
           Login
           {/* <Wird>وِرد</Wird>{" "} */}
         </TitleLogin>
-        <SignupNowAccount>Don’t have an account? <SignupNow>Signup now!</SignupNow></SignupNowAccount>
+        <SignupNowAccount>Don’t have an account? <SignupNow href="/Signup" >Signup now!</SignupNow></SignupNowAccount>
         </HeadLogIn>
 
         <MediaOneLine>
