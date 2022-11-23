@@ -18,18 +18,18 @@ export default function AppBrowserRouter({ changeTheme }) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/login" element={<Signup />} />
+        <Route exact path="/login" element={<Login />} />
         <Route exact path="/" element={<AppLayout children={<Home />} />} />
         <Route
           exact
           path="/Competition"
           element={<AppLayout children={<Competition />} />}
         />
-        {/* <Route
+        <Route
           exact
           path="/Signup"
           element={<AppLayout children={<Signup />} />}
-        /> */}
+        />
         <Route
           exact
           path="/TopStudents"
