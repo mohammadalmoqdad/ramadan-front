@@ -11,12 +11,13 @@ import LoginFormContainer, {
   MediaOneLine,
   OrWayToLogIn,
   HeadLogIn,
+  FormInput,
+
 } from "./login.styles";
 
 import {
   Wird,
   DivPass,
-  FormInput,
   DivTxtField
 } from "../shared/styles";
 import { useAdminContext } from "contexts/AdminContext";

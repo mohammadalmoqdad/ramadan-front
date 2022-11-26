@@ -1,18 +1,15 @@
 import React from 'react'
 import {
   DivTxtField,
-  FormInput,
-  DivPass,
 } from "../shared/styles.js"
 import SignupFormContainer, {
-  DivCenter,
-  HeadSignup,
-  TitleSignup,
+  // TitleSignup,
   CreatorOrParticipant,
   CreatorOrParticipantDiv,
   CreatorOrParticipantSpan,
   TitleCreatorOrParticipant,
   ContentCreatorOrParticipant,
+  DivPass,
 
 } from "../Signup/Signup.styles";
 import {
@@ -23,10 +20,10 @@ import {
   OrWayToLogIn,
   Form,
   InputSubmit,
-
-  // DivTxtField,
-  // FormInput,
-  // DivPass,
+  FormInput,
+  DivCenter,
+  HeadLogIn,
+  TitleLogin,
 } from "../Login/login.styles"
 
 import AppleLogo from '../../assets/icons/Login/apple.svg';
@@ -38,12 +35,12 @@ function Signup() {
   return (
     <SignupFormContainer>
       <DivCenter>
-        <HeadSignup>
-          <TitleSignup>
+        <HeadLogIn>
+          <TitleLogin>
             Signup
-          </TitleSignup>
+          </TitleLogin>
           <SignupNowAccount>Already have an account? <SignupNow href="/Login">Login now!</SignupNow></SignupNowAccount>
-        </HeadSignup>
+        </HeadLogIn>
 
         <CreatorOrParticipant>
           <CreatorOrParticipantDiv>

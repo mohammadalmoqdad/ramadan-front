@@ -29,9 +29,7 @@ margin: auto;
 
 export const DivTxtField = styled.div`
 position: relative;
-margin: 0.4rem 0;
-
-
+margin: 1rem 0;
 `;
 
 export const DivTxtFieldnumber = styled.div`
@@ -71,31 +69,7 @@ color: #213C64;
 
 
 export const FormInput = styled.input`
-/* Frame 3 */
-
-box-sizing: border-box;
-
-/* Auto layout */
-
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 21px 24px;
-/* gap: 12px; */
-
-width: 536px;
-height: 51px;
-
-background: #FFFFFF;
-border: 1px solid #F9EAEA;
-border-radius: 12px;
-
-@media (max-width:700px) {
-width: 219px;
-height: 50px;
-
-}
-/* width: 20rem;
+width: 20rem;
 @media (max-width:550px) {
     width: 100%;
 }
@@ -111,8 +85,7 @@ border-bottom: 2px solid #2691d9;
 :focus{
     transition: .1s;
     border-bottom: 3px solid orange;
-} */
-
+}
 `;
 
 export const FormInputnumber = styled.input`
@@ -136,8 +109,6 @@ transition: .1s;
 `;
 
 export const InputSubmit = styled.button`
-
-
 width:20rem;
 @media (max-width:550px) {
     width: 100%;
@@ -383,9 +354,6 @@ export const DivPass = styled.div`
   color: gray;
   margin-top: 0.3rem;
   text-align: center;
-  @media (max-width:700px) {
-    font-size: 13px;
-}
 `;
 
 export const DropdownListItem = styled.option`
@@ -403,7 +371,6 @@ font-family: 'Noto Kufi Arabic', sans-serif;
 color: #213C64;
 font-size: 1.3rem;
 padding: 1rem;
-
 border-radius: 4px;
 background-color: white;
 box-shadow: 1px 3px 12px 0px #0000007a;
@@ -485,7 +452,6 @@ margin-left: 2rem;
 border: 2px solid orange;
 transition: all .3s ease 0s;
 box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-
 :hover{
 background: #2980b9;
 border: 3px solid orange;

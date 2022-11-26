@@ -1,8 +1,11 @@
 import styled from "styled-components";
-// import login from "../Login/login.styles"
 import {
   InputSubmit as DefaultInputSubmit,
-  Form as DefaultForm
+  Form as DefaultForm,
+} from "../Login/login.styles";
+
+import {
+  DivPass as DefaultDivPass,
 } from "../shared/styles";
 
 export default styled.div`
@@ -11,46 +14,11 @@ margin: auto;
 padding: 0;
 font-family: 'Noto Kufi Arabic', sans-serif;
 background: #FDFDFB;
-/* background: #dddddd; */
 height: 100vh;
 overflow: hidden;
-
-
-position: relative;
-/* width: 1440px; */
-height: 969px;
-/* overflow-y: scroll; */
-
-/* background: #FDFDFB; */
-/* border-radius: 24px; */
+height: 869px;
 `;
 
-export const DivCenter = styled.div`
- margin: auto;
-
- /* width: 408px; */
- width: 608px;
-height: 758px;
- background: white;
- border-radius: 10px;
-
- display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 36px;
-gap: 20px;
-
-background: #FFFFFF;
-border-radius: 24px;
-
-@media (max-width:700px) {
- width: 18rem;
- /* height: 60rem; */
- /* margin-top: 3rem;  */
-
-}
-`;
 
 export const HeadSignup = styled.div`
 display: flex;
@@ -61,35 +29,29 @@ gap: 12px;
 
 width: 293px;
 height: 67px;
-`;
 
-export const TitleSignup = styled.div`
-width: 109px;
-height: 36px;
-
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 700;
-font-size: 30px;
-line-height: 37px;
-text-align: center;
-
-color: #000000;
 `;
 
 export const CreatorOrParticipant = styled.div`
 display: flex;
-margin-top: 2rem;
 flex-direction: row;
 align-items: flex-start;
 padding: 18px;
-gap: 12px;
+gap: 3px;
 
 width: 536px;
 height: 117px;
 
 background: #FBF9F7;
 border-radius: 12px;
+
+@media (max-width:700px) {
+padding: 8px;
+padding-top: 15px;
+padding-bottom: 15px;
+width: 286px;
+height: 116px;
+}
 `;
 
 export const CreatorOrParticipantDiv = styled.button`
@@ -109,6 +71,13 @@ background: #FBF9F7;
 :focus {
   background: #F9EAEA;
 }
+
+@media (max-width:700px) {
+padding: 18px 15px;
+gap: 12px;
+width: 133px;
+border-radius: 12px;
+}
 `;
 
 
@@ -124,21 +93,24 @@ color: none;
 width: 208px;
 height: 45px;
 
+@media (max-width:700px) {
+width: 112px;
+height: 56px;
+}
 `;
 
 export const TitleCreatorOrParticipant = styled.p`
-/* width: 102px;
-height: 22px; */
 margin: 0px;
-
 font-family: 'Montserrat';
 font-style: normal;
 font-weight: 700;
 font-size: 18px;
 line-height: 22px;
-/* identical to box height */
 color: #000000;
 
+@media (max-width:700px) {
+  font-size: 14px;
+}
 `;
 
 export const ContentCreatorOrParticipant = styled.p`
@@ -156,6 +128,9 @@ line-height: 17px;
 text-align: center;
 color: #A79F97;
 
+@media (max-width:700px) {
+  font-size: 8px;
+}
 `;
 
 export const Form = styled(DefaultForm)`
@@ -192,4 +167,8 @@ height: 50px;
 /* margin-top: 0.8rem; */
 
 }
+`;
+
+export const DivPass = styled(DefaultDivPass)`
+  margin-bottom: 1rem;
 `;

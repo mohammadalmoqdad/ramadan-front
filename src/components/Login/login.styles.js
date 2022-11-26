@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import {
     InputSubmit as DefaultInputSubmit,
-    Form as DefaultForm
+    Form as DefaultForm,
+    FormInput as DefaultFormInput
 } from "../shared/styles";
 
 export default styled.div`
@@ -10,16 +11,14 @@ margin: 0;
 padding: 0;
 font-family: 'Noto Kufi Arabic', sans-serif;
 background: #FDFDFB;
-/* background: #dddddd; */
 height: 100vh;
 overflow: hidden;
 `;
 export const DivCenter = styled.div`
  margin: auto;
+ margin-top: 2rem;
+ margin-bottom: 2rem;
  width: 608px;
- /* width: 408px; */
-
- height: 552px;
  background: white;
  border-radius: 10px;
 
@@ -34,22 +33,44 @@ background: #FFFFFF;
 border-radius: 24px;
 
 @media (max-width:700px) {
- width: 18rem;
- /* height: 60rem; */
- /* margin-top: 3rem; */
-
+ width: 19rem;
 }
 `;
 
-
 export const Form = styled(DefaultForm)`
-width: auto;
+    width: auto;
 @media (max-width:550px) {
     width: auto;
 }
-/* padding: 25px; */
-
 `;
+
+export const FormInput = styled(DefaultFormInput)`
+/* Frame 3 */
+box-sizing: border-box;
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 21px 24px;
+gap: 12px;
+
+width: 536px;
+height: 61px;
+
+background: #FFFFFF;
+border: 1px solid #F9EAEA;
+border-radius: 12px;
+
+text-align:left;
+
+@media (max-width:700px) {
+    width: 230px;
+}
+:focus{
+    border-bottom: 0;
+}
+`;
+
 
 export const PageLink = styled.a`
 text-decoration: none;
@@ -65,26 +86,18 @@ margin-top: .3rem;
 text-align: center;
 `;
 export const HeadLogIn = styled.div`
-
+margin-top: 1rem;
 display: flex;
 font-weight: 500;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 20px;
+padding: 5px;
 gap: 5px;
-
-/* background: #FFFFFF; */
 border-radius: 24px;
 `;
 export const TitleLogin = styled.div`
-/* margin-top: 1.5rem;
-text-align: center;
-padding: 0 0 10px 0;
-font-family: 'Noto Kufi Arabic', sans-serif;
-font-size: 2rem; */
-
-width: 85px;
+width: auto;
 height: 36px;
 
 font-family: 'Montserrat';
@@ -98,13 +111,6 @@ color: #000000;
 
 `;
 export const SignupNowAccount = styled.p`
-/* text-align: center; SignupNow
-padding: 0 0 1.1rem 0;
-border-bottom: 1px solid silver;
-font-family: 'Noto Kufi Arabic', sans-serif;
-font-size: 1.5rem;
-color: #213C64; */
-
 width: 287px;
 height: 19px;
 
@@ -114,14 +120,7 @@ font-weight: 400;
 font-size: 16px;
 line-height: 20px;
 text-align: center;
-
 color: #A79F97;
-
-/* Inside auto layout */
-
-/* flex: none;
-order: 1;
-flex-grow: 0;  */
 `;
 export const SignupNow = styled.a`
 text-decoration: none;
@@ -147,7 +146,6 @@ color: #000000;
 export const MediaLogIn = styled.button`
 /* Frame 34  */
 box-sizing: border-box;
-/* Auto layout */
 display: flex;
 flex-direction: row;
 justify-content: center;
@@ -159,7 +157,6 @@ height: 50px;
 background: #FFFFFF;
 border: 1px solid #F9EAEA;
 border-radius: 12px;
-/* Inside auto layout */
 flex: none;
 order: 2;
 flex-grow: 0;
@@ -180,18 +177,8 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-/* padding: 18px 24px; */
 gap: 12px;
-/* width: 170.67px;
-height: 60px; */
 background: #FFFFFF;
-/* border: 1px solid #F9EAEA; */
-/* border-radius: 12px; */
-/* Inside auto layout */
-/* flex: none;
-order: 2;
-flex-grow: 0; */
-
 `;
 export const OrWayToLogIn = styled.span`
 
@@ -205,10 +192,6 @@ line-height: 20px;
 text-align: center;
 color: #A79F97;
 
-/* Inside auto layout */
-/* flex: none;
-order: 3;
-flex-grow: 0; */
 `;
 
 export const Span = styled.span`
@@ -235,10 +218,9 @@ border-radius: 100px;
 margin-top: 0.3rem;
 margin-bottom: 0.5rem;
 
-@media (max-width:500px) {
-width: 219px;
+@media (max-width:700px) {
+width: 230px;
 height: 50px;
-/* margin-top: 0.8rem; */
-
 }
+
 `;
