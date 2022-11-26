@@ -1,20 +1,21 @@
 import React from "react";
 import LoginFormContainer, {
-  DivCenter,
-  SignupNowAccount,
-  InputSubmit,
-  Form,
   TitleLogin,
-  SignupNow,
-  HeadLogIn,
+  DivCenter,
+
 } from "./ForgotPassword.styles";
 
 import {
-  DivPass,
-  FormInput,
   DivTxtField
 } from "../shared/styles";
-
+import {
+  SignupNowAccount,
+  SignupNow,
+  Form,
+  InputSubmit,
+  FormInput,
+  HeadLogIn,
+} from "../Login/login.styles"
 import WirdLogo from '../../assets/Logo/WirdLogoV2.svg';
 
 function ForgotPassword() {
