@@ -66,11 +66,11 @@ width: 244px;
 height: 81px;
 
 border-radius: 12px;
-background: #FBF9F7;
+background: #F9EAEA;
 
-:focus {
-  background: #F9EAEA;
-}
+/* :focus {
+  background: #FBF9F7;
+} */
 
 @media (max-width:700px) {
 padding: 18px 15px;
@@ -79,7 +79,6 @@ width: 133px;
 border-radius: 12px;
 }
 `;
-
 
 export const CreatorOrParticipantSpan = styled.div`
 display: flex;
