@@ -24,13 +24,12 @@ import {
   DivCenter,
   HeadLogIn,
   TitleLogin,
-  PageLink
 } from "../Login/login.styles"
 
 import AppleLogo from '../../assets/icons/Login/apple.svg';
 import GoogleLogo from '../../assets/icons/Login/Google.svg';
 import FBLogo from '../../assets/icons/Login/FB.svg';
-import WirdLogo from '../../assets/Logo/WirdLogoV2.svg';
+// import WirdLogo from '../../assets/Logo/WirdLogoV2.svg';
 
 
 function Signup() {
