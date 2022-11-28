@@ -4,7 +4,6 @@ import LoginFormContainer, {
   SignupNowAccount,
   InputSubmit,
   Form,
-  PageLink,
   TitleLogin,
   SignupNow,
   MediaLogIn,
@@ -16,7 +15,6 @@ import LoginFormContainer, {
 } from "./login.styles";
 
 import {
-  Wird,
   DivPass,
   DivTxtField
 } from "../shared/styles";
@@ -28,7 +26,7 @@ import Loader from "../Loader";
 import AppleLogo from '../../assets/icons/Login/apple.svg';
 import GoogleLogo from '../../assets/icons/Login/Google.svg';
 import FBLogo from '../../assets/icons/Login/FB.svg';
-import WirdLogo from '../../assets/Logo/WirdLogoV2.svg';
+// import WirdLogo from '../../assets/Logo/WirdLogoV2.svg';
 
 
 

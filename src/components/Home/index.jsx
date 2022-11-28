@@ -26,6 +26,8 @@ import {
 
 import {retrieveGeneralStatus} from "../../services/competitionsServices";
 import Loader from "../Loader";
+import HomeBanner from "./HomeBanner";
+
 
 function Home() {
   const [generalStatus, setGeneralStatus] = useState({});
@@ -82,8 +84,9 @@ function Home() {
 
 
       <HomeContainer>
-
         <Div>
+        <HomeBanner/>
+
           { Object.keys(generalStatus).length > 0 &&
               <StatisticsSection>
 
