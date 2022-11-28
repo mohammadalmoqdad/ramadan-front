@@ -65,6 +65,7 @@ text-align:left;
 
 @media (max-width:700px) {
     width: 230px;
+    font-size: 13px;
 }
 :focus{
     border-bottom: 0;

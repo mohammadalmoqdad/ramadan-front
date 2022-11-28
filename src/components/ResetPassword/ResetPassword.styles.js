@@ -18,10 +18,10 @@ height: 100vh;
 overflow: hidden;
 `;
 export const DivCenter = styled(DefaultDivCenter)`
- height: 30rem;
+ height: 35rem;
 
 @media (max-width:700px) {
- height: 25rem;
+ height: 35rem;
 }
 `;
 

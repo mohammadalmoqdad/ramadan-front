@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import LoginFormContainer, {
   TitleLogin,
   DivCenter,
-
+  DivPass,
 } from "./ForgotPassword.styles";
-
 import {
   DivTxtField
 } from "../shared/styles";
@@ -19,6 +20,17 @@ import {
 import WirdLogo from '../../assets/Logo/WirdLogoV2.svg';
 
 function ForgotPassword() {
+  let Navigate = useNavigate();
+
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setShowErrorMessage(true)
+    // setLoading(true);
+    Navigate('/ResetPassword')
+
+  }
 
   return (
     <LoginFormContainer>
@@ -27,16 +39,14 @@ function ForgotPassword() {
           <TitleLogin>
             Forgot Password
           </TitleLogin>
-          {/* <SignupNowAccount>Don’t have an account? <SignupNow href="/Signup" >Signup now!</SignupNow></SignupNowAccount> */}
         </HeadLogIn>
-
 
         {/* <HeadLogIn> */}
         <img src={WirdLogo} alt='' />
         {/* <OrWayToLogIn>Or</OrWayToLogIn> */}
         {/* </HeadLogIn> */}
 
-        <Form >
+        <Form onSubmit={handleSubmit}>
           <DivTxtField>
             <FormInput
               type="text"
@@ -45,13 +55,10 @@ function ForgotPassword() {
             />
           </DivTxtField>
 
-     
-
           {/* TODO: style the error message */}
-          
-          {/* {showErrorMessage && ( */}
-          {/* <DivPass className="red">Check your email and password or create an account.</DivPass> */}
-          {/* )} */}
+          {showErrorMessage && (
+            <DivPass className="red">Check your email.</DivPass>
+          )}
 
           {/* <PageLink href="https://www.facebook.com/Wird.Competition/" target="_blank">
             هل تواجه مشكلة تقنية أو نسيت كلمة المرور؟ تواصل مع الدعم الفني
