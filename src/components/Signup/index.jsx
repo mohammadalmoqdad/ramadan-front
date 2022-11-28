@@ -112,9 +112,9 @@ function Signup() {
         </CreatorOrParticipant>
 
         <MediaOneLine>
-          <MediaLogIn> <img src={AppleLogo} alt='' /></MediaLogIn>
-          <MediaLogIn> <img src={GoogleLogo} alt='' /></MediaLogIn>
-          <MediaLogIn><img src={FBLogo} alt='' /></MediaLogIn>
+          <MediaLogIn> <img src={AppleLogo} alt='AppleLogo' /></MediaLogIn>
+          <MediaLogIn> <img src={GoogleLogo} alt='GoogleLogo' /></MediaLogIn>
+          <MediaLogIn><img src={FBLogo} alt='FBLogo' /></MediaLogIn>
         </MediaOneLine>
 
         {/* <HeadLogIn> */}

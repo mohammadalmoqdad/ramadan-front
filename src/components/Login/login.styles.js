@@ -18,28 +18,28 @@ export const DivCenter = styled.div`
  margin: auto;
  margin-top: 2rem;
  margin-bottom: 2rem;
- width: 608px;
+ width: 38rem;
  background: white;
- border-radius: 10px;
+ border-radius: .625rem;
 
  display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 36px;
-gap: 20px;
+padding: 2.25rem;
+gap: 1.25rem;
 
 background: #FFFFFF;
-border-radius: 24px;
+border-radius: 1.5rem;
 
-@media (max-width:700px) {
+@media (max-width:43.75rem) {
  width: 19rem;
 }
 `;
 
 export const Form = styled(DefaultForm)`
     width: auto;
-@media (max-width:550px) {
+@media (max-width:34.375rem) {
     width: auto;
 }
 `;
@@ -51,21 +51,21 @@ box-sizing: border-box;
 display: flex;
 flex-direction: row;
 align-items: flex-start;
-padding: 21px 24px;
-gap: 12px;
+padding: 1.3125rem 1.5rem;
+gap: .75rem;
 
-width: 536px;
-height: 61px;
+width: 33.5rem;
+height: 3.8125rem;
 
 background: #FFFFFF;
-border: 1px solid #F9EAEA;
-border-radius: 12px;
+border: .0625rem solid #F9EAEA;
+border-radius: .75rem;
 
 text-align:left;
 
-@media (max-width:700px) {
-    width: 230px;
-    font-size: 13px;
+@media (max-width:43.75rem) {
+    width: 14.375rem;
+    font-size: .8125rem;
 }
 :focus{
     border-bottom: 0;
@@ -76,9 +76,9 @@ text-align:left;
 export const PageLink = styled.a`
 text-decoration: none;
 width: 100%;
-padding: 0 5px;
-height: 40px;
-font-size: 16px;
+padding: 0 .3125rem;
+height: 2.5rem;
+font-size: 1rem;
 border: none;
 background: none;
 outline: none;
@@ -93,33 +93,33 @@ font-weight: 500;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 5px;
-gap: 5px;
-border-radius: 24px;
+padding: .3125rem;
+gap: .3125rem;
+border-radius: 1.5rem;
 `;
 export const TitleLogin = styled.div`
 width: auto;
-height: 36px;
+height: 2.25rem;
 
 font-family: 'Montserrat';
 font-style: normal;
 font-weight: 700;
-font-size: 30px;
-line-height: 37px;
+font-size: 1.875rem;
+line-height: 2.3125rem;
 text-align: center;
 
 color: #000000;
 
 `;
 export const SignupNowAccount = styled.p`
-width: 287px;
-height: 19px;
+width: 17.9375rem;
+height: 1.1875rem;
 
 font-family: 'Montserrat';
 font-style: normal;
 font-weight: 400;
-font-size: 16px;
-line-height: 20px;
+font-size: 1rem;
+line-height: 1.25rem;
 text-align: center;
 color: #A79F97;
 `;
@@ -128,13 +128,13 @@ text-decoration: none;
 border: none;
 background: none;
 outline: none;
-width: 287px;
-height: 19px;
+width: 17.9375rem;
+height: 1.1875rem;
 font-family: 'Montserrat';
 font-style: normal;
 font-weight: 500;
-font-size: 16px;
-line-height: 20px;
+font-size: 1rem;
+line-height: 1.25rem;
 text-align: center;
 color: #000000;
 
@@ -151,22 +151,22 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-padding: 18px 24px;
-gap: 12px;
-width: 170.67px;
-height: 50px;
+padding: 1.125rem 1.5rem;
+gap: .75rem;
+width: 10.6669rem;
+height: 3.125rem;
 background: #FFFFFF;
-border: 1px solid #F9EAEA;
-border-radius: 12px;
+border: .0625rem solid #F9EAEA;
+border-radius: .75rem;
 flex: none;
 order: 2;
 flex-grow: 0;
 
-@media (max-width:700px) {
-padding: 18px 24px;
-gap: 12px;
-width: 75px;
-height: 40px;
+@media (max-width:43.75rem) {
+padding: 1.125rem 1.5rem;
+gap: .75rem;
+width: 4.6875rem;
+height: 2.5rem;
 }
 `;
 
@@ -178,18 +178,18 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-gap: 12px;
+gap: .75rem;
 background: #FFFFFF;
 `;
 export const OrWayToLogIn = styled.span`
 
-width: 20px;
-height: 19px;
+width: 1.25rem;
+height: 1.1875rem;
 font-family: 'Montserrat';
 font-style: normal;
 font-weight: 400;
-font-size: 16px;
-line-height: 20px;
+font-size: 1rem;
+line-height: 1.25rem;
 text-align: center;
 color: #A79F97;
 
@@ -206,22 +206,22 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 20px 24px 21px;
-gap: 10px;
+padding: 1.25rem 1.5rem 1.3125rem;
+gap: .625rem;
 
-width: 536px;
-height: 50px;
+width: 33.5rem;
+height: 3.125rem;
 
 background: #FDD561;
 color: #000000;
 font-weight: 700;
-border-radius: 100px;
-margin-top: 0.3rem;
-margin-bottom: 0.5rem;
+border-radius: 6.25rem;
+margin-top: .3rem;
+margin-bottom: .5rem;
 
-@media (max-width:700px) {
-width: 230px;
-height: 50px;
+@media (max-width:43.75rem) {
+width: 14.375rem;
+height: 3.125rem;
 }
 
 `;
