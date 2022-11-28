@@ -20,14 +20,14 @@ overflow: hidden;
 export const DivCenter = styled(DefaultDivCenter)`
  height: 30rem;
 
-@media (max-width:700px) {
+@media (max-width:43.75rem) {
  height: 25rem;
 }
 `;
 
 export const TitleLogin = styled(DefaultTitleLogin)`
-@media (max-width:700px) {
-    font-size: 23px;
+@media (max-width:43.75rem) {
+    font-size: 1.4375rem;
 }
 `;
 
