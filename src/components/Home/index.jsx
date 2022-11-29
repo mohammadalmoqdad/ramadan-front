@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import cookie from "react-cookies";
 import { useNavigate } from "react-router-dom";
 import WirdLogo from '../../assets/Logo/WirdLogosvg.svg'
@@ -24,7 +24,7 @@ import {
   DivCenter
 } from "../studentsPoints/StudentsPoints.styles";
 
-import {retrieveGeneralStatus} from "../../services/competitionsServices";
+import { retrieveGeneralStatus } from "../../services/competitionsServices";
 import Loader from "../Loader";
 import HomeBanner from "./HomeBanner";
 
@@ -45,35 +45,35 @@ function Home() {
 
     setLoading(true);
     retrieveGeneralStatus(
-        (res)=>{
-          if(res && res.status === 200){
-            if(res?.data?.top_student_last_day){
-              setTopStudentLastDay(res.data.top_student_last_day);
-            }
-            if(res?.data?.top_ramadan_day){
-              setTopDay(res.data.top_ramadan_day);
-            }
-            if(res?.data?.students_count || res?.data?.ramadan_date){
-              setGeneralStatus({
-                students_count: res.data.students_count,
-                ramadan_date: res?.data?.ramadan_date
-              })
-            }
+      (res) => {
+        if (res && res.status === 200) {
+          if (res?.data?.top_student_last_day) {
+            setTopStudentLastDay(res.data.top_student_last_day);
           }
-          setLoading(false);
-        }, (err)=>{
-          console.log("Failed to retrieve general status : ",err.data);
-          setLoading(false);
+          if (res?.data?.top_ramadan_day) {
+            setTopDay(res.data.top_ramadan_day);
+          }
+          if (res?.data?.students_count || res?.data?.ramadan_date) {
+            setGeneralStatus({
+              students_count: res.data.students_count,
+              ramadan_date: res?.data?.ramadan_date
+            })
+          }
         }
+        setLoading(false);
+      }, (err) => {
+        console.log("Failed to retrieve general status : ", err.data);
+        setLoading(false);
+      }
     );
 
   }, []);
 
-  if(loading) {
+  if (loading) {
     return (
-        <main>
-          <Loader />
-        </main>
+      <main>
+        <Loader />
+      </main>
     );
   }
 
@@ -85,51 +85,51 @@ function Home() {
 
       <HomeContainer>
         <Div>
-        <HomeBanner/>
+          <HomeBanner />
 
-          { Object.keys(generalStatus).length > 0 &&
-              <StatisticsSection>
+          {Object.keys(generalStatus).length > 0 &&
+            <StatisticsSection>
 
-                <StatisticsContainer>
-                  <Formm>
+              <StatisticsContainer>
+                <Formm>
 
-                    { topDay && Object.keys(topDay).length > 0 &&
-                      <DivCenter>
-                        <StatisticItemBody>أعلى مجموع نقاط من <br/>أيام رمضان<Wird>{topDay.total_day}</Wird></StatisticItemBody>
-                        <H3Login>{topDay.ramadan_record_date} رمضان </H3Login>
-                      </DivCenter>
-                    }
-
-
+                  {topDay && Object.keys(topDay).length > 0 &&
                     <DivCenter>
-                      <StatisticItemBody>عدد طلبة <br/>المسابقة<Wird>{generalStatus?.students_count}</Wird> </StatisticItemBody>
-                      <H3Login>طالب</H3Login>
+                      <StatisticItemBody>أعلى مجموع نقاط من <br />أيام رمضان<Wird>{topDay.total_day}</Wird></StatisticItemBody>
+                      <H3Login>{topDay.ramadan_record_date} رمضان </H3Login>
                     </DivCenter>
-                  </Formm>
-                  <Formm>
+                  }
 
-                    { topStudentLastDay && Object.keys(topStudentLastDay).length > 0
-                        ?
-                        <DivCenter>
-                          <StatisticItemBody>المركز الأول لليوم<br/> السابق<Wird>{ topStudentLastDay.first_name + " " + topStudentLastDay.last_name}</Wird> </StatisticItemBody>
-                          <H3Login>مبارك</H3Login>
-                        </DivCenter>
-                        :
-                        <DivCenter>
-                          <StatisticItemBody>المركز الأول لليوم<br/> السابق<Wird>لا يوجد</Wird> </StatisticItemBody>
-                          <H3Login>مبارك</H3Login>
-                        </DivCenter>
 
-                    }
+                  <DivCenter>
+                    <StatisticItemBody>عدد طلبة <br />المسابقة<Wird>{generalStatus?.students_count}</Wird> </StatisticItemBody>
+                    <H3Login>طالب</H3Login>
+                  </DivCenter>
+                </Formm>
+                <Formm>
 
+                  {topStudentLastDay && Object.keys(topStudentLastDay).length > 0
+                    ?
                     <DivCenter>
-                      <StatisticItemBody>التقويم <br/>الرمضاني<Wird>{generalStatus?.ramadan_date}</Wird> </StatisticItemBody>
-                      <H3Login>اللهم تقبل</H3Login>
+                      <StatisticItemBody>المركز الأول لليوم<br /> السابق<Wird>{topStudentLastDay.first_name + " " + topStudentLastDay.last_name}</Wird> </StatisticItemBody>
+                      <H3Login>مبارك</H3Login>
                     </DivCenter>
-                  </Formm>
-                </StatisticsContainer>
+                    :
+                    <DivCenter>
+                      <StatisticItemBody>المركز الأول لليوم<br /> السابق<Wird>لا يوجد</Wird> </StatisticItemBody>
+                      <H3Login>مبارك</H3Login>
+                    </DivCenter>
 
-              </StatisticsSection>
+                  }
+
+                  <DivCenter>
+                    <StatisticItemBody>التقويم <br />الرمضاني<Wird>{generalStatus?.ramadan_date}</Wird> </StatisticItemBody>
+                    <H3Login>اللهم تقبل</H3Login>
+                  </DivCenter>
+                </Formm>
+              </StatisticsContainer>
+
+            </StatisticsSection>
           }
 
           {/* Second Section  */}
@@ -145,8 +145,8 @@ function Home() {
                   التفاصيل يرجى مشاهدة دليل الاستخدام من خلال الفيديو المرفق بالاسفل </Introduction>
               </IntroductionSectionDiv>
             </IntroductionDiv>
-            <BorderBottom/>
-            <VideoSection/>
+            <BorderBottom />
+            <VideoSection />
           </IntroductionSection>
 
           {/* Third Section */}
