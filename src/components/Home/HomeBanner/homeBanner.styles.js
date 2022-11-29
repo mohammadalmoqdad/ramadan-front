@@ -115,11 +115,11 @@ export const TitleContent = styled.div`
 display: flex;
 flex-direction: column;
 align-items: flex-start;
-padding: 0px;
-gap: 12px;
+padding: 0rem;
+gap: .75rem;
 
-width: 317px;
-height: 120px;
+width: 19.8125rem;
+height: 7.5rem;
 
 @media (max-width:56.25rem) {
 align-items: center;
@@ -127,33 +127,33 @@ align-items: center;
 
 
 export const WelcomeName = styled.div`
-width: 317px;
-height: 86px;
+width: 19.8125rem;
+height: 5.375rem;
 
 font-family: 'Montserrat';
 font-style: normal;
 font-weight: 700;
-font-size: 36px;
-line-height: 44px;
+font-size: 2.25rem;
+line-height: 2.75rem;
 
 color: #FFFFFF;
 
 @media (max-width:56.25rem) {
 text-align: center;
-font-size: 30px;
+font-size: 1.875rem;
 }
 `;
 
 
 export const DayContent = styled.div`
-width: 187px;
-height: 22px;
+width: 11.6875rem;
+height: 1.375rem;
 
 font-family: 'Montserrat';
 font-style: normal;
 font-weight: 400;
-font-size: 18px;
-line-height: 22px;
+font-size: 1.125rem;
+line-height: 1.375rem;
 color: #FFBAC2;
 
 @media (max-width:56.25rem) {
@@ -166,34 +166,34 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 20px 24px 21px;
-gap: 10px;
+padding: 1.25rem 1.5rem 1.3125rem;
+gap: .625rem;
 
-width: 201px;
-height: 60px;
+width: 12.5625rem;
+height: 3.75rem;
 
 background: #FDD561;
-border-radius: 100px;
+border-radius: 6.25rem;
 
 @media (max-width:37.5rem) {
-  height: 40px;
-padding: 0px;
+  height: 2.5rem;
+padding: 0rem;
 }`;
 
 export const ButtonTitle = styled.p`
-width: 153px;
-height: 19px;
+width: 9.5625rem;
+height: 1.1875rem;
 
 font-family: 'Montserrat';
 font-style: normal;
 font-weight: 700;
-font-size: 16px;
-line-height: 20px;
+font-size: 1rem;
+line-height: 1.25rem;
 
 color: #000000;
 
 @media (max-width:37.5rem) {
-  font-size: 14px;
+  font-size: .875rem;
   margin: auto;
 
 }`;
