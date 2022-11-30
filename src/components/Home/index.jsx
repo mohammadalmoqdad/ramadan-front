@@ -27,6 +27,8 @@ import {
 import { retrieveGeneralStatus } from "../../services/competitionsServices";
 import Loader from "../Loader";
 import HomeBanner from "./HomeBanner";
+import DaysSlider from "./DaysSlider";
+
 
 
 function Home() {
@@ -86,6 +88,7 @@ function Home() {
       <HomeContainer>
         <Div>
           <HomeBanner />
+          <DaysSlider/>
 
           {Object.keys(generalStatus).length > 0 &&
             <StatisticsSection>

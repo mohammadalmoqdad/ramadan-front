@@ -12,7 +12,7 @@ border-radius: 1.5rem;
 max-width: 59.375rem;
 
 @media (max-width:37.5625rem) {
-  height: 252px;
+  height: 15.75rem;
 }
 `;
 
@@ -26,7 +26,7 @@ overflow: hidden;
 z-index: .2;
 
 @media (max-width:37.5625rem) {
-  height: 252px;
+  height: 15.75rem;
 }
 `;
 
@@ -75,16 +75,16 @@ export const StudentBanner1 = styled.img`
 position: relative;
 left: -17.8rem;
 top: 4.7rem;
-width: 146px;
-height: 146px;
+width: 9.125rem;
+height: 9.125rem;
 
 @media (max-width:43.75rem) {
 }`;
 
 export const StudentBanner2 = styled.img`
 position: relative;
-width: 216px;
-height: 216px;
+width: 13.5rem;
+height: 13.5rem;
 @media (max-width:43.75rem) {
 }`;
 
@@ -98,11 +98,11 @@ position: relative;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
-padding: 0px;
-gap: 36px;
+padding: 0rem;
+gap: 2.25rem;
 
-width: 317px;
-height: 216px;
+width: 19.8125rem;
+height: 13.5rem;
 
 @media (max-width:56.25rem) {
 margin: auto;
