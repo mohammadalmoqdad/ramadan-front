@@ -28,6 +28,8 @@ import { retrieveGeneralStatus } from "../../services/competitionsServices";
 import Loader from "../Loader";
 import HomeBanner from "./HomeBanner";
 import DaysSlider from "./DaysSlider";
+import TopRanks from "./TopRanks";
+
 
 
 
@@ -89,6 +91,7 @@ function Home() {
         <Div>
           <HomeBanner />
           <DaysSlider/>
+          <TopRanks/>
 
           {Object.keys(generalStatus).length > 0 &&
             <StatisticsSection>
