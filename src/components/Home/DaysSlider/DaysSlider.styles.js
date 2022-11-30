@@ -4,12 +4,12 @@ export default styled.div`
 margin: auto;
 margin-top: 3rem;
 width: 100%;
-position: relative;
-/* width: 949px; */
-border-radius: 24px;
-max-width: 950px;
+/* position: relative; */
+/* width: 59.3125rem; */
+border-radius: 1.5rem;
+max-width: 59.375rem;
 
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -23,15 +23,15 @@ line-height: 1.8125rem;
 
 color: #000000;
 
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
 export const DaySliderGroup = styled.div`
-margin-top: 48px;
+/* margin-top: 3rem; */
 display: flex;
-
-@media (max-width:601px) {
+align-items: center;
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -48,7 +48,7 @@ height: 3.75rem;
 background: #F9EAEA;
 border-radius: 6.25rem;
 
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -56,7 +56,7 @@ export const VictorLeft = styled.img`
 color: #000000 ;
 margin: auto;
 
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -64,27 +64,29 @@ export const VictorRight = styled.img`
 color: #000000 ;
 margin: auto;
 
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
 
 export const AllDaysSlider = styled.div`
+/* width: 100%; */
 
+width: (100% - 1rem);
+
+height: 9rem;
 position: relative;
-margin: auto;
 overflow: hidden;
-  
+
+padding: 0rem;
+gap: 1.25rem;
+max-width: 49.3125rem;
 display: flex;
 flex-direction: row;
 align-items: center;
-padding: 0rem;
-gap: 1.25rem;
-max-width: 789px;
+margin: auto;
 
-/* transform: translateX(-100%); */
-
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -104,7 +106,7 @@ border-radius: .75rem;
 :focus{
 
 }
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -121,7 +123,7 @@ text-align: center;
 
 color: #000000;
 
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -138,13 +140,13 @@ text-align: center;
 
 color: #A79F97;
 
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
-
 export const TodayDayMonth = styled.button`
 display: flex;
+margin: auto;
 flex-direction: column;
 align-items: center;
 padding: 1.125rem;
@@ -159,7 +161,7 @@ border-radius: .75rem;
 background: #FFFFFF;
 box-shadow: 0rem .75rem 1.5rem rgba(167, 159, 151, 0.24);
 }
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -178,7 +180,7 @@ text-align: center;
 
 color: #000000;
 
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -192,7 +194,7 @@ gap: .375rem;
 
 width: 2.6875rem;
 height: 1.8125rem;
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -209,7 +211,7 @@ text-align: center;
 
 color: #A79F97;
 
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
@@ -220,7 +222,7 @@ border-radius: 1.875rem;
 margin-left: .3125rem;
 background: #FF5367;
 
-@media (max-width:601px) {
+@media (max-width:37.5625rem) {
 }
 `;
 
