@@ -20,7 +20,13 @@ import TopRank, {
 
   MembersImg,
 
-  Top3Rank,
+  ParticipantsNumbersRanks,
+  Top3RankDiv,
+  Top1Img,
+  Top1Name,
+  Top2Name,
+  Top2Img,
+
 } from "./TopRanks.styles";
 
 function TopRanks() {
@@ -46,9 +52,9 @@ function TopRanks() {
             <MemberImgsAndNumNumbers>
 
               <MembersImgs>
-                <MembersImg style={{ background: '#FDD561', right: '0rem' }} >AB</MembersImg>
-                <MembersImg style={{ background: '#FF5367', right: '2rem' }}>AB</MembersImg>
-                <MembersImg style={{ background: '#503E9D', right: '4rem' }}>AB</MembersImg>
+                <MembersImg style={{ background: '#FDD561', right: '10px' }} >AB</MembersImg>
+                <MembersImg style={{ background: '#FF5367', right: '30px' }}>MK</MembersImg>
+                <MembersImg style={{ background: '#503E9D', right: '50px' }}>HA</MembersImg>
 
               </MembersImgs>
 
@@ -70,7 +76,24 @@ function TopRanks() {
           </ParticipantsTitels>
 
           <ParticipantsNumbers>
+            <ParticipantsNumbersRanks>
 
+              <Top3RankDiv>
+                <Top1Img style={{ background: '#FDD561' }}>Am</Top1Img>
+                <Top1Name>Ameen Betawi</Top1Name>
+              </Top3RankDiv>
+
+              <Top3RankDiv>
+                <Top2Img style={{ background: '#FF5367' }}>MK</Top2Img>
+                <Top2Name>Mohammad Mokdad</Top2Name>
+              </Top3RankDiv>
+
+              <Top3RankDiv>
+                <Top2Img style={{ background: '#503E9D' }}>AQ</Top2Img>
+                <Top2Name>Anas ALQdy</Top2Name>
+              </Top3RankDiv>
+
+            </ParticipantsNumbersRanks>
 
           </ParticipantsNumbers>
         </TopRanksSection>

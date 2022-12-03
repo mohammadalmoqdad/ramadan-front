@@ -7,7 +7,7 @@ export default function AppLayout(props) {
     <>
       <Navbar />
       <BodyContent className="body">{props.children}</BodyContent>
-      <Sidebar />
+      {/* <Sidebar /> */}
     </>
   );
 }
