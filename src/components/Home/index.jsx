@@ -89,8 +89,8 @@ function Home() {
 
       <HomeContainer>
         <Div>
-          <HomeBanner />
-          <DaysSlider/>
+          {/* <HomeBanner /> */}
+          {/* <DaysSlider/> */}
           <TopRanks/>
 
           {Object.keys(generalStatus).length > 0 &&
