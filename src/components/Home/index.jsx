@@ -29,9 +29,7 @@ import Loader from "../Loader";
 import HomeBanner from "./HomeBanner";
 import DaysSlider from "./DaysSlider";
 import TopRanks from "./TopRanks";
-
-
-
+import MyPastContests from "./MyPastContests";
 
 function Home() {
   const [generalStatus, setGeneralStatus] = useState({});
@@ -89,9 +87,10 @@ function Home() {
 
       <HomeContainer>
         <Div>
-          {/* <HomeBanner /> */}
+          <HomeBanner />
           {/* <DaysSlider/> */}
           <TopRanks/>
+          <MyPastContests/>
 
           {Object.keys(generalStatus).length > 0 &&
             <StatisticsSection>
