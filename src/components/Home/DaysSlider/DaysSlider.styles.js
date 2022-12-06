@@ -4,6 +4,8 @@ export default styled.div`
 margin: auto;
 margin-top: 3rem;
 width: 100%;
+/* width: auto; */
+
 /* position: relative; */
 /* width: 59.3125rem; */
 border-radius: 1.5rem;
@@ -31,6 +33,12 @@ export const DaySliderGroup = styled.div`
 /* margin-top: 3rem; */
 display: flex;
 align-items: center;
+position: relative;
+width: auto;
+justify-content: space-between;
+overflow: hidden;
+
+
 @media (max-width:37.5625rem) {
 }
 `;
@@ -70,12 +78,13 @@ margin: auto;
 
 
 export const AllDaysSlider = styled.div`
-/* width: 100%; */
+width: auto;
 
-width: (100% - 1rem);
+/* width: (100% - 1rem); */
 
 height: 9rem;
-position: relative;
+/* position: absolute; */
+left: 3rem;
 overflow: hidden;
 
 padding: 0rem;
@@ -85,6 +94,9 @@ display: flex;
 flex-direction: row;
 align-items: center;
 margin: auto;
+/* margin-left: 3rem;
+margin-right: 3rem; */
+
 
 @media (max-width:37.5625rem) {
 }

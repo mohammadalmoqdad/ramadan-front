@@ -18,6 +18,8 @@ export const Div = styled.div`
   justify-content: center;
   align-items: flex-start;
   display: flex;
+  margin: auto;
+
   @media(max-width:700px){ 
     margin: auto;
   }

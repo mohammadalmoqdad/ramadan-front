@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import cookie from "react-cookies";
 import { useNavigate } from "react-router-dom";
-import WirdLogo from '../../assets/Logo/WirdLogosvg.svg'
+import WirdLogo from "../../assets/Logo/WirdLogosvg.svg";
 import {
   HomeContainer,
   StatisticsSection,
@@ -14,14 +14,15 @@ import {
   BorderBottom,
   IntroductionDiv,
   Introduction,
-  Wird, StatisticItemBody
+  Wird,
+  StatisticItemBody,
 } from "./home.styles";
 
 import {
   StatisticsContainer,
   Formm,
   H3Login,
-  DivCenter
+  DivCenter,
 } from "../studentsPoints/StudentsPoints.styles";
 
 import { retrieveGeneralStatus } from "../../services/competitionsServices";
@@ -29,9 +30,7 @@ import Loader from "../Loader";
 import HomeBanner from "./HomeBanner";
 import DaysSlider from "./DaysSlider";
 import TopRanks from "./TopRanks";
-
-
-
+import MyPastContests from "./MyPastContests";
 
 function Home() {
   const [generalStatus, setGeneralStatus] = useState({});
@@ -39,7 +38,6 @@ function Home() {
   const [topStudentLastDay, setTopStudentLastDay] = useState({});
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
-
 
   useEffect(() => {
     if (!cookie.load("token")) {
@@ -60,17 +58,17 @@ function Home() {
           if (res?.data?.students_count || res?.data?.ramadan_date) {
             setGeneralStatus({
               students_count: res.data.students_count,
-              ramadan_date: res?.data?.ramadan_date
-            })
+              ramadan_date: res?.data?.ramadan_date,
+            });
           }
         }
         setLoading(false);
-      }, (err) => {
+      },
+      (err) => {
         console.log("Failed to retrieve general status : ", err.data);
         setLoading(false);
       }
     );
-
   }, []);
 
   if (loading) {
@@ -86,13 +84,13 @@ function Home() {
       {/* <CarouselStatistics /> */}
       {/* <Img/> */}
 
-
       <HomeContainer>
         <Div>
-          {/* <HomeBanner /> */}
-          {/* <DaysSlider/> */}
-          <TopRanks/>
-
+          <HomeBanner />
+          <DaysSlider />
+          <TopRanks />
+          <MyPastContests />
+          {/* 
           {Object.keys(generalStatus).length > 0 &&
             <StatisticsSection>
 
@@ -136,10 +134,10 @@ function Home() {
               </StatisticsContainer>
 
             </StatisticsSection>
-          }
+          } */}
 
           {/* Second Section  */}
-          <IntroductionSection>
+          {/* <IntroductionSection>
             <IntroductionDiv>
               <WirdLogoInHome >
                 <img src={WirdLogo} alt="" width='200' />
@@ -153,12 +151,11 @@ function Home() {
             </IntroductionDiv>
             <BorderBottom />
             <VideoSection />
-          </IntroductionSection>
+          </IntroductionSection> */}
 
           {/* Third Section */}
           {/* <VideoSection></VideoSection> */}
         </Div>
-
       </HomeContainer>
     </>
   );
