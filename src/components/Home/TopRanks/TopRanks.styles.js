@@ -1,426 +1,385 @@
 import styled from "styled-components";
 
 export default styled.div`
-display: flex;
-margin: auto;
-width: auto;
-/* height: auto; */
+  display: flex;
+  margin: auto;
+  width: auto;
+  /* height: auto; */
 
-background: #FBF9F7;
-border-radius: 24px;
+  background: #fbf9f7;
+  border-radius: 1.5rem;
 
-max-width: 949px;
-@media (max-width:1444px) {
-  width:auto;
-
-
-}
+  max-width: 59.3125rem;
+  @media (max-width: 90.25rem) {
+    width: auto;
+  }
 `;
 
 export const TopRanksAndParticipants = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 0px;
-gap: 42px;
-margin: auto;
-/* margin-left: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0rem;
+  gap: 2.625rem;
+  margin: auto;
+  /* margin-left: 1.5rem;
 margin-right: 1.5rem; */
-margin: 1.5rem;
-width: 100%;
-/* height: 138px; */
-max-width: 949px;
+  margin: 1.5rem;
+  width: 100%;
+  /* height: 8.625rem; */
+  max-width: 59.3125rem;
 
-@media (max-width:1444px) {
-  width:auto;
-  align-items: flex-start;
-margin-left: 1.5rem;
-margin-right: 1.5rem;
-}
+  @media (max-width: 90.25rem) {
+    width: auto;
+    align-items: flex-start;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
 
-@media (max-width:1000px) {
-  flex-direction: column
-}
+  @media (max-width: 62.5rem) {
+    flex-direction: column;
+  }
 
-@media (max-width:500px) {
-  flex-direction: column;
-  margin-left: 1rem;
-margin-right: 1rem;
-}
+  @media (max-width: 31.25rem) {
+    flex-direction: column;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 `;
 
 export const ParticipantsMember = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: flex-start;
-padding: 0px;
-gap: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0rem;
+  gap: .75rem;
 
-width: 294px;
-height: auto;
+  width: 18.375rem;
+  height: auto;
 
-
-@media (max-width:500px) {
-width: 200px;
-
-}
+  @media (max-width: 31.25rem) {
+    width: 12.5rem;
+  }
 `;
-
 
 export const ParticipantsTitels = styled.div`
-justify-content: space-between;
+  justify-content: space-between;
 
-width: 100%;
-height: 20px;
-display: flex;
+  width: 100%;
+  height: 1.25rem;
+  display: flex;
 
-@media (max-width:37.5625rem) {
-}
+  @media (max-width: 37.5625rem) {
+  }
 `;
 export const TopRanksSection = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: flex-start;
-padding: 0px;
-gap: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0rem;
+  gap: .75rem;
 
-/* width: 568px; */
-/* height: 138px; */
-height: auto;
+  /* width: 35.5rem; */
+  /* height: 8.625rem; */
+  height: auto;
 
-@media (max-width:1400px) {
-width: 294px;
-
-}
-@media (max-width:500px) {
-width: 200px;
-
-}
+  @media (max-width: 87.5rem) {
+    width: 18.375rem;
+  }
+  @media (max-width: 31.25rem) {
+    width: 12.5rem;
+  }
 `;
 
 export const ParticipantsNumbers = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 24px;
-gap: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  width: 100%;
+  background: #f9eaea;
+  border-radius: 1.5rem;
+  max-width: 35.4375rem;
+  justify-content: flex-start;
 
-width: 100%;
-/* height: 106px; */
-
-background: #F9EAEA;
-border-radius: 24px;
-max-width: 567px;
-/* justify-content: center; */
-justify-content: flex-start;
-/* justify-content: center; */
-
-
-@media (max-width:500px) {
-padding: 12px;
-gap: 2px;
-justify-content: center;
-
-}
+  @media (max-width: 31.25rem) {
+    padding: .75rem;
+    gap: .125rem;
+    justify-content: center;
+  }
 `;
 
 export const ParticipantsTitelsAtHome = styled.div`
-width: 100px;
-height: 19px;
+  width: 6.25rem;
+  height: 1.1875rem;
 
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 20px;
-text-align: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-align: center;
 
-color: #000000;
-@media (max-width:37.5625rem) {
-}
+  color: #000000;
+  @media (max-width: 37.5625rem) {
+  }
 `;
 
 export const SeeAll = styled.div`
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
-gap: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0rem;
+  gap: .375rem;
 
-/* position: absolute; */
-width: 78px;
-height: 20px;
-/* left: 216px;
-top: 0px; */
+  /* position: absolute; */
+  width: 4.875rem;
+  height: 1.25rem;
 
 
-@media (max-width:37.5625rem) {
-}
+  @media (max-width: 37.5625rem) {
+  }
 `;
 
 export const SeeAllP = styled.div`
-width: 52px;
-height: 19px;
+  width: 3.25rem;
+  height: 1.1875rem;
 
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 20px;
-text-align: right;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-align: right;
 
-color: #FF5367;
+  color: #ff5367;
 
-@media (max-width:37.5625rem) {
-}
+  @media (max-width: 37.5625rem) {
+  }
 `;
 
 export const SeeAllIcon = styled.img`
-/* position: absolute;
-left: 12.5%;
-right: 12.5%;
-top: 12.5%;
-bottom: 12.5%; */
 
-/* background: #FF5367; */
-@media (max-width:37.5625rem) {
-}
+  @media (max-width: 37.5625rem) {
+  }
 `;
 
 export const TotalOfMembers = styled.div`
-width: 78px;
-height: 58px;
+  width: 4.875rem;
+  height: 3.625rem;
 
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 700;
-font-size: 48px;
-line-height: 59px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 3.6875rem;
 
-color: #000000;
-@media (max-width:500px) {
-height: 35px;
-font-size: 35px;
-line-height: 35px;
-}
+  color: #000000;
+  @media (max-width: 31.25rem) {
+    height: 2.1875rem;
+    font-size: 2.1875rem;
+    line-height: 2.1875rem;
+  }
 `;
 
 export const MemberImgsAndNumNumbers = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 0px;
-gap: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0rem;
+  gap: .75rem;
 
-width: 142px;
-height: 36px;
-@media (max-width:500px) {
-  gap: 2px;
-
-
-}
+  width: 8.875rem;
+  height: 2.25rem;
+  @media (max-width: 31.25rem) {
+    gap: .125rem;
+  }
 `;
 
 export const MembersImgs = styled.div`
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
-position: relative;
-width: 96px;
-height: 36px;
-@media (max-width:500px) {
-  align-items: center;
-
-}
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0rem;
+  position: relative;
+  width: 6rem;
+  height: 2.25rem;
+  @media (max-width: 31.25rem) {
+    align-items: center;
+  }
 `;
 
 export const MemberNumbers = styled.div`
-width: 34px;
-height: 17px;
+  width: 2.125rem;
+  height: 1.0625rem;
 
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 700;
-font-size: 14px;
-line-height: 17px;
-/* identical to box height */
-text-align: center;
-color: #A79F97;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: .875rem;
+  line-height: 1.0625rem;
+  /* identical to box height */
+  text-align: center;
+  color: #a79f97;
 
-@media (max-width:37.5625rem) {
-}
+  @media (max-width: 37.5625rem) {
+  }
 `;
 
 export const MembersImg = styled.div`
-position: absolute;
-/*  */
-background: #FDD561;
-border-radius: 12px;
-width: 36px;
-height: 36px;
-/* width: 23px;
-height: 17px; */
-display: flex;
-align-items: center;
-justify-content: center;
+  position: absolute;
+  /*  */
+  background: #fdd561;
+  border-radius: .75rem;
+  width: 2.25rem;
+  height: 2.25rem;
 
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 700;
-font-size: 14px;
-line-height: 17px;
-/* identical to box height */
-text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-color: #000000;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: .875rem;
+  line-height: 1.0625rem;
+  /* identical to box height */
+  text-align: center;
 
-@media (max-width:500px) {
-  border-radius: 8px;
-width: 30px;
-height: 30px;
-}
+  color: #000000;
+
+  @media (max-width: 31.25rem) {
+    border-radius: .5rem;
+    width: 1.875rem;
+    height: 1.875rem;
+  }
 `;
 
-
-
 export const Top3Rank = styled.div`
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 23px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.4375rem 1.5rem;
 
-width: 567px;
-height: 106px;
+  width: 35.4375rem;
+  height: 6.625rem;
 
-background: #F9EAEA;
-border-radius: 24px;
+  background: #f9eaea;
+  border-radius: 1.5rem;
 
-
-@media (max-width:37.5625rem) {
-}
+  @media (max-width: 37.5625rem) {
+  }
 `;
 
 export const ParticipantsNumbersRanks = styled.div`
-
-display: flex;
-flex-direction: row;
-/* align-items: center; */
-padding: 0px;
-
-
-/* width: 519px; */
-/* height: 60px; */
-@media (max-width:1400px) {
-  flex-direction: column;
-  /* width: 100%; */
-  align-items: flex-start;
-  margin: auto;
-}
-@media (max-width:500px) {
-  justify-content: center
-}
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  padding: 0rem;
+  @media (max-width: 87.5rem) {
+    flex-direction: column;
+    /* width: 100%; */
+    align-items: flex-start;
+    /* margin: auto; */
+  }
+  @media (max-width: 31.25rem) {
+    justify-content: center;
+  }
 `;
 
 export const Top3RankDiv = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 0px;
-gap: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0rem;
+  gap: .75rem;
 
-width: 189px;
-/* height: 60px; */
+  width: 11.8125rem;
+  /* height: 3.75rem; */
 
-@media (max-width:1400px) {
-  margin-top: 5px;
-  width: auto;
-}
-@media (max-width:500px) {
-  /* gap: 2px; */
-
-}
+  @media (max-width: 87.5rem) {
+    margin-top: .3125rem;
+    width: auto;
+  }
+  @media (max-width: 31.25rem) {
+    /* gap: .125rem; */
+  }
 `;
 
 export const Top1Img = styled.div`
+  background: #fdd561;
+  border-radius: .75rem;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-background: #FDD561;
-border-radius: 12px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.0625rem;
+  text-align: center;
 
-display: flex;
-align-items: center;
-justify-content: center;
-
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 17px;
-text-align: center;
-
-color: #000000;
-width: 60px;
-height: 60px;
-@media (max-width:1400px) {
-  width: 36px;
-height: 36px;
-font-size: 14px;
-font-size: 14px;
-
-}
+  color: #000000;
+  width: 3.75rem;
+  height: 3.75rem;
+  @media (max-width: 87.5rem) {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: .875rem;
+    font-size: .875rem;
+  }
 `;
 
 export const Top1Name = styled.div`
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 20px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.25rem;
 
-color: #000000;
-width: 117px;
-@media (max-width:1400px) {
-width: auto;
-
-}
+  color: #000000;
+  width: 7.3125rem;
+  @media (max-width: 87.5rem) {
+    width: auto;
+  }
 `;
 
 export const Top2Name = styled.div`
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: .875rem;
+  line-height: 1.0625rem;
+  /* identical to box height */
+  width: 7.3125rem;
 
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 700;
-font-size: 14px;
-line-height: 17px;
-/* identical to box height */
-width: 117px;
+  color: #000000;
 
-color: #000000;
-
-@media (max-width:1400px) {
-width: auto;
-
-}
+  @media (max-width: 87.5rem) {
+    width: auto;
+  }
 `;
 
 export const Top2Img = styled.div`
-width: 36px;
-height: 36px;
-background: #FDD561;
-border-radius: 12px;
-display: flex;
-align-items: center;
-justify-content: center;
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 700;
-font-size: 14px;
-line-height: 17px;
-text-align: center;
-color: white;
-@media (max-width:37.5625rem) {
-}
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #fdd561;
+  border-radius: .75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: .875rem;
+  line-height: 1.0625rem;
+  text-align: center;
+  color: white;
+  @media (max-width: 37.5625rem) {
+  }
 `;
