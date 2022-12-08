@@ -33,10 +33,10 @@ export const DaySliderGroup = styled.div`
 /* margin-top: 3rem; */
 display: flex;
 align-items: center;
-position: relative;
+/* position: relative; */
 width: auto;
 justify-content: space-between;
-overflow: hidden;
+/* overflow: hidden; */
 
 
 @media (max-width:37.5625rem) {
@@ -78,9 +78,9 @@ margin: auto;
 
 
 export const AllDaysSlider = styled.div`
-width: auto;
-
-/* width: (100% - 1rem); */
+/* width: auto; */
+/* width: 10rem; */
+width: 90% ;
 
 height: 9rem;
 /* position: absolute; */
