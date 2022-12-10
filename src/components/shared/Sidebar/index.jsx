@@ -61,14 +61,14 @@ function Sidebar() {
           </MenuItem>
           <HomeIcon />
         </MenuLink>
-        { hasPermission &&
+        {/* { hasPermission && */}
               <MenuLink to="/Competition">
                 <MenuItem >
                   معلومات المسابقة
                 </MenuItem>
                 <CompInfoIcon/>
               </MenuLink>
-        }
+        {/* } */}
         <MenuLink to="/TopStudents">
           <MenuItem >
             الأوائل
