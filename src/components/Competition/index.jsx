@@ -9,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../Loader";
 
 import MyOngoingContestTab from "../shared/MyOngoingContestTab";
+import ContestMembers from "./ContestMembers";
+
+
 
 export default function Competition() {
   const [competitions, setCompetitions] = useState([]);
@@ -45,10 +48,10 @@ export default function Competition() {
 
   return (
     <>
-        <MyOngoingContestTab />
+      <MyOngoingContestTab />
+      <ContestMembers/>
 
       <CompetitionContainer>
-
         <Tabs
           labels={["تعديل مسابقة", "إضافة/تعديل إعلانات"]}
           contents={[
