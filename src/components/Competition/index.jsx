@@ -11,8 +11,6 @@ import Loader from "../Loader";
 import MyOngoingContestTab from "../shared/MyOngoingContestTab";
 import ContestMembers from "./ContestMembers";
 
-
-
 export default function Competition() {
   const [competitions, setCompetitions] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -38,18 +36,18 @@ export default function Competition() {
     );
   }, []);
 
-  // if(loading) {
-  //     return (
-  //         <main>
-  //             <Loader />
-  //         </main>
-  //     );
-  // }
+  if (loading) {
+    return (
+      <main>
+        <Loader />
+      </main>
+    );
+  }
 
   return (
     <>
       <MyOngoingContestTab />
-      <ContestMembers/>
+      <ContestMembers />
 
       <CompetitionContainer>
         <Tabs
