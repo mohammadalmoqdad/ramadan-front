@@ -1,8 +1,7 @@
-import { css } from "styled-components";
 import { colors } from "styles";
+import { css } from "@emotion/react/macro";
 
 export default (theme) => {
-  console.log(theme);
   return css`
     // theme can be black or white / arabic or english
     :root {
@@ -15,6 +14,8 @@ export default (theme) => {
       --background-disabled: ${colors.lightGrey}; // just an example for the color, value can be changed.
 
       --flex-direction: ${theme.flex.direction};
+      --font-family-head: ${theme.fonts.fontFamilyHeading};
+      --font-family-main: ${theme.fonts.fontFamilyBody};
     }
   `;
 };
