@@ -12,10 +12,10 @@ export const colors = {
 };
 
 export const fonts = {
-  "heading-en": "a font",
-  "main-en": "another font",
-  "heading-ar": "a font",
-  "main-ar": "another font",
+  headingEN: "Montserrat",
+  mainEN: "another font",
+  headingAR: "a font",
+  mainAR: "Noto Kufi Arabic",
 };
 
 export const spacing = {
@@ -50,10 +50,18 @@ export const arabicTheme = {
   flex: {
     direction: flexes.rightToLeft,
   },
+  fonts: {
+    fontFamilyBody: fonts.mainAR,
+    fontFamilyHeading: fonts.headingAR,
+  },
 };
 
 export const englishTheme = {
   flex: {
     direction: flexes.leftToRight,
+  },
+  fonts: {
+    fontFamilyBody: fonts.mainEN,
+    fontFamilyHeading: fonts.headingEN,
   },
 };

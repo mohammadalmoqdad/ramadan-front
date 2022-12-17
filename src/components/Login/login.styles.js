@@ -1,43 +1,47 @@
 import styled from "styled-components";
+import { colors } from "styles";
+
 import {
-    InputSubmit as DefaultInputSubmit,
-    Form as DefaultForm,
-    FormInput as DefaultFormInput
+  InputSubmit as DefaultInputSubmit,
+  Form as DefaultForm,
+  FormInput as DefaultFormInput,
 } from "../shared/styles";
 
 export default styled.div`
-display:flex;
-margin: 0;
-padding: 0;
-font-family: 'Noto Kufi Arabic', sans-serif;
-background: #FDFDFB;
-height: 100vh;
-overflow: hidden;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-main);
+  background: ${colors.lightWheat};
+  height: 100vh;
+  overflow: hidden;
 `;
 export const DivCenter = styled.div`
- margin: auto;
- margin-top: 2rem;
- margin-bottom: 2rem;
- width: 38rem;
- background: white;
- border-radius: .625rem;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 38rem;
+  background: white;
+  border-radius: 0.625rem;
 
- display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 2.25rem;
-gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.25rem;
+  gap: 1.25rem;
 
-background: #FFFFFF;
-border-radius: 1.5rem;
+  background: #ffffff;
+  border-radius: 1.5rem;
 
-@media (max-width:43.75rem) {
- width: 19rem;
-}
+  @media (max-width: 43.75rem) {
+    width: 19rem;
+  }
 `;
 
 export const Form = styled(DefaultForm)`
+  width: auto;
+  @media (max-width: 550px) {
     width: auto;
 @media (max-width:34.375rem) {
     width: auto;
@@ -45,183 +49,183 @@ export const Form = styled(DefaultForm)`
 `;
 
 export const FormInput = styled(DefaultFormInput)`
-/* Frame 3 */
-box-sizing: border-box;
-/* Auto layout */
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 1.3125rem 1.5rem;
-gap: .75rem;
+  /* Frame 3 */
+  box-sizing: border-box;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 1.3125rem 1.5rem;
+  gap: 0.75rem;
 
-width: 33.5rem;
-height: 3.8125rem;
+  width: 33.5rem;
+  height: 3.8125rem;
 
-background: #FFFFFF;
-border: .0625rem solid #F9EAEA;
-border-radius: .75rem;
+  background: #ffffff;
+  border: 0.0625rem solid #f9eaea;
+  border-radius: 0.75rem;
 
-text-align:left;
+  text-align: left;
 
-@media (max-width:43.75rem) {
+  @media (max-width: 43.75rem) {
     width: 14.375rem;
-    font-size: .8125rem;
-}
-:focus{
+    font-size: 0.8125rem;
+  }
+  :focus {
     border-bottom: 0;
-}
+  }
 `;
-
 
 export const PageLink = styled.a`
-text-decoration: none;
-width: 100%;
-padding: 0 .3125rem;
-height: 2.5rem;
-font-size: 1rem;
-border: none;
-background: none;
-outline: none;
-color: gray;
-margin-top: .3rem;
-text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 0 0.3125rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  border: none;
+  background: none;
+  outline: none;
+  color: gray;
+  margin-top: 0.3rem;
+  text-align: center;
 `;
 export const HeadLogIn = styled.div`
-margin-top: 1rem;
-display: flex;
-font-weight: 500;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: .3125rem;
-gap: .3125rem;
-border-radius: 1.5rem;
+  margin-top: 1rem;
+  display: flex;
+  font-weight: 500;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3125rem;
+  gap: 0.3125rem;
+  border-radius: 1.5rem;
 `;
 export const TitleLogin = styled.div`
-width: auto;
-height: 2.25rem;
+  width: auto;
+  height: 2.25rem;
 
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 700;
-font-size: 1.875rem;
-line-height: 2.3125rem;
-text-align: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 2.3125rem;
+  text-align: center;
 
-color: #000000;
+  color: #000000;
 
+  color: #000000;
 `;
 export const SignupNowAccount = styled.p`
-width: 17.9375rem;
-height: 1.1875rem;
+  width: 17.9375rem;
+  height: 1.1875rem;
 
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 400;
-font-size: 1rem;
-line-height: 1.25rem;
-text-align: center;
-color: #A79F97;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-align: center;
+  color: #a79f97;
 `;
 export const SignupNow = styled.a`
-text-decoration: none;
-border: none;
-background: none;
-outline: none;
-width: 17.9375rem;
-height: 1.1875rem;
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 500;
-font-size: 1rem;
-line-height: 1.25rem;
-text-align: center;
-color: #000000;
+  text-decoration: none;
+  border: none;
+  background: none;
+  outline: none;
+  width: 17.9375rem;
+  height: 1.1875rem;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-align: center;
+  color: #000000;
 
-:hover{
-    color: #A79F97;
-}
+  :hover {
+    color: #a79f97;
+  }
 
+  :hover {
+    color: #a79f97;
+  }
 `;
 
 export const MediaLogIn = styled.button`
-/* Frame 34  */
-box-sizing: border-box;
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 1.125rem 1.5rem;
-gap: .75rem;
-width: 10.6669rem;
-height: 3.125rem;
-background: #FFFFFF;
-border: .0625rem solid #F9EAEA;
-border-radius: .75rem;
-flex: none;
-order: 2;
-flex-grow: 0;
+  /* Frame 34  */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1.125rem 1.5rem;
+  gap: 0.75rem;
+  width: 10.6669rem;
+  height: 3.125rem;
+  background: #ffffff;
+  border: 0.0625rem solid #f9eaea;
+  border-radius: 0.75rem;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
 
-@media (max-width:43.75rem) {
-padding: 1.125rem 1.5rem;
-gap: .75rem;
-width: 4.6875rem;
-height: 2.5rem;
-}
+  @media (max-width: 43.75rem) {
+    padding: 1.125rem 1.5rem;
+    gap: 0.75rem;
+    width: 4.6875rem;
+    height: 2.5rem;
+  }
 `;
 
 export const MediaOneLine = styled.div`
-/* Frame 34  */
-box-sizing: border-box;
-/* Auto layout */
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-gap: .75rem;
-background: #FFFFFF;
+  /* Frame 34  */
+  box-sizing: border-box;
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
 `;
 export const OrWayToLogIn = styled.span`
-
-width: 1.25rem;
-height: 1.1875rem;
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 400;
-font-size: 1rem;
-line-height: 1.25rem;
-text-align: center;
-color: #A79F97;
-
+  width: 1.25rem;
+  height: 1.1875rem;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-align: center;
+  color: #a79f97;
 `;
 
 export const Span = styled.span`
-text-align: center;
-margin: .5rem;
+  text-align: center;
+  margin: 0.5rem;
 `;
 
 export const InputSubmit = styled(DefaultInputSubmit)`
-width:auto;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 1.25rem 1.5rem 1.3125rem;
-gap: .625rem;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 1.5rem 1.3125rem;
+  gap: 0.625rem;
 
-width: 33.5rem;
-height: 3.125rem;
+  width: 33.5rem;
+  height: 3.125rem;
 
-background: #FDD561;
-color: #000000;
-font-weight: 700;
-border-radius: 6.25rem;
-margin-top: .3rem;
-margin-bottom: .5rem;
+  background: #fdd561;
+  color: #000000;
+  font-weight: 700;
+  border-radius: 6.25rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
 
-@media (max-width:43.75rem) {
-width: 14.375rem;
-height: 3.125rem;
-}
-
+  @media (max-width: 43.75rem) {
+    width: 14.375rem;
+    height: 3.125rem;
+  }
 `;
