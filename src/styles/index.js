@@ -15,8 +15,8 @@ export const colors = {
 
 export const fonts = {
   headingEN: "Montserrat",
-  mainEN: "another font",
-  headingAR: "a font",
+  mainEN: "Montserrat",
+  headingAR: "Noto Kufi Arabic",
   mainAR: "Noto Kufi Arabic",
 };
 
