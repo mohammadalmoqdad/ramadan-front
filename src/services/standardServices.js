@@ -2,7 +2,7 @@ import {doRequest} from "./doRequest";
 import cookie from "react-cookies";
 
 export const retrieveStandards = (successCallback, faiCallback) => {
-    doRequest(null, "/comp-admin/point-template/",
+    doRequest(null, "/admin-panel/point-template/",
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -14,7 +14,7 @@ export const retrieveStandards = (successCallback, faiCallback) => {
 };
 
 export const retrieveSections = (successCallback, faiCallback) => {
-    doRequest(null, "/comp-admin/section/",
+    doRequest(null, "/admin-panel/section/",
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -26,7 +26,7 @@ export const retrieveSections = (successCallback, faiCallback) => {
 };
 
 export const addStandard = (data, successCallback, faiCallback) => {
-    doRequest(data, "/comp-admin/point-template/",
+    doRequest(data, "/admin-panel/point-template/",
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -38,7 +38,7 @@ export const addStandard = (data, successCallback, faiCallback) => {
 };
 
 export const addSection = (data, successCallback, faiCallback) => {
-    doRequest(data, "/comp-admin/section/",
+    doRequest(data, "/admin-panel/section/",
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -50,7 +50,7 @@ export const addSection = (data, successCallback, faiCallback) => {
 };
 
 export const updateStandard = (id, data, successCallback, faiCallback) => {
-    doRequest(data, `/comp-admin/point-template/${id}/`,
+    doRequest(data, `/admin-panel/point-template/${id}/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -62,7 +62,7 @@ export const updateStandard = (id, data, successCallback, faiCallback) => {
 };
 
 export const updateSection = (id, data, successCallback, faiCallback) => {
-    doRequest(data, `/comp-admin/section/${id}/`,
+    doRequest(data, `/admin-panel/section/${id}/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -74,7 +74,7 @@ export const updateSection = (id, data, successCallback, faiCallback) => {
 };
 
 export const deleteStandard = (id,   successCallback, faiCallback) => {
-    doRequest(null, `/comp-admin/point-template/${id}/`,
+    doRequest(null, `/admin-panel/point-template/${id}/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -86,7 +86,7 @@ export const deleteStandard = (id,   successCallback, faiCallback) => {
 };
 
 export const deleteSection = (id,   successCallback, faiCallback) => {
-    doRequest(null, `/comp-admin/section/${id}/`,
+    doRequest(null, `/admin-panel/section/${id}/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
