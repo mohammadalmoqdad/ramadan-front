@@ -13,6 +13,14 @@ export const colors = {
   //   }
 };
 
+export const blankUserBackgroundColors = [
+  "#503E9D",
+  "#FDD561",
+  "#FF5367",
+  "#FFBAC2",
+  "#FB862C",
+];
+
 export const fonts = {
   headingEN: "Montserrat",
   mainEN: "Montserrat",

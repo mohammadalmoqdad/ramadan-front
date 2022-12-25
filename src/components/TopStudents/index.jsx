@@ -1,3 +1,4 @@
+import { UserBlankImage } from "components/shared/UserBlankImage";
 import React, { useEffect, useState } from "react";
 import cookie from "react-cookies";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +21,8 @@ import {
   DivLine,
   WarbSlider,
   PAverageWrapper,
+  MarkWrapper,
+  Average,
 } from "./TopStudents.styles";
 export default function TopStudents() {
   const [topStudents, setTopStudents] = useState([]);
