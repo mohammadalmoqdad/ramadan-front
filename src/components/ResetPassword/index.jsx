@@ -93,7 +93,7 @@ function ForgotPassword() {
           )}
 
           {showErrorMessageMatch && (
-            <DivPass className="red">Those passwords didn’t match. Try again.</DivPass>
+            <DivPass className="red">Those passwords didn't match. Try again.</DivPass>
           )}
 
           {/* <PageLink href="https://www.facebook.com/Wird.Competition/" target="_blank">

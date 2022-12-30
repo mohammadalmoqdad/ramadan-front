@@ -131,7 +131,7 @@ function Login() {
             <FormInput
               onChange={handleChangeUsername}
               type="text"
-              placeholder="Email address"
+              placeholder="Username"
               required
             />
           </DivTxtField>

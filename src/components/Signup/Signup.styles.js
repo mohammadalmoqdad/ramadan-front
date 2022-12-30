@@ -2,11 +2,16 @@ import styled from "styled-components";
 import {
   InputSubmit as DefaultInputSubmit,
   Form as DefaultForm,
+  DivCenter as DefaultDivCenter
 } from "../Login/login.styles";
 
 import {
   DivPass as DefaultDivPass,
 } from "../shared/styles";
+
+import {
+  DivFileField as DefaultDivFileField
+} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 
 export default styled.div`
 display:flex;
@@ -15,7 +20,6 @@ padding: 0;
 font-family: 'Noto Kufi Arabic', sans-serif;
 background: #FDFDFB;
 height: 100vh;
-overflow: hidden;
 height: 54.3125rem;
 `;
 
@@ -170,4 +174,12 @@ height: 3.125rem;
 
 export const DivPass = styled(DefaultDivPass)`
   margin-bottom: 1rem;
+`;
+
+export const DivCenter = styled(DefaultDivCenter)`
+  margin-top: auto;
+`;
+
+export const DivFileField = styled(DefaultDivFileField)`
+  text-align: center;
 `;

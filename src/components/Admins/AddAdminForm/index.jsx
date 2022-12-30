@@ -109,7 +109,7 @@ export default function AddAdminForm(props) {
 
 
     const handleUserNameChange = (e)=>{
-        let regex = new RegExp('^[\u0621-\u064Aa-zA-Z0-9+-.@_]*$');
+        let regex = new RegExp('^[\u0621-\u064Aa-zA-Z0-9+\-.@_]*$');
         if(!regex.test(e.target.value)){
             setValidUserName(false);
         }else{
