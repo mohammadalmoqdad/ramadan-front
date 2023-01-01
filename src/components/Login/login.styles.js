@@ -18,8 +18,8 @@ export default styled.div`
 `;
 export const DivCenter = styled.div`
   margin: auto;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  /* margin-top: 2rem;
+  margin-bottom: 2rem; */
   width: 38rem;
   background: white;
   border-radius: 0.625rem;
@@ -33,7 +33,7 @@ export const DivCenter = styled.div`
 
   background: #ffffff;
   border-radius: 1.5rem;
-
+  height: 40.25rem;
   @media (max-width: 43.75rem) {
     width: 19rem;
   }
@@ -41,11 +41,12 @@ export const DivCenter = styled.div`
 
 export const Form = styled(DefaultForm)`
   width: auto;
-  @media (max-width: 550px) {
+  margin: 0;
+  /* height: auto; */
+
+  @media (max-width: 34.375rem) {
     width: auto;
-@media (max-width:34.375rem) {
-    width: auto;
-}
+  }
 `;
 
 export const FormInput = styled(DefaultFormInput)`
