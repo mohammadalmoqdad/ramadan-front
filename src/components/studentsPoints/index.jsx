@@ -40,7 +40,7 @@ export default function StudentsPoints() {
     setLoading(true);
     retrieveStudents(
       (res) => {
-        setStudents(res.data);
+        setStudents(res.data.results);
         setLoading(false);
       }, (err) => {
         console.log("ERROR: " + JSON.stringify(err.response.data));

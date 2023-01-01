@@ -2,7 +2,19 @@ import { doRequest } from "./doRequest";
 import cookie from "react-cookies";
 
 export const retrieveStudents = (successCallback, faiCallback) => {
-    doRequest(null, "/comp-admin/students/",
+    doRequest(null, "/admin-panel/contest-people/?contest_role=1",
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "get",
+        successCallback,
+        faiCallback,
+        true);
+};
+
+export const retrievePendingMembers = (successCallback, faiCallback) => {
+    doRequest(null, "/admin-panel/contest-people/?contest_role=4",
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -48,11 +60,10 @@ export const retrieveStudentsPointsPerLabelORPerDay = (username, typeOfReturnedR
         successCallback,
         faiCallback,
         true)
-}
-
+};
 
 export const setStudentPassword = (username, data, successCallback, faiCallback) => {
-    doRequest(data, `/comp-admin/students/${username}/change_password/`,
+    doRequest(data, `/admin-panel/contest-people/${username}/change_password/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -64,7 +75,7 @@ export const setStudentPassword = (username, data, successCallback, faiCallback)
 };
 
 export const updateStudent = (username, data, successCallback, faiCallback) => {
-    doRequest(data, `/comp-admin/students/${username}/`,
+    doRequest(data, `/admin-panel/contest-people/${username}/`,
         {
             'Content-Type' : false,
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -74,20 +85,6 @@ export const updateStudent = (username, data, successCallback, faiCallback) => {
         faiCallback,
         true);
 };
-
-
-export const dataStudentPoints = (username, data, successCallback, faiCallback) => {
-    doRequest(data, `/comp-admin/students/${username}/`,
-        {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${cookie.load('token')}`,
-        },
-        "get",
-        successCallback,
-        faiCallback,
-        true);
-};
-
 export const updateStudentPoint = (username, pointID, data, successCallback, faiCallback) => {
     doRequest(data, `/comp-admin/students/${username}/update_or_delete_point/?id=${pointID}`,
         {
@@ -114,7 +111,7 @@ export const deleteStudentPoint = (username, pointID, successCallback, faiCallba
 };
 
 export const deleteStudent = (username, successCallback, faiCallback) => {
-    doRequest(null, `/comp-admin/students/${username}/`,
+    doRequest(null, `/admin-panel/contest-people/${username}/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,

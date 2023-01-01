@@ -21,8 +21,10 @@ export default  function TopStudents() {
         setLoading(true);
         retrieveTopStudents(
             (res) => {
-                setTopStudents(res.data);
                 setLoading(false);
+                if (res && res.status === 200) {
+                    setTopStudents([...res.data.results]);
+                }
             }, (err) => {
                 console.log("Failed to retrieve top students: " + JSON.stringify(err.response.data));
                 setLoading(false);

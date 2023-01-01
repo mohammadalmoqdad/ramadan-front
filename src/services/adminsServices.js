@@ -2,7 +2,7 @@ import {doRequest} from "./doRequest";
 import cookie from "react-cookies";
 
 export const retrieveAdmins = (successCallback, faiCallback) => {
-    doRequest(null, "/comp-admin/comp-admins/",
+    doRequest(null, "/admin-panel/contest-people/?contest_role__in=2,3",
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -14,12 +14,24 @@ export const retrieveAdmins = (successCallback, faiCallback) => {
 };
 
 export const retrieveAdminInfo = (successCallback, faiCallback) => {
-    doRequest(null, `/comp-admin/admin-info/`,
+    doRequest(null, `/current-user/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
         },
         "get",
+        successCallback,
+        faiCallback,
+        true);
+};
+
+export const updateContestPeopleRole = (username, data, successCallback, faiCallback) => {
+    doRequest(data, `/admin-panel/contest-people/${username}/`,
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "put",
         successCallback,
         faiCallback,
         true);

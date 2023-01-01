@@ -13,6 +13,8 @@ import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";
 import Loader from "../Loader";
+import {isSuperAdmin} from '../../util/ContestPeople_Role';
+
 export default function Standards() {
 
     const [sections, setSections] = useState([]);
@@ -41,7 +43,7 @@ export default function Standards() {
 
         setLoading(true);
         if(Object.keys(context.adminInfo).length > 0){
-            setPermission( context.adminInfo.is_super_admin);
+            setPermission( isSuperAdmin(context));
         }else{
             setTimeout(() => {
                 if(Object.keys(context.adminInfo).length === 0){
@@ -53,7 +55,7 @@ export default function Standards() {
 
         retrieveStandards(
             (res) => {
-                setStandards(res.data);
+                setStandards(res.data.results);
                 setLoading(false);
             },
             (err) => {
@@ -63,7 +65,7 @@ export default function Standards() {
         );
 
         retrieveSections((res) => {
-                setSections(res.data);
+                setSections(res.data.results);
             },
             (err) => {
                 console.log("Failed to retrieve sections, ERROR: ", JSON.stringify(err.response.data));
@@ -73,7 +75,7 @@ export default function Standards() {
     }, []);
 
     useEffect(() => {
-        setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
+        setPermission(Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context));
     }, [context.adminInfo]);
 
 

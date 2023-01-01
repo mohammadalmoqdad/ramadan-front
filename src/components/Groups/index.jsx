@@ -14,6 +14,7 @@ import {useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
 import {H3Pass} from "../shared/styles";
 import Loader from "../Loader";
+import {isSuperAdmin} from '../../util/ContestPeople_Role';
 
 export default function Groups() {
 
@@ -39,7 +40,7 @@ export default function Groups() {
         }
 
         if(Object.keys(context.adminInfo).length > 0){
-            setPermission( context.adminInfo.is_super_admin);
+            setPermission( isSuperAdmin(context));
         }else{
             setTimeout(() => {
                 if(Object.keys(context.adminInfo).length === 0){
@@ -52,7 +53,7 @@ export default function Groups() {
         setLoading(true);
         retrieveStudents(
             (res) => {
-                setStudents(res.data);
+                setStudents(res.data.results);
                 setLoading(false);
             },
             (err) => {
@@ -63,14 +64,14 @@ export default function Groups() {
 
         retrieveAdmins(
             (res) => {
-            setAdmins(res.data)
+            setAdmins(res.data.results)
         }, (err) => {
             console.log("Failed to retrieve admins: " + JSON.stringify(err.response.data));
         });
 
         retrieveGroups(
             (res) => {
-            setGroups(res.data)
+            setGroups(res.data.results)
         }, (err) => {
             console.log("Failed to retrieve groups: " + JSON.stringify(err.response.data));
         });
@@ -84,7 +85,7 @@ export default function Groups() {
     } , [students]);
 
     useEffect(() => {
-        setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
+        setPermission(Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context));
     }, [context.adminInfo]);
 
     useEffect( ()=>{
