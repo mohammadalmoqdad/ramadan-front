@@ -129,7 +129,7 @@ export default function SetPasswordStudents(props) {
                     {
                         props.students.map((student, index) => (
                             <DropdownListItem key={index + 1}
-                                              value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
+                                              value={student.person.username}>{student.person.first_name} {student.person.last_name}</DropdownListItem>
                         ))
                     }
                 </DropdownList>

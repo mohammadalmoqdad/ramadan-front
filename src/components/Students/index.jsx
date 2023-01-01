@@ -10,6 +10,8 @@ import {useAdminContext} from "../../contexts/AdminContext";
 import {useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
 import Loader from "../Loader";
+import {isSuperAdmin} from '../../util/ContestPeople_Role';
+
 export default function Students(){
     const [students, setStudents] = useState([]);
     const [openModal, setOpenModal] = useState(false);
@@ -27,7 +29,7 @@ export default function Students(){
         setLoading(true);
         retrieveStudents(
             (res) => {
-                setStudents(res.data);
+                setStudents(res.data.results);
                 setLoading(false);
             }, (err) => {
                 console.log("Failed to retrieve students: " + JSON.stringify(err.response.data));
@@ -36,7 +38,7 @@ export default function Students(){
         );
 
         if(Object.keys(context.adminInfo).length > 0){
-            setPermission( context.adminInfo.is_super_admin);
+            setPermission( isSuperAdmin(context));
         }else{
             setTimeout(() => {
                 if(Object.keys(context.adminInfo).length === 0){
@@ -49,7 +51,7 @@ export default function Students(){
     },[]);
 
     useEffect( ()=>{
-        setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
+        setPermission(Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context));
     }, [context.adminInfo] )
 
     const handleDeleteStudentModalChange = (e)=>{
@@ -62,7 +64,7 @@ export default function Students(){
         deleteStudent(studentToDelete,(res)=>{
                 if(res && res.status === 204){
                     console.log(`Student ${studentToDelete} has been deleted`);
-                    setStudents(students.filter( student => student.username !== studentToDelete));
+                    setStudents(students.filter( student => student.person.username !== studentToDelete));
                 }
             }, (err)=>{
                 console.log("Failed to delete admin: ", JSON.stringify(err.response.data));
@@ -100,11 +102,11 @@ export default function Students(){
                                             return (<DropdownListItem key={index}>
                                                 { hasPermission?
                                                     <>
-                                                        <Button id="deleteBtn" onClick={handleDeleteStudentModalChange} value={student.username}>حذف</Button>
-                                                        <Span>{student.first_name} {student.last_name}</Span>
+                                                        <Button id="deleteBtn" onClick={handleDeleteStudentModalChange} value={student.person.username}>حذف</Button>
+                                                        <Span>{student.person.first_name} {student.person.last_name}</Span>
                                                     </>
                                                     :
-                                                    <Span style={{width: '100%'}}>{student.first_name} {student.last_name}</Span>
+                                                    <Span style={{width: '100%'}}>{student.person.first_name} {student.person.last_name}</Span>
                                                 }
                                             </DropdownListItem>)
                                         })
@@ -115,8 +117,8 @@ export default function Students(){
                             <Tabs labels={['تعديل طالب','كلمة المرور']}
                                   contents={
                                       [
-                                          <EditStudentForm students={students} setStudents={setStudents} />,
-                                          <SetPasswordStudents students={students}  />
+                                         // <EditStudentForm students={students} setStudents={setStudents} />,
+                                         // <SetPasswordStudents students={students}  />
                                       ]} />
                         </>
                     :

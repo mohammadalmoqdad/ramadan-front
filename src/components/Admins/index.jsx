@@ -16,6 +16,7 @@ import {H5} from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";
 import Loader from "../Loader";
+import {isSuperAdmin} from '../../util/ContestPeople_Role';
 
 export default function Admins() {
 
@@ -37,7 +38,7 @@ export default function Admins() {
 
 
         if(Object.keys(context.adminInfo).length > 0){
-            setPermission(context.adminInfo.is_super_admin);
+            setPermission(isSuperAdmin(context));
         }else{
             setTimeout(() => {
                 if(Object.keys(context.adminInfo).length === 0){
@@ -50,7 +51,7 @@ export default function Admins() {
         setLoading(true);
         retrieveAdmins(
             (res) => {
-                setAdmins(res.data);
+                setAdmins([...res.data.results]);
                 setLoading(false);
             }, (err) => {
                 console.log("Failed to retrieve admins: " + JSON.stringify(err.response.data));
@@ -60,18 +61,18 @@ export default function Admins() {
     }, []);
 
     useEffect(() => {
-        setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
+        setPermission(Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context));
     }, [context.adminInfo]);
 
     useEffect(()=>{
         let labels = [];
         let contents = [];
 
-        if(Object.keys(context.adminInfo).length > 0 && !context.adminInfo.is_super_admin && admins.length === 0) {
-            setAdmins([context.adminInfo])
+        if(Object.keys(context.adminInfo).length > 0 && !isSuperAdmin(context) && admins.length === 0) {
+            setAdmins([...context.adminInfo])
         }
 
-        if(admins.length > 0 ){
+        /*if(admins.length > 0 ){
 
             labels.push('كلمة المرور');
             contents.push(<ResetAdminPasswordForm admins={admins}/>);
@@ -84,7 +85,7 @@ export default function Admins() {
                 labels.push('إضافة مسؤول');
                 contents.push(<AddAdminForm admins={admins} setAdmins={setAdmins}/>);
             }
-        }
+        }*/
 
         setAdminsLabels(labels);
         setAdminsContents(contents);
@@ -101,7 +102,7 @@ export default function Admins() {
         deleteAdmin(adminToDelete,(res)=>{
             if(res && res.status === 204){
                 console.log(`Admin ${adminToDelete} has been deleted`);
-                setAdmins(admins.filter( admin => admin.username !== adminToDelete));
+                setAdmins([...admins.filter( admin => admin.person.username !== adminToDelete)]);
             }
             }, (err)=>{
                 console.log("Failed to delete admin: ", JSON.stringify(err.response.data));
@@ -130,33 +131,33 @@ export default function Admins() {
             }
 
             { admins && admins.length > 0 &&
-                admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.username !== admin.username).length > 0 &&
+                admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.person.username !== admin.person.username).length > 0 &&
 
                 <DropdownList className='DropdownList'>
                     <DropdownListItem  className="title"><Span>المسؤولون</Span></DropdownListItem>
                     <div className="dropdown-scroll-container">
                     {
-                        admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.username !== admin.username)
+                        admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.person.username !== admin.person.username)
                             .map((admin, index) => {
                                 return (<DropdownListItem key={index}>
                                     { hasPermission
                                       ?
                                         <>
-                                            <Button id="deleteBtn" onClick={handleOpenModelChange} value={admin.username}>حذف</Button>
-                                            { admin.first_name?.length > 0 || admin.last_name?.length > 0
+                                            <Button id="deleteBtn" onClick={handleOpenModelChange} value={admin.person.username}>حذف</Button>
+                                            { admin.person.first_name?.length > 0 || admin.person.last_name?.length > 0
                                                 ?
-                                                <Span>{admin.first_name} {admin.last_name}</Span>
+                                                <Span>{admin.person.first_name} {admin.person.last_name}</Span>
                                                 :
-                                                <Span>{admin.username}</Span>
+                                                <Span>{admin.person.username}</Span>
                                             }
                                         </>
                                       :
                                         <>
-                                            { admin.first_name?.length > 0 || admin.last_name?.length > 0
+                                            { admin.person.first_name?.length > 0 || admin.person.last_name?.length > 0
                                                 ?
-                                                <Span style={{width: '100%'}}>{admin.first_name} {admin.last_name}</Span>
+                                                <Span style={{width: '100%'}}>{admin.person.first_name} {admin.person.last_name}</Span>
                                                 :
-                                                <Span style={{width: '100%'}}>{admin.username}</Span>
+                                                <Span style={{width: '100%'}}>{admin.person.username}</Span>
                                             }
                                         </>
                                     }

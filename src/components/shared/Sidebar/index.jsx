@@ -18,6 +18,7 @@ import {ReactComponent as StudentsIcon} from "assets/icons/students.svg";
 import {ReactComponent as Winners} from "assets/icons/winners.svg";
 import {ReactComponent as FileDownload} from "assets/icons/fileDownload.svg";
 import {useAdminContext} from "../../../contexts/AdminContext";
+import {isSuperAdmin} from '../../../util/ContestPeople_Role';
 
 function Sidebar() {
   const context = useAdminContext();
@@ -25,7 +26,7 @@ function Sidebar() {
 
   useEffect(()=>{
     if(Object.keys(context.adminInfo).length > 0){
-      setPermission(context.adminInfo.is_super_admin);
+      setPermission(isSuperAdmin(context));
     }else {
       setTimeout(() => {
         if (Object.keys(context.adminInfo).length === 0) {
@@ -41,12 +42,12 @@ function Sidebar() {
 
       <UserInfoContainer>
         { Object.keys(context.adminInfo).length > 0
-            ? context.adminInfo?.first_name?.length > 0 || context.adminInfo?.last_name?.length > 0
+            ? context.adminInfo?.person?.first_name?.length > 0 || context.adminInfo?.last_name?.length > 0
               ?
-                <Username>{context.adminInfo.first_name} {context.adminInfo.last_name}</Username>
-              : context.adminInfo?.username?.length > 0
+                <Username>{context.adminInfo.person.first_name} {context.adminInfo.person.last_name}</Username>
+              : context.adminInfo?.person?.username?.length > 0
                     ?
-                      <Username>{context.adminInfo.username}</Username>
+                      <Username>{context.adminInfo.person.username}</Username>
                     :
                       <Username>مسؤول</Username>
             :

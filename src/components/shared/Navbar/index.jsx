@@ -19,7 +19,8 @@ import {
 
 import {useNavigate } from "react-router-dom";
 import { useAdminContext } from "../../../contexts/AdminContext";
-import WirdLogo from '../../../assets/Logo/WirdLogosvg.svg'
+import WirdLogo from '../../../assets/Logo/WirdLogosvg.svg';
+import {isSuperAdmin} from '../../../util/ContestPeople_Role';
 
 
 function Nav() {
@@ -28,7 +29,7 @@ function Nav() {
     let navigate = useNavigate();
 
     useEffect(()=>{
-        setPermission(Object.keys(context.adminInfo).length > 0 && context.adminInfo.is_super_admin);
+        setPermission(Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context));
     },[context.adminInfo]);
 
     return <HeaderNavContainer>

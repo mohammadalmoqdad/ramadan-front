@@ -67,9 +67,9 @@ export default function EditStudentForm(props){
         updateStudent(selectedUsername, formData,
             (res)=>{
                 if(res && res.status === 200){
-                    let updatedStudent = props.students.filter(student => student.username === selectedUsername)[0];
-                    updatedStudent.first_name = firstName;
-                    updatedStudent.last_name = lastName;
+                    let updatedStudent = props.students.filter(student => student.person.username === selectedUsername)[0];
+                    updatedStudent.person.first_name = firstName;
+                    updatedStudent.person.last_name = lastName;
                     updatedStudent.read_only = isReadOnly;
                     resetEditStudentsForm();
 
@@ -78,7 +78,7 @@ export default function EditStudentForm(props){
 
                     setTimeout(()=>{
                         props.setStudents(
-                            [...props.students.filter(student => student.username !== selectedUsername), updatedStudent]
+                            [...props.students.filter(student => student.person.username !== selectedUsername), updatedStudent]
                         );
                     },2000);
                 }
@@ -102,8 +102,8 @@ export default function EditStudentForm(props){
         setSelectedUsername(e.target.value);
         if(e.target.value !== ""){
             let student = props.students.filter(st => st.username === e.target.value)[0];
-            setFirstName(student.first_name);
-            setLastName(student.last_name);
+            setFirstName(student.person.first_name);
+            setLastName(student.person.last_name);
             setReadOnly(student.read_only);
         }else{
             setFirstName("");
@@ -136,7 +136,7 @@ export default function EditStudentForm(props){
                     {
                         props.students.map((student, index) => (
                             <DropdownListItem key={index + 1}
-                                              value={student.username}>{student.first_name} {student.last_name}</DropdownListItem>
+                                              value={student.person.username}>{student.person.first_name} {student.person.last_name}</DropdownListItem>
                         ))
                     }
                 </DropdownList>
