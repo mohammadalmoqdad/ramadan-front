@@ -326,7 +326,6 @@ function Signup() {
           <DivFileField>
             Profile photo
             <FileFormInput type="file" onChange={handlePhotoChange} />
-            <div type="file"></div>
           </DivFileField>
           <br />
 
