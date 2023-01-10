@@ -10,19 +10,19 @@ import {
 export const TopStudentsDropdownList = styled(DropdownList)`
   width: 35rem;
   @media (max-width: 500px) {
-    /* margin: 10px 0; */
+    margin: 10px 0;
     /* width: 100%; */
     .dropdown-scroll-container {
-      /* max-height: 350px; */
+      max-height: 350px;
     }
   }
 `;
 
 export const TopStudentsSpan = styled(Span)`
   text-align: center;
-  display: inline-flex;
+  /* display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   width: 30px;
   height: 19px;
 
@@ -38,6 +38,7 @@ export const TopStudentsSpan = styled(Span)`
 export const LeaderBoardContainer = styled.div`
   width: auto;
   display: flex;
+  margin: auto;
   /* align-items: center; */
   gap: 12px;
 
@@ -70,15 +71,19 @@ export const WarbSlider = styled.div`
   display: flex;
   margin-left: 1rem;
   align-items: center;
-  gap: 12px;
-  /* white-space: nowrap; */
-  overflow-x: scroll;
-  /* overflow-x: hidden; */
-  /* max-width: 961px; */
   width: auto;
-
-  /* &::-webkit-slider-track {
-  } */
+  gap: 12px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  &::-webkit-slider-track {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #4caf50;
+    cursor: pointer;
+  }
   /* overflow: hidden; */
   /* cursor: grab; */
 `;
@@ -99,9 +104,9 @@ export const AverageWrapper = styled.div`
 // ameen edite html *************************
 
 export const LeaderBoardMain = styled(DefaultTop3RankDiv)`
-  display: flex;
+  /* display: flex; */
   margin: auto;
-  width: 90%;
+  width: auto;
   flex-direction: column;
   max-width: 961px;
   align-items: flex-start;
@@ -143,7 +148,6 @@ export const DayInAverageWrapper = styled.div`
 `;
 export const PAverageWrapper = styled.div`
   width: auto;
-  margin: auto;
   height: 17px;
   font-family: "Montserrat";
   font-style: normal;

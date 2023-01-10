@@ -1,4 +1,3 @@
-import { UserBlankImage } from "components/shared/UserBlankImage";
 import React, { useEffect, useState } from "react";
 import cookie from "react-cookies";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +6,6 @@ import Loader from "../Loader";
 import { Top2Name } from "../Home/TopRanks/TopRanks.styles";
 import { H5 } from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import {
-  LeaderBoardMain,
-  LeaderBoardMainTitel,
   TopStudentsSpan,
   LeaderBoardContainer,
   StudentPointsWrapper,
@@ -21,8 +18,6 @@ import {
   DivLine,
   WarbSlider,
   PAverageWrapper,
-  MarkWrapper,
-  Average,
 } from "./TopStudents.styles";
 export default function TopStudents() {
   const [topStudents, setTopStudents] = useState([]);
@@ -77,88 +72,84 @@ export default function TopStudents() {
 
   let last = 1;
   return (
-    <LeaderBoardMain>
-      <LeaderBoardMainTitel>Participant Performance (251)</LeaderBoardMainTitel>
-      <LeaderBoardContainer>
-        {topStudents.map((student, index) => {
-          if (index === 0) {
-            last = 1;
-          } else if (
-            index > 0 &&
-            student.total_points !== topStudents[index - 1].total_points
-          ) {
-            last++;
-          }
-          return (
-            <StudentPointsWrapper key={index}>
-              <SecondaryWrapper>
-                {/* Rank: Top1Img */}
-                <TopStudentsSpan> #{index + 1}</TopStudentsSpan>
+    <LeaderBoardContainer>
+      {topStudents.map((student, index) => {
+        if (index === 0) {
+          last = 1;
+        } else if (
+          index > 0 &&
+          student.total_points !== topStudents[index - 1].total_points
+        ) {
+          last++;
+        }
+        return (
+          <StudentPointsWrapper key={index}>
+            <SecondaryWrapper>
+              {/* Rank: Top1Img */}
+              <TopStudentsSpan> #{index + 1}</TopStudentsSpan>
 
-                {/* Name */}
-                {student.first_name.length > 0 ||
-                student.last_name.length > 0 ? (
-                  <Top3RankDiv>
-                    <Top2Img style={{ background: "#FF5367" }}>MK</Top2Img>
-                    <Top2Name>
-                      {student.first_name} {student.last_name}
-                    </Top2Name>
-                  </Top3RankDiv>
-                ) : (
-                  <Top2Name>{student.username}</Top2Name>
-                )}
-                <DivLine />
-              </SecondaryWrapper>
+              {/* Name */}
+              {student.first_name.length > 0 || student.last_name.length > 0 ? (
+                <Top3RankDiv>
+                  <Top2Img style={{ background: "#FF5367" }}>MK</Top2Img>
+                  <Top2Name>
+                    {student.first_name} {student.last_name}
+                  </Top2Name>
+                </Top3RankDiv>
+              ) : (
+                <Top2Name>{student.username}</Top2Name>
+              )}
+              <DivLine />
+            </SecondaryWrapper>
 
-              <WarbSlider>
-                {/* <SecondaryWrapper> */}
-                <AverageWrapper>
-                  <DayInAverageWrapper>12 Ramadan</DayInAverageWrapper>
-                  <AverageParents>80/100</AverageParents>
-                </AverageWrapper>
-                <AverageWrapper>
-                  <DayInAverageWrapper>13 Ramadan</DayInAverageWrapper>
-                  <AverageParents>80/100</AverageParents>
-                </AverageWrapper>
-                <AverageWrapper>
-                  <DayInAverageWrapper>14 Ramadan</DayInAverageWrapper>
-                  <AverageParents>80/100</AverageParents>
-                </AverageWrapper>
-                <AverageWrapper>
-                  <DayInAverageWrapper>15 Ramadan</DayInAverageWrapper>
-                  <AverageParents>80/100</AverageParents>
-                </AverageWrapper>
-                <AverageWrapper>
-                  <DayInAverageWrapper>16 Ramadan</DayInAverageWrapper>
-                  <AverageParents>80/100</AverageParents>
-                </AverageWrapper>
-                <AverageWrapper>
-                  <DayInAverageWrapper>17 Ramadan</DayInAverageWrapper>
-                  <AverageParents>80/100</AverageParents>
-                </AverageWrapper>
-                <AverageWrapper>
-                  <DayInAverageWrapper>18 Ramadan</DayInAverageWrapper>
-                  <AverageParents>80/100</AverageParents>
-                </AverageWrapper>
-                <AverageWrapper>
-                  <DayInAverageWrapper>19 Ramadan</DayInAverageWrapper>
-                  <AverageParents>80/100</AverageParents>
-                </AverageWrapper>
-                {/* </SecondaryWrapper> */}
-              </WarbSlider>
+            <WarbSlider>
+              {/* <SecondaryWrapper> */}
+              <AverageWrapper>
+                <DayInAverageWrapper>12 Ramadan</DayInAverageWrapper>
+                <AverageParents>80/100</AverageParents>
+              </AverageWrapper>
+              <AverageWrapper>
+                <DayInAverageWrapper>13 Ramadan</DayInAverageWrapper>
+                <AverageParents>80/100</AverageParents>
+              </AverageWrapper>
+              <AverageWrapper>
+                <DayInAverageWrapper>14 Ramadan</DayInAverageWrapper>
+                <AverageParents>80/100</AverageParents>
+              </AverageWrapper>
+              <AverageWrapper>
+                <DayInAverageWrapper>15 Ramadan</DayInAverageWrapper>
+                <AverageParents>80/100</AverageParents>
+              </AverageWrapper>
+              <AverageWrapper>
+                <DayInAverageWrapper>16 Ramadan</DayInAverageWrapper>
+                <AverageParents>80/100</AverageParents>
+              </AverageWrapper>
+              <AverageWrapper>
+                <DayInAverageWrapper>17 Ramadan</DayInAverageWrapper>
+                <AverageParents>80/100</AverageParents>
+              </AverageWrapper>
+              <AverageWrapper>
+                <DayInAverageWrapper>18 Ramadan</DayInAverageWrapper>
+                <AverageParents>80/100</AverageParents>
+              </AverageWrapper>
+              <AverageWrapper>
+                <DayInAverageWrapper>19 Ramadan</DayInAverageWrapper>
+                <AverageParents>80/100</AverageParents>
+              </AverageWrapper>
+              {/* </SecondaryWrapper> */}
+            </WarbSlider>
 
-              <SecondaryWrapper>
-                <DivLine />
+            <SecondaryWrapper>
+              <DivLine />
 
-                <AverageWrapper>
-                  <PAverageWrapper>Average</PAverageWrapper>
-                  <AverageParents>80/100</AverageParents>
-                </AverageWrapper>
-              </SecondaryWrapper>
-            </StudentPointsWrapper>
-          );
-        })}
-      </LeaderBoardContainer>
-    </LeaderBoardMain>
+              <AverageWrapper>
+                <PAverageWrapper>Average</PAverageWrapper>
+                <AverageParents>80/100</AverageParents>
+              </AverageWrapper>
+            </SecondaryWrapper>
+          </StudentPointsWrapper>
+        );
+      })}
+    </LeaderBoardContainer>
   );
 }
