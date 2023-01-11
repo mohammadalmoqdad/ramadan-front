@@ -27,22 +27,18 @@ export default function TopStudents() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const [visible, setVisible] = useState("none");
+  const [color, setColor] = useState();
+
+  const [visible, setVisible] = useState("flex");
 
   function willvisible(e) {
-    var x = document.getElementById(2);
-    // var x = e.nextElementSibling;
+    var x = document.getElementById(e.target.id);
     if (x.style.display === "flex") {
-      setVisible("none");
+      x.style.display = "none";
+    } else {
+      x.style.display = "flex";
     }
-    if (x.style.display === "none") {
-      setVisible("flex");
-    }
-
-    console.log(e.target.id);
-    console.log(x.style.display + "555555555555555555555555");
   }
-
   useEffect(() => {
     //   if (!cookie.load("token")) {
     //       navigate("/login", {state:{redirectTo: "/TopStudents"}});
@@ -74,6 +70,30 @@ export default function TopStudents() {
         last_name: "albetawi",
         username: "ameeno",
       },
+      {
+        total_points: 25,
+        first_name: "bassam",
+        last_name: "saleh",
+        username: "bassamo",
+      },
+    ]);
+
+    setColor([
+      {
+        1: "#503E9D",
+      },
+      {
+        2: "#FB862C",
+      },
+      {
+        3: "#FF5367",
+      },
+      {
+        4: "#FDD561",
+      },
+      {
+        5: "#FFBAC2",
+      },
     ]);
   }, []);
 
@@ -104,6 +124,9 @@ export default function TopStudents() {
           ) {
             last++;
           }
+
+          let randomColor = Math.floor(Math.random() * (5 - 1) + 1);
+          console.log(randomColor + "66666666666666");
           return (
             <StudentPointsWrapper key={index}>
               <SecondaryWrapper>
@@ -114,7 +137,9 @@ export default function TopStudents() {
                 {student.first_name.length > 0 ||
                 student.last_name.length > 0 ? (
                   <Top3RankDiv>
-                    <Top2Img style={{ background: "#FF5367" }}>MK</Top2Img>
+                    <Top2Img style={{ background: color.randomColor }}>
+                      MK
+                    </Top2Img>
                     <Top2Name>
                       {student.first_name} {student.last_name}
                     </Top2Name>

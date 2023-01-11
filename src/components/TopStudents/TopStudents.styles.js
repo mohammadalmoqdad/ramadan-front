@@ -98,7 +98,6 @@ export const WarbSlider = styled.div`
 
   @media (max-width: 700px) {
     display: none;
-    display: flex;
     margin: auto;
     flex-direction: row-reverse;
     flex-wrap: wrap;
