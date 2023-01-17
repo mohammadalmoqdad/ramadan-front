@@ -48,15 +48,19 @@ export default function Competition() {
     <>
       <MyOngoingContestTab />
       <ContestMembers />
-
+      <EditCompetitionForm
+        competitions={competitions}
+        setCompetitions={setCompetitions}
+      />
+      ,
       <CompetitionContainer>
         <Tabs
           labels={["تعديل مسابقة", "إضافة/تعديل إعلانات"]}
           contents={[
-            <EditCompetitionForm
-              competitions={competitions}
-              setCompetitions={setCompetitions}
-            />,
+            // <EditCompetitionForm
+            //   competitions={competitions}
+            //   setCompetitions={setCompetitions}
+            // />,
             <AddEditAnnouncementForm
               competitions={competitions}
               setCompetitions={setCompetitions}
