@@ -11,26 +11,23 @@ import LoginFormContainer, {
   OrWayToLogIn,
   HeadLogIn,
   FormInput,
-
 } from "./login.styles";
 
-import {
-  DivPass,
-  DivTxtField
-} from "../shared/styles";
+import { DivPass, DivTxtField } from "../shared/styles";
 import { useAdminContext } from "contexts/AdminContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import cookie from "react-cookies";
 import Loader from "../Loader";
 
-import AppleLogo from '../../assets/icons/Login/apple.svg';
-import GoogleLogo from '../../assets/icons/Login/Google.svg';
-import FBLogo from '../../assets/icons/Login/FB.svg';
+import AppleLogo from "../../assets/icons/Login/apple.svg";
+import GoogleLogo from "../../assets/icons/Login/Google.svg";
+import FBLogo from "../../assets/icons/Login/FB.svg";
+import { useTranslation } from "react-i18next";
+
 // import WirdLogo from '../../assets/Logo/WirdLogoV2.svg';
 
-
-
 function Login() {
+  const { t } = useTranslation();
   let Navigate = useNavigate();
   const context = useAdminContext();
   const [username, setUsername] = useState(" ");
@@ -61,7 +58,11 @@ function Login() {
     context.useLogin(username, password).then(
       (isUsersLoggedIn) => {
         if (isUsersLoggedIn === true) {
-          Navigate(location?.state?.redirectTo?.length > 0 ? location.state.redirectTo : "/");
+          Navigate(
+            location?.state?.redirectTo?.length > 0
+              ? location.state.redirectTo
+              : "/"
+          );
           context.getAdminInfo();
         } else {
           setShowErrorMessage(true);
@@ -108,17 +109,28 @@ function Login() {
     <LoginFormContainer>
       <DivCenter>
         <HeadLogIn>
-        <TitleLogin>
-          Login
-          {/* <Wird>وِرد</Wird>{" "} */}
-        </TitleLogin>
-        <SignupNowAccount>Don’t have an account? <SignupNow href="/Signup" >Signup now!</SignupNow></SignupNowAccount>
+          <TitleLogin>
+            {`${t("login")}`}
+            {/* <Wird>وِرد</Wird>{" "} */}
+          </TitleLogin>
+          <SignupNowAccount>
+            Don’t have an account?{" "}
+            <SignupNow href="/Signup">Signup now!</SignupNow>
+          </SignupNowAccount>
         </HeadLogIn>
 
         <MediaOneLine>
-          <MediaLogIn> <img src={AppleLogo} alt='' /></MediaLogIn>
-          <MediaLogIn> <img src={GoogleLogo} alt='' /></MediaLogIn>
-          <MediaLogIn><img src={FBLogo} alt='' /></MediaLogIn>
+          <MediaLogIn>
+            {" "}
+            <img src={AppleLogo} alt="" />
+          </MediaLogIn>
+          <MediaLogIn>
+            {" "}
+            <img src={GoogleLogo} alt="" />
+          </MediaLogIn>
+          <MediaLogIn>
+            <img src={FBLogo} alt="" />
+          </MediaLogIn>
         </MediaOneLine>
 
         {/* <HeadLogIn> */}
@@ -147,7 +159,9 @@ function Login() {
 
           {/* TODO: style the error message */}
           {showErrorMessage && (
-            <DivPass className="red">Check your email and password or create an account.</DivPass>
+            <DivPass className="red">
+              Check your email and password or create an account.
+            </DivPass>
           )}
           {/* <PageLink href="https://www.facebook.com/Wird.Competition/" target="_blank">
             هل تواجه مشكلة تقنية أو نسيت كلمة المرور؟ تواصل مع الدعم الفني
@@ -156,8 +170,9 @@ function Login() {
             Login
           </InputSubmit>
         </Form>
-        <SignupNowAccount>Or<SignupNow href="/ForgotPassword"> Forgot Password</SignupNow></SignupNowAccount>
-
+        <SignupNowAccount>
+          Or<SignupNow href="/ForgotPassword"> Forgot Password</SignupNow>
+        </SignupNowAccount>
       </DivCenter>
     </LoginFormContainer>
   );
