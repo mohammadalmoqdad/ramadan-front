@@ -23,11 +23,10 @@ import {
   //   ParticipantsMember,
   ParticipantsTitelsAtHome,
   SeeAll,
-  SeeAllP,
   TotalOfMembers,
   SeeAllIcon,
 } from "../ContestMembers/ContestMembers.styles";
-import {
+import CompositionDefault, {
   Form,
   TypeSpace,
   ParticipantsNumbers,
@@ -37,6 +36,8 @@ import {
   OverflowScrolling,
   Br,
   ButtonStyle,
+  ReadOnly,
+  SeeAllP,
 } from "./EditCompetition.styles";
 
 export default function EditCompetitionForm(props) {
@@ -173,7 +174,8 @@ export default function EditCompetitionForm(props) {
   };
 
   return (
-    <>
+    <CompositionDefault>
+      <ReadOnly></ReadOnly>
       <Form>
         <ParticipantsMember>
           <ParticipantsTitels>
@@ -230,7 +232,7 @@ export default function EditCompetitionForm(props) {
                 Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse
                 vulputate aliquam dui.
                 <PublishedDate>published: 17/1/2023</PublishedDate>
-                <ButtonStyle>Delete the Notification</ButtonStyle>
+                <ButtonStyle>Delete</ButtonStyle>
               </TypeSpace>
               <br />
               <TypeSpace>
@@ -241,7 +243,7 @@ export default function EditCompetitionForm(props) {
                 Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse
                 vulputate aliquam dui.
                 <PublishedDate>published: 17/1/2023</PublishedDate>
-                <ButtonStyle>Delete the Notification</ButtonStyle>
+                <ButtonStyle>Delete</ButtonStyle>
               </TypeSpace>
             </OverflowScrolling>
           </ParticipantsNumbers>
@@ -310,6 +312,6 @@ export default function EditCompetitionForm(props) {
           تعديل المسابقة
         </InputSubmit>
       </Form> */}
-    </>
+    </CompositionDefault>
   );
 }

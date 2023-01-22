@@ -13,6 +13,7 @@ import {
   ParticipantsNumbers as DefaultParticipantsNumbers,
   ParticipantsMember as DefaultParticipantsMember,
   ParticipantsTitels as DefaultParticipantsTitels,
+  SeeAllP as DefaultSeeAllP,
 } from "../ContestMembers/ContestMembers.styles";
 
 export default styled.div``;
@@ -27,6 +28,7 @@ export const Form = styled(DefaultForm)`
   @media (max-width: 56.25rem) {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -34,7 +36,6 @@ export const ParticipantsNumbers = styled(DefaultParticipantsNumbers)`
   flex-direction: column;
   font-size: 14px;
   max-width: 20rem;
-
   @media (max-width: 34.375rem) {
   }
 `;
@@ -44,7 +45,6 @@ export const TypeSpace = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 24px;
-
   width: 280px;
   height: auto;
   background: #f9eaea;
@@ -52,8 +52,9 @@ export const TypeSpace = styled.div`
 
   @media (max-width: 900px) {
   }
-  @media (max-width: 34.375rem) {
+  @media (max-width: 500px) {
     flex-direction: column;
+    width: 180px;
   }
 `;
 
@@ -123,5 +124,29 @@ export const ButtonStyle = styled.div`
   margin-top: 1rem;
   color: #000000;
   @media (max-width: 34.375rem) {
+    width: 100px;
+    /* font-size: 12px; */
+  }
+`;
+
+export const SeeAllP = styled(DefaultSeeAllP)`
+  @media (max-width: 34.375rem) {
+    font-size: 13px;
+    display: none;
+  }
+`;
+// ReadOnly
+export const ReadOnly = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24px;
+  margin: auto;
+  width: 60%;
+  height: 108px;
+
+  background: #fbf9f7;
+  border-radius: 24px;
+  @media (max-width: 500px) {
   }
 `;
