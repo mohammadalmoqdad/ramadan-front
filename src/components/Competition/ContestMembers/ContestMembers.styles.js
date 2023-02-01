@@ -101,7 +101,7 @@ export const ParticipantsNumbers = styled.div`
   max-width: 35.4375rem;
   justify-content: flex-start;
 
-  @media (max-width: 31.25rem) {
+  @media (max-width: 500px) {
     padding: 0.75rem;
     gap: 0.125rem;
     justify-content: center;
