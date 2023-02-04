@@ -16,7 +16,7 @@ import TopStudents from "../TopStudents";
 import ExportPoints from "../ExportPoints";
 import ReviewOtherPoints from "../ReviewOtherPoints";
 import AppLayout from "../AppLayout";
-import ContestModerator from "views/ContestModerator/Admins";
+import ContestModerator from "components/ContestModerator";
 export default function AppBrowserRouter({ changeTheme }) {
   return (
     <BrowserRouter>
