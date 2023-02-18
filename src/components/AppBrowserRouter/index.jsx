@@ -16,11 +16,11 @@ import TopStudents from "../TopStudents";
 import ExportPoints from "../ExportPoints";
 import ReviewOtherPoints from "../ReviewOtherPoints";
 import AppLayout from "../AppLayout";
+import ContestModerator from "components/ContestModerator";
 export default function AppBrowserRouter({ changeTheme }) {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/Signup" element={<Signup />} />
         <Route exact path="/ResetPassword" element={<ResetPassword />} />
@@ -52,7 +52,7 @@ export default function AppBrowserRouter({ changeTheme }) {
         <Route
           exact
           path="/Admins"
-          element={<AppLayout children={<Admins />} />}
+          element={<AppLayout children={<ContestModerator />} />}
         />
         <Route
           exact

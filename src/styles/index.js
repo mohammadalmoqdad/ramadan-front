@@ -5,6 +5,8 @@ export const colors = {
   lightWheat: "#FDFDFB",
   warmWheat: "#FBF9F7",
   lightGrey: "#D3D3D3",
+  darkGrey: "#A79F97",
+  yellow: "#fdd561",
   // Example of how the degrees of the colors can be added too:
   //   green:{
   //     0: 'a very light degree of the most light green'
@@ -54,6 +56,9 @@ export const arabicTheme = {
     fontFamilyBody: fonts.mainAR,
     fontFamilyHeading: fonts.headingAR,
   },
+  text: {
+    textAlign: "right",
+  },
 };
 
 export const englishTheme = {
@@ -63,5 +68,8 @@ export const englishTheme = {
   fonts: {
     fontFamilyBody: fonts.mainEN,
     fontFamilyHeading: fonts.headingEN,
+  },
+  text: {
+    textAlign: "left",
   },
 };

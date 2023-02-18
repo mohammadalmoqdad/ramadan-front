@@ -11,11 +11,20 @@ export default (theme) => {
       // colors:
 
       // backgrounds:
-      --background-disabled: ${colors.lightGrey}; // just an example for the color, value can be changed.
 
+      --background-disabled: ${colors.lightGrey}; // just an example for the color, value can be changed.
+      // Flex:
       --flex-direction: ${theme.flex.direction};
+
+      // Text & Font:
       --font-family-head: ${theme.fonts.fontFamilyHeading};
       --font-family-main: ${theme.fonts.fontFamilyBody};
+      --text-align: ${theme.text.textAlign};
+
+      // Global:
+      /* span{
+        text-align: ${theme.text.textAlign};
+      } */
     }
   `;
 };
