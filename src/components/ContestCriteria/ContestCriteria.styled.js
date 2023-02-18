@@ -72,7 +72,7 @@ export const Criteria = styled.div`
 // for the single section
 export const Section = styled.div`
   background-color: ${colors.lightGrey};
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 1.3rem;
   display: flex;
   justify-content: space-between;

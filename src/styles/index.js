@@ -3,16 +3,11 @@ export const colors = {
   black: "#000000",
   white: "#FFFFFF",
   lightWheat: "#FDFDFB",
-<<<<<<< HEAD
   warmWheat: "#FBF9F7",
-  lightGrey: "#D3D3D3",
+  lightGrey: "#FBF9F7",
   darkGrey: "#A79F97",
   yellow: "#fdd561",
-=======
-  warmWheat: "rgba(255, 83, 103, 0.12)",
-  lightGrey: "#FBF9F7",
   red: "#FF5367",
->>>>>>> 1284df2 (contest_criteria_page)
   // Example of how the degrees of the colors can be added too:
   //   green:{
   //     0: 'a very light degree of the most light green'
