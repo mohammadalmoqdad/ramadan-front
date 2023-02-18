@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors } from "styles";
 
 export default styled.div`
@@ -6,8 +6,8 @@ export default styled.div`
   display: flex;
   margin: 0 auto;
   flex-direction: column;
-  gap: 48px;
-  max-width: 950px;
+  gap: 3rem;
+  max-width: 59.375rem;
 `;
 
 export const ContentContainer = styled.div`
@@ -26,19 +26,53 @@ export const SearchContainer = styled.input`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 183px;
-  height: 62px;
+  width: 11.4375rem;
+  height: 3.875rem;
   background-color: #ffffff;
   border: 1px solid #f9eaea;
-  border-radius: 12px;
-  padding-left: 56px;
+  border-radius: 0.75rem;
+  padding-left: 3.5rem;
 
   @media (max-width: 900px) {
-    min-width: calc(100vw - 350px);
+    min-width: calc(100vw - 21.875rem);
   }
 
   @media (max-width: 550px) {
-    min-width: calc(100vw - 175px);
+    min-width: calc(100vw - 10.9375rem);
+  }
+`;
+
+export const SearchInput = styled.input`
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 5px;
+  transition: all 0.2s ease-in-out;
+  width: 80%;
+  padding: 0.5rem;
+  &:focus-within {
+    outline: none;
+    background-color: ${colors.warmWheat};
+    border-radius: 0.5rem;
+  }
+
+  @media only screen and (min-width: 750px) and (max-width: 900px) {
+    width: 17rem;
+
+    ${(props) =>
+      props.isExpanded &&
+      css`
+        width: 19rem;
+      `}
+  }
+
+  @media only screen and (min-width: 1024px) {
+    width: 15rem;
+
+    ${(props) =>
+      props.isExpanded &&
+      css`
+        width: 18rem;
+      `}
   }
 `;
 
@@ -69,7 +103,7 @@ export const SearchIconButton = styled.button`
   position: absolute;
   align-self: center;
   overflow: hidden;
-  left: 10px;
+  left: 0.625rem;
   cursor: pointer;
   background: ${colors.white};
 `;
@@ -82,6 +116,7 @@ export const SearchContainerForm = styled.form`
 export const RowContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const BoldText = styled.span`
@@ -108,19 +143,24 @@ export const LightText = styled.span`
 export const ModeratorSearchContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
   color: #ff5367;
+  flex-direction: var(--flex-direction);
+  justify-content: flex-end;
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const SearchInputContainer = styled.div`
   width: 19.25rem;
-  height: 110px;
-  padding: 24px;
+  height: 6.875rem;
+  padding: 1.5rem;
   margin: 0 auto;
 
-  gap: 6px;
+  gap: 0.375rem;
   background: #fbf9f7;
-  border-radius: 24px;
+  border-radius: 1.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -131,12 +171,12 @@ export const SearchInputContainer = styled.div`
   }
 `;
 
-export const GoContainer = styled.button`
+export const GoBtn = styled.button`
   width: 4.4375rem;
-  height: 60px;
-  padding: 24px;
-  border-radius: 12px;
-  background-color: #fdd561;
+  height: 3.75rem;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background-color: ${colors.yellow};
 
   display: flex;
   align-items: center;
@@ -144,4 +184,9 @@ export const GoContainer = styled.button`
 
   cursor: pointer;
   font-weight: 700;
+`;
+
+export const AddModeratorSpan = styled.span`
+  font-weight: 700;
+  text-align: var(--text-align);
 `;

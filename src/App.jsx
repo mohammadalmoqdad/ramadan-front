@@ -6,7 +6,7 @@ import { Global } from "@emotion/react/macro";
 import { ThemeProvider } from "@emotion/react";
 import getStyles from "./styles/global";
 import useTheme from "./hooks/index";
-import { arabicTheme } from "styles";
+import { englishTheme } from "styles";
 
 function App() {
   const { changeTheme, theme } = useTheme();
@@ -14,7 +14,7 @@ function App() {
     <>
       <AuthProvider>
         <ThemeProvider theme={theme}>
-          <Global styles={getStyles(arabicTheme)} />
+          <Global styles={getStyles(englishTheme)} />
           <AppBrowserRouter changeTheme={changeTheme} />
         </ThemeProvider>
       </AuthProvider>
