@@ -109,7 +109,7 @@ export const ParticipantsNumbers = styled.div`
 `;
 
 export const ParticipantsTitelsAtHome = styled.div`
-  width: 6.25rem;
+  /* width: 6.25rem; */
   height: 1.1875rem;
 
   font-family: "Montserrat";
@@ -132,7 +132,7 @@ export const SeeAll = styled.div`
   gap: 0.375rem;
 
   /* position: absolute; */
-  width: 4.875rem;
+  /* width: 4.875rem; */
   height: 1.25rem;
 
   @media (max-width: 37.5625rem) {
@@ -140,7 +140,7 @@ export const SeeAll = styled.div`
 `;
 
 export const SeeAllP = styled.div`
-  width: 3.25rem;
+  /* width: 3.25rem; */
   height: 1.1875rem;
 
   font-family: "Montserrat";
