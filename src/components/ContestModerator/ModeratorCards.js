@@ -67,9 +67,9 @@ export const ParticipantsNumbers = styled.div`
 
 export const ShortedName = styled.div`
   background-color: #ff5367;
-  color: #fff;
-  border-radius: 12px;
-  padding: 18px;
+  color: ${colors.white};
+  border-radius: 0.75rem;
+  padding: 1.125rem;
   font-weight: 700;
   align-self: center;
 `;
@@ -77,6 +77,6 @@ export const ShortedName = styled.div`
 export const DeleteButton = styled.button`
   background-color: rgba(255, 83, 103, 0.12);
   color: #ff5367;
-  border-radius: 18px;
-  padding: 14px 18px;
+  border-radius: 1.125rem;
+  padding: 0.875rem 1.125rem;
 `;

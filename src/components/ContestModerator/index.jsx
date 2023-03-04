@@ -27,9 +27,11 @@ import ContestModeratorDefault, {
 } from "./ContestModerator.styles";
 
 import ModeratorCard from "./ModeratorCard";
+import { doRequest } from "services/doRequest";
 
 const ContestModerator = () => {
   const { t } = useTranslation();
+  let navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const moderatorMember = [
@@ -46,6 +48,26 @@ const ContestModerator = () => {
   ];
 
   const [loading, setLoading] = useState(false);
+  const [users, setUser] = useState([]);
+
+  useEffect(() => {
+    if (!cookie.load("token")) {
+      navigate("/login");
+      return;
+    }
+
+    setLoading(true);
+    retrieveAdmins(
+      (res) => {
+        setUser(res?.data?.results);
+        setLoading(false);
+        console.log("this is result>>", res?.data?.results);
+      },
+      (err) => {
+        console.log("Failing", err);
+      }
+    );
+  }, []);
 
   if (loading) {
     return (
@@ -54,7 +76,7 @@ const ContestModerator = () => {
       </main>
     );
   }
-
+  console.log(users);
   return (
     <ContestModeratorDefault>
       <MyOngoingContestTab />
@@ -82,19 +104,16 @@ const ContestModerator = () => {
               {/* <LightText onClick={() => setIsExpanded(!isExpanded)}>
                 {t("search")}
               </LightText> */}
-              <SearchIcons2 onClick={() => setIsExpanded(false)} />
+              <SearchIcons2
+                onClick={() => {
+                  setIsExpanded(false);
+                }}
+              />
             </ModeratorSearchContainer>
           </RowContainer>
 
-          {moderatorMember.map((item, idx) => {
-            return (
-              <ModeratorCard
-                key={idx}
-                name={item.name}
-                button={item.button}
-                date={item.date}
-              />
-            );
+          {users.map((person, idx) => {
+            return <ModeratorCard key={idx} person={person.person} />;
           })}
         </div>
 
