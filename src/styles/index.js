@@ -4,9 +4,10 @@ export const colors = {
   white: "#FFFFFF",
   lightWheat: "#FDFDFB",
   warmWheat: "#FBF9F7",
-  lightGrey: "#D3D3D3",
+  lightGrey: "#FBF9F7",
   darkGrey: "#A79F97",
   yellow: "#fdd561",
+  red: "#FF5367",
   // Example of how the degrees of the colors can be added too:
   //   green:{
   //     0: 'a very light degree of the most light green'

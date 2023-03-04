@@ -17,6 +17,7 @@ import ExportPoints from "../ExportPoints";
 import ReviewOtherPoints from "../ReviewOtherPoints";
 import AppLayout from "../AppLayout";
 import ContestModerator from "components/ContestModerator";
+import ContestCriteria from "components/ContestCriteria";
 export default function AppBrowserRouter({ changeTheme }) {
   return (
     <BrowserRouter>
@@ -58,6 +59,11 @@ export default function AppBrowserRouter({ changeTheme }) {
           exact
           path="/Standards"
           element={<AppLayout children={<Standards />} />}
+        />
+        <Route
+          exact
+          path="/ContestCriteria"
+          element={<AppLayout children={<ContestCriteria />} />}
         />
         <Route
           exact
