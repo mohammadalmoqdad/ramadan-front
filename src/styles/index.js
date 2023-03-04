@@ -13,10 +13,18 @@ export const colors = {
   //   }
 };
 
+export const blankUserBackgroundColors = [
+  "#503E9D",
+  "#FDD561",
+  "#FF5367",
+  "#FFBAC2",
+  "#FB862C",
+];
+
 export const fonts = {
   headingEN: "Montserrat",
-  mainEN: "another font",
-  headingAR: "a font",
+  mainEN: "Montserrat",
+  headingAR: "Noto Kufi Arabic",
   mainAR: "Noto Kufi Arabic",
 };
 

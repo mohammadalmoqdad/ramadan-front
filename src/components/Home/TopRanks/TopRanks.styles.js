@@ -53,7 +53,7 @@ export const ParticipantsMember = styled.div`
   justify-content: center;
   align-items: flex-start;
   padding: 0rem;
-  gap: .75rem;
+  gap: 0.75rem;
 
   width: 18.375rem;
   height: auto;
@@ -79,7 +79,7 @@ export const TopRanksSection = styled.div`
   justify-content: center;
   align-items: flex-start;
   padding: 0rem;
-  gap: .75rem;
+  gap: 0.75rem;
 
   /* width: 35.5rem; */
   /* height: 8.625rem; */
@@ -106,8 +106,8 @@ export const ParticipantsNumbers = styled.div`
   justify-content: flex-start;
 
   @media (max-width: 31.25rem) {
-    padding: .75rem;
-    gap: .125rem;
+    padding: 0.75rem;
+    gap: 0.125rem;
     justify-content: center;
   }
 `;
@@ -133,12 +133,11 @@ export const SeeAll = styled.div`
   flex-direction: row;
   align-items: flex-start;
   padding: 0rem;
-  gap: .375rem;
+  gap: 0.375rem;
 
   /* position: absolute; */
   width: 4.875rem;
   height: 1.25rem;
-
 
   @media (max-width: 37.5625rem) {
   }
@@ -162,7 +161,6 @@ export const SeeAllP = styled.div`
 `;
 
 export const SeeAllIcon = styled.img`
-
   @media (max-width: 37.5625rem) {
   }
 `;
@@ -190,12 +188,12 @@ export const MemberImgsAndNumNumbers = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 0rem;
-  gap: .75rem;
+  gap: 0.75rem;
 
   width: 8.875rem;
   height: 2.25rem;
   @media (max-width: 31.25rem) {
-    gap: .125rem;
+    gap: 0.125rem;
   }
 `;
 
@@ -219,7 +217,7 @@ export const MemberNumbers = styled.div`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.0625rem;
   /* identical to box height */
   text-align: center;
@@ -233,7 +231,7 @@ export const MembersImg = styled.div`
   position: absolute;
   /*  */
   background: #fdd561;
-  border-radius: .75rem;
+  border-radius: 0.75rem;
   width: 2.25rem;
   height: 2.25rem;
 
@@ -244,7 +242,7 @@ export const MembersImg = styled.div`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.0625rem;
   /* identical to box height */
   text-align: center;
@@ -252,7 +250,7 @@ export const MembersImg = styled.div`
   color: #000000;
 
   @media (max-width: 31.25rem) {
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     width: 1.875rem;
     height: 1.875rem;
   }
@@ -295,13 +293,13 @@ export const Top3RankDiv = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 0rem;
-  gap: .75rem;
+  gap: 0.75rem;
 
   width: 11.8125rem;
   /* height: 3.75rem; */
 
   @media (max-width: 87.5rem) {
-    margin-top: .3125rem;
+    margin-top: 0.3125rem;
     width: auto;
   }
   @media (max-width: 31.25rem) {
@@ -311,7 +309,7 @@ export const Top3RankDiv = styled.div`
 
 export const Top1Img = styled.div`
   background: #fdd561;
-  border-radius: .75rem;
+  border-radius: 0.75rem;
 
   display: flex;
   align-items: center;
@@ -330,8 +328,8 @@ export const Top1Img = styled.div`
   @media (max-width: 87.5rem) {
     width: 2.25rem;
     height: 2.25rem;
-    font-size: .875rem;
-    font-size: .875rem;
+    font-size: 0.875rem;
+    font-size: 0.875rem;
   }
 `;
 
@@ -353,7 +351,7 @@ export const Top2Name = styled.div`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.0625rem;
   /* identical to box height */
   width: 7.3125rem;
@@ -361,7 +359,7 @@ export const Top2Name = styled.div`
   color: #000000;
 
   @media (max-width: 87.5rem) {
-    width: auto;
+    /* width: auto; */
   }
 `;
 
@@ -369,14 +367,14 @@ export const Top2Img = styled.div`
   width: 2.25rem;
   height: 2.25rem;
   background: #fdd561;
-  border-radius: .75rem;
+  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.0625rem;
   text-align: center;
   color: white;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { spacing } from "styles";
 
-const Button = styled.button`
+export const Button = styled.button`
   align-items: center;
   background: ${(props) => props.background || "red"};
   border: ${(props) =>
