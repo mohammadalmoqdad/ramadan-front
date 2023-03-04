@@ -8,7 +8,7 @@ import {
 } from "../../services/studentsServices";
 import { H5 } from "./setPasswordStudent/SetPasswordStudent.styles";
 import Modal from "../shared/Modal";
-import StudentsContainer, {
+import {
   Button,
   DropdownList,
   DropdownListItem,
@@ -19,9 +19,31 @@ import { useNavigate } from "react-router-dom";
 import cookie from "react-cookies";
 import Loader from "../Loader";
 import { isSuperAdmin } from "../../util/ContestPeople_Role";
+import { ReactComponent as SearchIcons2 } from "assets/icons/search2.svg";
+import { ReactComponent as SearchIcons } from "assets/icons/search.svg";
+import { useTranslation } from "react-i18next";
+import MyOngoingContestTab from "../shared/MyOngoingContestTab/index";
+import StudentsContainer, {
+  ContentContainer,
+  RowContainer,
+  BoldText,
+  StudentSearchContainer,
+  SearchInput,
+  AddParticipantContainer,
+  AddParticipantSpan,
+  SearchInputContainer,
+  SearchContainerForm,
+  SearchIconButton,
+  SearchContainer,
+  GoBtn,
+} from "./Students.styles";
+import ParticipantCard from "./ParticipantCard";
+import Participants from "./ParticipantsMember";
 
 export default function Students() {
+  const { t } = useTranslation();
   const [students, setStudents] = useState([]);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [studentToDelete, setStudentToDelete] = useState("");
   const [hasPermission, setPermission] = useState(false);
@@ -66,6 +88,39 @@ export default function Students() {
     );
   }, [context.adminInfo]);
 
+  const participants = [
+    {
+      name: "Ammar Jalal",
+      date: "Jun 16th, 2022 ",
+      button: t("reject"),
+      rank: 1,
+    },
+    {
+      name: "Mohammad Ayed",
+      date: "Nov 5th, 2022 ",
+      button: t("reject"),
+      rank: 2,
+    },
+    {
+      name: "Ahmad Aburabee",
+      date: "Aug 7th, 2022 ",
+      button: t("reject"),
+      rank: 3,
+    },
+    {
+      name: "Osama Ali",
+      date: "Dec 9th, 2022 ",
+      button: t("reject"),
+      rank: 4,
+    },
+    {
+      name: "Qais samer",
+      date: "Jan 4th, 2023 ",
+      button: t("reject"),
+      rank: 5,
+    },
+  ];
+
   const handleDeleteStudentModalChange = (e) => {
     setStudentToDelete(e.target.value);
     setOpenModal(true);
@@ -104,7 +159,7 @@ export default function Students() {
 
   return (
     <>
-      {openModal && (
+      {/* {openModal && (
         <Modal
           title="تأكيد الحذف"
           content="هل تريد حذف هذا الطالب؟"
@@ -113,57 +168,65 @@ export default function Students() {
           setOpenModal={setOpenModal}
           deleteFunction={deleteFunction}
         />
-      )}
+      )} */}
 
       <StudentsContainer>
-        {students && students.length > 0 ? (
-          <>
-            <DropdownList className="DropdownList">
-              <DropdownListItem className="title">
-                <Span>الطلاب</Span>
-              </DropdownListItem>
-              <div className="dropdown-scroll-container">
-                {students.map((student, index) => {
-                  return (
-                    <DropdownListItem key={index}>
-                      {hasPermission ? (
-                        <>
-                          <Button
-                            id="deleteBtn"
-                            onClick={handleDeleteStudentModalChange}
-                            value={student.person.username}
-                          >
-                            حذف
-                          </Button>
-                          <Span>
-                            {student.person.first_name}{" "}
-                            {student.person.last_name}
-                          </Span>
-                        </>
-                      ) : (
-                        <Span style={{ width: "100%" }}>
-                          {student.person.first_name} {student.person.last_name}
-                        </Span>
-                      )}
-                    </DropdownListItem>
-                  );
-                })}
-              </div>
-            </DropdownList>
+        <MyOngoingContestTab />
+        <ContentContainer>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+              width: "100%",
+            }}
+          >
+            <RowContainer>
+              <BoldText>
+                {t("students")}
+                {`(${participants.length})`}
+              </BoldText>
+              <StudentSearchContainer>
+                <SearchInput
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  placeholder={t("search")}
+                  isExpanded={isExpanded}
+                />
+                <SearchIcons2 onClick={() => setIsExpanded(false)} />
+              </StudentSearchContainer>
+            </RowContainer>
 
-            <Tabs
-              labels={["تعديل طالب", "كلمة المرور"]}
-              contents={
-                [
-                  // <EditStudentForm students={students} setStudents={setStudents} />,
-                  // <SetPasswordStudents students={students}  />
-                ]
-              }
-            />
-          </>
-        ) : (
-          <Tabs labels={["الطلاب"]} contents={[<H5>لا يوجد طلاب </H5>]} />
-        )}
+            {participants.map((item, idx) => {
+              return (
+                <ParticipantCard
+                  key={idx}
+                  name={item.name}
+                  button={item.button}
+                  date={item.date}
+                  rank={item.rank}
+                />
+              );
+            })}
+          </div>
+
+          <AddParticipantContainer>
+            <Participants title={"waitingForApproval"} />
+            <Participants title={"rejectedParticipants"} />
+            <AddParticipantSpan>
+              {t("addParticipantManually")}
+            </AddParticipantSpan>
+            <SearchInputContainer>
+              <SearchContainerForm>
+                <SearchIconButton type="submit">
+                  <SearchIcons />
+                </SearchIconButton>
+                <SearchContainer placeholder={t("username")} type="text" />
+              </SearchContainerForm>
+
+              <GoBtn>{t("go")}</GoBtn>
+            </SearchInputContainer>
+          </AddParticipantContainer>
+        </ContentContainer>
       </StudentsContainer>
     </>
   );
