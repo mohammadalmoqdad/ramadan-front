@@ -48,8 +48,15 @@ export default function Students() {
   const [studentToDelete, setStudentToDelete] = useState("");
   const [hasPermission, setPermission] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isAcceptedDisplayed, setIsAcceptedDisplayed] = useState(true);
+  const [membersNumber, setMembersNumber] = useState(0);
   const context = useAdminContext();
   let navigate = useNavigate();
+  useEffect(() => {
+    isAcceptedDisplayed
+      ? setMembersNumber(watingForAprovalMembers.length)
+      : setMembersNumber(participants.length);
+  }, [isAcceptedDisplayed]);
 
   useEffect(() => {
     if (!cookie.load("token")) {
@@ -89,37 +96,57 @@ export default function Students() {
   }, [context.adminInfo]);
 
   const participants = [
-    {
-      name: "Ammar Jalal",
-      date: "Jun 16th, 2022 ",
-      button: t("reject"),
-      rank: 1,
-    },
-    {
-      name: "Mohammad Ayed",
-      date: "Nov 5th, 2022 ",
-      button: t("reject"),
-      rank: 2,
-    },
-    {
-      name: "Ahmad Aburabee",
-      date: "Aug 7th, 2022 ",
-      button: t("reject"),
-      rank: 3,
-    },
-    {
-      name: "Osama Ali",
-      date: "Dec 9th, 2022 ",
-      button: t("reject"),
-      rank: 4,
-    },
-    {
-      name: "Qais samer",
-      date: "Jan 4th, 2023 ",
-      button: t("reject"),
-      rank: 5,
-    },
-  ];
+      {
+        name: "Ammar Jalal",
+        date: "Jun 16th, 2022 ",
+        button: t("delete"),
+        rank: 1,
+      },
+      {
+        name: "Mohammad Ayed",
+        date: "Nov 5th, 2022 ",
+        button: t("delete"),
+        rank: 2,
+      },
+      {
+        name: "Ahmad Aburabee",
+        date: "Aug 7th, 2022 ",
+        button: t("delete"),
+        rank: 3,
+      },
+      {
+        name: "Osama Ali",
+        date: "Dec 9th, 2022 ",
+        button: t("delete"),
+        rank: 4,
+      },
+      {
+        name: "Qais samer",
+        date: "Jan 4th, 2023 ",
+        button: t("delete"),
+        rank: 5,
+      },
+    ],
+    watingForAprovalMembers = [
+      {
+        name: "Odai ahmad",
+        date: "Jun 16th, 2022 ",
+        button: t("delete"),
+        rank: 8,
+      },
+      {
+        name: "mustafa ali",
+        date: "Nov 5th, 2022 ",
+        button: t("delete"),
+        rank: 9,
+      },
+      {
+        name: "waleed omar",
+        date: "Aug 7th, 2022 ",
+        button: t("delete"),
+        rank: 10,
+      },
+    ];
 
   const handleDeleteStudentModalChange = (e) => {
     setStudentToDelete(e.target.value);
@@ -156,6 +183,9 @@ export default function Students() {
       </main>
     );
   }
+  const showWatingForAproval = () => {
+    setIsAcceptedDisplayed(!isAcceptedDisplayed);
+  };
 
   return (
     <>
@@ -183,8 +213,11 @@ export default function Students() {
           >
             <RowContainer>
               <BoldText>
-                {t("students")}
-                {`(${participants.length})`}
+                {isAcceptedDisplayed
+                  ? `${t("students")}(${participants.length})`
+                  : `${t("waitingForApproval")}(${
+                      watingForAprovalMembers.length
+                    })`}
               </BoldText>
               <StudentSearchContainer>
                 <SearchInput
@@ -196,21 +229,38 @@ export default function Students() {
               </StudentSearchContainer>
             </RowContainer>
 
-            {participants.map((item, idx) => {
-              return (
-                <ParticipantCard
-                  key={idx}
-                  name={item.name}
-                  button={item.button}
-                  date={item.date}
-                  rank={item.rank}
-                />
-              );
-            })}
+            {isAcceptedDisplayed
+              ? participants.map((item, idx) => {
+                  return (
+                    <ParticipantCard
+                      key={idx}
+                      name={item.name}
+                      button={item.button}
+                      date={item.date}
+                      rank={item.rank}
+                    />
+                  );
+                })
+              : watingForAprovalMembers.map((item, idx) => {
+                  return (
+                    <ParticipantCard
+                      key={idx}
+                      name={item.name}
+                      button={item.button}
+                      date={item.date}
+                      rank={item.rank}
+                    />
+                  );
+                })}
           </div>
 
           <AddParticipantContainer>
-            <Participants title={"waitingForApproval"} />
+            <Participants
+              title={isAcceptedDisplayed ? "waitingForApproval" : "students"}
+              showButton
+              onClick={showWatingForAproval}
+              length={membersNumber}
+            />
             <Participants title={"rejectedParticipants"} />
             <AddParticipantSpan>
               {t("addParticipantManually")}

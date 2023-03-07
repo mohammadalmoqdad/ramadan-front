@@ -16,10 +16,11 @@ import TopRank, {
   MembersImgs,
   MemberNumbers,
   MembersImg,
+  ShowButton,
 } from "./ParticipantsMember.styles";
 import { useTranslation } from "react-i18next";
 
-function Participants({ title }) {
+function Participants({ title, showButton, onClick, length }) {
   const { t } = useTranslation();
   return (
     <ParticipantsMember>
@@ -28,23 +29,26 @@ function Participants({ title }) {
       </ParticipantsTitels>
 
       <ParticipantsNumbers>
-        <TotalOfMembers>5</TotalOfMembers>
+        <TotalOfMembers>{length ? length : 1}</TotalOfMembers>
+        {showButton ? (
+          <ShowButton onClick={onClick}>{t("show")}</ShowButton>
+        ) : (
+          <MemberImgsAndNumNumbers>
+            <MembersImgs>
+              <MembersImg style={{ background: "#FDD561", right: "0px" }}>
+                AB
+              </MembersImg>
+              <MembersImg style={{ background: "#FF5367", right: "20px" }}>
+                MK
+              </MembersImg>
+              <MembersImg style={{ background: "#503E9D", right: "40px" }}>
+                HA
+              </MembersImg>
+            </MembersImgs>
 
-        <MemberImgsAndNumNumbers>
-          <MembersImgs>
-            <MembersImg style={{ background: "#FDD561", right: "0px" }}>
-              AB
-            </MembersImg>
-            <MembersImg style={{ background: "#FF5367", right: "20px" }}>
-              MK
-            </MembersImg>
-            <MembersImg style={{ background: "#503E9D", right: "40px" }}>
-              HA
-            </MembersImg>
-          </MembersImgs>
-
-          {/* <MemberNumbers>251+</MemberNumbers> */}
-        </MemberImgsAndNumNumbers>
+            {/* <MemberNumbers>251+</MemberNumbers> */}
+          </MemberImgsAndNumNumbers>
+        )}
       </ParticipantsNumbers>
     </ParticipantsMember>
   );

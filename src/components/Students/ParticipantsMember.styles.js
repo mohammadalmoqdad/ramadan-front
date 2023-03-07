@@ -10,7 +10,8 @@ export default styled.div`
   justify-content: center;
 
   max-width: 59.3125rem;
-  @media (max-width: 90.25rem) {
+  @media (max-width: 500px) {
+    width: 100%;
   }
 `;
 
@@ -55,7 +56,7 @@ export const ParticipantsMember = styled.div`
   height: auto;
 
   @media (max-width: 31.25rem) {
-    width: 12.5rem;
+    width: 100%;
   }
 `;
 
@@ -99,7 +100,7 @@ export const ParticipantsNumbers = styled.div`
 
   border-radius: 1.5rem;
   max-width: 35.4375rem;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   @media (max-width: 500px) {
     padding: 0.75rem;
@@ -266,5 +267,16 @@ export const Top3Rank = styled.div`
   border-radius: 1.5rem;
 
   @media (max-width: 37.5625rem) {
+  }
+`;
+
+export const ShowButton = styled.button`
+  background-color: rgba(255, 83, 103, 0.12);
+  color: #ff5367;
+  border-radius: 18px;
+  padding: 14px 18px;
+  justify-content: flex-end;
+  @media (max-width: 31.25rem) {
+    padding: 10px 16px;
   }
 `;

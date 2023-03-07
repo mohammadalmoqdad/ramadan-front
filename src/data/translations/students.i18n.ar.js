@@ -1,7 +1,8 @@
 export default {
   students: "المشاركين",
-  reject: "رفض",
+  reject: "حذف",
   addParticipantManually: "إضافة مشترك يدوياً",
   waitingForApproval: "بانتظار الموافقة",
   rejectedParticipants: "المشاركين المرفوضين",
+  show: "عرض",
 };

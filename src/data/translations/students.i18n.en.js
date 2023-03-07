@@ -1,7 +1,8 @@
 export default {
   students: "Accepted Participants ",
-  reject: "Reject",
+  delete: "Delete",
   addParticipantManually: "Add Participant Manually",
-  waitingForApproval: "Waiting For Approval",
+  waitingForApproval: "Waiting For Approval ",
   rejectedParticipants: "Rejected Participants",
+  show: "Show",
 };

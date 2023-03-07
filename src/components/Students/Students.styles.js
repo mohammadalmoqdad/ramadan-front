@@ -8,6 +8,9 @@ export default styled.div`
   flex-direction: column;
   gap: 3rem;
   max-width: 59.375rem;
+  @media (max-width: 550px) {
+    gap: 0;
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -93,6 +96,7 @@ export const AddParticipantContainer = styled.div`
 
   @media (max-width: 900px) {
     width: 100%;
+    align-items: center;
   }
 `;
 
