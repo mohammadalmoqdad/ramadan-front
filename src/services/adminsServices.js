@@ -61,7 +61,7 @@ export const updateContestPeopleRole = (
 export const addAdmin = (data, successCallback, faiCallback) => {
   doRequest(
     data,
-    `/admin-panel/contest-people/${username}/`,
+    `/admin-panel/contest-people/${data.username}/`,
     {
       "Content-Type": "application/json",
       Authorization: `Bearer ${cookie.load("token")}`,
