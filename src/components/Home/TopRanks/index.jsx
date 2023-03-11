@@ -7,29 +7,27 @@ import TopRank, {
   TopRanksSection,
   ParticipantsTitels,
   ParticipantsNumbers,
-
   ParticipantsTitelsAtHome,
   SeeAll,
   SeeAllP,
   SeeAllIcon,
-
   TotalOfMembers,
-  MemberImgsAndNumNumbers,
-  MembersImgs,
-  MemberNumbers,
-
-  MembersImg,
-
   ParticipantsNumbersRanks,
   Top3RankDiv,
   Top1Img,
   Top1Name,
   Top2Name,
   Top2Img,
-
 } from "./TopRanks.styles";
+import NumberAndAbbreviationOfNames from "../../shared/NumberAndAbbreviationOfNames";
 
-function TopRanks() {
+function TopRanks(props) {
+  const styles = [
+    { background: '#FDD561' },
+    { background: '#FF5367' },
+    { background: '#503E9D' }
+  ];
+
   return (
     <TopRank>
       <TopRanksAndParticipants>
@@ -38,7 +36,7 @@ function TopRanks() {
 
             <ParticipantsTitelsAtHome>Participants</ParticipantsTitelsAtHome>
 
-            <SeeAll>
+            <SeeAll href="/Students" target="_blank">
               <SeeAllP>See all</SeeAllP>
               <SeeAllIcon src={SeeMore} Alt="" />
             </SeeAll>
@@ -47,20 +45,9 @@ function TopRanks() {
 
 
           <ParticipantsNumbers>
-            <TotalOfMembers>251</TotalOfMembers>
+            <TotalOfMembers>{props.students.length}</TotalOfMembers>
 
-            <MemberImgsAndNumNumbers>
-
-              <MembersImgs>
-                <MembersImg style={{ background: '#FDD561', right: '10px' }} >AB</MembersImg>
-                <MembersImg style={{ background: '#FF5367', right: '30px' }}>MK</MembersImg>
-                <MembersImg style={{ background: '#503E9D', right: '50px' }}>HA</MembersImg>
-
-              </MembersImgs>
-
-              <MemberNumbers>251+</MemberNumbers>
-
-            </MemberImgsAndNumNumbers>
+          <NumberAndAbbreviationOfNames users={props.students}/>
           </ParticipantsNumbers>
         </ParticipantsMember>
 
@@ -69,7 +56,7 @@ function TopRanks() {
           <ParticipantsTitels>
             <ParticipantsTitelsAtHome>Top 3 rank</ParticipantsTitelsAtHome>
 
-            <SeeAll>
+            <SeeAll href="/TopStudents" target="_blank">
               <SeeAllP>See all</SeeAllP>
               <SeeAllIcon src={SeeMore} Alt="" />
             </SeeAll>
@@ -77,21 +64,24 @@ function TopRanks() {
 
           <ParticipantsNumbers>
             <ParticipantsNumbersRanks>
-
-              <Top3RankDiv>
-                <Top1Img style={{ background: '#FDD561' }}>Am</Top1Img>
-                <Top1Name>Ameen Betawi</Top1Name>
-              </Top3RankDiv>
-
-              <Top3RankDiv>
-                <Top2Img style={{ background: '#FF5367' }}>MK</Top2Img>
-                <Top2Name>Mohammad Mokdad</Top2Name>
-              </Top3RankDiv>
-
-              <Top3RankDiv>
-                <Top2Img style={{ background: '#503E9D' }}>AQ</Top2Img>
-                <Top2Name>Anas ALQdy</Top2Name>
-              </Top3RankDiv>
+              {
+                props.topMembers.slice(0, 3).map((topMember, i)=>{
+                  if(i===0){
+                    return (
+                        <Top3RankDiv>
+                          <Top1Img style={styles[i]}>{topMember.name.slice(0, 2)}</Top1Img>
+                          <Top1Name>{topMember.name}</Top1Name>
+                        </Top3RankDiv>
+                    )
+                  }
+                    return (
+                        <Top3RankDiv>
+                          <Top2Img style={styles[i]}>{topMember.name.slice(0, 2)}</Top2Img>
+                          <Top2Name>{topMember.name}</Top2Name>
+                        </Top3RankDiv>
+                    )
+                 })
+              }
 
             </ParticipantsNumbersRanks>
 

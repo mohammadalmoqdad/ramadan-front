@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import cookie from "react-cookies";
 import { useNavigate } from "react-router-dom";
-import { retrieveTopStudents } from "../../services/competitionsServices";
+import { retrieveTopMembers } from "../../services/competitionsServices";
 import Loader from "../Loader";
 import { H5 } from "../Students/setPasswordStudent/SetPasswordStudent.styles";
 import {
