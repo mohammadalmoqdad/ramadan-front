@@ -128,7 +128,8 @@ export const ParticipantsTitelsAtHome = styled.div`
   }
 `;
 
-export const SeeAll = styled.div`
+export const SeeAll = styled.a`
+  text-decoration: none;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

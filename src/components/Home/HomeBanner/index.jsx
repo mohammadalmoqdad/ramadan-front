@@ -17,8 +17,14 @@ import Banner, {
   ResultButton,
   ButtonTitle,
 } from "./homeBanner.styles";
+import {useNavigate} from "react-router-dom";
 
-function HomeBanner() {
+function HomeBanner(props) {
+  let navigate = useNavigate();
+  const resultButtonOnClick = () =>{
+    navigate("/StudentsPoints");
+  };
+
   return (
     <Banner>
       <CirclesStyle>
@@ -29,11 +35,11 @@ function HomeBanner() {
       <ContentAndImgs>
         <ContentBanner>
           <TitleContent>
-            <WelcomeName>Welcome, Jamal Mahmoud!</WelcomeName>
-            <DayContent>Today is 12 Ramadan</DayContent>
+            <WelcomeName>Welcome, <br/>{props.name}!</WelcomeName>
+            <DayContent>Today is {props.dayNumber} Ramadan</DayContent>
           </TitleContent>
 
-          <ResultButton>
+          <ResultButton href="/StudentsPoints" onClick={resultButtonOnClick}>
             <ButtonTitle>See Contest Result</ButtonTitle>
           </ResultButton>
         </ContentBanner>
