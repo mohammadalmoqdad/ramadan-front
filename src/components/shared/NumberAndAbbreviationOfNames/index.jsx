@@ -19,7 +19,7 @@ function NumberAndAbbreviationOfNames(props){
                 {
                     props.users.slice(0, 3).map((user, i)=>{
                             return <MembersImg key={i} style={styles[i]} >
-                                {user.person.first_name.charAt(0) + user.person.last_name.charAt(1)}
+                                {user.person.first_name.charAt(0) + user.person.last_name.charAt(0)}
                             </MembersImg>
                     })
                 }
