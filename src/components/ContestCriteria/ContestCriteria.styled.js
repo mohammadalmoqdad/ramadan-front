@@ -3,10 +3,16 @@ import { colors } from "styles";
 
 // main container
 export default styled.div`
-  display: flex;
   flex-direction: column;
-  max-width: 80rem;
+  display: flex;
+  align-items: center;
+  padding: 24px;
   margin: auto;
+  width: 90%;
+  max-width: 59.375rem;
+  justify-content: space-between;
+  @media (max-width: 37.5625rem) {
+  }
 `;
 
 export const SectionAndCriteriaContainer = styled.div`

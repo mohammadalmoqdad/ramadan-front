@@ -11,7 +11,7 @@ i18n
     interpolation: {
       escapeValue: false, // React already safes from xss
     },
-    lng: "en",
+    lng: "ar",
     resources: translations,
   });
 

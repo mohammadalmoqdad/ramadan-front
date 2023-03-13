@@ -28,6 +28,9 @@ import MainContainer, {
 
 import MyOngoingContestTab from "components/shared/MyOngoingContestTab";
 import PopUpModal from "components/shared/PopUpModal";
+import AddCriteriaForm from "./AddCriteriaForm";
+import AddSectionForm from "./AddSectionForm";
+import { useTranslation } from "react-i18next";
 
 export default function ContestCriteria() {
   const [loading, setLoading] = useState(false);
@@ -35,6 +38,7 @@ export default function ContestCriteria() {
   const [hasPermission, setPermission] = useState(false);
   const [standards, setStandards] = useState([]);
   const context = useAdminContext();
+  const { t } = useTranslation();
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -80,26 +84,105 @@ export default function ContestCriteria() {
       }
     );
   }, []);
-  const [showModal, setShowModal] = useState(false);
+  const [showCriteriaModal, setShowCriteriaModal] = useState(false);
+  const [showSectionModal, setShowSectionModal] = useState(false);
+  const [showAddSectionModal, setShowAddSectionModal] = useState(false);
+  const [showAddCriteriaModal, setShowAddCriteriaModal] = useState(false);
+  const [deleteIndex, setDeleteIndex] = useState(null);
   const [modalPosition, setModalPosition] = useState({});
 
-  function handleDelete(event) {
-    const buttonPosition = event.target.getBoundingClientRect();
+  function handleCriteriaDelete(event, index) {
+    setDeleteIndex(index);
+    const buttonPosition = event.target.offsetTop;
     setModalPosition({
-      top: buttonPosition.top + buttonPosition.height,
+      top: buttonPosition - event.target.getBoundingClientRect().height,
       //   left: buttonPosition.left,
     });
-    setShowModal(true);
+    hideAllModals();
+    setTimeout(() => {
+      setShowCriteriaModal(true);
+    }, 0);
+  }
+
+  function handleSectionDelete(event, index) {
+    setDeleteIndex(index);
+    const buttonPosition = event.target.offsetTop;
+    setModalPosition({
+      top: buttonPosition - event.target.getBoundingClientRect().height,
+      //   left: buttonPosition.left,
+    });
+    hideAllModals();
+    setTimeout(() => {
+      setShowSectionModal(true);
+    }, 0);
   }
 
   const handleCancel = () => {
-    setShowModal(false);
+    hideAllModals();
   };
 
   const handleConfirmDelete = () => {
     // Delete the item here(it should get the id of the item so it gets deleted)
-    setShowModal(false);
+    hideAllModals();
   };
+
+  const handleAddSection = (event) => {
+    hideAllModals();
+    setTimeout(() => {
+      setShowAddSectionModal(true);
+    }, 0);
+  };
+  const handleAddCriteria = (event) => {
+    hideAllModals();
+    setTimeout(() => {
+      setShowAddCriteriaModal(true);
+    }, 0);
+  };
+  const hideAllModals = () => {
+    setShowCriteriaModal(false);
+    setShowSectionModal(false);
+    setShowAddSectionModal(false);
+    setShowAddCriteriaModal(false);
+  };
+  const addCriteriaForm = () => {
+    //submit the data in add criteria form
+    setShowAddCriteriaModal(false);
+  };
+  const addSectionForm = () => {
+    //submit the data in add criteria form
+    setShowAddSectionModal(false);
+  };
+  const DUMMY_Sections = [
+    {
+      item: "Which prayers you make in the mosque?Which prayers you make in the mosque?",
+    },
+    {
+      item: "Which prayers you make in the mosque?",
+    },
+    {
+      item: "Which prayers you make in the mosque?",
+    },
+    {
+      item: "Which prayers you make in the mosque?",
+    },
+    {
+      item: "Which prayers you make in the mosque?",
+    },
+  ];
+  const DUMMY_Criteria = [
+    {
+      item: "Criteria 1",
+    },
+    {
+      item: "Criteria 2",
+    },
+    {
+      item: "Criteria 3",
+    },
+    {
+      item: "Criteria 4",
+    },
+  ];
 
   return (
     <MainContainer>
@@ -108,111 +191,97 @@ export default function ContestCriteria() {
         {/* all sections */}
         <SectionsContainer>
           <HeadContent>
-            <HeadText>Sections</HeadText>
-            <AddButton>Add Section +</AddButton>
+            <HeadText>{t("sections")}</HeadText>
+            <div>
+              <AddButton onClick={handleAddSection}>
+                {t("add-section")}
+              </AddButton>
+              {showAddSectionModal && (
+                <AddSectionForm
+                  hideModalFunction={addSectionForm}
+                  clickOverlay={() => {
+                    setShowAddSectionModal(false);
+                  }}
+                />
+              )}
+            </div>
           </HeadContent>
-
-          <Section>
-            <InnerText>Section1</InnerText>
-            <div>
-              <EditButton>Edit</EditButton>
-              <DeleteButton>Delete</DeleteButton>
-            </div>
-          </Section>
-          <Section>
-            <InnerText>
-              Which prayers you make in the mosque?Which prayers you make in the
-              mosque?
-            </InnerText>
-            <div>
-              <EditButton>Edit</EditButton>
-              <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
-              {showModal && (
-                <PopUpModal
-                  position={modalPosition}
-                  fixedTextFields={[<p>This is text</p>]}
-                  buttons={[
-                    <button onClick={handleCancel}>Cancel</button>,
-                    <button onClick={handleConfirmDelete}>Delete</button>,
-                  ]}
-                >
-                  <p>Are you sure you want to delete this item?</p>
-                </PopUpModal>
-              )}
-            </div>
-          </Section>
-          <Section>
-            <InnerText>Section1</InnerText>
-            <div>
-              <EditButton>Edit</EditButton>
-              <DeleteButton>Delete</DeleteButton>
-            </div>
-          </Section>
-          <Section>
-            <InnerText>
-              Which prayers you make in the mosque?Which prayers you make in the
-              mosque?
-            </InnerText>
-            <div>
-              <EditButton>Edit</EditButton>
-              <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
-              {showModal && (
-                <PopUpModal
-                  position={modalPosition}
-                  fixedTextFields={[<p>This is text text</p>]}
-                  buttons={[
-                    <button onClick={handleCancel}>Cancel</button>,
-                    <button onClick={handleConfirmDelete}>Delete</button>,
-                  ]}
-                >
-                  <p>Are you sure you want to delete this item?</p>
-                </PopUpModal>
-              )}
-            </div>
-          </Section>
+          {DUMMY_Sections.map((section, index) => {
+            return (
+              <Section key={index}>
+                <InnerText>{section.item}</InnerText>
+                <div>
+                  <EditButton>{t("edit")}</EditButton>
+                  <DeleteButton onClick={(e) => handleSectionDelete(e, index)}>
+                    {t("delete")}
+                  </DeleteButton>
+                  {showSectionModal && deleteIndex === index && (
+                    <PopUpModal
+                      key={index}
+                      position={modalPosition}
+                      fixedTextFields={[<p>SectionDelete</p>]}
+                      buttons={[
+                        <button onClick={handleCancel}>{t("cancel")}</button>,
+                        <button onClick={handleConfirmDelete}>
+                          {t("delete")}
+                        </button>,
+                      ]}
+                    >
+                      <p>Are you sure you want to delete this item?</p>
+                    </PopUpModal>
+                  )}
+                </div>
+              </Section>
+            );
+          })}
         </SectionsContainer>
 
         {/* all criteria */}
         <CriteriaContainer>
           <HeadContent>
-            <HeadText>Criteria</HeadText>
+            <HeadText>{t("criterias")}</HeadText>
             <div>
-              <AddButton onClick={handleDelete}>Add Criteria +</AddButton>
-              {showModal && (
-                <PopUpModal
-                  position={modalPosition}
-                  fixedTextFields={[<p>This is text text</p>]}
-                  buttons={[
-                    <button onClick={handleCancel}>Cancel</button>,
-                    <button onClick={handleConfirmDelete}>Delete</button>,
-                  ]}
-                >
-                  <p>Are you sure you want to delete this item?</p>
-                </PopUpModal>
+              <AddButton onClick={handleAddCriteria}>
+                {t("add-criteria")}
+              </AddButton>
+              {showAddCriteriaModal && (
+                <AddCriteriaForm
+                  hideModalFunction={addCriteriaForm}
+                  clickOverlay={() => {
+                    setShowAddCriteriaModal(false);
+                  }}
+                />
               )}
             </div>
           </HeadContent>
-          <Criteria>
-            <InnerText>Criteria1</InnerText>
-            <div>
-              <EditButton>Edit</EditButton>
-              <DeleteButton>Delete</DeleteButton>
-            </div>
-          </Criteria>
-          <Criteria>
-            <InnerText>Criteria1</InnerText>
-            <div>
-              <EditButton>Edit</EditButton>
-              <DeleteButton>Delete</DeleteButton>
-            </div>
-          </Criteria>
-          <Criteria>
-            <InnerText>Criteria1</InnerText>
-            <div>
-              <EditButton>Edit</EditButton>
-              <DeleteButton>Delete</DeleteButton>
-            </div>
-          </Criteria>
+          {DUMMY_Criteria.map((criteria, index) => {
+            return (
+              <Criteria key={index}>
+                <InnerText>{criteria.item}</InnerText>
+                <div>
+                  <EditButton>{t("edit")}</EditButton>
+                  <DeleteButton onClick={(e) => handleCriteriaDelete(e, index)}>
+                    {t("delete")}
+                  </DeleteButton>
+                  {showCriteriaModal && deleteIndex === index && (
+                    <PopUpModal
+                      key={index}
+                      position={modalPosition}
+                      fixedTextFields={[<p>CriteriaDelete</p>]}
+                      buttons={[
+                        <button onClick={handleCancel}>{t("cancel")}</button>,
+                        <button onClick={handleConfirmDelete}>
+                          {t("delete")}
+                        </button>,
+                      ]}
+                    >
+                      <p>Are you sure you want to delete this item?</p>
+                    </PopUpModal>
+                  )}
+                </div>
+              </Criteria>
+            );
+          })}
         </CriteriaContainer>
       </SectionAndCriteriaContainer>
     </MainContainer>
