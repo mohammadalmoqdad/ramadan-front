@@ -31,7 +31,7 @@ export default function EditStandardForm(props) {
     const [order, setOrder] = useState(-1);
     const [formType, setFormType] = useState("");
     const [isCustomDaysChecked, setCustomDaysChecked] = useState(false);
-    const [customDays, setCustomDays] = useState("");
+    const [customDays, setCustomDays] = useState([]);
     const [isShown, setShown] = useState(true);
     const [isActive, setActive] = useState(true);
     const [description, setDescription] = useState("");
@@ -82,7 +82,7 @@ export default function EditStandardForm(props) {
         setLowerUnitsBound(-1);
         setPointsPerUnit(-1);
         setCustomDaysChecked(false);
-        setCustomDays("");
+        setCustomDays([]);
     }
 
     const updateStandardItem = (item, data)=>{
@@ -93,7 +93,7 @@ export default function EditStandardForm(props) {
         item.custom_days = data.custom_days;
         item.label = data.label;
         item.description = data.description;
-        item.form_type = data.form_type;
+        item.template_type = data.template_type;
         item.upper_units_bound = data.upper_units_bound;
         item.lower_units_bound = data.lower_units_bound;
         item.points_per_unit = data.points_per_unit;
@@ -116,7 +116,7 @@ export default function EditStandardForm(props) {
             "custom_days": customDays,
             "label": label,
             "description": description,
-            "form_type": formType,
+            "template_type": formType,
             "upper_units_bound": formType !== 'chk' ? upperUnitsBound : 1,
             "lower_units_bound": formType !== 'chk' ? lowerUnitsBound : 0,
             "points_per_unit": pointsPerUnit
@@ -163,15 +163,15 @@ export default function EditStandardForm(props) {
             resetEditStandardForm();
 
         }else{
-            let standard = props.standards.filter(standard => standard.id === Number(e.target.value))[0];
+            let standard = props.standards.filter(standard => standard.id === e.target.value)[0];
             setSelectedStandard(standard);
-            setSelectedSection(props.sections.filter(section => section.id === standard.section)[0]);
+            setSelectedSection(props.sections.filter(section => section.id === standard.section.id)[0]);
             setActive(standard.is_active);
             setShown(standard.is_shown);
             setOrder(standard.order_in_section);
             setLabel(standard.label);
             setDescription(standard.description);
-            setFormType(standard.form_type);
+            setFormType(standard.template_type);
             setUpperUnitsBound(standard.upper_units_bound);
             setLowerUnitsBound(standard.lower_units_bound);
             setPointsPerUnit(standard.points_per_unit);
@@ -182,7 +182,7 @@ export default function EditStandardForm(props) {
                 setCurrentSelectedDays(days.filter(day => selectedArray.includes(day.id+"")));
             }else{
                 setCustomDaysChecked(false);
-                setCustomDays("");
+                setCustomDays([]);
             }
         }
     };
@@ -191,7 +191,7 @@ export default function EditStandardForm(props) {
         if(e.target.value === ""){
             selectedSection({});
         }else{
-            setSelectedSection(props.sections.filter(section => section.id === Number(e.target.value))[0]);
+            setSelectedSection(props.sections.filter(section => section.id === e.target.value)[0]);
         }
     };
 
@@ -209,7 +209,7 @@ export default function EditStandardForm(props) {
 
     const handleCustomDaysCheckboxChange = (e)=>{
         if(!e.target.checked){
-            setCustomDays("");
+            setCustomDays([]);
         }
         setCustomDaysChecked(e.target.checked);
     };
@@ -217,16 +217,9 @@ export default function EditStandardForm(props) {
     const handleCustomDaysChange = (e)=>{
         let selectedDays =[];
         for (let i = 0; i < e.length; i++) {
-            selectedDays.push(e[i]);
+            selectedDays.push(e[i]+"");
         }
-        let str="", len = selectedDays.length ;
-        for(let i=0; i < len; i++){
-            str += (selectedDays[i].id+"");
-            if(i<len-1){
-                str +=",";
-            }
-        }
-        setCustomDays(str);
+        setCustomDays(selectedDays);
     };
 
     const handleShownCheckboxChange = (e)=>{
@@ -303,9 +296,9 @@ export default function EditStandardForm(props) {
 
             <DropdownListStanderd className='DropdownList' value={formType} onChange={handleFormTypeChange} >
                 <DropdownListItemStanderd value="">اختر نوع النموذج</DropdownListItemStanderd>
-                <DropdownListItemStanderd value="num">رقمي</DropdownListItemStanderd>
-                <DropdownListItemStanderd value="chk">خانة إختيار - صح أو خطأ</DropdownListItemStanderd>
-                <DropdownListItemStanderd value="oth">نصي - يحتاج مراجعة من المسؤول</DropdownListItemStanderd>
+                <DropdownListItemStanderd value="NumberPointTemplate">رقمي</DropdownListItemStanderd>
+                <DropdownListItemStanderd value="CheckboxPointTemplate">خانة إختيار - صح أو خطأ</DropdownListItemStanderd>
+                <DropdownListItemStanderd value="PointTemplate">نصي - يحتاج مراجعة من المسؤول</DropdownListItemStanderd>
             </DropdownListStanderd>
 
 
