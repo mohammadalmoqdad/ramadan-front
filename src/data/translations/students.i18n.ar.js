@@ -1,5 +1,5 @@
 export default {
-  students: "المشاركين",
+  "accepted-participants": "المشاركين",
   reject: "حذف",
   addParticipantManually: "إضافة مشترك يدوياً",
   deactivatedStudents: "المشاركين غير المفعلين",

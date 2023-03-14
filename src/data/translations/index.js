@@ -14,11 +14,12 @@ import contestInformationI18nAr from "./contestInformation.i18n.ar";
 import contestInformationI18nEn from "./contestInformation.i18n.en";
 import editProfileI18nEn from "./editProfile.i18n.en";
 import editProfileI18nAr from "./editProfile.i18n.ar";
+import sidebarI18nAr from "./sidebar.i18n.ar";
+import sidebarI18nEn from "./sidebar.i18n.en";
 
 export default {
   en: {
     translation: {
-      ...sharedEN,
       ...loginEn,
       ...moderatorsI18nEn,
       ...groupsI18nEn,
@@ -26,11 +27,12 @@ export default {
       ...contestCriteriaI18nEn,
       ...contestInformationI18nEn,
       ...editProfileI18nEn,
+      ...sidebarI18nEn,
+      ...sharedEN,
     },
   },
   ar: {
     translation: {
-      ...sharedAR,
       ...loginAr,
       ...moderatorsI18nAr,
       ...groupsI18nAr,
@@ -38,6 +40,8 @@ export default {
       ...contestCriteriaI18nAr,
       ...contestInformationI18nAr,
       ...editProfileI18nAr,
+      ...sidebarI18nAr,
+      ...sharedAR,
     },
   },
 };

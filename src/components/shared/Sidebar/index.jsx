@@ -1,33 +1,44 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   SideBarContainer,
   MenuContainer,
   MenuLink,
-  UserInfoContainer,
-  Username,
   MenuItem,
+  WirdLogoContainer,
 } from "./sidebar.styles";
+import { ReactComponent as WirdLogo } from "assets/icons/Shared/wirdLogo.svg";
 import { ReactComponent as HomeIcon } from "assets/icons/home.svg";
-import { ReactComponent as AdminIcon } from "assets/icons/admin.svg";
+import { ReactComponent as CompInfoIcon } from "assets/icons/competition-information.svg";
+import { ReactComponent as ContestModeratorsIcon } from "assets/icons/admin.svg";
 import { ReactComponent as CriteriaIcon } from "assets/icons/criterias.svg";
+import { ReactComponent as ParticipantsIcon } from "assets/icons/students.svg";
+import { ReactComponent as FileTxtIcon } from "assets/icons/file-text.svg";
 import { ReactComponent as ResultsIcon } from "assets/icons/results.svg";
+import { ReactComponent as LeaderBoard } from "assets/icons/leaderBoard.svg";
+import { ReactComponent as FileDownload } from "assets/icons/fileDownload.svg";
 import { ReactComponent as GroupsIcon } from "assets/icons/group.svg";
-import {ReactComponent as FileTxtIcon} from "assets/icons/file-text.svg";
-import {ReactComponent as CompInfoIcon} from "assets/icons/competition-information.svg";
-import {ReactComponent as StudentsIcon} from "assets/icons/students.svg";
-import {ReactComponent as Winners} from "assets/icons/winners.svg";
-import {ReactComponent as FileDownload} from "assets/icons/fileDownload.svg";
-import {useAdminContext} from "../../../contexts/AdminContext";
-import {isSuperAdmin} from '../../../util/ContestPeople_Role';
+import { useAdminContext } from "../../../contexts/AdminContext";
+import { isSuperAdmin } from "../../../util/ContestPeople_Role";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 function Sidebar() {
+  const { t } = useTranslation();
   const context = useAdminContext();
   const [hasPermission, setPermission] = useState(false);
+  const { pathname } = useLocation();
 
-  useEffect(()=>{
-    if(Object.keys(context.adminInfo).length > 0){
+  const showNavbarAndSidebar = ![
+    "/login",
+    "/Signup",
+    "/ResetPassword",
+    "/ForgotPassword",
+  ].includes(pathname);
+
+  useEffect(() => {
+    if (Object.keys(context.adminInfo).length > 0) {
       setPermission(isSuperAdmin(context));
-    }else {
+    } else {
       setTimeout(() => {
         if (Object.keys(context.adminInfo).length === 0) {
           // permission will be updated once context.adminInfo is updated.
@@ -35,91 +46,65 @@ function Sidebar() {
         }
       }, 1000);
     }
-  },[context.adminInfo]);
+  }, [context.adminInfo]);
 
   return (
-    <SideBarContainer>
+    <div>
+      {showNavbarAndSidebar && (
+        <SideBarContainer>
+          <WirdLogoContainer>
+            <WirdLogo />
+          </WirdLogoContainer>
 
-      <UserInfoContainer>
-        { Object.keys(context.adminInfo).length > 0
-            ? context.adminInfo?.first_name?.length > 0 || context.adminInfo?.last_name?.length > 0
-              ?
-                <Username>{context.adminInfo.first_name} {context.adminInfo.last_name}</Username>
-              : context.adminInfo?.username?.length > 0
-                    ?
-                      <Username>{context.adminInfo.username}</Username>
-                    :
-                      <Username>مسؤول</Username>
-            :
-              <Username>مسؤول</Username>
-        }
-      </UserInfoContainer>
-
-      <MenuContainer>
-        <MenuLink to="/">
-          <MenuItem >
-            الصفحة الرئيسية
-          </MenuItem>
-          <HomeIcon />
-        </MenuLink>
-        {/* { hasPermission && */}
-              <MenuLink to="/Competition">
-                <MenuItem >
-                  معلومات المسابقة
-                </MenuItem>
-                <CompInfoIcon/>
-              </MenuLink>
-        {/* } */}
-        <MenuLink to="/TopStudents">
-          <MenuItem >
-            الأوائل
-          </MenuItem>
-          <Winners/>
-        </MenuLink>
-        <MenuLink to="/Admins">
-          <MenuItem >
-            المسؤولون
-          </MenuItem>
-          <AdminIcon />
-        </MenuLink>
-        <MenuLink to="/Students">
-          <MenuItem >
-          الطلاب
-          </MenuItem>
-          <StudentsIcon/>
-        </MenuLink>
-        <MenuLink to="/ContestCriteria">
-          <MenuItem >
-            المعايير  
-          </MenuItem>
-          <CriteriaIcon />
-        </MenuLink>
-        <MenuLink to="/Review-other-points">
-          <MenuItem >
-            مراجعة المدخلات النصية
-          </MenuItem>
-          <FileTxtIcon/>
-        </MenuLink>
-        <MenuLink to="/StudentsPoints">
-          <MenuItem >
-            مشاهدة النتائج
-          </MenuItem>
-          <ResultsIcon />
-        </MenuLink>
-        {hasPermission &&
-            <MenuLink to="/ExportPoints">
-              <MenuItem>
-                استخراج النتائج
-              </MenuItem>
-              <FileDownload/>
+          <MenuContainer>
+            <MenuLink to="/">
+              <HomeIcon />
+              <MenuItem>{t("home-page")}</MenuItem>
             </MenuLink>
-        }
-        <MenuLink to="/Groups">
-          <MenuItem >المجموعات</MenuItem>
-          <GroupsIcon />
-        </MenuLink>
-      </MenuContainer>
-    </SideBarContainer>
+            {/* { hasPermission && */}
+            <MenuLink to="/competition">
+              <CompInfoIcon />
+              <MenuItem>{t("contest-information")}</MenuItem>
+            </MenuLink>
+            {/* } */}
+            <MenuLink to="/top-students">
+              <LeaderBoard />
+              <MenuItem>{t("leaders-board")}</MenuItem>
+            </MenuLink>
+            <MenuLink to="/admins">
+              <ContestModeratorsIcon />
+              <MenuItem>{t("admins")}</MenuItem>
+            </MenuLink>
+            <MenuLink to="/students">
+              <ParticipantsIcon />
+              <MenuItem>{t("students")}</MenuItem>
+            </MenuLink>
+            <MenuLink to="/standards">
+              <CriteriaIcon />
+              <MenuItem>{t("criterias")}</MenuItem>
+            </MenuLink>
+            <MenuLink to="/review-other-points">
+              <FileTxtIcon />
+              <MenuItem>{t("text-inputs")}</MenuItem>
+            </MenuLink>
+            <MenuLink to="/students-points">
+              <ResultsIcon />
+              <MenuItem>{t("results-page")}</MenuItem>
+            </MenuLink>
+            {hasPermission && (
+              <MenuLink to="/export-points">
+                <FileDownload />
+                <MenuItem>{t("extract-results")}</MenuItem>
+              </MenuLink>
+            )}
+            <MenuLink to="/groups">
+              <GroupsIcon />
+              <MenuItem>{t("groups-page")}</MenuItem>
+            </MenuLink>
+          </MenuContainer>
+        </SideBarContainer>
+      )}
+    </div>
   );
 }
 

@@ -1,29 +1,35 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import cookie from "react-cookies";
 import { useLogin } from "services/auth";
-import {retrieveAdminInfo} from "../../services/adminsServices";
+import { retrieveAdminInfo } from "../../services/adminsServices";
 
 const AdminContext = React.createContext(null);
 
-export const useAdminContext = ()=>{
+export const useAdminContext = () => {
   return useContext(AdminContext);
-}
+};
 
 function AdminProvider({ children }) {
   const [adminInfo, setAdminInfo] = useState({});
 
-
   const getAdminInfo = () => {
-    if (Object.keys(adminInfo).length === 0 && cookie.load('token') && cookie.load("refresh-token")){
+    if (
+      Object.keys(adminInfo).length === 0 &&
+      cookie.load("token") &&
+      cookie.load("refresh-token")
+    ) {
       retrieveAdminInfo(
-          (res)=>{
-            setAdminInfo(res.data);
-            return res.data;
-          },
-          (err)=>{
-            setAdminInfo({is_super_admin: false});
-            console.log("Failed to populate admin info: ", JSON.stringify(err.response.data));
-          }
+        (res) => {
+          setAdminInfo(res.data);
+          return res.data;
+        },
+        (err) => {
+          setAdminInfo({ is_super_admin: false });
+          console.log(
+            "Failed to populate admin info: ",
+            JSON.stringify(err.response.data)
+          );
+        }
       );
     }
     return adminInfo;
@@ -41,7 +47,7 @@ function AdminProvider({ children }) {
     setAdminInfo,
     adminInfo,
     useLogin,
-    logout
+    logout,
   };
 
   return (

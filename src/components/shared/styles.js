@@ -389,19 +389,6 @@ export const Wird = styled.h1`
   color: orange;
 `;
 
-export const Header = styled.header`
-  display: flex;
-  font-family: "Noto Kufi Arabic", sans-serif;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background-color: #2980b9;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0.5rem 0.5rem;
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); */
-`;
-
 export const Logo = styled.h1`
   color: orange;
   font-size: 1.5rem;

@@ -1,88 +1,114 @@
-import React, {useEffect, useState} from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './NavStyle.css'
-import NavDropdown from 'react-bootstrap/NavDropdown'
+import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./NavStyle.css";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import HeaderNavContainer, {
-    H5,
-    NavDropdownli,
-    NavDropdownlist,
-    Logo,
-    A,
-    ButtonLogout
+  H5,
+  NavDropdownli,
+  NavDropdownlist,
+  // Logo,
+  A,
+  PageTitle,
 } from "./navbar.styles";
 
-import {
-    HedarNav,
-    Ul,
-    Li
-} from "../styles";
+import { HedarNav, Ul, Li } from "../styles";
 
-import {useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useAdminContext } from "../../../contexts/AdminContext";
-import WirdLogo from '../../../assets/Logo/WirdLogosvg.svg';
-import {isSuperAdmin} from '../../../util/ContestPeople_Role';
-
-
+import { isSuperAdmin } from "../../../util/ContestPeople_Role";
+import { useTranslation } from "react-i18next";
+import mapRoutesToPagesNames from "../../../data/pageNames";
 function Nav() {
-    const [hasPermission, setPermission] = useState(false);
-    const context = useAdminContext();
-    let navigate = useNavigate();
+  const { t } = useTranslation();
+  const [hasPermission, setPermission] = useState(false);
+  const context = useAdminContext();
+  const { pathname } = useLocation();
 
-    useEffect(()=>{
-        setPermission(Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context));
-    },[context.adminInfo]);
+  const showNavbar = ![
+    "/login",
+    "/Signup",
+    "/ResetPassword",
+    "/ForgotPassword",
+  ].includes(pathname);
 
-    return <HeaderNavContainer>
-
-        <ButtonLogout onClick={() => {
-            context.logout();
-            navigate("/login");
-        }}>تسجيل الخروج</ButtonLogout>
-
-        <HedarNav>
+  useEffect(() => {
+    setPermission(
+      Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context)
+    );
+  }, [context.adminInfo]);
+  console.log(mapRoutesToPagesNames[pathname]);
+  return (
+    <div>
+      {showNavbar && (
+        <HeaderNavContainer>
+          <PageTitle>
+            {mapRoutesToPagesNames.hasOwnProperty(pathname)
+              ? t(mapRoutesToPagesNames[pathname])
+              : ""}{" "}
+          </PageTitle>
+          <HedarNav>
             <Ul>
-                {/* <Li><A></A></Li> */}
-                <Li>
-                    <NavDropdownlist >
-                        <NavDropdownli >
-                            <NavDropdown className='NavDropdow' style={{ color: '#e9f4fb' }}>
-                                <NavDropdown.Item className='NavDropdow' href="/">الصفحة الرئيسية</NavDropdown.Item>
-                                { hasPermission &&
-                                    <NavDropdown.Item href="/Competition">معلومات المسابقة</NavDropdown.Item>
+              <Li>
+                <NavDropdownlist>
+                  <NavDropdownli>
+                    <NavDropdown
+                      className="NavDropdow"
+                      style={{ color: "#e9f4fb" }}
+                    >
+                      <NavDropdown.Item className="NavDropdow" href="/">
+                        {t("home-page")}
+                      </NavDropdown.Item>
+                      {hasPermission && (
+                        <NavDropdown.Item href="/competition">
+                          {t("contest-information")}{" "}
+                        </NavDropdown.Item>
+                      )}
+                      <NavDropdown.Item href="/top-students">
+                        {t("leaders-board")}{" "}
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/admins">
+                        {t("admins")}
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/students">
+                        {t("students")}
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/standards">
+                        {t("criterias")}
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/review-other-points">
+                        {" "}
+                        {t("text-inputs")}{" "}
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/students-points">
+                        {t("results-page")}{" "}
+                      </NavDropdown.Item>
+                      {hasPermission && (
+                        <NavDropdown.Item href="/export-points">
+                          {t("extract-results")}{" "}
+                        </NavDropdown.Item>
+                      )}
+                      <NavDropdown.Item href="/groups">
+                        {t("groups-page")}{" "}
+                      </NavDropdown.Item>
+                    </NavDropdown>
 
-                                }
-                                <NavDropdown.Item href="/TopStudents">الأوائل</NavDropdown.Item>
-                                <NavDropdown.Item href="/Admins">المسؤولون</NavDropdown.Item>
-                                <NavDropdown.Item href="/Students">الطلاب</NavDropdown.Item>
-                                <NavDropdown.Item href="/Standards">المعايير</NavDropdown.Item>
-                                <NavDropdown.Item href="/Review-other-points"> مراجعة المدخلات النصية</NavDropdown.Item>
-                                <NavDropdown.Item href="/StudentsPoints">مشاهدة النتائج</NavDropdown.Item>
-                                { hasPermission &&
-                                    <NavDropdown.Item href="/ExportPoints">استخراج النتائج</NavDropdown.Item>
-                                }
-                                <NavDropdown.Item href="/Groups">المجموعات</NavDropdown.Item>
-                            </NavDropdown>
-
-                            <H5>menu</H5>
-                        </NavDropdownli>
-                        <A>أهلا بكم في منصة وِرد</A>
-
-                    </NavDropdownlist>
-
-
-                </Li>
-
+                    <H5>menu</H5>
+                  </NavDropdownli>
+                  <A>أهلا بكم في منصة وِرد</A>
+                </NavDropdownlist>
+              </Li>
             </Ul>
-            <Logo>
-                {/* <Logo/> */}
+            {/* <Logo> */}
+            {/* <Logo/> */}
 
-                <img src={WirdLogo} alt="" width='50' />
-                {/* <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Vanamo_Logo.png" alt="" width='30' /> */}
-            </Logo>
-        </HedarNav>
-
-    </HeaderNavContainer>;
-
+            {/* <img src={WirdLogo} alt="" width="50" /> */}
+            {/* <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Vanamo_Logo.png" alt="" width='30' /> */}
+            {/* </Logo> */}
+          </HedarNav>
+        </HeaderNavContainer>
+      )}
+    </div>
+  );
 }
 
 export default Nav;

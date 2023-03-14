@@ -3,7 +3,8 @@ import Tabs from "../shared/Tabs";
 import SetPasswordStudents from "./setPasswordStudent";
 import EditStudentForm from "./EditStudentForm";
 import {
-  deleteStudent, retrieveDeactivatedMembers,
+  deleteStudent,
+  retrieveDeactivatedMembers,
   retrieveStudents,
 } from "../../services/studentsServices";
 import { H5 } from "./setPasswordStudent/SetPasswordStudent.styles";
@@ -76,35 +77,36 @@ export default function Students() {
     }
 
     retrieveDeactivatedMembers(
-        (res)=>{
-          if(res && res.status === 200){
-            setDeactivatedStudents(res.data);
-          }
-        }, (err)=>{
-          console.log(
-              "Failed to retrieve deactivated students: " + JSON.stringify(err?.response?.data)
-          );
+      (res) => {
+        if (res && res.status === 200) {
+          setDeactivatedStudents(res.data);
         }
+      },
+      (err) => {
+        console.log(
+          "Failed to retrieve deactivated students: " +
+            JSON.stringify(err?.response?.data)
+        );
+      }
     );
 
     retrieveStudents(
-        (res) => {
-          setStudents(res.data);
-          setLoading(false);
-        },
-        (err) => {
-          console.log(
-              "Failed to retrieve students: " + JSON.stringify(err?.response?.data)
-          );
-          setLoading(false);
-        }
+      (res) => {
+        setStudents(res.data);
+        setLoading(false);
+      },
+      (err) => {
+        console.log(
+          "Failed to retrieve students: " + JSON.stringify(err?.response?.data)
+        );
+        setLoading(false);
+      }
     );
-
   }, []);
 
   useEffect(() => {
     setPermission(
-        Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context)
+      Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context)
     );
   }, [context.adminInfo]);
 
@@ -140,41 +142,44 @@ export default function Students() {
     setOpenModal(false);
   };
 
-  const handleSearchTextChange = (e)=>{
+  const handleSearchTextChange = (e) => {
     setSearchText(e.target.value);
-  }
+  };
 
-  const handleSearchClick = ()=>{
+  const handleSearchClick = () => {
     setLoading(true);
 
-    if(isStudentsDisplayed){
+    if (isStudentsDisplayed) {
       retrieveStudents(
-          (res) => {
-            setStudents(res.data);
-            setLoading(false);
-          },
-          (err) => {
-            console.log(
-                "Failed to retrieve students: " + JSON.stringify(err?.response?.data)
-            );
-            setLoading(false);
-          },
-          searchText
+        (res) => {
+          setStudents(res.data);
+          setLoading(false);
+        },
+        (err) => {
+          console.log(
+            "Failed to retrieve students: " +
+              JSON.stringify(err?.response?.data)
+          );
+          setLoading(false);
+        },
+        searchText
       );
-    }else{
+    } else {
       retrieveDeactivatedMembers(
-          (res)=>{
-            if(res && res.status === 200){
-              setDeactivatedStudents(res.data);
-            }
-            setLoading(false);
-          }, (err)=>{
-            console.log(
-                "Failed to retrieve deactivated students: " + JSON.stringify(err?.response?.data)
-            );
-            setLoading(false);
-          },
-          searchText
+        (res) => {
+          if (res && res.status === 200) {
+            setDeactivatedStudents(res.data);
+          }
+          setLoading(false);
+        },
+        (err) => {
+          console.log(
+            "Failed to retrieve deactivated students: " +
+              JSON.stringify(err?.response?.data)
+          );
+          setLoading(false);
+        },
+        searchText
       );
     }
   };
@@ -192,7 +197,6 @@ export default function Students() {
 
   return (
     <>
-
       <StudentsContainer>
         <MyOngoingContestTab />
         <ContentContainer>
@@ -228,7 +232,13 @@ export default function Students() {
                   return (
                     <ParticipantCard
                       key={idx}
-                      name={student.person?.first_name?.length > 0 ? student.person.first_name + " " + student.person.last_name : student.person.username}
+                      name={
+                        student.person?.first_name?.length > 0
+                          ? student.person.first_name +
+                            " " +
+                            student.person.last_name
+                          : student.person.username
+                      }
                       username={student.person.username}
                       setStudents={setStudents}
                       students={students}
@@ -241,9 +251,13 @@ export default function Students() {
                   return (
                     <WaitingCard
                       key={idx}
-                      name={deactivatedStudent.person?.first_name?.length > 0
-                          ? deactivatedStudent.person.first_name + " " + deactivatedStudent.person.last_name
-                          : deactivatedStudent.person.username}
+                      name={
+                        deactivatedStudent.person?.first_name?.length > 0
+                          ? deactivatedStudent.person.first_name +
+                            " " +
+                            deactivatedStudent.person.last_name
+                          : deactivatedStudent.person.username
+                      }
                       username={deactivatedStudent.person.username}
                       setStudents={setStudents}
                       students={students}
@@ -259,7 +273,11 @@ export default function Students() {
               title={isStudentsDisplayed ? "deactivatedStudents" : "students"}
               showButton
               onClick={showDeactivatedStudents}
-              length={isStudentsDisplayed ? deactivatedStudents.length : students.length}
+              length={
+                isStudentsDisplayed
+                  ? deactivatedStudents.length
+                  : students.length
+              }
             />
           </AddParticipantContainer>
         </ContentContainer>
