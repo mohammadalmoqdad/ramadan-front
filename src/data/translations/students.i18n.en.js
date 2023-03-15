@@ -5,4 +5,9 @@ export default {
   waitingForApproval: "Waiting For Approval ",
   rejectedParticipants: "Rejected Participants",
   show: "Show",
+  deactivate: "Deactivate",
+  "set-admin": "Set Admin",
+  "set-super-admin": "Set Super Admin",
+  "change-password": "Change Password",
+  "enter-new-password": "Enter New Password",
 };

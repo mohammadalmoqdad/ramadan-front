@@ -7,6 +7,20 @@ export default styled.div`
   width: 100%;
   height: 100%;
   gap: 12px;
+  .more-button {
+    fill: ${colors.red};
+    height: 50px;
+    width: 50px;
+    margin: 5px 5px;
+    padding-top: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+      height: 60px;
+      width: 60px;
+      margin: 0;
+    }
+  }
 `;
 
 export const RowContainer = styled.div`
@@ -74,7 +88,7 @@ export const ShortedName = styled.div`
   align-self: center;
 `;
 
-export const DeleteButton = styled.button`
+export const CardButton = styled.button`
   background-color: rgba(255, 83, 103, 0.12);
   color: #ff5367;
   border-radius: 18px;
