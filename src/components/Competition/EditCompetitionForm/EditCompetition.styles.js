@@ -49,6 +49,7 @@ export const TypeSpace = styled.div`
   height: auto;
   background: #f9eaea;
   border-radius: 12px;
+  margin-bottom: ${(props) => (props.inside ? "20px" : "")};
 
   @media (max-width: 900px) {
   }
@@ -57,6 +58,28 @@ export const TypeSpace = styled.div`
     width: 180px;
   }
 `;
+
+// New Content
+export const TextAreaSpace = styled.textarea`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: none;
+  padding: 24px;
+  width: 250px;
+  height: 300px;
+  background: #f9eaea;
+  border-radius: 12px;
+  text-align: start;
+
+  @media (max-width: 900px) {
+  }
+  @media (max-width: 500px) {
+    flex-direction: column;
+    width: 180px;
+  }
+`;
+//
 
 export const ParticipantsMember = styled(DefaultParticipantsMember)`
   /* height: 27rem; */
@@ -122,6 +145,7 @@ export const ButtonStyle = styled.div`
   line-height: 20px;
   margin: auto;
   margin-top: 1rem;
+  cursor: pointer;
   color: #000000;
   @media (max-width: 34.375rem) {
     width: 100px;

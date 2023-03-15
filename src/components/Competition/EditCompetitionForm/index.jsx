@@ -38,7 +38,35 @@ import CompositionDefault, {
   ButtonStyle,
   ReadOnly,
   SeeAllP,
+  TextAreaSpace,
 } from "./EditCompetition.styles";
+
+import Announcement from "./Announcement";
+
+// dummy data
+
+const Announcements = [
+  {
+    id: "announc1",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    date: "17/04/2021",
+  },
+  {
+    id: "announc2",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    date: "14/05/2021",
+  },
+  {
+    id: "announc3",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    date: "12/05/2021",
+  },
+  {
+    id: "announc4",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    date: "11/03/2021",
+  },
+];
 
 export default function EditCompetitionForm(props) {
   const [name, setName] = useState("");
@@ -49,6 +77,8 @@ export default function EditCompetitionForm(props) {
   const [messages, setMessages] = useState([]);
   const [classColor, setClassColor] = useState("");
   const [isSemiColonExists, setSemiColonExists] = useState(false);
+
+  //
 
   useEffect(() => {
     let competition = props.competitions[0];
@@ -194,7 +224,6 @@ export default function EditCompetitionForm(props) {
               Type for participants
             </ParticipantsTitelsAtHome>
             <Br />
-
             <TypeSpace>
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam
               cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at,
@@ -224,7 +253,16 @@ export default function EditCompetitionForm(props) {
           <ParticipantsNumbers>
             <ParticipantsTitelsAtHome>Click to edit</ParticipantsTitelsAtHome>
             <OverflowScrolling>
-              <TypeSpace>
+              {Announcements && Announcements.length ? (
+                <div>
+                  {Announcements.map((announcement) => (
+                    <Announcement announcement={announcement} />
+                  ))}
+                </div>
+              ) : (
+                <TextAreaSpace>No Announcment</TextAreaSpace>
+              )}
+              {/* <TypeSpace>
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam
                 cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum
                 at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent
@@ -244,7 +282,7 @@ export default function EditCompetitionForm(props) {
                 vulputate aliquam dui.
                 <PublishedDate>published: 17/1/2023</PublishedDate>
                 <ButtonStyle>Delete</ButtonStyle>
-              </TypeSpace>
+              </TypeSpace> */}
             </OverflowScrolling>
           </ParticipantsNumbers>
         </ParticipantsMember>
