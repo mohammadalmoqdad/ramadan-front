@@ -215,7 +215,7 @@ export default function AddGroupForm(props) {
       <DivTxtField>
         <Span />
         <FormInput
-          placeholder={t("new-group-name")}
+          placeholder={t("enter-group-name")}
           value={groupName}
           onChange={handleGroupNameChange}
           type="text"

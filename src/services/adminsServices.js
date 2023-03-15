@@ -6,7 +6,7 @@ export const retrieveAdmins = (
   faiCallback,
   searchQuery = ""
 ) => {
-  const url = "/admin-panel/contest-people/?contest_role=2&contest_role=3";
+  let url = "/admin-panel/contest-people/?contest_role=2&contest_role=3";
   if (searchQuery) url += `&search=${searchQuery}`;
 
   doRequest(

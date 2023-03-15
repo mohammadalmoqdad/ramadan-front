@@ -4,4 +4,7 @@ export default {
   deactivate: "Deactivate",
   moderators: "Moderators",
   search: "Search",
+  "add-admin": "Add...",
+  "add-as-admin": "Add as admin",
+  "add-as-super-admin": "Add as super admin"
 };
