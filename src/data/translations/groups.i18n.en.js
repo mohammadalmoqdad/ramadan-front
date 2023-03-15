@@ -13,13 +13,13 @@ export default {
     "Please remove or move students to another group before deleting this group",
   "no-groups": "You Don't have Groups Yet",
   // add group Form
-  "select-moderator": "You should Select Moderator to this Group",
+  "should-select-moderator": "You should Select Moderator to this Group",
   "add-group-success": "The Group was Added Successfully",
   "group-not-add": "No group has been added",
   "suggestion-students": "Student names can be added",
   "no-students": "There are no students",
   "select-moderator": "Select the Moderator",
-  "new-group-name": "Enter the New Group Name",
+  "enter-group-name": "Enter the New Group Name",
   "group-name-condition":
     "The Group Name must be less than or equal 30 charachters",
   adve: "Advertisement",
@@ -31,7 +31,7 @@ export default {
   "group-edit-success": "The group has been modified successfully",
   "group-edit-failed": "The group has not been modified",
   "selected-group": "The Group To Be Modified",
-  "new-group-name": "Enter the New Group Name",
+  "enter-new-group-name": "Enter the New Group Name",
   "edit-btu": "Edit Group",
   "edit-cancle": "Cancel Edit Group",
 };
