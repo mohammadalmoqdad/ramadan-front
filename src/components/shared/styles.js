@@ -79,7 +79,8 @@ export const FormInput = styled.input`
   outline: none;
   text-align: right;
   color: #213c64;
-  border-bottom: 2px solid #2691d9;
+  /* border-bottom: 2px solid #2691d9; */
+  border-bottom: 1px solid ${colors.darkGrey};
   :focus {
     transition: 0.1s;
     border-bottom: 3px solid orange;
@@ -113,10 +114,12 @@ export const InputSubmit = styled.button`
   }
   height: 3.1rem;
   border: 1px;
-  background: linear-gradient(120deg, #2980b9, #2980b9);
+  /* background: linear-gradient(120deg, #2980b9, #2980b9); */
+  background: ${colors.yellow};
   border-radius: 1.5rem;
   font-size: 1rem;
-  color: #e9f4fb;
+  /* color: #e9f4fb; */
+  color: ${colors.black};
   cursor: pointer;
   outline: none;
   margin-top: 1rem;
@@ -211,7 +214,7 @@ export const DivForDropdownListItem = styled.div`
   padding: 1rem;
   text-align: center;
   align-items: flex-start;
-  border-bottom: 1px solid silver;
+  /* border-bottom: 1px solid silver; */
 `;
 
 export const H3Pass = styled.h3`
