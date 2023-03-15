@@ -24,6 +24,7 @@ import MainContainer, {
   EditButton,
   DeleteButton,
   InnerText,
+  ButtonsContainer,
 } from "./ContestCriteria.styled";
 
 import MyOngoingContestTab from "components/shared/MyOngoingContestTab";
@@ -194,7 +195,7 @@ export default function ContestCriteria() {
             <HeadText>{t("sections")}</HeadText>
             <div>
               <AddButton onClick={handleAddSection}>
-                {t("add-section")}
+                {t("add-section")} +
               </AddButton>
               {showAddSectionModal && (
                 <AddSectionForm
@@ -211,10 +212,14 @@ export default function ContestCriteria() {
               <Section key={index}>
                 <InnerText>{section.item}</InnerText>
                 <div>
-                  <EditButton>{t("edit")}</EditButton>
-                  <DeleteButton onClick={(e) => handleSectionDelete(e, index)}>
-                    {t("delete")}
-                  </DeleteButton>
+                  <ButtonsContainer>
+                    <EditButton>{t("edit")}</EditButton>
+                    <DeleteButton
+                      onClick={(e) => handleSectionDelete(e, index)}
+                    >
+                      {t("delete")}
+                    </DeleteButton>
+                  </ButtonsContainer>
                   {showSectionModal && deleteIndex === index && (
                     <PopUpModal
                       key={index}
@@ -242,7 +247,7 @@ export default function ContestCriteria() {
             <HeadText>{t("criterias")}</HeadText>
             <div>
               <AddButton onClick={handleAddCriteria}>
-                {t("add-criteria")}
+                {t("add-criteria")} +
               </AddButton>
               {showAddCriteriaModal && (
                 <AddCriteriaForm
@@ -259,10 +264,14 @@ export default function ContestCriteria() {
               <Criteria key={index}>
                 <InnerText>{criteria.item}</InnerText>
                 <div>
-                  <EditButton>{t("edit")}</EditButton>
-                  <DeleteButton onClick={(e) => handleCriteriaDelete(e, index)}>
-                    {t("delete")}
-                  </DeleteButton>
+                  <ButtonsContainer>
+                    <EditButton>{t("edit")}</EditButton>
+                    <DeleteButton
+                      onClick={(e) => handleCriteriaDelete(e, index)}
+                    >
+                      {t("delete")}
+                    </DeleteButton>
+                  </ButtonsContainer>
                   {showCriteriaModal && deleteIndex === index && (
                     <PopUpModal
                       key={index}
