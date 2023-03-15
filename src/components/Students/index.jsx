@@ -38,6 +38,7 @@ import StudentsContainer, {
   GoBtn,
 } from "./Students.styles";
 import ParticipantCard from "./ParticipantCard";
+import WaitingCard from "./WaitingCard";
 import Participants from "./ParticipantsMember";
 
 export default function Students() {
@@ -99,31 +100,31 @@ export default function Students() {
       {
         name: "Ammar Jalal",
         date: "Jun 16th, 2022 ",
-        button: t("delete"),
+
         rank: 1,
       },
       {
         name: "Mohammad Ayed",
         date: "Nov 5th, 2022 ",
-        button: t("delete"),
+
         rank: 2,
       },
       {
         name: "Ahmad Aburabee",
         date: "Aug 7th, 2022 ",
-        button: t("delete"),
+
         rank: 3,
       },
       {
         name: "Osama Ali",
         date: "Dec 9th, 2022 ",
-        button: t("delete"),
+
         rank: 4,
       },
       {
         name: "Qais samer",
         date: "Jan 4th, 2023 ",
-        button: t("delete"),
+
         rank: 5,
       },
     ],
@@ -131,19 +132,18 @@ export default function Students() {
       {
         name: "Odai ahmad",
         date: "Jun 16th, 2022 ",
-        button: t("delete"),
+
         rank: 8,
       },
       {
         name: "mustafa ali",
         date: "Nov 5th, 2022 ",
-        button: t("delete"),
+
         rank: 9,
       },
       {
         name: "waleed omar",
         date: "Aug 7th, 2022 ",
-        button: t("delete"),
         rank: 10,
       },
     ];
@@ -235,7 +235,6 @@ export default function Students() {
                     <ParticipantCard
                       key={idx}
                       name={item.name}
-                      button={item.button}
                       date={item.date}
                       rank={item.rank}
                     />
@@ -243,10 +242,9 @@ export default function Students() {
                 })
               : watingForAprovalMembers.map((item, idx) => {
                   return (
-                    <ParticipantCard
+                    <WaitingCard
                       key={idx}
                       name={item.name}
-                      button={item.button}
                       date={item.date}
                       rank={item.rank}
                     />
