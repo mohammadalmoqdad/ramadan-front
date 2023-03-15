@@ -49,8 +49,8 @@ export const retrieveCompetitions = (successCallback, faiCallback) => {
         true);
 };
 
-export const retrieveTopStudents = (successCallback, faiCallback) => {
-    doRequest(null, "/admin-panel/top_members",
+export const retrieveTopMembers = (successCallback, faiCallback) => {
+    doRequest(null, "/top-members/",
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,

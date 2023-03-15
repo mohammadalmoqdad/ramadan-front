@@ -8,6 +8,7 @@ export const colors = {
   darkGrey: "#A79F97",
   yellow: "#fdd561",
   red: "#FF5367",
+  lightRed: "rgba(255, 83, 103, 0.12)",
   // Example of how the degrees of the colors can be added too:
   //   green:{
   //     0: 'a very light degree of the most light green'

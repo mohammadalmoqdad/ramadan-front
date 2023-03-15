@@ -3,10 +3,16 @@ import { colors } from "styles";
 
 // main container
 export default styled.div`
-  display: flex;
   flex-direction: column;
-  max-width: 80rem;
+  display: flex;
+  align-items: center;
+  padding: 24px;
   margin: auto;
+  width: 90%;
+  max-width: 59.375rem;
+  justify-content: space-between;
+  @media (max-width: 37.5625rem) {
+  }
 `;
 
 export const SectionAndCriteriaContainer = styled.div`
@@ -100,19 +106,34 @@ export const AddButton = styled.button`
 `;
 
 export const EditButton = styled.button`
-  padding: 0.875rem 1.125rem;
+  padding: 0.6rem 0.8rem;
   border-radius: 1.125rem;
-  margin: 0.5rem;
-  background-color: ${colors.warmWheat};
-  color: ${colors.red};
+  background-color: ${colors.yellow};
+  color: ${colors.black};
+  height: 3rem;
+
+  @media (max-width: 550px) {
+    padding: 0.5rem 1rem;
+  }
 `;
 
 export const DeleteButton = styled.button`
-  padding: 0.875rem 1.125rem;
+  padding: 0.6rem 0.8rem;
   border-radius: 1.125rem;
-  background-color: ${colors.warmWheat};
+  background-color: ${colors.lightRed};
   color: ${colors.red};
-  /* @media (max-width: 550px) {
-    max-width: 50%;
-  } */
+  height: 3rem;
+
+  @media (max-width: 550px) {
+    padding: 0.5rem;
+  }
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  @media (max-width: 550px) {
+    flex-direction: var(--flex-direction);
+  }
 `;

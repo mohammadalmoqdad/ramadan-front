@@ -4,14 +4,14 @@ export default styled.div`
   display: flex;
   margin: auto;
   width: auto;
-  /* height: auto; */
+  margin-top: 2rem;
 
-  background: #fbf9f7;
   border-radius: 1.5rem;
+  justify-content: center;
 
   max-width: 59.3125rem;
-  @media (max-width: 90.25rem) {
-    width: auto;
+  @media (max-width: 500px) {
+    width: 100%;
   }
 `;
 
@@ -22,18 +22,15 @@ export const TopRanksAndParticipants = styled.div`
   padding: 0rem;
   gap: 2.625rem;
   margin: auto;
-  /* margin-left: 1.5rem;
-margin-right: 1.5rem; */
+
   margin: 1.5rem;
   width: 100%;
-  /* height: 8.625rem; */
   max-width: 59.3125rem;
 
   @media (max-width: 90.25rem) {
     width: auto;
     align-items: flex-start;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    gap: 1.625rem;
   }
 
   @media (max-width: 62.5rem) {
@@ -55,11 +52,11 @@ export const ParticipantsMember = styled.div`
   padding: 0rem;
   gap: 0.75rem;
 
-  width: 18.375rem;
+  width: 100%;
   height: auto;
 
   @media (max-width: 31.25rem) {
-    width: 12.5rem;
+    width: 100%;
   }
 `;
 
@@ -81,8 +78,6 @@ export const TopRanksSection = styled.div`
   padding: 0rem;
   gap: 0.75rem;
 
-  /* width: 35.5rem; */
-  /* height: 8.625rem; */
   height: auto;
 
   @media (max-width: 87.5rem) {
@@ -100,12 +95,14 @@ export const ParticipantsNumbers = styled.div`
   padding: 1.5rem;
   gap: 1.5rem;
   width: 100%;
-  background: #f9eaea;
+  /* background: #f9eaea; */
+  background: #fbf9f7;
+
   border-radius: 1.5rem;
   max-width: 35.4375rem;
-  justify-content: flex-start;
+  justify-content: space-between;
 
-  @media (max-width: 31.25rem) {
+  @media (max-width: 500px) {
     padding: 0.75rem;
     gap: 0.125rem;
     justify-content: center;
@@ -113,7 +110,6 @@ export const ParticipantsNumbers = styled.div`
 `;
 
 export const ParticipantsTitelsAtHome = styled.div`
-  width: 6.25rem;
   height: 1.1875rem;
 
   font-family: "Montserrat";
@@ -128,8 +124,7 @@ export const ParticipantsTitelsAtHome = styled.div`
   }
 `;
 
-export const SeeAll = styled.a`
-  text-decoration: none;
+export const SeeAll = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -190,6 +185,8 @@ export const MemberImgsAndNumNumbers = styled.div`
   align-items: center;
   padding: 0rem;
   gap: 0.75rem;
+  flex-direction: row-reverse;
+  justify-content: space-around;
 
   width: 8.875rem;
   height: 2.25rem;
@@ -273,112 +270,13 @@ export const Top3Rank = styled.div`
   }
 `;
 
-export const ParticipantsNumbersRanks = styled.div`
-  display: flex;
-  flex-direction: row;
-  /* align-items: center; */
-  padding: 0rem;
-  @media (max-width: 87.5rem) {
-    flex-direction: column;
-    /* width: 100%; */
-    align-items: flex-start;
-    /* margin: auto; */
-  }
+export const ShowButton = styled.button`
+  background-color: rgba(255, 83, 103, 0.12);
+  color: #ff5367;
+  border-radius: 18px;
+  padding: 14px 18px;
+  justify-content: flex-end;
   @media (max-width: 31.25rem) {
-    justify-content: center;
-  }
-`;
-
-export const Top3RankDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0rem;
-  gap: 0.75rem;
-
-  width: 11.8125rem;
-  /* height: 3.75rem; */
-
-  @media (max-width: 87.5rem) {
-    margin-top: 0.3125rem;
-    width: auto;
-  }
-  @media (max-width: 31.25rem) {
-    /* gap: .125rem; */
-  }
-`;
-
-export const Top1Img = styled.div`
-  background: #fdd561;
-  border-radius: 0.75rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 1rem;
-  line-height: 1.0625rem;
-  text-align: center;
-
-  color: #000000;
-  width: 3.75rem;
-  height: 3.75rem;
-  @media (max-width: 87.5rem) {
-    width: 2.25rem;
-    height: 2.25rem;
-    font-size: 0.875rem;
-    font-size: 0.875rem;
-  }
-`;
-
-export const Top1Name = styled.div`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 1rem;
-  line-height: 1.25rem;
-
-  color: #000000;
-  width: 7.3125rem;
-  @media (max-width: 87.5rem) {
-    width: auto;
-  }
-`;
-
-export const Top2Name = styled.div`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 0.875rem;
-  line-height: 1.0625rem;
-  /* identical to box height */
-  width: 7.3125rem;
-
-  color: #000000;
-
-  @media (max-width: 87.5rem) {
-    /* width: auto; */
-  }
-`;
-
-export const Top2Img = styled.div`
-  width: 2.25rem;
-  height: 2.25rem;
-  background: #fdd561;
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 0.875rem;
-  line-height: 1.0625rem;
-  text-align: center;
-  color: white;
-  @media (max-width: 37.5625rem) {
+    padding: 10px 16px;
   }
 `;
