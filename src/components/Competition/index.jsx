@@ -46,7 +46,7 @@ export default function Competition() {
 
   return (
     <>
-      <MyOngoingContestTab />
+      <MyOngoingContestTab competition={true} />
       <ContestMembers />
       <EditCompetitionForm
         competitions={competitions}

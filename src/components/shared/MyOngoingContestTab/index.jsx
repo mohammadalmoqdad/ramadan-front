@@ -1,89 +1,167 @@
-import React, { useEffect, useState } from "react";
-import OpenDropDown from "../../../assets/icons/Shared/OpenDropDown.svg";
-import MyOngoingContestsImg from "../../../assets/icons/Shared/MyOngoingContest.svg";
-import CopyIcon from "../../../assets/icons/Shared/CopyIcon.svg";
+import { useState, useEffect } from "react";
 
-import MyOngoingContest, {
-  MyOngoingContestIn,
-  DropdownIcon,
-  DropDownContainer,
-  DropDownHeader,
-  DropDownListContainer,
-  DropDownList,
-  ListItem,
-  MyOngoingContests,
-  MyOngoingContestsIcon,
-  MyOngoingContestsDescribtion,
-  MyOngoingContestsTitel,
-  MyOngoingContestsCodes,
-  MyOngoingContestsLabel,
-  ContestsCode,
-  ContestsCopyIcon,
-  MyOngoingContestsLabels,
-} from "./MyOngoingContestTab.styles";
+import MyOngoingContestItem from "./MyOngoingContestItem"; // contest item
+import {
+  MainContainer,
+  NormalDiv,
+  OpenIconContainer,
+  FormsContainer,
+  JoinAndCreateInputContainer,
+  DefaultForm,
+  SearchContainer,
+  ActionBtn,
+} from "./MyOngoingContestTab.styles"; // styled componenets
+import { ReactComponent as OpenDropDown } from "../../../assets/icons/Shared/OpenDropDown.svg"; // icon
 
-function MyOngoingContestTab() {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+// Dummy Data
+const DummyContests = [
+  {
+    id: "cont1",
+    name: "Contest 1",
+    enrollmentkey: "6F8E3W",
+    isActive: false,
+  },
+  {
+    id: "cont2",
+    name: "Contest 2",
+    enrollmentkey: "4F6E3W",
+    isActive: false,
+  },
+  {
+    id: "cont3",
+    name: "Contest 3",
+    enrollmentkey: "8W8E3S",
+    isActive: true,
+  },
+  {
+    id: "cont4",
+    name: "Contest 4",
+    enrollmentkey: "3R8D3W",
+    isActive: false,
+  },
+];
+//
 
-  const toggling = () => setIsOpen(!isOpen);
+function MyOngoingContestTab({ competition }) {
+  const [contests, setContests] = useState([]);
+  const [arrangmentContests, setArrangmentContests] = useState([]);
+  const [openContests, setOpenContests] = useState(false);
+  const [containerHeight, setContainerHeight] = useState("");
+  const [inputsHeight, setInputsHeight] = useState("");
 
-  const options = ["Mangoes", "Apples", "Oranges"];
-
-  const onOptionClicked = (value) => () => {
-    setSelectedOption(value);
-    setIsOpen(false);
-    console.log(selectedOption);
+  const [selectChange, setSelectChange] = useState(false);
+  //
+  const togglingContestHandler = () => {
+    setOpenContests((prevState) => !prevState);
   };
+  const changeSelectHandler = () => {
+    // console.log("press-Select");
+    setSelectChange((prevState) => !prevState);
+  };
+  //
+  const createContestHandler = (e) => {
+    e.preventDefault();
+    //
+  };
+  const joinContestHandler = (e) => {
+    e.preventDefault();
+    //
+  };
+  //
+
+  // get Contests from server
+  const getContestFromServer = () => {
+    setContests((prevState) => DummyContests);
+  };
+
+  useEffect(() => {
+    if (contests.length > 0) {
+      setContainerHeight(
+        (prevState) => (contests.length * 120 + 250).toString() + "px"
+      );
+      setInputsHeight((prevState) => (contests.length * 120).toString() + "px");
+      // reArrangment Contsets depending on isActive key (true Or false)
+      const firstItem = contests.filter((item) => item.isActive);
+      const completeContests = contests.filter((item) => !item.isActive);
+      //
+      setArrangmentContests((prevState) => [...firstItem, ...completeContests]);
+      //
+    } else {
+      // this condition to create One Empty item
+      setContainerHeight((prevState) => (120 + 250).toString() + "px");
+      setInputsHeight((prevState) => "120px");
+    }
+    // console.log("re_arrangment");
+  }, [contests]);
+
+  useEffect(() => {
+    // one excuation when component render Or when select button pressed
+    getContestFromServer();
+    // console.log("re_excute");
+  }, [selectChange]);
+  //
   return (
-    <MyOngoingContest>
-      <MyOngoingContestIn>
-        <MyOngoingContests>
-          <MyOngoingContestsIcon src={MyOngoingContestsImg} Alt="" />
-        </MyOngoingContests>
+    <MainContainer
+      openContests={openContests}
+      containerHeight={containerHeight}
+    >
+      <OpenIconContainer
+        position="absolute"
+        top="40px"
+        right="40px"
+        openContests={openContests} // to rotate icon
+        onClick={togglingContestHandler}
+      >
+        <OpenDropDown />
+      </OpenIconContainer>
 
-        <MyOngoingContestsDescribtion>
-          <MyOngoingContestsTitel>My Ongoing Contest</MyOngoingContestsTitel>
+      {arrangmentContests && arrangmentContests.length > 0 ? (
+        <NormalDiv
+          position="absolute"
+          top="25px"
+          left="24px"
+          width="80%"
+          mobileChange={true}
+        >
+          {arrangmentContests.map((contest) => (
+            <MyOngoingContestItem
+              key={contest.id}
+              contest={contest}
+              onClickSelect={changeSelectHandler}
+            />
+          ))}
+        </NormalDiv>
+      ) : (
+        <NormalDiv position="absolute" top="25px" left="24px">
+          <MyOngoingContestItem contest="emptyContest" />
+        </NormalDiv>
+      )}
 
-          <MyOngoingContestsCodes>
-            <MyOngoingContestsLabels>
-              <MyOngoingContestsLabel>Enrollment key:</MyOngoingContestsLabel>
-              <ContestsCode>&nbsp; 6D7S87 &nbsp; </ContestsCode>
-              <ContestsCopyIcon src={CopyIcon} Alt="" />
-            </MyOngoingContestsLabels>
-
-            <MyOngoingContestsLabels>
-              <MyOngoingContestsLabel>Share link:</MyOngoingContestsLabel>
-              <ContestsCode>
-                &nbsp; wird.app/contest/6D7S87 &nbsp;
-              </ContestsCode>
-              <ContestsCopyIcon src={CopyIcon} Alt="" />
-            </MyOngoingContestsLabels>
-          </MyOngoingContestsCodes>
-        </MyOngoingContestsDescribtion>
-      </MyOngoingContestIn>
-
-      {/* <DropdownIcon src={OpenDropDown} Alt=""> */}
-      <DropDownContainer>
-        <DropDownHeader onClick={toggling}>
-          {<DropdownIcon src={OpenDropDown} Alt="" />}
-          {/* {selectedOption || "Mangoes"} */}
-        </DropDownHeader>
-
-        {isOpen && (
-          <DropDownListContainer>
-            <DropDownList>
-              {options.map((option) => (
-                <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
-                  {option}
-                </ListItem>
-              ))}
-            </DropDownList>
-          </DropDownListContainer>
-        )}
-      </DropDownContainer>
-      {/* </DropdownIcon> */}
-    </MyOngoingContest>
+      <NormalDiv
+        position="absolute"
+        top={inputsHeight}
+        left="auto"
+        width="95%"
+        competition={competition} // if open from competition ::> change the style (width)
+      >
+        <FormsContainer>
+          {/* Create Contest Form  */}
+          <JoinAndCreateInputContainer>
+            <DefaultForm>
+              <SearchContainer placeholder="New Contest" type="text" />
+            </DefaultForm>
+            <ActionBtn onClick={createContestHandler}>Create</ActionBtn>
+          </JoinAndCreateInputContainer>
+          {/* Join Contest Form  */}
+          <JoinAndCreateInputContainer>
+            <DefaultForm>
+              <SearchContainer placeholder="Join Contest" type="text" />
+            </DefaultForm>
+            <ActionBtn onClick={joinContestHandler}>Join</ActionBtn>
+          </JoinAndCreateInputContainer>
+        </FormsContainer>
+      </NormalDiv>
+    </MainContainer>
   );
 }
 export default MyOngoingContestTab;
