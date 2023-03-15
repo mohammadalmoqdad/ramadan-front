@@ -333,7 +333,7 @@ export default function EditGroupForm(props) {
       <DivTxtField>
         <Span />
         <FormInput
-          placeholder={t("new-group-name")}
+          placeholder={t("enter-new-group-name")}
           value={groupName}
           onChange={handleGroupNameChange}
           type="text"
