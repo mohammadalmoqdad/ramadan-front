@@ -42,37 +42,36 @@ import { colors } from "styles";
 import { useTranslation } from "react-i18next";
 
 // Dummy Data Content
-// const DummyGroups = [
-//   {
-//     id: "g1",
-//     members_count: 30,
-//     admins_count: 3,
-//     name: "Group1",
-//     created_at: "2023-01-01T23:29:58.319417Z",
-//   },
-//   {
-//     id: "g2",
-//     members_count: 24,
-//     admins_count: 2,
-//     name: "Group2",
-//     created_at: "2023-02-01T23:29:58.319417Z",
-//   },
-//   {
-//     id: "g3",
-//     members_count: 35,
-//     admins_count: 3,
-//     name: "Group3",
-//     created_at: "2023-04-01T23:29:58.319417Z",
-//   },
-//   {
-//     id: "g4",
-//     members_count: 50,
-//     admins_count: 4,
-//     name: "Group4",
-//     created_at: "2023-08-01T23:29:58.319417Z",
-//   },
-// ];
-//
+const DummyGroups = [
+  {
+    id: "g1",
+    members_count: 30,
+    admins_count: 3,
+    name: "Group1",
+    created_at: "2023-01-01T23:29:58.319417Z",
+  },
+  {
+    id: "g2",
+    members_count: 24,
+    admins_count: 2,
+    name: "Group2",
+    created_at: "2023-02-01T23:29:58.319417Z",
+  },
+  {
+    id: "g3",
+    members_count: 35,
+    admins_count: 3,
+    name: "Group3",
+    created_at: "2023-04-01T23:29:58.319417Z",
+  },
+  {
+    id: "g4",
+    members_count: 50,
+    admins_count: 4,
+    name: "Group4",
+    created_at: "2023-08-01T23:29:58.319417Z",
+  },
+];
 
 export default function Groups() {
   const [admins, setAdmins] = useState([]);
@@ -147,7 +146,7 @@ export default function Groups() {
     retrieveGroups(
       (res) => {
         setGroups(res.data.results);
-        // setGroups(DummyGroups); // dummy data to styling
+        setGroups(DummyGroups); // dummy data to styling
       },
       (err) => {
         console.log(
@@ -159,6 +158,7 @@ export default function Groups() {
 
   useEffect(() => {
     if (students && students.length > 0) {
+      console.log(students);
       students.map(
         (student) =>
           (student["full_name"] = student.first_name + " " + student.last_name)
@@ -278,7 +278,9 @@ export default function Groups() {
 
         {/* Group Title Line  */}
         <GroupsTitleLine>
-          <BoldText>{groups.length} Groups</BoldText>
+          <BoldText>
+            {groups.length} {t("groups")}
+          </BoldText>
           <ActionButton
             name="add"
             color="#FF5367"
@@ -290,7 +292,11 @@ export default function Groups() {
           </ActionButton>
 
           {addGroupFormOpen && (
-            <AddEditFormContainer top="55px" right="-35px" rightMobile="10px">
+            <AddEditFormContainer
+              top="3.4375rem"
+              right="-2.1875rem"
+              rightMobile="0.625rem"
+            >
               <AddGroupForm
                 students={students}
                 admins={admins}
@@ -413,7 +419,7 @@ export default function Groups() {
             </GroupCard>
           ))
         ) : (
-          <Tabs labels={[t("groups")]} contents={[<H5>{t("no-groups")}</H5>]} />
+          <H5>{t("no-groups")}</H5>
         )}
       </GroupsContentDefault>
 

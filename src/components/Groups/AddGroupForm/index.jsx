@@ -19,7 +19,7 @@ import Multiselect from "multiselect-react-dropdown";
 import { DropdownList } from "../../Admins/EditAdminForm/EditAdminForm.styles";
 import { DivPass } from "../../Admins/Admins.styles";
 import { addGroup } from "../../../services/groupsServices";
-
+import InputField from "../../ContestCriteria/InputField";
 import { useTranslation } from "react-i18next";
 
 export default function AddGroupForm(props) {
@@ -162,8 +162,8 @@ export default function AddGroupForm(props) {
     <Form onSubmit={handleAddGroupSubmit}>
       {props.students && props.students.length > 0 ? (
         <DropdownDiv className="DropdownDiv">
+          {/* <Span>{t("suggestion-students")}</Span> */}
           <DropdownDivSelect>
-            <Span>{t("suggestion-students")}</Span>
             <DivMultiselect>
               <Multiselect
                 onSelect={handleUpdateSelectedStudentsChange}
@@ -171,9 +171,9 @@ export default function AddGroupForm(props) {
                 options={props.students}
                 ref={multiselectRef}
                 displayValue="full_name"
-                placeholder=""
                 popupHeight="1rem"
                 popupwidth="5rem"
+                placeholder={t("suggestion-students")}
               />
             </DivMultiselect>
           </DropdownDivSelect>

@@ -16,7 +16,7 @@ export default {
   "should-select-moderator": "You should Select Moderator to this Group",
   "add-group-success": "The Group was Added Successfully",
   "group-not-add": "No group has been added",
-  "suggestion-students": "Student names can be added",
+  "suggestion-students": "Select group's students",
   "no-students": "There are no students",
   "select-moderator": "Select the Moderator",
   "enter-group-name": "Enter the New Group Name",

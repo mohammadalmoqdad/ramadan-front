@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Background = styled.div`
   top: 0px;
   right: 0;
@@ -45,7 +44,6 @@ export const Title = styled.div`
   text-align: center;
   margin-top: 10px;
   margin-bottom: 20px;
-
 `;
 
 export const Body = styled.div`
@@ -62,7 +60,7 @@ export const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-   #deleteBtn {
+  #deleteBtn {
     background-color: crimson;
   }
 `;
@@ -79,4 +77,3 @@ export const FooterBtn = styled.button`
   font-size: 20px;
   cursor: pointer;
 `;
-

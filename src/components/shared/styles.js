@@ -77,9 +77,8 @@ export const FormInput = styled.input`
   border: none;
   background: none;
   outline: none;
-  text-align: right;
+  text-align: var(--text-align);
   color: #213c64;
-  /* border-bottom: 2px solid #2691d9; */
   border-bottom: 1px solid ${colors.darkGrey};
   :focus {
     transition: 0.1s;
@@ -141,11 +140,10 @@ export const DropdownDiv = styled.div`
 
 export const DropdownDivSelect = styled.div`
   padding: 1rem;
-  border-radius: 6px;
+  border-radius: 1rem;
   background-color: white;
   margin-top: 3rem;
   display: flex;
-  box-shadow: 1px 3px 12px 0px #0000007a;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -164,7 +162,7 @@ export const DivForDropdownList = styled.div`
   font-family: "Noto Kufi Arabic", sans-serif;
   color: #213c64;
   font-size: 1.3rem;
-  box-shadow: 1px 3px 12px 0px #0000007a;
+  /* box-shadow: 1px 3px 12px 0px #0000007a; */
   border-radius: 4px;
   background-color: white;
 `;
@@ -181,7 +179,7 @@ export const DropdownListStanderd = styled.select`
   padding: 1rem;
   margin-top: 1rem;
   border-radius: 4px;
-  box-shadow: 1px 1px 2px 0px #0000007a;
+  /* box-shadow: 1px 1px 2px 0px #0000007a; */
   outline: none;
   border: none;
   background: linear-gradient(120deg, #2980b9, #2980b9);
@@ -372,7 +370,7 @@ export const DropdownList = styled.select`
   padding: 1rem;
   border-radius: 4px;
   background-color: white;
-  box-shadow: 1px 3px 12px 0px #0000007a;
+  /* box-shadow: 1px 3px 12px 0px #0000007a; */
   :hover {
     outline: none;
     border: none;
@@ -401,7 +399,7 @@ export const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0.5rem 0.5rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); */
 `;
 
 export const Logo = styled.h1`
@@ -450,11 +448,11 @@ export const ButtonLogout = styled.button`
   margin-left: 2rem;
   border: 2px solid orange;
   transition: all 0.3s ease 0s;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2); */
   :hover {
     background: #2980b9;
     border: 3px solid orange;
     transition: 0.3s;
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3); */
   }
 `;

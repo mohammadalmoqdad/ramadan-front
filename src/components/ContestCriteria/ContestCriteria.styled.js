@@ -69,6 +69,7 @@ export const Criteria = styled.div`
   align-items: center;
   flex-direction: var(--flex-direction);
   margin: 0.5rem 0;
+  gap: 0.5rem;
   flex-wrap: wrap;
   @media (max-width: 550px) {
     flex-direction: column;
@@ -86,6 +87,8 @@ export const Section = styled.div`
   flex-direction: var(--flex-direction);
   margin: 0.5rem 0;
   flex-wrap: wrap;
+  gap: 0.5rem;
+
   @media (max-width: 550px) {
     flex-direction: column;
   }
@@ -97,6 +100,7 @@ export const Wrapper = styled.div``;
 export const InnerText = styled.p`
   margin: 0;
   font-weight: 600;
+  /* margin-bottom: 0.5rem; */
 `;
 
 export const AddButton = styled.button`
