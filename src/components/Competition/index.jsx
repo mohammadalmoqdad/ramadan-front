@@ -10,7 +10,7 @@ import Loader from "../Loader";
 
 import MyOngoingContestTab from "../shared/MyOngoingContestTab";
 import ContestMembers from "./ContestMembers";
-
+import ContestModeratorDefault from "../ContestModerator/ContestModerator.styles";
 export default function Competition() {
   const [competitions, setCompetitions] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -45,7 +45,7 @@ export default function Competition() {
   }
 
   return (
-    <>
+    <ContestModeratorDefault>
       <MyOngoingContestTab competition={true} />
       <ContestMembers />
       <EditCompetitionForm
@@ -68,6 +68,6 @@ export default function Competition() {
           ]}
         />
       </CompetitionContainer>
-    </>
+    </ContestModeratorDefault>
   );
 }

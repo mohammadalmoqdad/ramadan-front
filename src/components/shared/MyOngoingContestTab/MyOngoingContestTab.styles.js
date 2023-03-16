@@ -22,6 +22,7 @@ export const MyOngoingContestIn = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 50px;
+  width: 100%;
 
   @media (max-width: 37.5625rem) {
   }
@@ -197,7 +198,7 @@ export const MainContainer = styled.div`
 
 export const NormalDiv = styled.div`
   width: ${(props) => props.width};
-  width: ${(props) => (props.competition ? "80%" : "")};
+  width: ${(props) => (props.competition ? "90%" : "")};
   position: ${(props) => props.position};
   top: ${(props) => props.top};
   right: ${(props) => props.right};

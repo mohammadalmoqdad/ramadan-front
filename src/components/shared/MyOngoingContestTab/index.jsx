@@ -120,7 +120,7 @@ function MyOngoingContestTab({ competition }) {
           position="absolute"
           top="25px"
           left="24px"
-          width="80%"
+          width="83%"
           mobileChange={true}
         >
           {arrangmentContests.map((contest) => (
