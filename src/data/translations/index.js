@@ -11,8 +11,6 @@ import studentsI18nAr from "./students.i18n.ar";
 import contestCriteriaI18nEn from "./contestCriteria.i18n.en";
 import contestCriteriaI18nAr from "./contestCriteria.i18n.ar";
 
-console.log(loginEn);
-
 export default {
   en: {
     translation: {

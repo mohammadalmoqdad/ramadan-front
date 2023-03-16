@@ -14,7 +14,7 @@ export default styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 11px;
-  width: 360px;
+  width: 22.5rem;
 
   position: fixed;
   top: 50%;
@@ -24,7 +24,7 @@ export default styled.div`
 
   @media (max-width: 550px) {
     transform: translate(-50%, -50%);
-    gap: 5px;
+    gap: 0.3125rem;
     width: 300px;
   }
 `;
@@ -44,20 +44,19 @@ export const FixedTextContainer = styled.div`
 export const TextInputField = styled.input`
   outline: transparent;
   border: none;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   height: 2.5rem;
   width: 100%;
-  padding: 0 15px;
+  padding: 0 0.9375rem;
 `;
 
 export const DropDown = styled.select`
   outline: none;
   border: none;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   color: ${colors.black};
-  height: 2.5rem;
+  padding: 0.7rem;
   width: 100%;
-  padding: 0 15px;
 `;
 
 export const Option = styled.option``;
@@ -65,9 +64,9 @@ export const Option = styled.option``;
 export const AddButton = styled.button`
   background-color: ${colors.red};
   color: ${colors.white};
-  border-radius: 20px;
+  border-radius: 1.25rem;
   width: 100%;
-  padding: 5px;
+  padding: 0.3125rem;
   font-weight: bold;
 `;
 

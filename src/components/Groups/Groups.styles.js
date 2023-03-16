@@ -16,8 +16,10 @@ export const Span = styled.div`
 `;
 
 export const DropdownDivSelect = styled(DefaultDropdownDivSelect)`
-  margin-top: 1rem;
+  margin: 0 0 1rem 0;
   display: block;
+  border-radius: 1.25rem;
+  padding: 0;
 `;
 
 export const DropdownList = styled(DefaultDropdownList)`
@@ -29,22 +31,38 @@ export const DropdownList = styled(DefaultDropdownList)`
 export const I = styled.i``;
 
 export const DivMultiselect = styled.div`
-  margin-top: 1rem;
+  & .searchWrapper {
+    border: 1px solid ${colors.lightGrey};
+    border-radius: 1rem;
+    color: ${colors.darkGrey};
+  }
+  input {
+    padding: 0.5rem;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    text-align: var(--text-align);
+    margin: 0;
+  }
+  .optionListContainer ul {
+    /* border: none; */
+    height: 3rem;
+  }
 `;
 
 const Btn = styled.button`
   position: relative;
   float: right;
-  width: 30px;
-  height: 30px;
+  width: 1.875rem;
+  height: 1.875rem;
   @media (max-width: 400px) {
-    width: 22px;
-    height: 22px;
+    width: 1.375rem;
+    height: 1.375rem;
     top: 10px;
   }
-  margin: 1px;
+  margin: 0.0625rem;
   border: none;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: bold;
   padding: 1px;
   color: white;
@@ -84,7 +102,7 @@ export const GroupsTitleLine = styled.div`
   position: relative;
   width: 90%;
   margin: auto;
-  margin-bottom: -50px;
+  margin-bottom: -3.125rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -103,7 +121,7 @@ export const GroupCard = styled.div`
 
   justify-content: space-between;
   background: #fbf9f7;
-  border-radius: 24px;
+  border-radius: 1.5rem;
   @media (max-width: 750px) {
     flex-direction: column;
     justify-content: space-between;
@@ -123,13 +141,13 @@ export const NormalDiv = styled.div`
 `;
 
 export const AddEditFormContainer = styled.div`
-  padding: 20px;
+  padding: 1.25rem;
   border: 1px solid ${colors.darkGrey};
   position: absolute;
   top: ${(props) => props.top};
   right: ${(props) => props.right};
   background-color: ${colors.lightGrey};
-  border-radius: 15px;
+  border-radius: 1.5rem;
   z-index: 3;
   @media (max-width: 750px) {
     top: ${(props) => props.topMobile};
@@ -143,12 +161,16 @@ export const RowContainer = styled.div`
   align-items: center;
   @media (max-width: 750px) {
     justify-content: ${(props) => (props.mobileChange ? "space-evenly" : "")};
+    gap: 1rem;
+  }
+  @media (min-width: 800px) {
+    gap: 1rem;
   }
 `;
 
 export const IconBox = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 3.75rem;
+  height: 3.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -232,10 +254,10 @@ export const ActionButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${(props) => (props.width ? props.width : "88px")};
-  height: 47px;
-  border-radius: 18px;
-  margin: 5px;
+  width: ${(props) => (props.width ? props.width : "5.5rem")};
+  height: 2.9375rem;
+  border-radius: 1.125rem;
+  margin: 0.3125rem;
   cursor: pointer;
   transition: all 0.3s;
   &:hover {
@@ -243,13 +265,13 @@ export const ActionButton = styled.button`
       props.name === "delete" || props.name === "quit"
         ? "red"
         : props.name === "add"
-        ? colors.yellow
+        ? colors.lightRed
         : "yellow"};
     color: ${(props) =>
       props.name === "delete" || props.name === "quit" ? "white" : ""};
   }
   @media (max-width: 750px) {
     width: ${(props) => (props.mobileChange ? "100%" : "")};
-    margin: ${(props) => (props.mobileChange ? "10px 0" : "")};
+    margin: ${(props) => (props.mobileChange ? "0.625rem 0" : "")};
   }
 `;
