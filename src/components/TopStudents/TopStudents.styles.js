@@ -84,6 +84,7 @@ export const WarbSlider = styled.div`
   gap: 12px;
   white-space: nowrap;
   overflow-x: scroll;
+  overflow-y: hidden;
   &::-webkit-slider-track {
     -webkit-appearance: none;
     appearance: none;
@@ -92,7 +93,6 @@ export const WarbSlider = styled.div`
     border-radius: 50%;
     cursor: pointer;
   }
-
   /* overflow: hidden; */
   /* cursor: grab; */
 
@@ -115,6 +115,7 @@ export const WarbSlider = styled.div`
     background: #fbf9f7;
     padding: 1.3rem;
     border-radius: 24px;
+    z-index: 1;
   }
 `;
 
@@ -159,6 +160,7 @@ export const LeaderBoardMainTitel = styled.div`
   height: 19px;
   margin: auto;
   margin-left: 0;
+  margin-top: 3rem;
   margin-bottom: 1rem;
   align-items: flex-start;
   font-family: "Montserrat";

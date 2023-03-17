@@ -22,23 +22,39 @@ import {
   Top2Name,
   AverageWrapperButon,
 } from "./TopStudents.styles";
+
+import MyOngoingContestTab from "components/shared/MyOngoingContestTab";
+
 export default function TopStudents() {
   const [topStudents, setTopStudents] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const [color, setColor] = useState();
-
   const [visible, setVisible] = useState("flex");
+  // new State
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  // console.log(screenWidth);
 
   function willvisible(e) {
     var x = document.getElementById(e.target.id);
+    // new condition
+    if (screenWidth > 700) {
+      console.log("Grater than 700px");
+      return; // if innerWidth is grater than 700 px ::> don't excute any thing
+    }
+    //
     if (x.style.display === "flex") {
       x.style.display = "none";
     } else {
       x.style.display = "flex";
     }
   }
+  // new Content ::> stateup function to new screenWidth
+  const resizeScreenHandler = () => {
+    setScreenWidth((prevState) => window.innerWidth);
+  };
+  //
   useEffect(() => {
     //   if (!cookie.load("token")) {
     //       navigate("/login", {state:{redirectTo: "/TopStudents"}});
@@ -96,7 +112,21 @@ export default function TopStudents() {
       },
     ]);
   }, []);
-
+  // new content
+  //
+  useEffect(() => {
+    const resizeTimer = setTimeout(() => {
+      console.log("excute resize Timer!");
+      if (screenWidth <= 700) {
+        setVisible((prevState) => "none");
+      } else {
+        setVisible((prevState) => "flex");
+      }
+      window.addEventListener("resize", resizeScreenHandler);
+    }, 50);
+    return () => clearTimeout(resizeTimer); // cleanup function to stop excution
+  }, [screenWidth]);
+  //
   if (loading) {
     return (
       <main>
@@ -112,6 +142,8 @@ export default function TopStudents() {
   let last = 1;
   return (
     <LeaderBoardMain>
+      <MyOngoingContestTab />
+
       <LeaderBoardMainTitel>Participant Performance (251)</LeaderBoardMainTitel>
 
       <LeaderBoardContainer>
