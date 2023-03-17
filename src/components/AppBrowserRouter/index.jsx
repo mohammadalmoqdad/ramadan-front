@@ -18,6 +18,8 @@ import ReviewOtherPoints from "../ReviewOtherPoints";
 import AppLayout from "../AppLayout";
 import ContestModerator from "components/ContestModerator";
 import ContestCriteria from "components/ContestCriteria";
+import EditProfile from "components/EditProfile";
+
 export default function AppBrowserRouter({ changeTheme }) {
   return (
     <BrowserRouter>
@@ -26,6 +28,11 @@ export default function AppBrowserRouter({ changeTheme }) {
         <Route exact path="/Signup" element={<Signup />} />
         <Route exact path="/ResetPassword" element={<ResetPassword />} />
         <Route exact path="/ForgotPassword" element={<ForgotPassword />} />
+        <Route
+          exact
+          path="/EditProfile"
+          element={<AppLayout children={<EditProfile />} />}
+        />
 
         <Route exact path="/" element={<AppLayout children={<Home />} />} />
         <Route
