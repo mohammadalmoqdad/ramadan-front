@@ -10,6 +10,8 @@ import studentsI18nEn from "./students.i18n.en";
 import studentsI18nAr from "./students.i18n.ar";
 import contestCriteriaI18nEn from "./contestCriteria.i18n.en";
 import contestCriteriaI18nAr from "./contestCriteria.i18n.ar";
+import reviewOtherPointsIi18nEn from "./reviewOtherPoints.i18n.en";
+import reviewOtherPointsIi18nAr from "./reviewOtherPoints.i18n.ar";
 
 export default {
   en: {
@@ -20,6 +22,7 @@ export default {
       ...groupsI18nEn,
       ...studentsI18nEn,
       ...contestCriteriaI18nEn,
+      ...reviewOtherPointsIi18nEn,
     },
   },
   ar: {
@@ -30,6 +33,7 @@ export default {
       ...groupsI18nAr,
       ...studentsI18nAr,
       ...contestCriteriaI18nAr,
+      ...reviewOtherPointsIi18nAr,
     },
   },
 };
