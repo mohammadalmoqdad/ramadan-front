@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "styles";
 import {
   TitleLogin as DefaultTitleLogin,
   DivCenter as DefaultDivCenter,
@@ -19,11 +20,11 @@ import {
 export default styled.div``;
 
 export const Form = styled(DefaultForm)`
-  margin: auto;
+  /* margin: auto; */
   width: auto;
-  max-width: 42rem;
+  /* max-width: 42rem; */
   flex-direction: row;
-  gap: 0.75rem;
+  /* gap: 0.75rem; */
 
   @media (max-width: 56.25rem) {
     display: flex;
@@ -45,7 +46,7 @@ export const TypeSpace = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 24px;
-  width: 280px;
+  width: 18rem;
   height: auto;
   background: #f9eaea;
   border-radius: 12px;
@@ -55,7 +56,7 @@ export const TypeSpace = styled.div`
   }
   @media (max-width: 500px) {
     flex-direction: column;
-    width: 180px;
+    width: 12rem;
   }
 `;
 
@@ -65,7 +66,7 @@ export const TextAreaSpace = styled.textarea`
   flex-direction: column;
   align-items: flex-start;
   border: none;
-  padding: 24px;
+  /* padding: 24px; */
   width: 250px;
   height: 300px;
   background: #f9eaea;
@@ -76,7 +77,7 @@ export const TextAreaSpace = styled.textarea`
   }
   @media (max-width: 500px) {
     flex-direction: column;
-    width: 180px;
+    width: 10rem;
   }
 `;
 //
@@ -87,7 +88,15 @@ export const ParticipantsMember = styled(DefaultParticipantsMember)`
   margin-top: 2rem;
   display: flex;
   align-items: center;
+  @media (max-width: 34.375rem) {
+  }
+`;
 
+export const ParticipantsMember2 = styled(DefaultParticipantsMember)`
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   @media (max-width: 34.375rem) {
   }
 `;
@@ -130,25 +139,25 @@ export const ButtonStyle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px 24px 21px;
-  gap: 10px;
+  padding: 1rem;
+  gap: 0.625rem;
 
-  width: 220px;
-  height: 40px;
+  width: 13.75rem;
+  height: 2.5rem;
 
   background: #fdd561;
-  border-radius: 100px;
+  border-radius: 6.25rem;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  /* line-height: 1.25rem; */
   margin: auto;
   margin-top: 1rem;
   cursor: pointer;
-  color: #000000;
+  color: ${colors.black};
   @media (max-width: 34.375rem) {
-    width: 100px;
+    width: 6.7rem;
     /* font-size: 12px; */
   }
 `;

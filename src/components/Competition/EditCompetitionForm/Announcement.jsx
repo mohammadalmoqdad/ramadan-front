@@ -7,9 +7,13 @@ import {
   PublishedDate,
   ButtonStyle,
 } from "./EditCompetition.styles";
+import { useTranslation } from "react-i18next";
+
 const Announcement = ({ announcement }) => {
   const [readOnlyState, setReadOnlyState] = useState(true);
   const [announcementText, setAnnouncementText] = useState(announcement.text);
+  const { t } = useTranslation();
+
   //
   const readOnlyChangeHandler = () => {
     setReadOnlyState((prevState) => false);
@@ -44,8 +48,13 @@ const Announcement = ({ announcement }) => {
       <PublishedDate>{announcement.date}</PublishedDate>
       {!readOnlyState && (
         <>
-          <ButtonStyle onClick={deleteAnnouncementHandler}>Delete</ButtonStyle>
-          <ButtonStyle onClick={saveAnnouncementHandler}>Save</ButtonStyle>
+          <ButtonStyle onClick={deleteAnnouncementHandler}>
+            {t("delete")}
+          </ButtonStyle>
+          <ButtonStyle onClick={saveAnnouncementHandler}>
+            {t("save")}
+          </ButtonStyle>
+          <ButtonStyle>{t("readonly")}</ButtonStyle>
           <ButtonStyle onClick={cancleAnnouncementHandler}>Cancle</ButtonStyle>
         </>
       )}
