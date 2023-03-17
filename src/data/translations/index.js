@@ -10,7 +10,8 @@ import studentsI18nEn from "./students.i18n.en";
 import studentsI18nAr from "./students.i18n.ar";
 import contestCriteriaI18nEn from "./contestCriteria.i18n.en";
 import contestCriteriaI18nAr from "./contestCriteria.i18n.ar";
-
+import contestInformationI18nAr from "./contestInformation.i18n.ar";
+import contestInformationI18nEn from "./contestInformation.i18n.en";
 export default {
   en: {
     translation: {
@@ -20,6 +21,7 @@ export default {
       ...groupsI18nEn,
       ...studentsI18nEn,
       ...contestCriteriaI18nEn,
+      ...contestInformationI18nEn,
     },
   },
   ar: {
@@ -30,6 +32,7 @@ export default {
       ...groupsI18nAr,
       ...studentsI18nAr,
       ...contestCriteriaI18nAr,
+      ...contestInformationI18nAr,
     },
   },
 };

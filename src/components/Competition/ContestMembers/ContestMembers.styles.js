@@ -60,12 +60,11 @@ export const ParticipantsMember = styled.div`
 `;
 
 export const ParticipantsTitels = styled.div`
-  justify-content: space-between;
-
   width: 100%;
   height: 1.25rem;
   display: flex;
-
+  justify-content: space-between;
+  flex-direction: var(--flex-direction);
   @media (max-width: 37.5625rem) {
   }
 `;
@@ -126,7 +125,7 @@ export const ParticipantsTitelsAtHome = styled.div`
 
 export const SeeAll = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: var(--flex-direction);
   align-items: flex-start;
   padding: 0rem;
   gap: 0.375rem;

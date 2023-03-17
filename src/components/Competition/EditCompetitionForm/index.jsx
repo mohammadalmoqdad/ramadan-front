@@ -1,26 +1,9 @@
 import React, { useEffect, useState } from "react";
 import SaveChanges from "../../../assets/icons/Shared/SaveChanges.svg";
-
-import {
-  Span,
-  AddBtn,
-  AnnouncementsFormInput,
-  RemoveBtn,
-} from "../../Groups/Groups.styles";
-import {
-  DivTxtFieldnumber,
-  LabelSoper,
-  Checkboxes,
-  DivTxtField,
-  //   Form,
-  InputSubmit,
-} from "../../shared/styles";
-import { DivPass } from "../../Admins/Admins.styles";
-
+import { useTranslation } from "react-i18next";
 import { updateCompetition } from "../../../services/competitionsServices";
 
 import {
-  //   ParticipantsMember,
   ParticipantsTitelsAtHome,
   SeeAll,
   TotalOfMembers,
@@ -30,7 +13,7 @@ import CompositionDefault, {
   Form,
   TypeSpace,
   ParticipantsNumbers,
-  ParticipantsMember,
+  ParticipantsMember2,
   ParticipantsTitels,
   PublishedDate,
   OverflowScrolling,
@@ -38,9 +21,38 @@ import CompositionDefault, {
   ButtonStyle,
   ReadOnly,
   SeeAllP,
+  TextAreaSpace,
 } from "./EditCompetition.styles";
 
+import Announcement from "./Announcement";
+
+// dummy data
+
+const Announcements = [
+  {
+    id: "announc1",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    date: "17/04/2021",
+  },
+  {
+    id: "announc2",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    date: "14/05/2021",
+  },
+  {
+    id: "announc3",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    date: "12/05/2021",
+  },
+  {
+    id: "announc4",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    date: "11/03/2021",
+  },
+];
+
 export default function EditCompetitionForm(props) {
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [showStanding, setShowStanding] = useState(true);
   const [readOnlyMode, setReadOnlyMode] = useState(false);
@@ -80,7 +92,7 @@ export default function EditCompetitionForm(props) {
     e.preventDefault();
 
     if (selectedCompetitionId === "") {
-      setMessages(["يجب عليك إختيار مسابقة"]);
+      setMessages([t("must-select-contest")]);
       setClassColor("red");
       return;
     }
@@ -121,7 +133,7 @@ export default function EditCompetitionForm(props) {
           updatedCompetition.show_standings = showStanding;
 
           setClassColor("green");
-          setMessages(["تم تعديل المسابقة بنجاح"]);
+          setMessages([t("contest-has-been-edited-successfully")]);
 
           setTimeout(() => {
             props.setCompetitions([
@@ -135,7 +147,7 @@ export default function EditCompetitionForm(props) {
       },
       (err) => {
         let errMessages = [];
-        errMessages.push(["لم يتم تعديل المسابقة"]);
+        errMessages.push([t("contest-isn't-edited-successfully")]);
         if (err.response.data) {
           let obj = err.response.data;
           Object.keys(obj).forEach((e) => {
@@ -175,26 +187,24 @@ export default function EditCompetitionForm(props) {
 
   return (
     <CompositionDefault>
-      <ReadOnly></ReadOnly>
+      {/* <ReadOnly></ReadOnly> */}
       <Form>
-        <ParticipantsMember>
+        <ParticipantsMember2>
           <ParticipantsTitels>
             <ParticipantsTitelsAtHome>
-              Contest Notification
+              {t("contest-announcements")}
             </ParticipantsTitelsAtHome>
 
             <SeeAll>
-              <SeeAllP>Save Changes</SeeAllP>
+              <SeeAllP>{t("save-changes")}</SeeAllP>
               <SeeAllIcon src={SaveChanges} Alt="" />
             </SeeAll>
           </ParticipantsTitels>
 
           <ParticipantsNumbers>
             <ParticipantsTitelsAtHome>
-              Type for participants
+              {t("make-an-announcement")}
             </ParticipantsTitelsAtHome>
-            <Br />
-
             <TypeSpace>
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam
               cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at,
@@ -206,112 +216,38 @@ export default function EditCompetitionForm(props) {
               rhoncus, sem nunc gravida justo, quis eleifend arcu velit quis
               lacus.
             </TypeSpace>
-            <Br />
           </ParticipantsNumbers>
-        </ParticipantsMember>
-        <ParticipantsMember>
+        </ParticipantsMember2>
+        <ParticipantsMember2>
           <ParticipantsTitels>
             <ParticipantsTitelsAtHome>
-              Active Notification
+              {t("active-announcements")}
             </ParticipantsTitelsAtHome>
 
             <SeeAll>
-              <SeeAllP>Save Changes</SeeAllP>
+              <SeeAllP>{t("save-changes")}</SeeAllP>
               <SeeAllIcon src={SaveChanges} Alt="" />
             </SeeAll>
           </ParticipantsTitels>
 
           <ParticipantsNumbers>
-            <ParticipantsTitelsAtHome>Click to edit</ParticipantsTitelsAtHome>
+            <ParticipantsTitelsAtHome>
+              {t("double-click-to-edit")}
+            </ParticipantsTitelsAtHome>
             <OverflowScrolling>
-              <TypeSpace>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam
-                cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum
-                at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent
-                mauris ante, elementum et, bibendum at, posuere sit amet, nibh.
-                Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse
-                vulputate aliquam dui.
-                <PublishedDate>published: 17/1/2023</PublishedDate>
-                <ButtonStyle>Delete</ButtonStyle>
-              </TypeSpace>
-              <br />
-              <TypeSpace>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam
-                cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum
-                at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent
-                mauris ante, elementum et, bibendum at, posuere sit amet, nibh.
-                Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse
-                vulputate aliquam dui.
-                <PublishedDate>published: 17/1/2023</PublishedDate>
-                <ButtonStyle>Delete</ButtonStyle>
-              </TypeSpace>
+              {Announcements && Announcements.length ? (
+                <div style={{ width: "100%" }}>
+                  {Announcements.map((announcement) => (
+                    <Announcement announcement={announcement} />
+                  ))}
+                </div>
+              ) : (
+                <TextAreaSpace>{t("no-announcements-yet")}</TextAreaSpace>
+              )}
             </OverflowScrolling>
           </ParticipantsNumbers>
-        </ParticipantsMember>
+        </ParticipantsMember2>
       </Form>
-      {/* <Form onSubmit={handleAddEditSubmit}>
-        <LabelSoper placeholder="اسم المسابقة" type="text" value={name}>
-          {name}
-        </LabelSoper>
-
-        <DivTxtFieldnumber>
-          <Checkboxes
-            type="checkbox"
-            checked={showStanding}
-            onChange={handleShowStandingChange}
-          />{" "}
-          <LabelSoper>عرض النتائج</LabelSoper>
-        </DivTxtFieldnumber>
-
-        <DivTxtFieldnumber>
-          <Checkboxes
-            type="checkbox"
-            checked={readOnlyMode}
-            onChange={handleReadOnlyChange}
-          />{" "}
-          <LabelSoper>وضع القراءة فقط</LabelSoper>
-        </DivTxtFieldnumber>
-        <DivPass>لا يستطيع الطلاب تسجيل النقاط في وضع القراءة فقط</DivPass>
-
-        {notes?.map((inputItem, index) => {
-          return (
-            <DivTxtField key={index} style={{ width: "100%" }}>
-              <Span />
-              <AnnouncementsFormInput
-                placeholder="الإعلان"
-                key={index}
-                value={inputItem}
-                onChange={(e) => handleAnnouncementsChange(e, index)}
-                type="text"
-              />
-              {notes.length > 1 && (
-                <RemoveBtn onClick={(e) => handleRemoveBtnChange(e, index)}>
-                  -
-                </RemoveBtn>
-              )}
-              {index === notes.length - 1 && (
-                <AddBtn onClick={handleAddBtnChange}>+</AddBtn>
-              )}
-            </DivTxtField>
-          );
-        })}
-        {isSemiColonExists && (
-          <DivPass className={classColor}>
-            الإعلان يجب أن لا يحتوي على ;
-          </DivPass>
-        )}
-        {messages.length > 0 &&
-          messages.map((message, index) => {
-            return (
-              <DivPass className={classColor} key={index}>
-                {message}
-              </DivPass>
-            );
-          })}
-        <InputSubmit type="submit" value="login">
-          تعديل المسابقة
-        </InputSubmit>
-      </Form> */}
     </CompositionDefault>
   );
 }

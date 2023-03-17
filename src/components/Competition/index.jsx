@@ -52,22 +52,6 @@ export default function Competition() {
         competitions={competitions}
         setCompetitions={setCompetitions}
       />
-      ,
-      <CompetitionContainer>
-        <Tabs
-          labels={["تعديل مسابقة", "إضافة/تعديل إعلانات"]}
-          contents={[
-            // <EditCompetitionForm
-            //   competitions={competitions}
-            //   setCompetitions={setCompetitions}
-            // />,
-            <AddEditAnnouncementForm
-              competitions={competitions}
-              setCompetitions={setCompetitions}
-            />,
-          ]}
-        />
-      </CompetitionContainer>
     </ContestModeratorDefault>
   );
 }
