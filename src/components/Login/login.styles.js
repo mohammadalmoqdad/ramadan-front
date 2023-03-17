@@ -66,7 +66,7 @@ export const FormInput = styled(DefaultFormInput)`
   border: 0.0625rem solid #f9eaea;
   border-radius: 0.75rem;
 
-  text-align: left;
+  text-align: var(--text-align);
 
   @media (max-width: 43.75rem) {
     width: 14.375rem;

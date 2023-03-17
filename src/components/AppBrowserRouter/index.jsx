@@ -28,7 +28,11 @@ export default function AppBrowserRouter({ changeTheme }) {
         <Route exact path="/Signup" element={<Signup />} />
         <Route exact path="/ResetPassword" element={<ResetPassword />} />
         <Route exact path="/ForgotPassword" element={<ForgotPassword />} />
-        <Route exact path="/EditProfile" element={<EditProfile />} />
+        <Route
+          exact
+          path="/EditProfile"
+          element={<AppLayout children={<EditProfile />} />}
+        />
 
         <Route exact path="/" element={<AppLayout children={<Home />} />} />
         <Route
