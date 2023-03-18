@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Tabs from "../shared/Tabs";
 import AddGroupForm from "./AddGroupForm";
 import EditGroupForm from "./EditGroupForm";
 import { retrieveStudents } from "../../services/studentsServices";
 import { retrieveAdmins } from "../../services/adminsServices";
 import { deleteGroup, retrieveGroups } from "../../services/groupsServices";
 import Modal from "../shared/Modal";
-import Container, {
-  Button,
-  DropdownList,
+import {
   DropdownListItem,
   Span,
 } from "../Admins/Admins.styles";
@@ -21,7 +18,6 @@ import { H3Pass } from "../shared/styles";
 import Loader from "../Loader";
 import { isSuperAdmin } from "../../util/ContestPeople_Role";
 
-// new import Content
 import GroupsContentDefault, {
   GroupsTitleLine,
   GroupCard,
@@ -41,37 +37,6 @@ import { ReactComponent as AddGroupIcon } from "../../assets/icons/addGroupIcon.
 import { colors } from "styles";
 import { useTranslation } from "react-i18next";
 
-// Dummy Data Content
-const DummyGroups = [
-  {
-    id: "g1",
-    members_count: 30,
-    admins_count: 3,
-    name: "Group1",
-    created_at: "2023-01-01T23:29:58.319417Z",
-  },
-  {
-    id: "g2",
-    members_count: 24,
-    admins_count: 2,
-    name: "Group2",
-    created_at: "2023-02-01T23:29:58.319417Z",
-  },
-  {
-    id: "g3",
-    members_count: 35,
-    admins_count: 3,
-    name: "Group3",
-    created_at: "2023-04-01T23:29:58.319417Z",
-  },
-  {
-    id: "g4",
-    members_count: 50,
-    admins_count: 4,
-    name: "Group4",
-    created_at: "2023-08-01T23:29:58.319417Z",
-  },
-];
 
 export default function Groups() {
   const [admins, setAdmins] = useState([]);
@@ -80,26 +45,14 @@ export default function Groups() {
   const [groupIdToDelete, setGroupIdToDelete] = useState("");
   const [openGroupModal, setOpenGroupModal] = useState(false);
   const [hasPermission, setPermission] = useState(false);
-  const [groupsLabels, setGroupsLabels] = useState([]);
-  const [groupsContents, setGroupsContents] = useState([]);
-  const [showDeleteGroupFailedMsg, setShowDeleteGroupFailedMsg] =
-    useState(false);
+  const [showDeleteGroupFailedMsg, setShowDeleteGroupFailedMsg] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  // new states
   const [addGroupFormOpen, setAddGroupFormOpen] = useState(false);
   const [editGroupFormOpen, setEditGroupFormOpen] = useState(false);
   const [groupIdToEdit, setGroupIdToEdit] = useState("");
-  //
   const { t } = useTranslation();
-  //
-
   const context = useAdminContext();
   let navigate = useNavigate();
-
-  // console.log(groups);
-  // console.log(groupIdToDelete);
-  // console.log(groupIdToEdit);
 
   useEffect(() => {
     if (!cookie.load("token")) {
@@ -162,7 +115,7 @@ export default function Groups() {
       console.log(students);
       students.map(
         (student) =>
-          (student["full_name"] = student.first_name + " " + student.last_name)
+          (student["full_name"] = student.person.first_name + " " + student.person.last_name)
       );
     }
   }, [students]);
@@ -173,74 +126,38 @@ export default function Groups() {
     );
   }, [context.adminInfo]);
 
-  // Old Content
-
-  // useEffect(() => {
-  //   let labels = [];
-  //   let contents = [];
-
-  //   if (groups && groups.length > 0) {
-  //     labels.push("تعديل مجموعة");
-  //     contents.push(
-  //       <EditGroupForm
-  //         studentsGroups={groups}
-  //         setGroups={setGroups}
-  //         students={students}
-  //         admins={admins}
-  //         hasPermission={hasPermission}
-  //       />
-  //     );
-  //   }
-  //   if (hasPermission) {
-  //     labels.push("إضافة مجموعة");
-  //     contents.push(
-  //       <AddGroupForm
-  //         students={students}
-  //         admins={admins}
-  //         studentsGroups={groups}
-  //         setGroups={setGroups}
-  //       />
-  //     );
-  //   }
-  //   setGroupsLabels(labels);
-  //   setGroupsContents(contents);
-  // }, [groups, students, hasPermission]);
-
-  //
-
   const handleOpenGroupModalChange = (groupId) => {
-    // setGroupIdToDelete(e.target.value); // replace event function (e) with binding method
-    setGroupIdToDelete((prevState) => groupId); // new content
+    setGroupIdToDelete(groupId);
     setOpenGroupModal(true);
   };
 
   const addGroupFormHandler = () => {
     setAddGroupFormOpen((prevState) => !prevState);
-    setEditGroupFormOpen((prevState) => false);
+    setEditGroupFormOpen(false);
   };
 
   const closeAddGroupFormHandler = () => {
-    setAddGroupFormOpen((prevState) => false);
+    setAddGroupFormOpen(false);
   };
 
   const editGroupFormHandler = (groupId) => {
     setEditGroupFormOpen((prevState) => !prevState);
-    setGroupIdToEdit((prevState) => groupId);
-    setAddGroupFormOpen((prevState) => false);
+    setGroupIdToEdit( groupId);
+    setAddGroupFormOpen(false);
   };
 
   const closeEditGroupFormHandler = () => {
-    setEditGroupFormOpen((prevState) => false);
+    setEditGroupFormOpen(false);
   };
 
   const deleteGroupFunction = () => {
     deleteGroup(
       groupIdToDelete,
       (res) => {
-        if (res && res.status === 204) {
+        if (res && (res.status === 204 || res.status === 200)) {
           console.log(`Group with id: ${groupIdToDelete} has been deleted`);
           setGroups(
-            groups.filter((group) => group.id !== Number(groupIdToDelete))
+            groups.filter((group) => group.id !== groupIdToDelete)
           );
         }
       },
@@ -249,12 +166,10 @@ export default function Groups() {
           "Failed to delete group: ",
           JSON.stringify(err.response.data)
         );
-        if (err?.response?.status === 500) {
-          setShowDeleteGroupFailedMsg(true);
-          setTimeout(() => {
-            setShowDeleteGroupFailedMsg(false);
-          }, 7000);
-        }
+        setShowDeleteGroupFailedMsg(true);
+        setTimeout(() => {
+          setShowDeleteGroupFailedMsg(false);
+        }, 7000);
       }
     );
     setOpenGroupModal(false);
@@ -268,16 +183,13 @@ export default function Groups() {
     );
   }
 
-  // console.log(groups);
 
   return (
     <>
-      {/* New Content  */}
 
       <GroupsContentDefault>
         <MyOngoingContestTab />
 
-        {/* Group Title Line  */}
         <GroupsTitleLine>
           <BoldText>
             {groups.length} {t("groups")}
@@ -309,23 +221,21 @@ export default function Groups() {
           )}
         </GroupsTitleLine>
 
-        {/* delete Modle  */}
         {openGroupModal && (
           <Modal
             title={t("delete-confirm")}
             content={t("delete-msg")}
             deleteBtn={t("delete")}
-            cancelBtn={t("cancle")}
+            cancelBtn={t("cancel")}
             setOpenModal={setOpenGroupModal}
             deleteFunction={deleteGroupFunction}
           />
         )}
 
-        {/* Groups mapping  */}
         {groups && groups.length > 0 ? (
           groups.map((group) => (
             <GroupCard key={group.id}>
-              {true ? (
+              {hasPermission ? (
                 <>
                   <NormalDiv>
                     <RowContainer>
@@ -335,7 +245,7 @@ export default function Groups() {
                       <ColumnContainer style={{ marginLeft: "10px" }}>
                         <BoldText>{group.name}</BoldText>
                         <LightText>
-                          {`${t("joinned")} ${new Date(
+                          {`${t("joined")} ${new Date(
                             group.created_at
                           ).toLocaleString()}`}
                         </LightText>
@@ -374,16 +284,6 @@ export default function Groups() {
                     </RowContainer>
                   </NormalDiv>
 
-                  <NormalDiv mobileChange={true}>
-                    <ActionButton
-                      name="quit"
-                      backGround="#ff53671e"
-                      color="#FF5367"
-                      mobileChange={true}
-                    >
-                      {t("quit")}
-                    </ActionButton>
-                  </NormalDiv>
                   {editGroupFormOpen && groupIdToEdit === group.id && (
                     <AddEditFormContainer
                       top="80px"
@@ -392,9 +292,8 @@ export default function Groups() {
                       rightMobile="10px"
                     >
                       <EditGroupForm
-                        studentsGroups={groups.filter(
-                          (group) => group.id === groupIdToEdit
-                        )}
+                        studentsGroups={groups}
+                        selectedGroupId = {groupIdToEdit}
                         setGroups={setGroups}
                         students={students}
                         admins={admins}
@@ -423,67 +322,6 @@ export default function Groups() {
           <H5>{t("no-groups")}</H5>
         )}
       </GroupsContentDefault>
-
-      {/* Old Content  */}
-
-      {/* <Container>
-        {openGroupModal && (
-          <Modal
-            title="تأكيد الحذف"
-            content="هل تريد حذف هذه المجموعة؟"
-            deleteBtn="حذف"
-            cancelBtn="إلغاء"
-            setOpenModal={setOpenGroupModal}
-            deleteFunction={deleteGroupFunction}
-          />
-        )}
-        {groups && groups.length > 0 ? (
-          <>
-            <DropdownList className="DropdownList">
-              <DropdownListItem className="title">
-                <Span>المجموعات الحالية</Span>
-              </DropdownListItem>
-              <div className="dropdown-scroll-container">
-                {groups.map((group, index) => {
-                  return (
-                    <DropdownListItem key={index}>
-                      {hasPermission ? (
-                        <>
-                          <Button
-                            id="deleteBtn"
-                            onClick={handleOpenGroupModalChange}
-                            value={group.id}
-                          >
-                            حذف
-                          </Button>
-                          <Span>{group.name}</Span>
-                        </>
-                      ) : (
-                        <Span style={{ width: "100%" }}>{group.name}</Span>
-                      )}
-                    </DropdownListItem>
-                  );
-                })}
-                {showDeleteGroupFailedMsg && (
-                  <DropdownListItem>
-                    <H3Pass className="red">
-                      يرجى إزالة أو نقل الطلاب لمجموعة أخرى قبل حذف هذه المجموعة
-                    </H3Pass>
-                  </DropdownListItem>
-                )}
-              </div>
-            </DropdownList>
-            <Tabs labels={groupsLabels} contents={groupsContents} />
-          </>
-        ) : hasPermission ? (
-          <Tabs labels={groupsLabels} contents={groupsContents} />
-        ) : (
-          <Tabs
-            labels={["المجموعات"]}
-            contents={[<H5>لا يوجد لديك مجموعات </H5>]}
-          />
-        )}
-      </Container> */}
     </>
   );
 }

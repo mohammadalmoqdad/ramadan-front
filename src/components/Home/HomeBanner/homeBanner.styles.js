@@ -180,7 +180,7 @@ border-radius: 6.25rem;
 padding: 0rem;
 }`;
 
-export const ButtonTitle = styled.p`
+export const ButtonTitle = styled.div`
 width: 9.5625rem;
 height: 1.1875rem;
 
