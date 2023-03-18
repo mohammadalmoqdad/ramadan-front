@@ -67,7 +67,7 @@ export default function Students() {
     setLoading(true);
     retrieveStudents(
       (res) => {
-        setStudents(res.data.results);
+        setStudents(res.data);
         setLoading(false);
       },
       (err) => {

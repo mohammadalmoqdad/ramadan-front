@@ -107,6 +107,8 @@ export default function Groups() {
       return;
     }
 
+    setLoading(true);
+
     if (Object.keys(context.adminInfo).length > 0) {
       setPermission(isSuperAdmin(context));
     } else {
@@ -116,12 +118,11 @@ export default function Groups() {
           context.getAdminInfo();
         }
       }, 1000);
-    }
 
-    setLoading(true);
+    }
     retrieveStudents(
       (res) => {
-        setStudents(res.data.results);
+        setStudents(res.data);
         setLoading(false);
       },
       (err) => {
@@ -134,7 +135,7 @@ export default function Groups() {
 
     retrieveAdmins(
       (res) => {
-        setAdmins(res.data.results);
+        setAdmins(res.data);
       },
       (err) => {
         console.log(
@@ -145,8 +146,8 @@ export default function Groups() {
 
     retrieveGroups(
       (res) => {
-        setGroups(res.data.results);
-        setGroups(DummyGroups); // dummy data to styling
+        setGroups(res.data);
+        // setGroups(DummyGroups); // dummy data to styling
       },
       (err) => {
         console.log(
@@ -324,7 +325,7 @@ export default function Groups() {
         {groups && groups.length > 0 ? (
           groups.map((group) => (
             <GroupCard key={group.id}>
-              {hasPermission ? (
+              {true ? (
                 <>
                   <NormalDiv>
                     <RowContainer>

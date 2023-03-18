@@ -67,7 +67,7 @@ export default function EditGroupForm(props) {
 
                     setTimeout(()=>{
                         props.setAdmins([...props.admins.filter(admin => admin.username !== selectedUserName), updatedAdmin]);
-                        if(Object.keys(context.adminInfo).length > 0 && context.adminInfo.person.username === selectedUserName){
+                        if(Object.keys(context.adminInfo).length > 0 && context.adminInfo.username === selectedUserName){
                             context.setAdminInfo(updatedAdmin);
                         }
                         setClassColor("");

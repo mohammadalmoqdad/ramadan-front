@@ -41,7 +41,7 @@ export default function ReviewOtherPoints(){
         setLoading(true);
         retrieveStudents(
             (res) => {
-                setStudents(res.data.results);
+                setStudents(res.data);
                 setLoading(false);
             }, (err) => {
                 console.log("Failed to retrieve students: " + JSON.stringify(err.response.data));
