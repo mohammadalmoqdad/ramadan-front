@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   DivMultiselect,
   DropdownDivSelect,
-  Span,
-  AnnouncementsFormInput,
-  RemoveBtn,
-  AddBtn,
+  Span
 } from "../Groups.styles";
 import {
   DivTxtField,
@@ -18,103 +15,93 @@ import {
 import Multiselect from "multiselect-react-dropdown";
 import { DropdownList } from "../../Admins/EditAdminForm/EditAdminForm.styles";
 import { DivPass } from "../../Admins/Admins.styles";
-import { updateGroup } from "../../../services/groupsServices";
+import {
+  addOrRemoveAdminToGroup,
+  addOrRemoveMemberToGroup,
+  retrieveGroupById,
+  updateGroup
+} from "../../../services/groupsServices";
 
 import { useTranslation } from "react-i18next";
 
 export default function EditGroupForm(props) {
-  const [selectedStudents, setSelectedStudents] = useState([]);
+  const [newSelectedStudents, setNewSelectedStudents] = useState([]);
+  const [newSelectedStudentsUsernames, setNewSelectedStudentsUsernames] = useState([]);
   const [currentSelectedStudents, setCurrentSelectedStudents] = useState([]);
+  const [currentSelectedStudentsUsernames, setCurrentSelectedStudentsUsernames] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState({});
   const [selectedAdminUserName, setSelectedAdminUserName] = useState("");
+  const [currentSelectedAdminUserName, setCurrentSelectedAdminUserName] = useState("");
   const [groupName, setGroupName] = useState("");
   const [isValidGroupName, setValidGroupName] = useState(true);
-  const [announcements, setAnnouncements] = useState([""]);
-  const [isSemiColonExists, setSemiColonExists] = useState(false);
   const [messages, setMessages] = useState([]);
   const [classColor, setClassColor] = useState("");
-  const multiselectRef = React.createRef();
-
+  const multiselectRef = useRef();
   const { t } = useTranslation();
 
   useEffect(() => {
     setMessages([]);
     setClassColor("");
   }, [
-    selectedStudents,
+    newSelectedStudents,
     selectedAdminUserName,
     groupName,
-    announcements,
-    selectedGroup,
+    selectedGroup
   ]);
 
   useEffect(() => {
     resetEditGroupForm();
   }, [props.reset]);
 
+  useEffect(() => {
+    retrieveGroupById(props.selectedGroupId,
+        (res)=>{
+          if(res && res.status ===200){
+            setSelectedGroup(res.data);
+
+            if(res.data && res.data.members?.length > 0){
+              let studentsUsernamesInSelectedGroups = res.data.members.map(member => member.username);
+              setCurrentSelectedStudentsUsernames(studentsUsernamesInSelectedGroups);
+              setCurrentSelectedStudents(props.students.filter(
+                  student => studentsUsernamesInSelectedGroups.includes(student.person.username)
+                  )
+              );
+            }else{
+              setCurrentSelectedStudentsUsernames([]);
+              setCurrentSelectedStudents([]);
+            }
+
+            if(res.data && res.data.admins?.length > 0){
+              setCurrentSelectedAdminUserName(res.data.admins[0].username);
+            }else{
+              setCurrentSelectedAdminUserName("");
+            }
+            setGroupName(res.data.name);
+          }
+        },(err)=>{
+              console.log(`Failed to get group by Id: ${props.selectedGroupId}: ${err}`);
+        }
+    );
+  }, [props.selectedGroupId]);
+
   const resetEditGroupForm = () => {
     if (multiselectRef && multiselectRef.current) {
       multiselectRef.current.resetSelectedValues();
     }
-    setSelectedStudents([]);
-    setCurrentSelectedStudents([]);
+    setNewSelectedStudents([]);
+    setNewSelectedStudentsUsernames([]);
     setSelectedAdminUserName("");
     setSelectedGroup({});
     setGroupName("");
     setValidGroupName(true);
-    setAnnouncements([""]);
-    setSemiColonExists(false);
-  };
-
-  const handleSelectedGroupChange = (groupId) => {
-    // change from (e) to groupId
-    // console.log(e.target.value);
-    let group = props.studentsGroups.filter(
-      // (studentsGroup) => studentsGroup.id === Number(e.target.value) // Modify this line without Number
-      (studentsGroup) => studentsGroup.id === groupId
-    )[0];
-
-    // console.log(group);
-
-    if (group) {
-      setSelectedAdminUserName(group.admin);
-      setGroupName(group.name);
-      //
-      // new If Statemnet  // it is important because not all groups has announcement
-      if (group.announcement) {
-        let announcementsArray = group.announcements
-          .split(";")
-          .filter((item) => item.trim().length > 0);
-        setAnnouncements(
-          announcementsArray && announcementsArray.length > 0
-            ? announcementsArray
-            : [""]
-        );
-      }
-      //
-      //
-      if (group.group_students && group.group_students.length > 0) {
-        setCurrentSelectedStudents(
-          props.students.filter((student) =>
-            group.group_students.includes(student.username)
-          )
-        );
-      } else {
-        setCurrentSelectedStudents([]);
-      }
-      setSelectedStudents(group.group_students);
-      setSelectedGroup(group);
-    } else {
-      resetEditGroupForm();
-    }
   };
 
   const handleUpdateSelectedStudentsChange = (e) => {
     let selectedStudents = [];
     for (let i = 0; i < e.length; i++) {
-      selectedStudents.push(e[i].username);
+      selectedStudents.push(e[i].person.username);
     }
-    setSelectedStudents(selectedStudents);
+    setNewSelectedStudentsUsernames(selectedStudents);
   };
 
   const handleAdminSelectChange = (e) => {
@@ -145,133 +132,129 @@ export default function EditGroupForm(props) {
       return;
     }
 
-    let valid = true;
-    announcements.forEach((announcement) => {
-      if (announcement.includes(";")) {
-        valid = false;
-      }
-    });
-
-    if (!valid) {
-      setSemiColonExists(true);
-      setClassColor("red");
-      return;
-    } else {
-      setSemiColonExists(false);
-    }
-
     let data = {
-      admin: selectedAdminUserName,
+      admins: [selectedAdminUserName],
       name: groupName,
-      group_students: selectedStudents,
-      announcements: announcements
-        .filter((announcement) => announcement.trim().length > 0)
-        .join(";"),
+      members: newSelectedStudents
     };
 
     updateGroup(
-      selectedGroup.id,
+      props.selectedGroupId,
       data,
       (res) => {
         if (res && res.status === 200) {
           let updatedGroup = props.studentsGroups.filter(
-            (group) => group.id === Number(selectedGroup.id)
+            (group) => group.id === props.selectedGroupId
           )[0];
-          updatedGroup.admin = selectedAdminUserName;
+          updatedGroup.admins_count = [selectedAdminUserName].length;
           updatedGroup.name = groupName;
-          updatedGroup.group_students = selectedStudents;
-          updatedGroup.announcements = data.announcements;
-          resetEditGroupForm();
-
-          setClassColor("green");
-          setMessages([t("group-edit-success")]);
-
-          setTimeout(() => {
-            props.setGroups([
-              ...props.studentsGroups.filter(
-                (group) => group.id !== Number(selectedGroup.id)
-              ),
-              updatedGroup,
-            ]);
-            setClassColor("");
-            setMessages([]);
-          }, 2000);
+          updatedGroup.members_count = newSelectedStudentsUsernames.length;
+          removeCurrentAdmins(updatedGroup);
         }
-      },
-      (err) => {
-        let errMessages = [];
-        errMessages.push([t("group-edit-failed")]);
-        if (err.response.data) {
-          let obj = err.response.data;
-          Object.keys(obj).forEach((e) => {
-            errMessages.push(`${obj[e]} : ${e}`);
-          });
+      },(err) => {
+          handleError(err);
         }
-        setClassColor("red");
-        setMessages(errMessages);
-      }
     );
   };
 
-  const handleAnnouncementsChange = (e, index) => {
-    let notesArray = [...announcements];
-    notesArray.splice(index, 1, e.target.value);
-    setAnnouncements(notesArray);
+  const removeCurrentAdmins = (updatedGroup)=>{
+    addOrRemoveAdminToGroup({
+          persons: [currentSelectedAdminUserName],
+          action: "remove"
+        },
+        props.selectedGroupId,
+        (res) => {
+          if (res && res.status === 200) {
+              addTheNewAdmins(updatedGroup);
+          }
+        },(err) => {
+          handleError(err);
+        }
+    );
   };
 
-  const handleAddBtnChange = () => {
-    setAnnouncements([...announcements, ""]);
+
+  const addTheNewAdmins = (updatedGroup)=>{
+    addOrRemoveAdminToGroup({
+          persons: [selectedAdminUserName],
+          action: "add"
+        },
+        props.selectedGroupId,
+        (res) => {
+          if (res && res.status === 200) {
+            removeCurrentMembers(updatedGroup);
+          }
+        }, (err) => {
+          handleError(err);
+        }
+    );
   };
 
-  const handleRemoveBtnChange = (e, index) => {
-    e.preventDefault();
-    let notesArray = [...announcements];
-    notesArray.splice(index, 1);
-    setAnnouncements(notesArray);
+  const removeCurrentMembers = (updatedGroup)=>{
+    addOrRemoveMemberToGroup({
+          persons: currentSelectedStudentsUsernames,
+          action: "remove"
+        },
+        props.selectedGroupId,
+        (res) => {
+          if (res && res.status === 200) {
+            addTheNewMembers(updatedGroup);
+          }
+        }, (err) => {
+          handleError(err);
+        }
+    );
   };
 
-  // New Content
-  // useEffect to excute the handleSelectGroupChange Function If press Edit button
+  const addTheNewMembers = (updatedGroup)=>{
+    addOrRemoveMemberToGroup({
+          persons: newSelectedStudentsUsernames,
+          action: "add"
+        },
+        props.selectedGroupId,
+        (res) => {
+          if (res && res.status === 200) {
+            resetEditGroupForm();
 
-  // console.log(props.studentsGroups);
-  // console.log(selectedGroup);
+            setClassColor("green");
+            setMessages([t("group-edit-success")]);
 
-  useEffect(() => {
-    handleSelectedGroupChange(props.studentsGroups[0].id);
-  }, [props.studentsGroups]);
-  //
-  //
+            setTimeout(() => {
+              props.setGroups(
+                  props.studentsGroups.map(group => group.id !== props.selectedGroupId ? group : updatedGroup)
+              );
+              setClassColor("");
+              setMessages([]);
+              props.closeEditGroupForm();
+            }, 2000);
+          }
+        }, (err) => {
+          handleError(err);
+        }
+    );
+  };
+
+  const handleError = (err)=>{
+    let errMessages = [];
+    errMessages.push([t("group-edit-failed")]);
+    if (err.response.data) {
+      let obj = err.response.data;
+      Object.keys(obj).forEach((e) => {
+        errMessages.push(`${obj[e]} : ${e}`);
+      });
+    }
+    setClassColor("red");
+    setMessages(errMessages);
+  };
+
   return (
     <Form onSubmit={handleEditGroupSubmit}>
-      {/* Old Content   */}
-
-      {/* {props.studentsGroups && props.studentsGroups.length > 0 && (
-        <DropdownDiv className="DropdownDiv">
-          <DropdownList
-            className="DropdownList_groups"
-            onChange={handleSelectedGroupChange}
-            value={
-              Object.keys(selectedGroup).length === 0 ? "" : selectedGroup.id
-            }
-          >
-            <DropdownListItem>اختر المجموعة</DropdownListItem>
-            {props.studentsGroups.map((group, index) => (
-              <DropdownListItem key={index} value={group.id}>
-                {group.name}
-              </DropdownListItem>
-            ))}
-          </DropdownList>
-        </DropdownDiv>
-      )} */}
-
-      {/* New Content  */}
 
       <DropdownDivSelect>
         <Span>{t("selected-group")}</Span>
-        <Span>{props.studentsGroups[0].name}</Span>
+        <Span>{selectedGroup.name}</Span>
       </DropdownDivSelect>
 
-      {/* //  */}
 
       {props.hasPermission ? (
         props.students && props.students.length > 0 ? (
@@ -303,7 +286,7 @@ export default function EditGroupForm(props) {
         <DropdownDiv className="DropdownDiv">
           <DropdownList
             className="DropdownList_groups"
-            value={selectedAdminUserName}
+            value={selectedAdminUserName.length > 0 ? selectedAdminUserName : currentSelectedAdminUserName}
             onChange={handleAdminSelectChange}
           >
             <DropdownListItem key={0} value="">
@@ -311,18 +294,18 @@ export default function EditGroupForm(props) {
             </DropdownListItem>
             {props.admins.map((admin, index) => {
               if (
-                admin?.first_name?.length > 0 ||
-                admin?.last_name?.length > 0
+                admin?.person?.first_name?.length > 0 ||
+                admin?.person?.last_name?.length > 0
               ) {
                 return (
-                  <DropdownListItem key={index} value={admin.username}>
-                    {admin.first_name} {admin.last_name}
+                  <DropdownListItem key={index} value={admin.person.username}>
+                    {admin.person.first_name} {admin.person.last_name}
                   </DropdownListItem>
                 );
               } else {
                 return (
-                  <DropdownListItem key={index} value={admin.username}>
-                    {admin.username}
+                  <DropdownListItem key={index} value={admin.person.username}>
+                    {admin.person.username}
                   </DropdownListItem>
                 );
               }
@@ -343,31 +326,6 @@ export default function EditGroupForm(props) {
       {!isValidGroupName && (
         <DivPass className={classColor}>{t("group-name-condition")}</DivPass>
       )}
-      {announcements?.map((inputItem, index) => {
-        return (
-          <DivTxtField key={index} style={{ width: "100%" }}>
-            <Span />
-            <AnnouncementsFormInput
-              placeholder={t("adve")}
-              key={index}
-              value={inputItem}
-              onChange={(e) => handleAnnouncementsChange(e, index)}
-              type="text"
-            />
-            {announcements.length > 1 && (
-              <RemoveBtn onClick={(e) => handleRemoveBtnChange(e, index)}>
-                -
-              </RemoveBtn>
-            )}
-            {index === announcements.length - 1 && (
-              <AddBtn onClick={handleAddBtnChange}>+</AddBtn>
-            )}
-          </DivTxtField>
-        );
-      })}
-      {isSemiColonExists && (
-        <DivPass className={classColor}>{t("adve-condition")}</DivPass>
-      )}
       {messages.length > 0 &&
         messages.map((message, index) => {
           return (
@@ -380,7 +338,7 @@ export default function EditGroupForm(props) {
         {t("edit-btu")}
       </InputSubmit>
       <InputSubmit type="button" onClick={props.closeEditGroupForm}>
-        {t("edit-cancle")}
+        {t("edit-cancel")}
       </InputSubmit>
     </Form>
   );

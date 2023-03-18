@@ -3,8 +3,8 @@ export default {
   "add-group": "إضافة مجموعة",
   "delete-confirm": "تأكيد الحذف",
   "delete-msg": "هل تريد حذف هذه المجموعة ؟",
-  cancle: "إلغاء",
-  joinned: "تم الإنضمام",
+  cancel: "إلغاء",
+  joined: "تم الإنضمام",
   participants: "عدد المشاركين",
   edit: "تعديل",
   delete: "حذف",
@@ -24,7 +24,7 @@ export default {
   adve: "الإعلان",
   "adve-condition": "الإعلان يجب أن لا يحتوي على :",
   add: "إضافة مجموعة",
-  "add-cancle": "إلغاء إضافة المجموعة",
+  "add-cancel": "إلغاء إضافة المجموعة",
   // edit group Form
   "group-condition": "يجب اختيار مجموعة",
   "group-edit-success": "تم تعديل المجموعة بنجاح",
@@ -32,5 +32,5 @@ export default {
   "selected-group": "المجموعة المراد تعديلها هي",
   "enter-new-group-name": "أدخل اسم المجموعة الجديد",
   "edit-btu": "تعديل المجموعة",
-  "edit-cancle": "إلغاء تعديل المجموعة",
+  "edit-cancel": "إلغاء",
 };

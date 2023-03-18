@@ -13,6 +13,18 @@ export const retrieveGroups = (successCallback, faiCallback) => {
         true);
 };
 
+export const retrieveGroupById = (groupId, successCallback, faiCallback) => {
+    doRequest(null, `/admin-panel/groups/${groupId}/`,
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "get",
+        successCallback,
+        faiCallback,
+        true);
+};
+
 export const addGroup = (data, successCallback, faiCallback) => {
     doRequest(data, "/admin-panel/groups/",
         {

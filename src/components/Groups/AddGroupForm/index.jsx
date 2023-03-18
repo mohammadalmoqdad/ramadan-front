@@ -2,10 +2,7 @@ import React, { useEffect, useState, useRef} from "react";
 import {
   DivMultiselect,
   DropdownDivSelect,
-  Span,
-  // AnnouncementsFormInput,
-  // RemoveBtn,
-  // AddBtn,
+  Span
 } from "../Groups.styles";
 import {
   DivTxtField,
@@ -35,12 +32,6 @@ export default function AddGroupForm(props) {
   const multiselectRef = useRef();
   const { t } = useTranslation();
 
-  /**
-   *  There are no announcements for groups anymore
-   */
-  // const [announcements, setAnnouncements] = useState([""]);
-  // const [isSemiColonExists, setSemiColonExists] = useState(false);
-
   useEffect(() => {
     setMessages([]);
     setClassColor("");
@@ -58,17 +49,11 @@ export default function AddGroupForm(props) {
     if (multiselectRef && multiselectRef.current) {
       multiselectRef.current.resetSelectedValues();
     }
-
-    /**
-     *  There are no announcements for groups anymore
-     */
-    // setSemiColonExists(false);
-    // setAnnouncements([""]);
   };
   const handleUpdateSelectedStudentsChange = (e) => {
     let students = [];
     for (let i = 0; i < e.length; i++) {
-      students.push(e[i].username);
+      students.push(e[i].person.username);
     }
     setSelectedStudents(students);
   };
@@ -86,26 +71,6 @@ export default function AddGroupForm(props) {
     setGroupName(e.target.value);
   };
 
-  /**
-   * There are no announcements for groups anymore
-   */
-  // const handleAnnouncementsChange = (e, index) => {
-  //   let notesArray = [...announcements];
-  //   notesArray.splice(index, 1, e.target.value);
-  //   setAnnouncements(notesArray);
-  // };
-  //
-  // const handleAddBtnChange = () => {
-  //   setAnnouncements([...announcements, ""]);
-  // };
-  //
-  // const handleRemoveBtnChange = (e, index) => {
-  //   e.preventDefault();
-  //   let notesArray = [...announcements];
-  //   notesArray.splice(index, 1);
-  //   setAnnouncements(notesArray);
-  // };
-
   const handleAddGroupSubmit = (e) => {
     e.preventDefault();
 
@@ -114,23 +79,6 @@ export default function AddGroupForm(props) {
       setClassColor("red");
       return;
     }
-
-    /**
-     * There are no announcements for groups anymore
-     */
-    // announcements.forEach((announcement) => {
-    //   if (announcement.includes(";")) {
-    //     valid = false;
-    //   }
-    // });
-    //
-    // if (!valid) {
-    //   setSemiColonExists(true);
-    //   setClassColor("red");
-    //   return;
-    // } else {
-    //   setSemiColonExists(false);
-    // }
 
     let data = {
       admin: selectedAdminUserName,
@@ -264,14 +212,14 @@ export default function AddGroupForm(props) {
                 admin?.person?.last_name?.length > 0
               ) {
                 return (
-                  <DropdownListItem key={index} value={admin.username}>
-                    {admin.first_name} {admin.last_name}
+                  <DropdownListItem key={index} value={admin.person.username}>
+                    {admin.person.first_name} {admin.person.last_name}
                   </DropdownListItem>
                 );
               } else {
                 return (
-                  <DropdownListItem key={index} value={admin.username}>
-                    {admin.username}
+                  <DropdownListItem key={index} value={admin.person.username}>
+                    {admin.person.username}
                   </DropdownListItem>
                 );
               }
@@ -293,37 +241,6 @@ export default function AddGroupForm(props) {
         <DivPass className={classColor}>{t("group-name-condition")}</DivPass>
       )}
 
-      {
-        /**
-         *  There are no announcements for groups anymore
-         */
-      }
-      {/*{announcements?.map((inputItem, index) => {*/}
-      {/*  return (*/}
-      {/*    <DivTxtField key={index} style={{ width: "100%" }}>*/}
-      {/*      <Span />*/}
-      {/*      <AnnouncementsFormInput*/}
-      {/*        placeholder={t("adve")}*/}
-      {/*        key={index}*/}
-      {/*        value={inputItem}*/}
-      {/*        onChange={(e) => handleAnnouncementsChange(e, index)}*/}
-      {/*        type="text"*/}
-      {/*      />*/}
-      {/*      {announcements.length > 1 && (*/}
-      {/*        <RemoveBtn onClick={(e) => handleRemoveBtnChange(e, index)}>*/}
-      {/*          -*/}
-      {/*        </RemoveBtn>*/}
-      {/*      )}*/}
-      {/*      {index === announcements.length - 1 && (*/}
-      {/*        <AddBtn onClick={handleAddBtnChange}>+</AddBtn>*/}
-      {/*      )}*/}
-      {/*    </DivTxtField>*/}
-      {/*  );*/}
-      {/*})}*/}
-      {/*{isSemiColonExists && (*/}
-      {/*  <DivPass className={classColor}>{t("adve-condition")}</DivPass>*/}
-      {/*)}*/}
-
       <Span />
       {messages.length > 0 &&
         messages.map((message, index) => {
@@ -338,7 +255,7 @@ export default function AddGroupForm(props) {
       </InputSubmit>
 
       <InputSubmit type="button" onClick={props.closeAddGroupForm}>
-        {t("add-cancle")}
+        {t("add-cancel")}
       </InputSubmit>
     </Form>
   );
