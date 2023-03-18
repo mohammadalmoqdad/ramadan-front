@@ -51,7 +51,7 @@ export default function Admins() {
         setLoading(true);
         retrieveAdmins(
             (res) => {
-                setAdmins([...res.data.results]);
+                setAdmins([...res.data]);
                 setLoading(false);
             }, (err) => {
                 console.log("Failed to retrieve admins: " + JSON.stringify(err.response.data));
@@ -131,13 +131,13 @@ export default function Admins() {
             }
 
             { admins && admins.length > 0 &&
-                admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.person.username !== admin.person.username).length > 0 &&
+                admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.username !== admin.person.username).length > 0 &&
 
                 <DropdownList className='DropdownList'>
                     <DropdownListItem  className="title"><Span>المسؤولون</Span></DropdownListItem>
                     <div className="dropdown-scroll-container">
                     {
-                        admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.person.username !== admin.person.username)
+                        admins.filter(admin => Object.keys(context.adminInfo).length === 0 || context.adminInfo.username !== admin.person.username)
                             .map((admin, index) => {
                                 return (<DropdownListItem key={index}>
                                     { hasPermission

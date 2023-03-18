@@ -42,12 +42,12 @@ function Sidebar() {
 
       <UserInfoContainer>
         { Object.keys(context.adminInfo).length > 0
-            ? context.adminInfo?.person?.first_name?.length > 0 || context.adminInfo?.last_name?.length > 0
+            ? context.adminInfo?.first_name?.length > 0 || context.adminInfo?.last_name?.length > 0
               ?
-                <Username>{context.adminInfo.person.first_name} {context.adminInfo.person.last_name}</Username>
-              : context.adminInfo?.person?.username?.length > 0
+                <Username>{context.adminInfo.first_name} {context.adminInfo.last_name}</Username>
+              : context.adminInfo?.username?.length > 0
                     ?
-                      <Username>{context.adminInfo.person.username}</Username>
+                      <Username>{context.adminInfo.username}</Username>
                     :
                       <Username>مسؤول</Username>
             :

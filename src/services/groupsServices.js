@@ -26,7 +26,7 @@ export const addGroup = (data, successCallback, faiCallback) => {
 };
 
 export const addOrRemoveAdminToGroup = (data, id, successCallback, faiCallback) => {
-    doRequest(data, `/admin-panel/groups/${id}/add_or_remove_admin`,
+    doRequest(data, `/admin-panel/groups/${id}/add_or_remove_admin/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -38,7 +38,7 @@ export const addOrRemoveAdminToGroup = (data, id, successCallback, faiCallback) 
 };
 
 export const addOrRemoveMemberToGroup = (data, id, successCallback, faiCallback) => {
-    doRequest(data, `/admin-panel/groups/${id}/add_or_remove_member`,
+    doRequest(data, `/admin-panel/groups/${id}/add_or_remove_member/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,

@@ -64,7 +64,7 @@ const ContestModerator = () => {
 
     retrieveAdmins(
       (res) => {
-        setAdmins(res?.data?.results);
+        setAdmins(res?.data);
         setLoading(false);
         console.log("this is result>>", res?.data?.results);
       },
@@ -84,7 +84,7 @@ const ContestModerator = () => {
     setLoading(true);
     retrieveAdmins(
         (res) => {
-          setAdmins(res?.data?.results);
+          setAdmins(res?.data);
           setLoading(false);
         },
         (err) => {
@@ -154,7 +154,7 @@ const ContestModerator = () => {
             </ModeratorSearchContainer>
           </RowContainer>
 
-          {admins.filter(admin => admin.person.username !== context.adminInfo.person.username).map((person, idx) => {
+          {admins.filter(admin => admin.person.username !== context.adminInfo.username).map((person, idx) => {
             return <ModeratorCard key={idx} person={person.person} admins={admins} setAdmins={setAdmins}/>;
           })}
         </div>

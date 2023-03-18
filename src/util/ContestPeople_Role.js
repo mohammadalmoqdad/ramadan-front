@@ -10,7 +10,7 @@ export const Role = Object.freeze({
 });
 
 export const isSuperAdmin = (context) => {
-  return Role.SUPER_ADMIN === context?.adminInfo?.contest?.role;
+  return Role.SUPER_ADMIN === context?.adminInfo?.role;
 };
 
 const VALID_LANGUAGES = ["ar", "en"];

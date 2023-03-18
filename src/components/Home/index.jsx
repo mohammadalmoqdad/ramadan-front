@@ -44,7 +44,7 @@ function Home() {
 
     retrieveStudents((res)=>{
       if(res && res.status === 200){
-        setStudents(res.data.results);
+        setStudents(res.data);
         setLoading(false);
       }
     },(err) => {
@@ -68,7 +68,7 @@ function Home() {
         <Div>
           <HomeBanner
               name={context.adminInfo?.person?.first_name?.length > 0
-                  ? context.adminInfo.person.first_name + " " + context.adminInfo.person.last_name
+                  ? context.adminInfo.first_name + " " + context.adminInfo.last_name
                   : "Admin"}
               dayNumber={"12"}/>
           <DaysSlider />
