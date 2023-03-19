@@ -67,7 +67,7 @@ function Home() {
       <HomeContainer>
         <Div>
           <HomeBanner
-              name={context.adminInfo?.person?.first_name?.length > 0
+              name={context.adminInfo?.first_name?.length > 0
                   ? context.adminInfo.first_name + " " + context.adminInfo.last_name
                   : "Admin"}
               dayNumber={"12"}/>
