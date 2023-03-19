@@ -1,8 +1,20 @@
 import {doRequest} from "./doRequest";
 import cookie from "react-cookies";
 
-export const retrieveContestInfo = (successCallback, faiCallback) => {
-    doRequest(null, "/contest/",
+export const retrieveContestsInfo = (successCallback, faiCallback) => {
+    doRequest(null, "/contests/",
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "get",
+        successCallback,
+        faiCallback,
+        true);
+};
+
+export const retrieveCurrentContestInfo = (successCallback, faiCallback) => {
+    doRequest(null, "/contests/current/",
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -14,7 +26,7 @@ export const retrieveContestInfo = (successCallback, faiCallback) => {
 };
 
 export const switchContest = (data, successCallback, faiCallback) => {
-    doRequest(data, "/contest/switch_contest",
+    doRequest(data, "/contests/switch_contest/",
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -25,13 +37,25 @@ export const switchContest = (data, successCallback, faiCallback) => {
         true);
 };
 
-export const retrieveGeneralStatus = (successCallback, faiCallback) => {
-    doRequest(null, "/comp-admin/comp-view/general_stats/",
+export const createContent = (data, successCallback, faiCallback) => {
+    doRequest(data, "/create-contest/",
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
         },
-        "get",
+        "post",
+        successCallback,
+        faiCallback,
+        true);
+};
+
+export const joinContest = (data, successCallback, faiCallback) => {
+    doRequest(data, "/join-contest/",
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "post",
         successCallback,
         faiCallback,
         true);
@@ -74,7 +98,7 @@ export const updateCompetition = (id, data, successCallback, faiCallback) => {
 };
 
 export const updateContest = (id, data, successCallback, faiCallback) => {
-    doRequest(data, `/admin-panel/contest/${id}/`,
+    doRequest(data, `/contests/${id}/`,
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,

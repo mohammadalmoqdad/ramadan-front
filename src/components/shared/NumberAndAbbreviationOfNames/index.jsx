@@ -9,9 +9,9 @@ import {
 function NumberAndAbbreviationOfNames(props){
 
     const styles = [
-        { background: '#FDD561', right: '10px', color:'black' },
-        { background: '#FF5367', right: '30px', color:'white' },
-        { background: '#503E9D', right: '50px', color:'#FDD561' }
+        { background: '#FDD561', right: '80px', color:'black' },
+        { background: '#FF5367', right: '50px', color:'white' },
+        { background: '#503E9D', right: '20px', color:'#FDD561' }
     ]
     return (
         <MemberImgsAndNumNumbers>

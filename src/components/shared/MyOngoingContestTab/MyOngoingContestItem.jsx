@@ -13,17 +13,32 @@ import {
   ActionBtn,
   ContestIconDescriptionContainer,
 } from "./MyOngoingContestTab.styles";
+import {switchContest} from "../../../services/competitionsServices";
 
-const MyOngoingContestItem = ({ contest, onClickSelect }) => {
-  //
-  // send request to select another contest depending on (contest.id)
-  const selectContestHandler = () => {
-    // send request to server here
-    //
-    // then reExcute Contests in Parents
-    onClickSelect();
+const MyOngoingContestItem = ({ contest, index }) => {
+
+  const handleSwitchContest = (contestId) => {
+      switchContest({
+        "contest_id": contestId
+      }, (res)=>{
+        if(res && res.status ===200){
+          window.location.reload(true);
+        }
+      }, (err)=>{
+        console.log("Failed to switch contest: " + err);
+      }
+    );
   };
-  //
+
+  const copyText = (code) =>{
+    navigator.clipboard.writeText(contest.access_code).then(() => {
+      console.log(`text: "${code}" has been Copied`);
+    },() => {
+      console.error('Failed to copy');
+    });
+
+  };
+
   if (contest === "emptyContest") {
     // If No Have any Contests yet
     return (
@@ -53,19 +68,19 @@ const MyOngoingContestItem = ({ contest, onClickSelect }) => {
 
           <MyOngoingContestsCodes>
             <MyOngoingContestsLabels>
-              <MyOngoingContestsLabel>Enrollment key:</MyOngoingContestsLabel>
+              <MyOngoingContestsLabel>Access Code:  </MyOngoingContestsLabel>
               <ContestsCode>
-                &nbsp; {contest.enrollmentkey} &nbsp;{" "}
+                &nbsp; {contest.access_code} &nbsp;
               </ContestsCode>
-              <CopyIcon />
+              <CopyIcon onClick={()=>{copyText(contest.access_code)}}/>
             </MyOngoingContestsLabels>
           </MyOngoingContestsCodes>
         </MyOngoingContestsDescribtion>
       </ContestIconDescriptionContainer>
 
-      {!contest.isActive && (
-        <ActionBtn onClick={selectContestHandler}>Select</ActionBtn>
-      )}
+      {index !== 0 &&
+        <ActionBtn onClick={()=>{handleSwitchContest(contest.id)}}>Select</ActionBtn>
+      }
     </MyOngoingContestIn>
   );
 };
