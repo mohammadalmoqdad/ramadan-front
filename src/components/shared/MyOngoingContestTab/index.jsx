@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-import MyOngoingContestItem from "./MyOngoingContestItem"; // contest item
+import MyOngoingContestItem from "./MyOngoingContestItem";
 import {
   MainContainer,
   NormalDiv,
@@ -10,96 +10,119 @@ import {
   DefaultForm,
   SearchContainer,
   ActionBtn,
-} from "./MyOngoingContestTab.styles"; // styled componenets
-import { ReactComponent as OpenDropDown } from "../../../assets/icons/Shared/OpenDropDown.svg"; // icon
-
-// Dummy Data
-const DummyContests = [
-  {
-    id: "cont1",
-    name: "Contest 1",
-    enrollmentkey: "6F8E3W",
-    isActive: false,
-  },
-  {
-    id: "cont2",
-    name: "Contest 2",
-    enrollmentkey: "4F6E3W",
-    isActive: false,
-  },
-  {
-    id: "cont3",
-    name: "Contest 3",
-    enrollmentkey: "8W8E3S",
-    isActive: true,
-  },
-  {
-    id: "cont4",
-    name: "Contest 4",
-    enrollmentkey: "3R8D3W",
-    isActive: false,
-  },
-];
-//
+} from "./MyOngoingContestTab.styles";
+import { ReactComponent as OpenDropDown } from "../../../assets/icons/Shared/OpenDropDown.svg";
+import {
+  createContent,
+  joinContest,
+  retrieveContestsInfo,
+  retrieveCurrentContestInfo
+} from "../../../services/competitionsServices";
+import {DivPass} from "../../ResetPassword/ResetPassword.styles";
 
 function MyOngoingContestTab({ competition }) {
-  const [contests, setContests] = useState([]);
-  const [arrangmentContests, setArrangmentContests] = useState([]);
   const [openContests, setOpenContests] = useState(false);
   const [containerHeight, setContainerHeight] = useState("");
   const [inputsHeight, setInputsHeight] = useState("");
+  const [currentContest, setCurrentContest] = useState({});
+  const [otherContests, setOtherContests] = useState([]);
+  const [newContestName, setNewContestName] = useState("");
+  const [contestCode, setContestCode] = useState("");
+  const [createErrorMessage, setCreateErrorMessage] = useState("");
+  const [joinErrorMessage, setJoinErrorMessage] = useState("");
 
-  const [selectChange, setSelectChange] = useState(false);
-  //
+  // const [selectChange, setSelectChange] = useState(false);
+
+  // const changeSelectHandler = () => {
+  //   setSelectChange((prevState) => !prevState);
+  // };
+
+  useEffect(() => {
+    retrieveCurrentContestInfo((res)=>{
+      if(res && res.status === 200){
+        setCurrentContest(res.data);
+      }
+    }, (err)=>{
+        console.log(`Failed to get current contest: ${err}`);
+    });
+  }, []);
+
+  useEffect(()=>{
+    retrieveContestsInfo((res)=>{
+      if(res && res.status === 200){
+        setOtherContests(res.data.filter(contest => contest.id !== currentContest.id));
+      }
+    }, (err)=>{
+      console.log(`Failed to contests: ${err}`);
+
+    });
+  },[currentContest]);
+
+  useEffect(()=>{
+    if([currentContest, ...otherContests].length > 0){
+      let inputsHeight = [currentContest, ...otherContests].length * 120;
+      setInputsHeight( inputsHeight + "px");
+      setContainerHeight((inputsHeight + 250) + "px");
+    }else{
+      let inputsHeight = 120;
+      setInputsHeight( inputsHeight + "px");
+      setContainerHeight((inputsHeight + 250) + "px");
+    }
+  },[otherContests]);
+
+  const handleNewContestNameChange = (e) =>{
+    setNewContestName(e.target.value);
+  };
+
+  const handleContestCodeChange = (e) =>{
+    setContestCode(e.target.value);
+  };
+
   const togglingContestHandler = () => {
     setOpenContests((prevState) => !prevState);
   };
-  const changeSelectHandler = () => {
-    // console.log("press-Select");
-    setSelectChange((prevState) => !prevState);
-  };
-  //
-  const createContestHandler = (e) => {
-    e.preventDefault();
-    //
-  };
-  const joinContestHandler = (e) => {
-    e.preventDefault();
-    //
-  };
-  //
 
-  // get Contests from server
-  const getContestFromServer = () => {
-    setContests((prevState) => DummyContests);
-  };
-
-  useEffect(() => {
-    if (contests.length > 0) {
-      setContainerHeight(
-        (prevState) => (contests.length * 120 + 250).toString() + "px"
-      );
-      setInputsHeight((prevState) => (contests.length * 120).toString() + "px");
-      // reArrangment Contsets depending on isActive key (true Or false)
-      const firstItem = contests.filter((item) => item.isActive);
-      const completeContests = contests.filter((item) => !item.isActive);
-      //
-      setArrangmentContests((prevState) => [...firstItem, ...completeContests]);
-      //
-    } else {
-      // this condition to create One Empty item
-      setContainerHeight((prevState) => (120 + 250).toString() + "px");
-      setInputsHeight((prevState) => "120px");
+  const createContestHandler = () => {
+    if(newContestName.length === 0 || newContestName.trim().length ===0){
+      return;
     }
-    // console.log("re_arrangment");
-  }, [contests]);
+    createContent({
+          "contest-name": newContestName
+        }, (res) => {
+          if(res && res.status === 200){
+            window.location.reload(true);
+          }
+        }, (err)=>{
+           handleCreateOrJoinError(err, setCreateErrorMessage, "crate");
+        }
+    );
+  };
+  const joinContestHandler = () => {
+    if(contestCode.length === 0 || contestCode.trim().length ===0){
+      return;
+    }
+    joinContest({
+          "access-code": contestCode
+        }, (res) => {
+          if (res && res.status === 200) {
+            window.location.reload(true);
+          }
+        }, (err) => {
+          handleCreateOrJoinError(err, setJoinErrorMessage, "join");
+        }
+    );
+  };
 
-  useEffect(() => {
-    // one excuation when component render Or when select button pressed
-    getContestFromServer();
-    // console.log("re_excute");
-  }, [selectChange]);
-  //
+  const handleCreateOrJoinError = (err, setter, action)=>{
+    console.log(`Failed to ${action} contest: ${err}`);
+    if(err?.response?.data){
+      setter(err.response.data);
+      setTimeout(()=>{
+        setter("");
+      },3000);
+    }
+  };
+
   return (
     <MainContainer
       openContests={openContests}
@@ -114,8 +137,7 @@ function MyOngoingContestTab({ competition }) {
       >
         <OpenDropDown />
       </OpenIconContainer>
-
-      {arrangmentContests && arrangmentContests.length > 0 ? (
+      {[currentContest, ...otherContests].length > 0 ? (
         <NormalDiv
           position="absolute"
           top="25px"
@@ -123,11 +145,11 @@ function MyOngoingContestTab({ competition }) {
           width="83%"
           mobileChange={true}
         >
-          {arrangmentContests.map((contest) => (
+          {[currentContest, ...otherContests].map((contest, index) => (
             <MyOngoingContestItem
               key={contest.id}
               contest={contest}
-              onClickSelect={changeSelectHandler}
+              index={index}
             />
           ))}
         </NormalDiv>
@@ -148,18 +170,24 @@ function MyOngoingContestTab({ competition }) {
           {/* Create Contest Form  */}
           <JoinAndCreateInputContainer>
             <DefaultForm>
-              <SearchContainer placeholder="New Contest" type="text" />
+              <SearchContainer placeholder="New Contest Name" type="text" onChange={handleNewContestNameChange}/>
             </DefaultForm>
             <ActionBtn onClick={createContestHandler}>Create</ActionBtn>
           </JoinAndCreateInputContainer>
           {/* Join Contest Form  */}
           <JoinAndCreateInputContainer>
             <DefaultForm>
-              <SearchContainer placeholder="Join Contest" type="text" />
+              <SearchContainer placeholder="Access code" type="text" onChange={handleContestCodeChange}/>
             </DefaultForm>
             <ActionBtn onClick={joinContestHandler}>Join</ActionBtn>
           </JoinAndCreateInputContainer>
         </FormsContainer>
+        { createErrorMessage.length > 0 &&
+            <DivPass className="red">{createErrorMessage}</DivPass>
+        }
+        { joinErrorMessage.length > 0 &&
+            <DivPass className="red">{joinErrorMessage}</DivPass>
+        }
       </NormalDiv>
     </MainContainer>
   );

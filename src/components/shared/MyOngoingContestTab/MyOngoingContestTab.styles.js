@@ -149,6 +149,9 @@ export const MyOngoingContestsLabels = styled.div`
 
   @media (max-width: 37.5625rem) {
   }
+  svg{
+     cursor: pointer; 
+  }
 `;
 
 export const MyOngoingContestsLabel = styled.div`
