@@ -1,8 +1,10 @@
 import { doRequest } from "./doRequest";
 import cookie from "react-cookies";
+import {Role} from "../util/ContestPeople_Role";
 
-export const retrieveStudents = (successCallback, faiCallback) => {
-    doRequest(null, "/admin-panel/contest-people/?contest_role=1",
+export const retrieveStudents = (successCallback, faiCallback, searchText) => {
+    doRequest(null, "/admin-panel/contest-people/?contest_role=" + Role.MEMBER +
+        (searchText && searchText.length > 0 ? "&search=" + searchText : ""),
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
@@ -13,8 +15,22 @@ export const retrieveStudents = (successCallback, faiCallback) => {
         true);
 };
 
-export const retrievePendingMembers = (successCallback, faiCallback) => {
-    doRequest(null, "/admin-panel/contest-people/?contest_role=4",
+export const retrievePendingMembers = (successCallback, faiCallback, searchText) => {
+    doRequest(null, "/admin-panel/contest-people/?contest_role=" + Role.PENDING +
+        (searchText && searchText.length > 0 ? "&search=" + searchText : ""),
+        {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cookie.load('token')}`,
+        },
+        "get",
+        successCallback,
+        faiCallback,
+        true);
+};
+
+export const retrieveDeactivatedMembers = (successCallback, faiCallback, searchText) => {
+    doRequest(null, "/admin-panel/contest-people/?contest_role="+ Role.DEACTIVATED +
+        (searchText && searchText.length > 0 ? "&search=" + searchText : ""),
         {
             "Content-Type": "application/json",
             Authorization: `Bearer ${cookie.load('token')}`,
