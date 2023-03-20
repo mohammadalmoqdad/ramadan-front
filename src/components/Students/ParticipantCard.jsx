@@ -13,22 +13,25 @@ import { ReactComponent as MoreButton } from "assets/icons/more-button.svg";
 import ButtonsModal from "./ButtonsModal";
 import { useState } from "react";
 
-const ModeratorCard = ({ name, date, rank }) => {
+const ModeratorCard = ({ key, name, username, students, setStudents, setDeactivatedStudents, deactivatedStudents}) => {
   const [modalState, setModalState] = useState(false);
 
   return (
-    <ParticipantCards>
+    <ParticipantCards key={key}>
       <ParticipantsNumbers>
         <div style={{ display: "flex", gap: "12px" }}>
           <ShortedName>
-            {` ${name.match(/\b\w/g).join("").toUpperCase()}`}
+            { name.split(" ").length > 1
+                ? (name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0)).toUpperCase()
+                : name.slice(0, 2).toUpperCase()
+            }
           </ShortedName>
           <ColumnContainer>
             <BoldText>{name}</BoldText>
-            <LightText>{`Accepted on ${date}`}</LightText>
+            <LightText>{name !== username ? username : ""}</LightText>
           </ColumnContainer>
         </div>
-        <BoldText>{`#${rank}`}</BoldText>
+        {/*<BoldText>{`#${rank}`}</BoldText>*/}
 
         <MoreButton
           className="more-button"
@@ -43,6 +46,11 @@ const ModeratorCard = ({ name, date, rank }) => {
             turnOff={() => {
               setModalState(false);
             }}
+            username={username}
+            students={students}
+            setStudents={setStudents}
+            setDeactivatedStudents={setDeactivatedStudents}
+            deactivatedStudents={deactivatedStudents}
           />
         )}
       </ParticipantsNumbers>

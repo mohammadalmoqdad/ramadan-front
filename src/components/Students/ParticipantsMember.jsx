@@ -38,10 +38,10 @@ function Participants({ title, showButton, onClick, length }) {
               <MembersImg style={{ background: "#FDD561", right: "0px" }}>
                 AB
               </MembersImg>
-              <MembersImg style={{ background: "#FF5367", right: "20px" }}>
+              <MembersImg style={{ background: "#FF5367", right: "30px" }}>
                 MK
               </MembersImg>
-              <MembersImg style={{ background: "#503E9D", right: "40px" }}>
+              <MembersImg style={{ background: "#503E9D", right: "60px" }}>
                 HA
               </MembersImg>
             </MembersImgs>

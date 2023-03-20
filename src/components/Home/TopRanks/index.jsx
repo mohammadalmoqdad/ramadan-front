@@ -69,14 +69,14 @@ function TopRanks(props) {
                   if(i===0){
                     return (
                         <Top3RankDiv>
-                          <Top1Img style={styles[i]}>{topMember.name.slice(0, 2)}</Top1Img>
+                          <Top1Img style={styles[i]}>{topMember.name.slice(0, 2).toUpperCase()}</Top1Img>
                           <Top1Name>{topMember.name}</Top1Name>
                         </Top3RankDiv>
                     )
                   }
                     return (
                         <Top3RankDiv>
-                          <Top2Img style={styles[i]}>{topMember.name.slice(0, 2)}</Top2Img>
+                          <Top2Img style={styles[i]}>{topMember.name.slice(0, 2).toUpperCase()}</Top2Img>
                           <Top2Name>{topMember.name}</Top2Name>
                         </Top3RankDiv>
                     )

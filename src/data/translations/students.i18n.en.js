@@ -1,13 +1,16 @@
 export default {
-  students: "Accepted Participants ",
+  students: "Participants ",
   delete: "Delete",
+  reactive: "Reactive",
   addParticipantManually: "Add Participant Manually",
-  waitingForApproval: "Waiting For Approval ",
+  deactivatedStudents: "Deactivated participants ",
   rejectedParticipants: "Rejected Participants",
   show: "Show",
   deactivate: "Deactivate",
-  "set-admin": "Set Admin",
-  "set-super-admin": "Set Super Admin",
-  "change-password": "Change Password",
-  "enter-new-password": "Enter New Password",
+  "set-admin": "Set as admin",
+  "set-super-admin": "Set as super admin",
+  "change-password": "Change password",
+  "enter-new-password": "Enter new password",
+  "confirm-new-password": "Confirm new password",
+  "unmatched-passwords": "Passwords are not matched"
 };

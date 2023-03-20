@@ -2,12 +2,15 @@ export default {
   students: "المشاركين",
   reject: "حذف",
   addParticipantManually: "إضافة مشترك يدوياً",
-  waitingForApproval: "بانتظار الموافقة",
+  deactivatedStudents: "المشاركين غير المفعلين",
   rejectedParticipants: "المشاركين المرفوضين",
   show: "عرض",
-  deactivate: "تعطيل",
+  deactivate: "الغاء التفعيل",
   "set-admin": "تعيين كمسؤول",
-  "set-super-admin": "تعيين كمدير",
+  "set-super-admin": "تعيين كمسؤول رئيسي",
   "change-password": "تغيير كلمة المرور",
   "enter-new-password": "ادخل كلمة مرور جديدة",
+  "confirm-new-password": "تأكيد كلمة المرور الجديدة",
+  reactive: "إعادة تفعيل",
+  "unmatched-passwords": "كلمتا المرور ليستا متطابقتين"
 };

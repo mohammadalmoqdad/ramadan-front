@@ -3,7 +3,7 @@ import Tabs from "../shared/Tabs";
 import SetPasswordStudents from "./setPasswordStudent";
 import EditStudentForm from "./EditStudentForm";
 import {
-  deleteStudent,
+  deleteStudent, retrieveDeactivatedMembers,
   retrieveStudents,
 } from "../../services/studentsServices";
 import { H5 } from "./setPasswordStudent/SetPasswordStudent.styles";
@@ -44,20 +44,18 @@ import Participants from "./ParticipantsMember";
 export default function Students() {
   const { t } = useTranslation();
   const [students, setStudents] = useState([]);
+  const [deactivatedStudents, setDeactivatedStudents] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [studentToDelete, setStudentToDelete] = useState("");
   const [hasPermission, setPermission] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [isAcceptedDisplayed, setIsAcceptedDisplayed] = useState(true);
+  const [isStudentsDisplayed, setIsStudentsDisplayed] = useState(true);
   const [membersNumber, setMembersNumber] = useState(0);
+  const [searchText, setSearchText] = useState("");
+
   const context = useAdminContext();
   let navigate = useNavigate();
-  useEffect(() => {
-    isAcceptedDisplayed
-      ? setMembersNumber(watingForAprovalMembers.length)
-      : setMembersNumber(participants.length);
-  }, [isAcceptedDisplayed]);
 
   useEffect(() => {
     if (!cookie.load("token")) {
@@ -65,18 +63,6 @@ export default function Students() {
     }
 
     setLoading(true);
-    retrieveStudents(
-      (res) => {
-        setStudents(res.data);
-        setLoading(false);
-      },
-      (err) => {
-        console.log(
-          "Failed to retrieve students: " + JSON.stringify(err.response.data)
-        );
-        setLoading(false);
-      }
-    );
 
     if (Object.keys(context.adminInfo).length > 0) {
       setPermission(isSuperAdmin(context));
@@ -88,65 +74,43 @@ export default function Students() {
         }
       }, 1000);
     }
+
+    retrieveDeactivatedMembers(
+        (res)=>{
+          if(res && res.status === 200){
+            setDeactivatedStudents(res.data);
+          }
+        }, (err)=>{
+          console.log(
+              "Failed to retrieve deactivated students: " + JSON.stringify(err?.response?.data)
+          );
+        }
+    );
+
+    retrieveStudents(
+        (res) => {
+          setStudents(res.data);
+          setLoading(false);
+        },
+        (err) => {
+          console.log(
+              "Failed to retrieve students: " + JSON.stringify(err?.response?.data)
+          );
+          setLoading(false);
+        }
+    );
+
   }, []);
 
   useEffect(() => {
     setPermission(
-      Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context)
+        Object.keys(context.adminInfo).length > 0 && isSuperAdmin(context)
     );
   }, [context.adminInfo]);
 
-  const participants = [
-      {
-        name: "Ammar Jalal",
-        date: "Jun 16th, 2022 ",
-
-        rank: 1,
-      },
-      {
-        name: "Mohammad Ayed",
-        date: "Nov 5th, 2022 ",
-
-        rank: 2,
-      },
-      {
-        name: "Ahmad Aburabee",
-        date: "Aug 7th, 2022 ",
-
-        rank: 3,
-      },
-      {
-        name: "Osama Ali",
-        date: "Dec 9th, 2022 ",
-
-        rank: 4,
-      },
-      {
-        name: "Qais samer",
-        date: "Jan 4th, 2023 ",
-
-        rank: 5,
-      },
-    ],
-    watingForAprovalMembers = [
-      {
-        name: "Odai ahmad",
-        date: "Jun 16th, 2022 ",
-
-        rank: 8,
-      },
-      {
-        name: "mustafa ali",
-        date: "Nov 5th, 2022 ",
-
-        rank: 9,
-      },
-      {
-        name: "waleed omar",
-        date: "Aug 7th, 2022 ",
-        rank: 10,
-      },
-    ];
+  useEffect(() => {
+    setSearchText("");
+  }, [isStudentsDisplayed]);
 
   const handleDeleteStudentModalChange = (e) => {
     setStudentToDelete(e.target.value);
@@ -169,11 +133,50 @@ export default function Students() {
       (err) => {
         console.log(
           "Failed to delete admin: ",
-          JSON.stringify(err.response.data)
+          JSON.stringify(err?.response?.data)
         );
       }
     );
     setOpenModal(false);
+  };
+
+  const handleSearchTextChange = (e)=>{
+    setSearchText(e.target.value);
+  }
+
+  const handleSearchClick = ()=>{
+    setLoading(true);
+
+    if(isStudentsDisplayed){
+      retrieveStudents(
+          (res) => {
+            setStudents(res.data);
+            setLoading(false);
+          },
+          (err) => {
+            console.log(
+                "Failed to retrieve students: " + JSON.stringify(err?.response?.data)
+            );
+            setLoading(false);
+          },
+          searchText
+      );
+    }else{
+      retrieveDeactivatedMembers(
+          (res)=>{
+            if(res && res.status === 200){
+              setDeactivatedStudents(res.data);
+            }
+            setLoading(false);
+          }, (err)=>{
+            console.log(
+                "Failed to retrieve deactivated students: " + JSON.stringify(err?.response?.data)
+            );
+            setLoading(false);
+          },
+          searchText
+      );
+    }
   };
 
   if (loading) {
@@ -183,22 +186,12 @@ export default function Students() {
       </main>
     );
   }
-  const showWatingForAproval = () => {
-    setIsAcceptedDisplayed(!isAcceptedDisplayed);
+  const showDeactivatedStudents = () => {
+    setIsStudentsDisplayed(!isStudentsDisplayed);
   };
 
   return (
     <>
-      {/* {openModal && (
-        <Modal
-          title="تأكيد الحذف"
-          content="هل تريد حذف هذا الطالب؟"
-          deleteBtn="حذف"
-          cancelBtn="إلغاء"
-          setOpenModal={setOpenModal}
-          deleteFunction={deleteFunction}
-        />
-      )} */}
 
       <StudentsContainer>
         <MyOngoingContestTab />
@@ -213,40 +206,49 @@ export default function Students() {
           >
             <RowContainer>
               <BoldText>
-                {isAcceptedDisplayed
-                  ? `${t("students")}(${participants.length})`
-                  : `${t("waitingForApproval")}(${
-                      watingForAprovalMembers.length
+                {isStudentsDisplayed
+                  ? `${t("students")}(${students.length})`
+                  : `${t("deactivatedStudents")}(${
+                      deactivatedStudents.length
                     })`}
               </BoldText>
               <StudentSearchContainer>
                 <SearchInput
-                  onClick={() => setIsExpanded(!isExpanded)}
+                  value={searchText.length > 0 ? searchText : ""}
+                  onChange={handleSearchTextChange}
                   placeholder={t("search")}
                   isExpanded={isExpanded}
                 />
-                <SearchIcons2 onClick={() => setIsExpanded(false)} />
+                <SearchIcons2 onClick={handleSearchClick} />
               </StudentSearchContainer>
             </RowContainer>
 
-            {isAcceptedDisplayed
-              ? participants.map((item, idx) => {
+            {isStudentsDisplayed
+              ? students.map((student, idx) => {
                   return (
                     <ParticipantCard
                       key={idx}
-                      name={item.name}
-                      date={item.date}
-                      rank={item.rank}
+                      name={student.person?.first_name?.length > 0 ? student.person.first_name + " " + student.person.last_name : student.person.username}
+                      username={student.person.username}
+                      setStudents={setStudents}
+                      students={students}
+                      setDeactivatedStudents={setDeactivatedStudents}
+                      deactivatedStudents={deactivatedStudents}
                     />
                   );
                 })
-              : watingForAprovalMembers.map((item, idx) => {
+              : deactivatedStudents.map((deactivatedStudent, idx) => {
                   return (
                     <WaitingCard
                       key={idx}
-                      name={item.name}
-                      date={item.date}
-                      rank={item.rank}
+                      name={deactivatedStudent.person?.first_name?.length > 0
+                          ? deactivatedStudent.person.first_name + " " + deactivatedStudent.person.last_name
+                          : deactivatedStudent.person.username}
+                      username={deactivatedStudent.person.username}
+                      setStudents={setStudents}
+                      students={students}
+                      setDeactivatedStudents={setDeactivatedStudents}
+                      deactivatedStudents={deactivatedStudents}
                     />
                   );
                 })}
@@ -254,25 +256,11 @@ export default function Students() {
 
           <AddParticipantContainer>
             <Participants
-              title={isAcceptedDisplayed ? "waitingForApproval" : "students"}
+              title={isStudentsDisplayed ? "deactivatedStudents" : "students"}
               showButton
-              onClick={showWatingForAproval}
-              length={membersNumber}
+              onClick={showDeactivatedStudents}
+              length={isStudentsDisplayed ? deactivatedStudents.length : students.length}
             />
-            <Participants title={"rejectedParticipants"} />
-            <AddParticipantSpan>
-              {t("addParticipantManually")}
-            </AddParticipantSpan>
-            <SearchInputContainer>
-              <SearchContainerForm>
-                <SearchIconButton type="submit">
-                  <SearchIcons />
-                </SearchIconButton>
-                <SearchContainer placeholder={t("username")} type="text" />
-              </SearchContainerForm>
-
-              <GoBtn>{t("go")}</GoBtn>
-            </SearchInputContainer>
           </AddParticipantContainer>
         </ContentContainer>
       </StudentsContainer>
