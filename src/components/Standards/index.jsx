@@ -6,8 +6,8 @@ import EditSectionForm from "./EditSectionForm";
 import {
   deleteSection,
   deleteStandard,
-  retrieveSections,
-  retrieveStandards,
+  // retrieveSections,
+  // retrieveStandards,
 } from "../../services/standardServices";
 import Tabs from "../shared/Tabs";
 import Container, { StandardsDropDownList } from "./Standards.styles";
@@ -63,31 +63,31 @@ export default function Standards() {
       }, 1000);
     }
 
-    retrieveStandards(
-      (res) => {
-        setStandards(res.data.results);
-        setLoading(false);
-      },
-      (err) => {
-        console.log(
-          "Failed to retrieve standards, ERROR: ",
-          JSON.stringify(err.response.data)
-        );
-        setLoading(false);
-      }
-    );
-
-    retrieveSections(
-      (res) => {
-        setSections(res.data);
-      },
-      (err) => {
-        console.log(
-          "Failed to retrieve sections, ERROR: ",
-          JSON.stringify(err.response.data)
-        );
-      }
-    );
+    // retrieveStandards(
+    //   (res) => {
+    //     setStandards(res.data.results);
+    //     setLoading(false);
+    //   },
+    //   (err) => {
+    //     console.log(
+    //       "Failed to retrieve standards, ERROR: ",
+    //       JSON.stringify(err.response.data)
+    //     );
+    //     setLoading(false);
+    //   }
+    // );
+    //
+    // retrieveSections(
+    //   (res) => {
+    //     setSections(res.data);
+    //   },
+    //   (err) => {
+    //     console.log(
+    //       "Failed to retrieve sections, ERROR: ",
+    //       JSON.stringify(err.response.data)
+    //     );
+    //   }
+    // );
   }, []);
 
   useEffect(() => {
