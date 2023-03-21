@@ -88,7 +88,7 @@ function Sidebar() {
           </MenuItem>
           <StudentsIcon/>
         </MenuLink>
-        <MenuLink to="/Standards">
+        <MenuLink to="/ContestCriteria">
           <MenuItem >
             المعايير  
           </MenuItem>
