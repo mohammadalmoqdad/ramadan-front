@@ -50,6 +50,8 @@ export const zIndices = {
 export const flexes = {
   leftToRight: "row",
   rightToLeft: "row-reverse",
+  alignStart: "flex-start",
+  alignEnd: "flex-end",
 };
 
 export const arabicTheme = {
@@ -61,6 +63,7 @@ export const arabicTheme = {
 
   flex: {
     direction: flexes.rightToLeft,
+    align: flexes.alignEnd,
   },
   fonts: {
     fontFamilyBody: fonts.mainAR,
@@ -74,6 +77,7 @@ export const arabicTheme = {
 export const englishTheme = {
   flex: {
     direction: flexes.leftToRight,
+    align: flexes.alignStart,
   },
   fonts: {
     fontFamilyBody: fonts.mainEN,
