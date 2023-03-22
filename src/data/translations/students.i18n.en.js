@@ -12,5 +12,6 @@ export default {
   "change-password": "Change password",
   "enter-new-password": "Enter new password",
   "confirm-new-password": "Confirm new password",
-  "unmatched-passwords": "Passwords are not matched"
+  "unmatched-passwords": "Passwords are not matched",
+  "reset-password-failed-msg":"Password reset successfully"
 };

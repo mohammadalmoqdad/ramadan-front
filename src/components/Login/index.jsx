@@ -119,24 +119,25 @@ function Login() {
           </SignupNowAccount>
         </HeadLogIn>
 
-        <MediaOneLine>
-          <MediaLogIn>
-            {" "}
-            <img src={AppleLogo} alt="" />
-          </MediaLogIn>
-          <MediaLogIn>
-            {" "}
-            <img src={GoogleLogo} alt="" />
-          </MediaLogIn>
-          <MediaLogIn>
-            <img src={FBLogo} alt="" />
-          </MediaLogIn>
-        </MediaOneLine>
+        {/*TODO: Uncomment when it's ready*/}
+        {/*<MediaOneLine>*/}
+        {/*  <MediaLogIn>*/}
+        {/*    {" "}*/}
+        {/*    <img src={AppleLogo} alt="" />*/}
+        {/*  </MediaLogIn>*/}
+        {/*  <MediaLogIn>*/}
+        {/*    {" "}*/}
+        {/*    <img src={GoogleLogo} alt="" />*/}
+        {/*  </MediaLogIn>*/}
+        {/*  <MediaLogIn>*/}
+        {/*    <img src={FBLogo} alt="" />*/}
+        {/*  </MediaLogIn>*/}
+        {/*</MediaOneLine>*/}
 
-        {/* <HeadLogIn> */}
-        {/* <img src={WirdLogo} alt='' /> */}
-        <OrWayToLogIn>Or</OrWayToLogIn>
-        {/* </HeadLogIn> */}
+        {/*/!* <HeadLogIn> *!/*/}
+        {/*/!* <img src={WirdLogo} alt='' /> *!/*/}
+        {/*<OrWayToLogIn>Or</OrWayToLogIn>*/}
+        {/*/!* </HeadLogIn> *!/*/}
 
         <Form onSubmit={handleSubmit}>
           <DivTxtField>
@@ -170,9 +171,11 @@ function Login() {
             Login
           </InputSubmit>
         </Form>
-        <SignupNowAccount>
-          Or<SignupNow href="/ForgotPassword"> Forgot Password</SignupNow>
-        </SignupNowAccount>
+
+        {/*TODO: Uncomment when it's ready*/}
+        {/*<SignupNowAccount>*/}
+        {/*  Or<SignupNow href="/ForgotPassword"> Forgot Password</SignupNow>*/}
+        {/*</SignupNowAccount>*/}
       </DivCenter>
     </LoginFormContainer>
   );

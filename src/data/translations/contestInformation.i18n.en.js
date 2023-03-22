@@ -10,4 +10,5 @@ export default {
   "active-announcements": "Active Announcements",
   save: "Save",
   readonly: "Read Only",
+  "no-contest-yet-msg":"You haven't joined a contest yet"
 };

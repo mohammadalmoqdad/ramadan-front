@@ -137,7 +137,8 @@ function MyOngoingContestTab({ competition }) {
       >
         <OpenDropDown />
       </OpenIconContainer>
-      {[currentContest, ...otherContests].length > 0 ? (
+      {[currentContest, ...otherContests].length > 0 && Object.keys(currentContest).length > 0
+      ? (
         <NormalDiv
           position="absolute"
           top="25px"

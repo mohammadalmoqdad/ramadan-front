@@ -12,5 +12,6 @@ export default {
   "enter-new-password": "ادخل كلمة مرور جديدة",
   "confirm-new-password": "تأكيد كلمة المرور الجديدة",
   reactive: "إعادة تفعيل",
-  "unmatched-passwords": "كلمتا المرور ليستا متطابقتين"
+  "unmatched-passwords": "كلمتا المرور ليستا متطابقتين",
+  "reset-password-failed-msg":"لم يتم إعادة تعيين كلمة المرور"
 };

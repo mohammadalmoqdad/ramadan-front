@@ -1,45 +1,57 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import ReactDom from "react-dom";
 import Container, {
-  AddButton,
-  Overlay,
+    AddButton,
+    Overlay, TextInputField,
 } from "./ButtonsModal.styled";
 import { useTranslation } from "react-i18next";
-import {updateContestPeopleRole} from "../../services/adminsServices";
+import {resetMemberPassword, updateContestPeopleRole} from "../../services/adminsServices";
 import {Role} from "../../util/ContestPeople_Role";
+import {DivPass} from "../shared/styles";
 
 export default function ButtonsModal({ clickOverlay, turnOff, username, setStudents, students, setDeactivatedStudents, deactivatedStudents}) {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [unmatchedPasswords, setUnmatchedPasswords] = useState(false);
+  const [messages, setMessages] = useState([]);
 
-    /**
-     *  Admins Can't change member's password
-     */
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-  // const [unmatchedPasswords, setUnmatchedPasswords] = useState(false);
-  // const [messages, setMessages] = useState([]);
-  //
-  // const passwordRef = useRef();
-  // const { t } = useTranslation();
-  //
-  // useEffect(()=>{
-  //     setUnmatchedPasswords(false);
-  //     setMessages([]);
-  // },[password, confirmPassword]);
-  //
-  // const handleChangePassword = () => {
-  //   if(password.length === 0 || password.trim().length === 0){
-  //     return;
-  //   }
-  //
-  //   if(password !== confirmPassword){
-  //     setUnmatchedPasswords(true);
-  //     return;
-  //   }
-  //   turnOff();
-  // };
+  const passwordRef = useRef();
+  const { t } = useTranslation();
 
-    const { t } = useTranslation();
+  useEffect(()=>{
+      setUnmatchedPasswords(false);
+      setMessages([]);
+  },[password, confirmPassword]);
 
+  const handleChangePassword = () => {
+    if(password.length === 0 || password.trim().length === 0){
+      return;
+    }
+
+    if(password !== confirmPassword){
+      setUnmatchedPasswords(true);
+      return;
+    }
+
+      resetMemberPassword({
+              username: username,
+              password: password
+          }, (res) => {
+              turnOff();
+          }, (err) => {
+          let errMessages = [];
+          errMessages.push([t("reset-password-failed")]);
+          if(err.response.data){
+              let obj = err.response.data;
+              Object.keys(obj).forEach(e => {
+                      errMessages.push(`${obj[e]} : ${e}`);
+                  }
+              )
+          }
+          setMessages(errMessages);
+          }
+      );
+  };
 
     const handleSetAdmin = () => {
     updateContestPeopleRole(username,
@@ -87,13 +99,13 @@ export default function ButtonsModal({ clickOverlay, turnOff, username, setStude
     turnOff();
   };
 
-  // const handleConfirmPasswordTextChange = (e)=>{
-  //   setConfirmPassword(e.target.value);
-  // };
-  //
-  // const handlePasswordTextChange = (e)=>{
-  //   setPassword(e.target.value);
-  // };
+  const handleConfirmPasswordTextChange = (e)=>{
+    setConfirmPassword(e.target.value);
+  };
+
+  const handlePasswordTextChange = (e)=>{
+    setPassword(e.target.value);
+  };
 
   return ReactDom.createPortal(
     <>
@@ -103,34 +115,30 @@ export default function ButtonsModal({ clickOverlay, turnOff, username, setStude
         <AddButton onClick={handleSetSuperAdmin}>{t("set-super-admin")}</AddButton>
         <AddButton onClick={handleDeactivate}>{t("deactivate")}</AddButton>
 
-          {/**
-           * Admins Can't change member's password
-           */}
-
-        {/*<hr/>*/}
-        {/*<TextInputField*/}
-        {/*  ref={passwordRef}*/}
-        {/*  type={"password"}*/}
-        {/*  placeholder={t("enter-new-password")}*/}
-        {/*  onChange={handlePasswordTextChange}*/}
-        {/*/>*/}
-        {/*<TextInputField*/}
-        {/*    ref={passwordRef}*/}
-        {/*    type={"password"}*/}
-        {/*    placeholder={t("confirm-new-password")}*/}
-        {/*    onChange={handleConfirmPasswordTextChange}*/}
-        {/*/>*/}
-        {/*<AddButton onClick={handleChangePassword}>*/}
-        {/*  {t("change-password")}*/}
-        {/*</AddButton>*/}
-        {/*{ unmatchedPasswords.length > 0 &&*/}
-        {/*    <DivPass className="red"> {t("unmatched-passwords")}</DivPass>*/}
-        {/*}*/}
-        {/*{ messages.length > 0 &&*/}
-        {/*      messages.map((message, index) => {*/}
-        {/*          return <DivPass className="red" key={index}>{message}</DivPass>*/}
-        {/*      })*/}
-        {/*}*/}
+        <hr/>
+        <TextInputField
+          ref={passwordRef}
+          type={"password"}
+          placeholder={t("enter-new-password")}
+          onChange={handlePasswordTextChange}
+        />
+        <TextInputField
+            ref={passwordRef}
+            type={"password"}
+            placeholder={t("confirm-new-password")}
+            onChange={handleConfirmPasswordTextChange}
+        />
+        <AddButton onClick={handleChangePassword}>
+          {t("change-password")}
+        </AddButton>
+        { unmatchedPasswords.length > 0 &&
+            <DivPass className="red"> {t("unmatched-passwords")}</DivPass>
+        }
+        { messages.length > 0 &&
+              messages.map((message, index) => {
+                  return <DivPass className="red" key={index}>{message}</DivPass>
+              })
+        }
       </Container>
     </>,
     document.getElementById("portal")
