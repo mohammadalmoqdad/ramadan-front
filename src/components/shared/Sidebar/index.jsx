@@ -22,7 +22,7 @@ import { isSuperAdmin } from "../../../util/ContestPeople_Role";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
-function Sidebar() {
+function Sidebar({ setIsSideBarCollapsed }) {
   const { t } = useTranslation();
   const context = useAdminContext();
   const [hasPermission, setPermission] = useState(false);
@@ -57,47 +57,59 @@ function Sidebar() {
           </WirdLogoContainer>
 
           <MenuContainer>
-            <MenuLink to="/">
+            <MenuLink onClick={() => setIsSideBarCollapsed()} to="/">
               <HomeIcon />
               <MenuItem>{t("home-page")}</MenuItem>
             </MenuLink>
             {/* { hasPermission && */}
-            <MenuLink to="/competition">
+            <MenuLink onClick={() => setIsSideBarCollapsed()} to="/competition">
               <CompInfoIcon />
               <MenuItem>{t("contest-information")}</MenuItem>
             </MenuLink>
             {/* } */}
-            <MenuLink to="/top-students">
+            <MenuLink
+              onClick={() => setIsSideBarCollapsed()}
+              to="/top-students"
+            >
               <LeaderBoard />
               <MenuItem>{t("leaders-board")}</MenuItem>
             </MenuLink>
-            <MenuLink to="/admins">
+            <MenuLink onClick={() => setIsSideBarCollapsed()} to="/admins">
               <ContestModeratorsIcon />
               <MenuItem>{t("admins")}</MenuItem>
             </MenuLink>
-            <MenuLink to="/students">
+            <MenuLink onClick={() => setIsSideBarCollapsed()} to="/students">
               <ParticipantsIcon />
               <MenuItem>{t("students")}</MenuItem>
             </MenuLink>
-            <MenuLink to="/standards">
+            <MenuLink onClick={() => setIsSideBarCollapsed()} to="/standards">
               <CriteriaIcon />
               <MenuItem>{t("criterias")}</MenuItem>
             </MenuLink>
-            <MenuLink to="/review-other-points">
+            <MenuLink
+              onClick={() => setIsSideBarCollapsed()}
+              to="/review-other-points"
+            >
               <FileTxtIcon />
               <MenuItem>{t("text-inputs")}</MenuItem>
             </MenuLink>
-            <MenuLink to="/students-points">
+            <MenuLink
+              onClick={() => setIsSideBarCollapsed()}
+              to="/students-points"
+            >
               <ResultsIcon />
               <MenuItem>{t("results-page")}</MenuItem>
             </MenuLink>
             {hasPermission && (
-              <MenuLink to="/export-points">
+              <MenuLink
+                onClick={() => setIsSideBarCollapsed()}
+                to="/export-points"
+              >
                 <FileDownload />
                 <MenuItem>{t("extract-results")}</MenuItem>
               </MenuLink>
             )}
-            <MenuLink to="/groups">
+            <MenuLink onClick={() => setIsSideBarCollapsed()} to="/groups">
               <GroupsIcon />
               <MenuItem>{t("groups-page")}</MenuItem>
             </MenuLink>

@@ -23,9 +23,9 @@ export default (theme) => {
       --text-align: ${theme.text.textAlign};
 
       // Global:
-      /* span{
-        text-align: ${theme.text.textAlign};
-      } */
+      body {
+        margin: 0;
+      }
     }
   `;
 };

@@ -28,7 +28,7 @@ export default function AppBrowserRouter({ changeTheme }) {
       <Container>
         <Sidebar />
         <MainContent>
-          <Navbar />
+          <Navbar changeTheme={changeTheme} />
           <Routes>
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />
