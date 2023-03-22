@@ -6,21 +6,45 @@ export default styled.div`
   /* position: absolute; */
   /* position: relative; */
   display: flex;
+  flex-wrap: nowrap;
   padding: 2rem;
   border-radius: 1.5rem;
   background-color: ${colors.lightGrey};
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   gap: 11px;
   width: 22.5rem;
+  max-height: 39rem;
+  overflow: auto;
 
   position: fixed;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-70%, -40%);
   z-index: 1000;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    max-height: 90%;
+    height: 90%;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px ${colors.lightGrey};
+    border-radius: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${colors.red};
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${colors.red};
+  }
 
   @media (max-width: 550px) {
     transform: translate(-50%, -50%);

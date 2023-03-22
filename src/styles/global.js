@@ -15,6 +15,7 @@ export default (theme) => {
       --background-disabled: ${colors.lightGrey}; // just an example for the color, value can be changed.
       // Flex:
       --flex-direction: ${theme.flex.direction};
+      --align-items: ${theme.flex.align};
 
       // Text & Font:
       --font-family-head: ${theme.fonts.fontFamilyHeading};

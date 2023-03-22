@@ -59,15 +59,16 @@ export const CriteriaContainer = styled.div`
   }
 `;
 
-// for the single section
+// for the single Criteria
 export const Criteria = styled.div`
+  min-width: 23rem;
   background-color: ${colors.lightGrey};
   padding: 1rem 1.3rem;
   border-radius: 1.5rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: var(--align-items);
   flex-direction: var(--flex-direction);
+  flex-direction: column;
   margin: 0.5rem 0;
   gap: 0.5rem;
   flex-wrap: wrap;
@@ -78,13 +79,13 @@ export const Criteria = styled.div`
 
 // for the single section
 export const Section = styled.div`
+  min-width: 23rem;
   background-color: ${colors.lightGrey};
   padding: 0.5rem 1.5rem;
   border-radius: 1.3rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: var(--flex-direction);
+  align-items: var(--align-items);
+  flex-direction: column;
   margin: 0.5rem 0;
   flex-wrap: wrap;
   gap: 0.5rem;
