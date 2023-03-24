@@ -14,8 +14,10 @@ import {
   ContestIconDescriptionContainer,
 } from "./MyOngoingContestTab.styles";
 import {switchContest} from "../../../services/competitionsServices";
+import {useTranslation} from "react-i18next";
 
 const MyOngoingContestItem = ({ contest, index }) => {
+  const {t} = useTranslation();
 
   const handleSwitchContest = (contestId) => {
       switchContest({
@@ -48,7 +50,7 @@ const MyOngoingContestItem = ({ contest, index }) => {
             <MyOngoingContestsImg />
           </MyOngoingContests>
           <MyOngoingContestsDescribtion>
-            <MyOngoingContestsTitel>No Have Contest Yet</MyOngoingContestsTitel>
+            <MyOngoingContestsTitel>{t("no-contest-yet-msg")}</MyOngoingContestsTitel>
           </MyOngoingContestsDescribtion>
         </ContestIconDescriptionContainer>
       </MyOngoingContestIn>

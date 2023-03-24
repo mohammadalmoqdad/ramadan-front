@@ -10,4 +10,5 @@ export default {
   "active-announcements": "الإعلانات المنشورة مسبقًا",
   save: "حفظ",
   readonly: "قراءة فقط",
+  "no-contest-yet-msg":"لم تنضم لمسابقة بعد"
 };

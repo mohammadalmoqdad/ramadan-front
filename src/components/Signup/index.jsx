@@ -29,45 +29,48 @@ import GoogleLogo from "../../assets/icons/Login/Google.svg";
 import FBLogo from "../../assets/icons/Login/FB.svg";
 
 function Signup() {
-  const [activeParticipantButton, setActiveParticipantButton] =
-    useState("#FBF9F7");
-  const [activeCreatorButton, setActiveCreatorButton] = useState("#F9EAEA");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
-  const [accessCode, setAccessCode] = useState("");
-  const [contestName, setContestName] = useState("");
   const [classColor, setClassColor] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [messages, setMessages] = useState([]);
   const [showErrorMessageMatch, setShowErrorMessageMatch] = useState(false);
-  const [isCreator, setCreator] = useState(false);
   const [isValidUserName, setValidUserName] = useState(true);
   const [photo, setPhoto] = useState(null);
+  // const [accessCode, setAccessCode] = useState("");
+  // const [contestName, setContestName] = useState("");
+  // const [activeParticipantButton, setActiveParticipantButton] =
+  //   useState("#FBF9F7");
+  // const [activeCreatorButton, setActiveCreatorButton] = useState("#F9EAEA");
+
+  //  TODO: Uncomment when it's ready
+  // const [isCreator, setCreator] = useState(false);
 
   useEffect(() => {
     setClassColor("");
     setMessages([]);
-  }, [username, password, retypePassword, email, accessCode, contestName]);
+  }, [username, password, retypePassword, email]); //accessCode, contestName]);
 
   useEffect(() => {
     setShowErrorMessageMatch(false);
   }, [password, retypePassword]);
 
-  const activeCreator = () => {
-    setCreator(true);
-    setActiveParticipantButton("#F9EAEA");
-    setActiveCreatorButton("#FBF9F7");
-  };
 
-  const activeParticipant = () => {
-    setCreator(false);
-    setActiveParticipantButton("#FBF9F7");
-    setActiveCreatorButton("#F9EAEA");
-  };
+  // const activeCreator = () => {
+  //   setCreator(true);
+  //   setActiveParticipantButton("#F9EAEA");
+  //   setActiveCreatorButton("#FBF9F7");
+  // };
+  //
+  // const activeParticipant = () => {
+  //   setCreator(false);
+  //   setActiveParticipantButton("#FBF9F7");
+  //   setActiveCreatorButton("#F9EAEA");
+  // };
 
   const handleChangeUsername = (e) => {
     let regex = new RegExp("^[\u0621-\u064Aa-zA-Z0-9+-.@_]*$");
@@ -83,13 +86,13 @@ function Signup() {
     setEmail(e.target.value);
   };
 
-  const handleChangeContestName = (e) => {
-    setContestName(e.target.value);
-  };
-
-  const handleChangeAccessCode = (e) => {
-    setAccessCode(e.target.value);
-  };
+  // const handleChangeContestName = (e) => {
+  //   setContestName(e.target.value);
+  // };
+  //
+  // const handleChangeAccessCode = (e) => {
+  //   setAccessCode(e.target.value);
+  // };
 
   const handleChangeFirstName = (e) => {
     setFirstName(e.target.value);
@@ -135,18 +138,13 @@ function Signup() {
     formData.append("last_name", lastName);
     formData.append("phone_number", phoneNumber);
     formData.append("email", email);
-    if (isCreator) {
-      formData.append("contest_name", contestName);
-    } else {
-      formData.append("access_code", accessCode);
-    }
     if (photo && photo.name && photo.name.length > 0) {
       formData.append("profile_photo", photo);
     }
 
     signup(
       formData,
-      isCreator,
+      false,
       (res) => {
         if (res && res.status === 201) {
           setClassColor("green");
@@ -185,52 +183,55 @@ function Signup() {
           </SignupNowAccount>
         </HeadLogIn>
 
-        <CreatorOrParticipant>
-          <CreatorOrParticipantDiv
-            onClick={activeCreator}
-            style={{ background: `${activeParticipantButton}` }}
-          >
-            <CreatorOrParticipantSpan>
-              <TitleCreatorOrParticipant>I’m Creator</TitleCreatorOrParticipant>
-              <ContentCreatorOrParticipant>
-                For educators and supervisors
-              </ContentCreatorOrParticipant>
-            </CreatorOrParticipantSpan>
-          </CreatorOrParticipantDiv>
 
-          <CreatorOrParticipantDiv
-            onClick={activeParticipant}
-            style={{ background: `${activeCreatorButton}` }}
-          >
-            <CreatorOrParticipantSpan>
-              <TitleCreatorOrParticipant>
-                I’m Participant
-              </TitleCreatorOrParticipant>
-              <ContentCreatorOrParticipant>
-                For kids and students
-              </ContentCreatorOrParticipant>
-            </CreatorOrParticipantSpan>
-          </CreatorOrParticipantDiv>
-        </CreatorOrParticipant>
+        {/*TODO: Uncomment when it's ready*/}
 
-        <MediaOneLine>
-          <MediaLogIn>
-            {" "}
-            <img src={AppleLogo} alt="AppleLogo" />
-          </MediaLogIn>
-          <MediaLogIn>
-            {" "}
-            <img src={GoogleLogo} alt="GoogleLogo" />
-          </MediaLogIn>
-          <MediaLogIn>
-            <img src={FBLogo} alt="FBLogo" />
-          </MediaLogIn>
-        </MediaOneLine>
+        {/*<CreatorOrParticipant>*/}
+        {/*  <CreatorOrParticipantDiv*/}
+        {/*    onClick={activeCreator}*/}
+        {/*    style={{ background: `${activeParticipantButton}` }}*/}
+        {/*  >*/}
+        {/*    <CreatorOrParticipantSpan>*/}
+        {/*      <TitleCreatorOrParticipant>I’m Creator</TitleCreatorOrParticipant>*/}
+        {/*      <ContentCreatorOrParticipant>*/}
+        {/*        For educators and supervisors*/}
+        {/*      </ContentCreatorOrParticipant>*/}
+        {/*    </CreatorOrParticipantSpan>*/}
+        {/*  </CreatorOrParticipantDiv>*/}
 
-        {/* <HeadLogIn> */}
-        {/* <img src={WirdLogo} alt='' /> */}
-        <OrWayToLogIn>Or</OrWayToLogIn>
-        {/* </HeadLogIn> */}
+        {/*  <CreatorOrParticipantDiv*/}
+        {/*    onClick={activeParticipant}*/}
+        {/*    style={{ background: `${activeCreatorButton}` }}*/}
+        {/*  >*/}
+        {/*    <CreatorOrParticipantSpan>*/}
+        {/*      <TitleCreatorOrParticipant>*/}
+        {/*        I’m Participant*/}
+        {/*      </TitleCreatorOrParticipant>*/}
+        {/*      <ContentCreatorOrParticipant>*/}
+        {/*        For kids and students*/}
+        {/*      </ContentCreatorOrParticipant>*/}
+        {/*    </CreatorOrParticipantSpan>*/}
+        {/*  </CreatorOrParticipantDiv>*/}
+        {/*</CreatorOrParticipant>*/}
+
+        {/*<MediaOneLine>*/}
+        {/*  <MediaLogIn>*/}
+        {/*    {" "}*/}
+        {/*    <img src={AppleLogo} alt="AppleLogo" />*/}
+        {/*  </MediaLogIn>*/}
+        {/*  <MediaLogIn>*/}
+        {/*    {" "}*/}
+        {/*    <img src={GoogleLogo} alt="GoogleLogo" />*/}
+        {/*  </MediaLogIn>*/}
+        {/*  <MediaLogIn>*/}
+        {/*    <img src={FBLogo} alt="FBLogo" />*/}
+        {/*  </MediaLogIn>*/}
+        {/*</MediaOneLine>*/}
+
+        {/*/!* <HeadLogIn> *!/*/}
+        {/*/!* <img src={WirdLogo} alt='' /> *!/*/}
+        {/*<OrWayToLogIn>Or</OrWayToLogIn>*/}
+        {/*/!* </HeadLogIn> *!/*/}
 
         <Form onSubmit={handleSubmit}>
           <DivTxtField>
@@ -247,24 +248,25 @@ function Signup() {
             </DivPass>
           )}
 
-          {isCreator ? (
-            <DivTxtField>
-              <FormInput
-                onChange={handleChangeContestName}
-                type="text"
-                placeholder="Contest name"
-                required
-              />
-            </DivTxtField>
-          ) : (
-            <DivTxtField>
-              <FormInput
-                onChange={handleChangeAccessCode}
-                type="text"
-                placeholder="Access code"
-              />
-            </DivTxtField>
-          )}
+          {/*TODO: Uncomment when it's ready*/}
+          {/*{isCreator ? (*/}
+          {/*  <DivTxtField>*/}
+          {/*    <FormInput*/}
+          {/*      onChange={handleChangeContestName}*/}
+          {/*      type="text"*/}
+          {/*      placeholder="Contest name"*/}
+          {/*      required*/}
+          {/*    />*/}
+          {/*  </DivTxtField>*/}
+          {/*) : (*/}
+          {/*  <DivTxtField>*/}
+          {/*    <FormInput*/}
+          {/*      onChange={handleChangeAccessCode}*/}
+          {/*      type="text"*/}
+          {/*      placeholder="Access code"*/}
+          {/*    />*/}
+          {/*  </DivTxtField>*/}
+          {/*)}*/}
 
           <DivTxtField>
             <FormInput

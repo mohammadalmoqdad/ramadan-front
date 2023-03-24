@@ -72,6 +72,20 @@ export const addAdmin = (data, successCallback, faiCallback) => {
     true
   );
 };
+export const resetMemberPassword = (data, successCallback, faiCallback) => {
+  doRequest(
+    data,
+    `/admin-panel/reset-members-password`,
+    {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${cookie.load("token")}`,
+    },
+    "post",
+    successCallback,
+    faiCallback,
+    true
+  );
+};
 
 export const updateAdmin = (username, data, successCallback, faiCallback) => {
   doRequest(
