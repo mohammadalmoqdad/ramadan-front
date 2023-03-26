@@ -1,14 +1,24 @@
 export default {
+  add: "Add",
   "double-click-to-edit": "Double click to edit",
   "must-select-contest": "You must select a contest first",
   "contest-has-been-edited-successfully": "Contest edited successfully",
   "contest-isn't-edited-successfully": "Contest isn't edited successfully",
   "no-announcements-yet": "No announcements yet",
-  "contest-announcements": "Contest Announcements",
+  "contest-announcements": "Contest announcements",
+  "contest-information": "Contest information",
   "save-changes": "Save Changes",
   "make-an-announcement": "Make new announcement",
+  "new-announcement": "New announcement",
+  "announcement": "Announcement",
+  "success-to-add-new-announcement-msg": "New announcement added successfully",
+  "fail-to-add-new-announcement-msg": "Failed to add new announcement",
   "active-announcements": "Active Announcements",
   save: "Save",
   readonly: "Read Only",
-  "no-contest-yet-msg":"You haven't joined a contest yet"
+  "no-contest-yet-msg":"You haven't joined a contest yet",
+  "delete-this-announcement":"Delete this announcement",
+  "name-label":"Name",
+  "description-label":"Description",
+  update: "Update"
 };

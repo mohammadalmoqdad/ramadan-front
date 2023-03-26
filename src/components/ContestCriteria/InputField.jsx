@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, InputField, TextLabel } from "./InputField.styled";
 
-const NumberInputField = ({ type, label, onChange, checked, value}) => {
+const NumberInputField = ({ type, label, onChange, checked, value, disabled, onClick}) => {
   return (
     <Container>
       <TextLabel>{label}</TextLabel>
@@ -12,6 +12,8 @@ const NumberInputField = ({ type, label, onChange, checked, value}) => {
         onChange={onChange}
         checked={checked}
         value={value}
+        disabled={disabled}
+        onClick={onClick}
       />
     </Container>
   );

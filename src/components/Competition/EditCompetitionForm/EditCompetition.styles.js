@@ -68,10 +68,11 @@ export const TextAreaSpace = styled.textarea`
   border: none;
   /* padding: 24px; */
   width: 250px;
-  height: 300px;
+  min-height: 100px;
   background: #f9eaea;
   border-radius: 12px;
   text-align: start;
+  padding: 15px;
 
   @media (max-width: 900px) {
   }
@@ -183,3 +184,11 @@ export const ReadOnly = styled.div`
   @media (max-width: 500px) {
   }
 `;
+
+export const  DeleteAnnouncementBtn = styled.button`
+  margin: 15 px;
+  background: ${colors.red};
+  color: ${colors.white};
+  font-size: 16px;                                              
+`;
+

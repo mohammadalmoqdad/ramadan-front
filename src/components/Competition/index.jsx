@@ -1,57 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { retrieveCompetitions } from "../../services/competitionsServices";
-import AddEditAnnouncementForm from "./AddEditAnnouncementForm";
+import React, {useEffect, useState} from "react";
+import { retrieveCurrentContestInfo} from "../../services/competitionsServices";
 import EditCompetitionForm from "./EditCompetitionForm";
-import Tabs from "../shared/Tabs";
-import CompetitionContainer from "../Admins/Admins.styles";
 import cookie from "react-cookies";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Loader from "../Loader";
 
 import MyOngoingContestTab from "../shared/MyOngoingContestTab";
 import ContestMembers from "./ContestMembers";
 import ContestModeratorDefault from "../ContestModerator/ContestModerator.styles";
+
 export default function Competition() {
-  const [competitions, setCompetitions] = useState([]);
-  const [loading, setLoading] = useState(false);
-  let navigate = useNavigate();
+    const [competitions, setCompetitions] = useState([]);
+    const [currentContest, setCurrentContest] = useState({});
+    const [loading, setLoading] = useState(false);
+    let navigate = useNavigate();
 
-  useEffect(() => {
-    if (!cookie.load("token")) {
-      navigate("/login", { state: { redirectTo: "/Competition" } });
-      return;
-    }
-    setLoading(true);
-    retrieveCompetitions(
-      (res) => {
-        if (res && res.status === 200) {
-          setCompetitions(res.data);
-          setLoading(false);
+    useEffect(() => {
+        if (!cookie.load("token")) {
+            navigate("/login", {state: {redirectTo: "/Competition"}});
+            return;
         }
-      },
-      (err) => {
-        console.log("Failed to retrieve competitions: ", err?.response?.data);
-        setLoading(false);
-      }
-    );
-  }, []);
+        setLoading(true);
+        retrieveCurrentContestInfo(
+            (res) => {
+                if (res && res.status === 200) {
+                    setCurrentContest(res.data);
+                    setLoading(false);
+                }
+            },
+            (err) => {
+                console.log("Failed to retrieve current contest: ", err?.response?.data);
+                setLoading(false);
+            }
+        );
+    }, []);
 
-  if (loading) {
+    if (loading) {
+        return (
+            <main>
+                <Loader/>
+            </main>
+        );
+    }
+
     return (
-      <main>
-        <Loader />
-      </main>
+        <ContestModeratorDefault>
+            <MyOngoingContestTab competition={true}/>
+            <ContestMembers contest={currentContest}/>
+            <EditCompetitionForm
+                contest={currentContest}
+                setContest={setCurrentContest}
+            />
+        </ContestModeratorDefault>
     );
-  }
-
-  return (
-    <ContestModeratorDefault>
-      <MyOngoingContestTab competition={true} />
-      <ContestMembers />
-      <EditCompetitionForm
-        competitions={competitions}
-        setCompetitions={setCompetitions}
-      />
-    </ContestModeratorDefault>
-  );
 }
