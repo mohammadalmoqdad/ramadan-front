@@ -1,14 +1,24 @@
 export default {
+  add: "اضف",
   "double-click-to-edit": "أنقر مرتين للتعديل",
   "must-select-contest": "يجب عليك اختيار مسابقة",
   "contest-has-been-edited-successfully": "تم تعديل المسابقة بنجاح",
   "contest-isn't-edited-successfully": "لم يتم تعديل المسابقة",
   "no-announcements-yet": "لا يوجد إعلانات",
   "contest-announcements": "إعلانات المسابقة",
+  "contest-information": "معلومات المسابقة",
   "save-changes": "حفظ التغييرات",
   "make-an-announcement": "أنشر إعلانًا جديدًا",
+  "new-announcement": "إعلان جديد",
+  "announcement": "إعلان",
+  "success-to-add-new-announcement-msg": "تم إضافة إعلان جديد بنجاح",
+  "fail-to-add-new-announcement-msg": " لم يتم إضافة إعلان جديد",
   "active-announcements": "الإعلانات المنشورة مسبقًا",
   save: "حفظ",
   readonly: "قراءة فقط",
-  "no-contest-yet-msg":"لم تنضم لمسابقة بعد"
+  "no-contest-yet-msg":"لم تنضم لمسابقة بعد",
+  "delete-this-announcement":"حذف هذا الإعلان",
+  "name-label":"الاسم",
+  "description-label":"الوصف",
+  update: "تعديل"
 };

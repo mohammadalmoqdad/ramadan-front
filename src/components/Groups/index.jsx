@@ -73,19 +73,6 @@ export default function Groups() {
       }, 1000);
 
     }
-    retrieveStudents(
-      (res) => {
-        setStudents(res.data);
-        setLoading(false);
-      },
-      (err) => {
-        console.log(
-          "Failed to retrieve students: " + JSON.stringify(err.response.data)
-        );
-        setLoading(false);
-      }
-    );
-
     retrieveAdmins(
       (res) => {
         setAdmins(res.data);
@@ -108,6 +95,21 @@ export default function Groups() {
         );
       }
     );
+
+    retrieveStudents(
+        (res) => {
+          setStudents(res.data);
+          setLoading(false);
+        },
+        (err) => {
+          console.log(
+              "Failed to retrieve students: " + JSON.stringify(err.response.data)
+          );
+          setLoading(false);
+        }
+    );
+
+
   }, []);
 
   useEffect(() => {

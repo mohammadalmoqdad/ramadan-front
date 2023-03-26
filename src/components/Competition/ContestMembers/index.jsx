@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import SeeMore from "../../../assets/icons/Home/SeeMore.svg";
 
 import TopRank, {
@@ -17,8 +17,46 @@ import TopRank, {
   MemberNumbers,
   MembersImg,
 } from "./ContestMembers.styles";
+import Loader from "../../Loader";
+import {retrieveAdmins} from "../../../services/adminsServices";
+import {retrieveStudents} from "../../../services/studentsServices";
+import NumberAndAbbreviationOfNames from "../../shared/NumberAndAbbreviationOfNames";
 
-function ContestMembers() {
+function ContestMembers({contest}) {
+  const [admins, setAdmins] = useState([]);
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+
+  useEffect(()=>{
+    setLoading(true);
+
+    retrieveAdmins(
+        (res) => {
+          setAdmins([...res.data]);
+        }, (err) => {
+          console.log("Failed to retrieve admins: " + JSON.stringify(err.response.data));
+        }
+    );
+
+    retrieveStudents(
+        (res) => {
+          setStudents(res.data);
+          setLoading(false);
+        }, (err) => {
+          console.log("Failed to retrieve students: " + JSON.stringify(err.response.data));
+          setLoading(false);
+        });
+  },[]);
+
+  if (loading) {
+    return (
+        <main>
+          <Loader />
+        </main>
+    );
+  }
+
   return (
     <TopRank>
       <TopRanksAndParticipants>
@@ -26,30 +64,16 @@ function ContestMembers() {
           <ParticipantsTitels>
             <ParticipantsTitelsAtHome>Moderators</ParticipantsTitelsAtHome>
 
-            <SeeAll>
+            <SeeAll href="/Admins" target="_blank">
               <SeeAllP>See all</SeeAllP>
               <SeeAllIcon src={SeeMore} Alt="" />
             </SeeAll>
           </ParticipantsTitels>
 
           <ParticipantsNumbers>
-            <TotalOfMembers>5</TotalOfMembers>
+            <TotalOfMembers>{admins.length}</TotalOfMembers>
 
-            <MemberImgsAndNumNumbers>
-              <MembersImgs>
-                <MembersImg style={{ background: "#FDD561", right: "0px" }}>
-                  AB
-                </MembersImg>
-                <MembersImg style={{ background: "#FF5367", right: "20px" }}>
-                  MK
-                </MembersImg>
-                <MembersImg style={{ background: "#503E9D", right: "40px" }}>
-                  HA
-                </MembersImg>
-              </MembersImgs>
-
-              {/* <MemberNumbers>251+</MemberNumbers> */}
-            </MemberImgsAndNumNumbers>
+            <NumberAndAbbreviationOfNames users={admins}/>
           </ParticipantsNumbers>
         </ParticipantsMember>
 
@@ -57,30 +81,15 @@ function ContestMembers() {
           <ParticipantsTitels>
             <ParticipantsTitelsAtHome>Participants</ParticipantsTitelsAtHome>
 
-            <SeeAll>
+            <SeeAll href="/Students" target="_blank">
               <SeeAllP>See all</SeeAllP>
               <SeeAllIcon src={SeeMore} Alt="" />
             </SeeAll>
           </ParticipantsTitels>
 
           <ParticipantsNumbers>
-            <TotalOfMembers>251</TotalOfMembers>
-
-            <MemberImgsAndNumNumbers>
-              <MembersImgs>
-                <MembersImg style={{ background: "#FDD561", right: "0px" }}>
-                  AB
-                </MembersImg>
-                <MembersImg style={{ background: "#FF5367", right: "20px" }}>
-                  MK
-                </MembersImg>
-                <MembersImg style={{ background: "#503E9D", right: "40px" }}>
-                  HA
-                </MembersImg>
-              </MembersImgs>
-
-              {/* <MemberNumbers>251+</MemberNumbers> */}
-            </MemberImgsAndNumNumbers>
+            <TotalOfMembers>{students.length}</TotalOfMembers>
+            <NumberAndAbbreviationOfNames users={students}/>
           </ParticipantsNumbers>
         </ParticipantsMember>
 
@@ -88,25 +97,14 @@ function ContestMembers() {
           <ParticipantsTitels>
             <ParticipantsTitelsAtHome>Groups</ParticipantsTitelsAtHome>
 
-            <SeeAll>
+            <SeeAll href="/Groups" target="_blank">
               <SeeAllP>See all</SeeAllP>
               <SeeAllIcon src={SeeMore} Alt="" />
             </SeeAll>
           </ParticipantsTitels>
 
           <ParticipantsNumbers>
-            <TotalOfMembers>3</TotalOfMembers>
-
-            {/* <MemberImgsAndNumNumbers>
-
-              <MembersImgs>
-                <MembersImg style={{ background: '#FDD561', right: '0px' }} >AB</MembersImg>
-                <MembersImg style={{ background: '#FF5367', right: '20px' }}>MK</MembersImg>
-                <MembersImg style={{ background: '#503E9D', right: '40px' }}>HA</MembersImg>
-
-              </MembersImgs>
-
-            </MemberImgsAndNumNumbers> */}
+            <TotalOfMembers>{contest.group_count}</TotalOfMembers>
           </ParticipantsNumbers>
         </ParticipantsMember>
       </TopRanksAndParticipants>
