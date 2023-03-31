@@ -82,7 +82,10 @@ function Sidebar({ setIsSideBarCollapsed }) {
               <ParticipantsIcon />
               <MenuItem>{t("students")}</MenuItem>
             </MenuLink>
-            <MenuLink onClick={() => setIsSideBarCollapsed()} to="/standards">
+            <MenuLink
+              onClick={() => setIsSideBarCollapsed()}
+              to="/contest-criteria"
+            >
               <CriteriaIcon />
               <MenuItem>{t("criterias")}</MenuItem>
             </MenuLink>

@@ -72,6 +72,7 @@ export const arabicTheme = {
   text: {
     textAlign: "right",
   },
+  name: "ar",
 };
 
 export const englishTheme = {
@@ -86,4 +87,5 @@ export const englishTheme = {
   text: {
     textAlign: "left",
   },
+  name: "en",
 };

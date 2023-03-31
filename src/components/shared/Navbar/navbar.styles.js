@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "styles";
+import { Link } from "react-router-dom";
 
 export default styled.header`
   z-index: 2;
@@ -92,10 +93,19 @@ export const NavItem = styled.div`
   border-radius: 1.5rem;
   text-align: center;
   cursor: pointer;
+  max-height: 3.5rem;
+  font-weight: 600;
+  font-family: var(--body-font-family);
+  font-style: normal;
+  text-transform: uppercase;
 `;
 
 export const Container = styled.div`
   position: relative;
+`;
+
+export const UserName = styled.p`
+  font-weight: 700;
 `;
 
 export const Navbar = styled.div`
@@ -118,6 +128,8 @@ export const MenuIcon = styled.a`
   padding: 0.625rem;
   cursor: pointer;
   margin-top: 1rem;
+  display: flex;
+  flex-direction: var(--flex-direction);
   @media (min-width: 768px) {
     display: none;
   }
@@ -159,89 +171,112 @@ export const SidebarMenu = styled.div`
   }
 `;
 
-export const CloseIcon = styled.a`
-  display: inline-block;
+export const PopupListWrapper = styled.div`
+  z-index: 100;
+  top: 5rem;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 10px;
-  cursor: pointer;
+  background-color: ${colors.lightGrey};
+  padding: 1rem;
+  ${({ isArabicTheme }) => {
+    if (isArabicTheme) return "left:0;";
+    return "right: 0;";
+  }}
+  width: 18rem;
+  border-radius: 1rem;
+
+  @media (max-width: 550px) {
+    width: 100%;
+    height: 100vh;
+    ${({ isArabicTheme }) => {
+      if (isArabicTheme) return "right:0;";
+      return "left: 0;";
+    }}
+    top: 0;
+  }
+`;
+
+export const UserInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: var(--flex-direction);
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid ${colors.lightRed};
 `;
 
 export const List = styled.ul`
-  margin: 0;
+  margin: 1rem 0;
   padding: 0;
   list-style: none;
+  color: ${colors.darkGrey};
+  font-family: var(--font-family-main);
+  /* right: ; */
 `;
 
 export const ListItem = styled.li`
   margin: 0;
-  padding: 0;
+  padding: 0.5rem 0.2rem;
+  display: flex;
+  flex-direction: var(--flex-direction);
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+
+  &:hover {
+    background-color: ${colors.lightRed};
+  }
+  & svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    color: #fb6e3a;
+  }
 `;
 
-export const Link = styled.a`
+export const MenuTitle = styled.span`
+  /* font-size: large; */
+  a {
+    text-decoration: none;
+    color: ${colors.darkGrey};
+  }
+`;
+
+export const LinkElement = styled(Link)`
   display: block;
-  padding: 10px;
-  color: #000;
   text-decoration: none;
+  color: ${colors.black};
+  font-weight: 700;
+  &:focus {
+    color: ${colors.black};
+  }
 `;
 
-{
-  /* <HedarNav>
-            <Ul>
-            <Li>
-            <NavDropdownlist>
-            <NavDropdownli>
-            <NavDropdown
-            className="NavDropdow"
-            style={{ color: "#e9f4fb" }}
-            >
-            <NavDropdown.Item className="NavDropdow" href="/">
-            {t("home-page")}
-            </NavDropdown.Item>
-            {hasPermission && (
-              <NavDropdown.Item href="/competition">
-              {t("contest-information")}
-              </NavDropdown.Item>
-              )}
-              <NavDropdown.Item href="/top-students">
-              {t("leaders-board")}
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/admins">
-              {t("admins")}
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/students">
-              {t("students")}
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/standards">
-              {t("criterias")}
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/review-other-points">
-              {t("text-inputs")}
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/students-points">
-              {t("results-page")}
-              </NavDropdown.Item>
-              {hasPermission && (
-                <NavDropdown.Item href="/export-points">
-                {t("extract-results")}
-                </NavDropdown.Item>
-                )}
-                <NavDropdown.Item href="/groups">
-                {t("groups-page")}
-                </NavDropdown.Item>
-                </NavDropdown>
-                </NavDropdownli>
-                </NavDropdownlist>
-                </Li>
-                </Ul>
-                <div>
-                <NavItem>+</NavItem>
-                <NavItem>JM</NavItem>
-                </div>
-              </HedarNav> */
-}
+export const ProfileInfo = styled.div`
+  display: flex;
+  flex-direction: var(--flex-direction);
+  justify-content: flex-start;
+  gap: 0.5rem;
+`;
 
-{
-  /* </HeaderNavContainer> */
-}
+export const CloseIcon = styled.i`
+  cursor: pointer;
+`;
+
+export const ProfilePicture = styled.div`
+  /* position: relative; */
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  background-color: ${colors.yellow};
+  border-radius: 1rem;
+  background-image: ${(props) => `url(${props.src})`};
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-weight: 700;
+  text-transform: uppercase;
+`;
+
+export const ProfileName = styled.p`
+  font-weight: 700;
+  line-height: 35px;
+`;

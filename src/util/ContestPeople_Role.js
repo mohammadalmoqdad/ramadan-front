@@ -17,8 +17,8 @@ const VALID_LANGUAGES = ["ar", "en"];
 
 export const changeLanguage = (language) => {
   if (VALID_LANGUAGES.includes(language)) {
-    i18n.changeLanguage("en");
-    // localStorage.setItem("lang", language);
+    i18n.changeLanguage(language);
+    localStorage.setItem("lang", language);
     // document.documentElement.setAttribute("lang", newLang);
     // setLanguage({ lang: newLang });
   }

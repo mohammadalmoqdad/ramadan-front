@@ -5,21 +5,21 @@ import { colors } from "styles";
 export const SideBarContainer = styled.div`
   animation-duration: 0.2s;
   background-color: ${colors.warmWheat};
-  height: 99%;
+  height: 100%;
   text-align: center;
-  border-radius: 24px;
+  border-radius: 1.5rem;
   width: 19.0625rem;
-  margin: 1rem;
 
   & svg {
     min-width: 1.2rem;
   }
 
-  @media (max-width: 1000px) {
-    & svg {
+  @media (max-width: 1000px) and (min-width: 750px) {
+    & span {
       display: none;
     }
-    width: 20%;
+    width: fit-content;
+    text-align: center;
   }
 
   @media (max-width: 750px) {
@@ -65,6 +65,7 @@ export const MenuLink = styled(NavLink)`
   @media (max-width: 1000px) {
     font-size: 0.9rem;
     width: 100%;
+    justify-content: center;
   }
 `;
 
@@ -75,7 +76,6 @@ export const MenuItem = styled.span`
     return "";
   }};
   cursor: pointer;
-  background-color: inherit;
   padding: 0;
   border: none;
   width: 100%;

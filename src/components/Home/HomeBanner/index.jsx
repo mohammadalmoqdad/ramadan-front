@@ -1,6 +1,7 @@
-import React from 'react'
-import StudentBannerimg1 from '../../../assets/icons/studentImgAtBanner/studentBanner3.svg'
-import StudentBannerimg2 from '../../../assets/icons/studentImgAtBanner/studentBanner2.svg'
+import React from "react";
+import StudentBannerimg1 from "../../../assets/icons/studentImgAtBanner/studentBanner3.svg";
+import StudentBannerimg2 from "../../../assets/icons/studentImgAtBanner/studentBanner2.svg";
+import { useTranslation } from "react-i18next";
 
 import Banner, {
   CirclesStyle,
@@ -17,11 +18,12 @@ import Banner, {
   ResultButton,
   ButtonTitle,
 } from "./homeBanner.styles";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function HomeBanner(props) {
+  const { t } = useTranslation();
   let navigate = useNavigate();
-  const resultButtonOnClick = () =>{
+  const resultButtonOnClick = () => {
     navigate("/StudentsPoints");
   };
 
@@ -35,23 +37,27 @@ function HomeBanner(props) {
       <ContentAndImgs>
         <ContentBanner>
           <TitleContent>
-            <WelcomeName>Welcome, <br/>{props.name}!</WelcomeName>
-            <DayContent>Today is {props.dayNumber} Ramadan</DayContent>
+            <WelcomeName>
+              {t("welcome")}, <br />
+              {props.name}!
+            </WelcomeName>
+            <DayContent>
+              {t("today-is")}
+              {props.dayNumber} {t("ramadan")}
+            </DayContent>
           </TitleContent>
 
           <ResultButton href="/StudentsPoints" onClick={resultButtonOnClick}>
-            <ButtonTitle>See Contest Result</ButtonTitle>
+            <ButtonTitle>{t("see-contest-result")}</ButtonTitle>
           </ResultButton>
         </ContentBanner>
-
 
         <StudentBanner>
           <StudentBanner2 src={StudentBannerimg2} Alt="" />
           <StudentBanner1 src={StudentBannerimg1} Alt="" />
         </StudentBanner>
       </ContentAndImgs>
-
     </Banner>
-  )
+  );
 }
 export default HomeBanner;

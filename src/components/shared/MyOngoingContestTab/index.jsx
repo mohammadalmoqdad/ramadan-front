@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
 
 import MyOngoingContestItem from "./MyOngoingContestItem";
 import {
@@ -16,9 +17,10 @@ import {
   createContent,
   joinContest,
   retrieveContestsInfo,
-  retrieveCurrentContestInfo
+  retrieveCurrentContestInfo,
 } from "../../../services/competitionsServices";
-import {DivPass} from "../../ResetPassword/ResetPassword.styles";
+
+import { DivPass } from "../../ResetPassword/ResetPassword.styles";
 
 function MyOngoingContestTab({ competition }) {
   const [openContests, setOpenContests] = useState(false);
@@ -30,6 +32,7 @@ function MyOngoingContestTab({ competition }) {
   const [contestCode, setContestCode] = useState("");
   const [createErrorMessage, setCreateErrorMessage] = useState("");
   const [joinErrorMessage, setJoinErrorMessage] = useState("");
+  const { hash } = useLocation();
 
   // const [selectChange, setSelectChange] = useState(false);
 
@@ -38,43 +41,53 @@ function MyOngoingContestTab({ competition }) {
   // };
 
   useEffect(() => {
-    retrieveCurrentContestInfo((res)=>{
-      if(res && res.status === 200){
-        setCurrentContest(res.data);
-      }
-    }, (err)=>{
+    if (hash === "#create-contest") {
+      setOpenContests(true);
+    }
+    retrieveCurrentContestInfo(
+      (res) => {
+        if (res && res.status === 200) {
+          setCurrentContest(res.data);
+        }
+      },
+      (err) => {
         console.log(`Failed to get current contest: ${err}`);
-    });
+      }
+    );
   }, []);
 
-  useEffect(()=>{
-    retrieveContestsInfo((res)=>{
-      if(res && res.status === 200){
-        setOtherContests(res.data.filter(contest => contest.id !== currentContest.id));
+  useEffect(() => {
+    retrieveContestsInfo(
+      (res) => {
+        if (res && res.status === 200) {
+          setOtherContests(
+            res.data.filter((contest) => contest.id !== currentContest.id)
+          );
+        }
+      },
+      (err) => {
+        console.log(`Failed to contests: ${err}`);
       }
-    }, (err)=>{
-      console.log(`Failed to contests: ${err}`);
+    );
+  }, [currentContest]);
 
-    });
-  },[currentContest]);
-
-  useEffect(()=>{
-    if([currentContest, ...otherContests].length > 0){
+  useEffect(() => {
+    if ([currentContest, ...otherContests].length > 0) {
       let inputsHeight = [currentContest, ...otherContests].length * 120;
-      setInputsHeight( inputsHeight + "px");
-      setContainerHeight((inputsHeight + 250) + "px");
-    }else{
+      setInputsHeight(inputsHeight + "px");
+      setContainerHeight(inputsHeight + 250 + "px");
+    } else {
       let inputsHeight = 120;
-      setInputsHeight( inputsHeight + "px");
-      setContainerHeight((inputsHeight + 250) + "px");
+      setInputsHeight(inputsHeight + "px");
+      setContainerHeight(inputsHeight + 250 + "px");
     }
-  },[otherContests]);
+  }, [otherContests]);
 
-  const handleNewContestNameChange = (e) =>{
+  const handleNewContestNameChange = (e) => {
     setNewContestName(e.target.value);
   };
 
-  const handleContestCodeChange = (e) =>{
+  const handleContestCodeChange = (e) => {
     setContestCode(e.target.value);
   };
 
@@ -83,43 +96,49 @@ function MyOngoingContestTab({ competition }) {
   };
 
   const createContestHandler = () => {
-    if(newContestName.length === 0 || newContestName.trim().length ===0){
+    if (newContestName.length === 0 || newContestName.trim().length === 0) {
       return;
     }
-    createContent({
-          "contest-name": newContestName
-        }, (res) => {
-          if(res && res.status === 200){
-            window.location.reload(true);
-          }
-        }, (err)=>{
-           handleCreateOrJoinError(err, setCreateErrorMessage, "crate");
+    createContent(
+      {
+        "contest-name": newContestName,
+      },
+      (res) => {
+        if (res && res.status === 200) {
+          window.location.reload(true);
         }
+      },
+      (err) => {
+        handleCreateOrJoinError(err, setCreateErrorMessage, "crate");
+      }
     );
   };
   const joinContestHandler = () => {
-    if(contestCode.length === 0 || contestCode.trim().length ===0){
+    if (contestCode.length === 0 || contestCode.trim().length === 0) {
       return;
     }
-    joinContest({
-          "access-code": contestCode
-        }, (res) => {
-          if (res && res.status === 200) {
-            window.location.reload(true);
-          }
-        }, (err) => {
-          handleCreateOrJoinError(err, setJoinErrorMessage, "join");
+    joinContest(
+      {
+        "access-code": contestCode,
+      },
+      (res) => {
+        if (res && res.status === 200) {
+          window.location.reload(true);
         }
+      },
+      (err) => {
+        handleCreateOrJoinError(err, setJoinErrorMessage, "join");
+      }
     );
   };
 
-  const handleCreateOrJoinError = (err, setter, action)=>{
+  const handleCreateOrJoinError = (err, setter, action) => {
     console.log(`Failed to ${action} contest: ${err}`);
-    if(err?.response?.data){
+    if (err?.response?.data) {
       setter(err.response.data);
-      setTimeout(()=>{
+      setTimeout(() => {
         setter("");
-      },3000);
+      }, 3000);
     }
   };
 
@@ -148,7 +167,7 @@ function MyOngoingContestTab({ competition }) {
         >
           {[currentContest, ...otherContests].map((contest, index) => (
             <MyOngoingContestItem
-              key={contest.id}
+              key={contest.id + index}
               contest={contest}
               index={index}
             />
@@ -171,24 +190,33 @@ function MyOngoingContestTab({ competition }) {
           {/* Create Contest Form  */}
           <JoinAndCreateInputContainer>
             <DefaultForm>
-              <SearchContainer placeholder="New Contest Name" type="text" onChange={handleNewContestNameChange}/>
+              <SearchContainer
+                id="create-contest"
+                placeholder="New Contest Name"
+                type="text"
+                onChange={handleNewContestNameChange}
+              />
             </DefaultForm>
             <ActionBtn onClick={createContestHandler}>Create</ActionBtn>
           </JoinAndCreateInputContainer>
           {/* Join Contest Form  */}
           <JoinAndCreateInputContainer>
             <DefaultForm>
-              <SearchContainer placeholder="Access code" type="text" onChange={handleContestCodeChange}/>
+              <SearchContainer
+                placeholder="Access code"
+                type="text"
+                onChange={handleContestCodeChange}
+              />
             </DefaultForm>
             <ActionBtn onClick={joinContestHandler}>Join</ActionBtn>
           </JoinAndCreateInputContainer>
         </FormsContainer>
-        { createErrorMessage.length > 0 &&
-            <DivPass className="red">{createErrorMessage}</DivPass>
-        }
-        { joinErrorMessage.length > 0 &&
-            <DivPass className="red">{joinErrorMessage}</DivPass>
-        }
+        {createErrorMessage.length > 0 && (
+          <DivPass className="red">{createErrorMessage}</DivPass>
+        )}
+        {joinErrorMessage.length > 0 && (
+          <DivPass className="red">{joinErrorMessage}</DivPass>
+        )}
       </NormalDiv>
     </MainContainer>
   );

@@ -22,26 +22,27 @@ import { Container, MainContent } from "./router.styled";
 import Navbar from "../shared/Navbar";
 import Sidebar from "../shared/Sidebar";
 
-export default function AppBrowserRouter({ changeTheme }) {
+export default function AppBrowserRouter({ changeTheme, theme }) {
   return (
     <BrowserRouter>
       <Container>
         <Sidebar />
         <MainContent>
-          <Navbar changeTheme={changeTheme} />
+          <Navbar changeTheme={changeTheme} theme={theme} />
           <Routes>
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />
             <Route exact path="/reset-password" element={<ResetPassword />} />
             <Route exact path="/forgot-password" element={<ForgotPassword />} />
             <Route exact path="/" element={<Home />} />
+            <Route exact path="/edit-profile" element={<EditProfile />} />
             <Route exact path="/competition" element={<Competition />} />
             <Route exact path="/top-students" element={<TopStudents />} />
             <Route exact path="/loading" element={<Loader />} />
             <Route exact path="/students" element={<Students />} />
             <Route exact path="/groups" element={<Groups />} />
             <Route exact path="/admins" element={<ContestModerator />} />
-            <Route exact path="/standards" element={<Standards />} />
+            {/* <Route exact path="/standards" element={<Standards />} /> */}
             <Route
               exact
               path="/contest-criteria"
