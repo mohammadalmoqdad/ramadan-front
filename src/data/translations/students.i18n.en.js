@@ -1,5 +1,6 @@
 export default {
   students: "Participants ",
+  "accepted-participants": "Accepted Participants ",
   delete: "Delete",
   reactive: "Reactive",
   addParticipantManually: "Add Participant Manually",
@@ -13,5 +14,5 @@ export default {
   "enter-new-password": "Enter new password",
   "confirm-new-password": "Confirm new password",
   "unmatched-passwords": "Passwords are not matched",
-  "reset-password-failed-msg":"Password reset successfully"
+  "reset-password-failed-msg": "Password reset successfully",
 };

@@ -6,9 +6,7 @@ import LoginFormContainer, {
   DivCenter,
   DivPass,
 } from "./ForgotPassword.styles";
-import {
-  DivTxtField
-} from "../shared/styles";
+import { DivTxtField } from "../shared/styles";
 import {
   SignupNowAccount,
   SignupNow,
@@ -16,8 +14,8 @@ import {
   InputSubmit,
   FormInput,
   HeadLogIn,
-} from "../Login/login.styles"
-import WirdLogo from '../../assets/Logo/WirdLogoV2.svg';
+} from "../Login/login.styles";
+import WirdLogo from "../../assets/Logo/WirdLogoV2.svg";
 
 function ForgotPassword() {
   let Navigate = useNavigate();
@@ -26,33 +24,26 @@ function ForgotPassword() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setShowErrorMessage(true)
+    setShowErrorMessage(true);
     // setLoading(true);
-    Navigate('/ResetPassword')
-
+    Navigate("/reset-password");
   }
 
   return (
     <LoginFormContainer>
       <DivCenter>
         <HeadLogIn>
-          <TitleLogin>
-            Forgot Password
-          </TitleLogin>
+          <TitleLogin>Forgot Password</TitleLogin>
         </HeadLogIn>
 
         {/* <HeadLogIn> */}
-        <img src={WirdLogo} alt='' />
+        <img src={WirdLogo} alt="" />
         {/* <OrWayToLogIn>Or</OrWayToLogIn> */}
         {/* </HeadLogIn> */}
 
         <Form onSubmit={handleSubmit}>
           <DivTxtField>
-            <FormInput
-              type="text"
-              placeholder="Email address"
-              required
-            />
+            <FormInput type="text" placeholder="Email address" required />
           </DivTxtField>
 
           {/* TODO: style the error message */}
@@ -68,8 +59,9 @@ function ForgotPassword() {
             Reset Password
           </InputSubmit>
         </Form>
-        <SignupNowAccount>Or<SignupNow href="/Login"> back to Login</SignupNow></SignupNowAccount>
-
+        <SignupNowAccount>
+          Or<SignupNow href="/Login"> back to Login</SignupNow>
+        </SignupNowAccount>
       </DivCenter>
     </LoginFormContainer>
   );

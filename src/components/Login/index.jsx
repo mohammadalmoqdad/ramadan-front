@@ -115,7 +115,7 @@ function Login() {
           </TitleLogin>
           <SignupNowAccount>
             Don’t have an account?{" "}
-            <SignupNow href="/Signup">Signup now!</SignupNow>
+            <SignupNow href="/signup">Signup now!</SignupNow>
           </SignupNowAccount>
         </HeadLogIn>
 
@@ -174,7 +174,7 @@ function Login() {
 
         {/*TODO: Uncomment when it's ready*/}
         {/*<SignupNowAccount>*/}
-        {/*  Or<SignupNow href="/ForgotPassword"> Forgot Password</SignupNow>*/}
+        {/*  Or<SignupNow href="/forgot-password"> Forgot Password</SignupNow>*/}
         {/*</SignupNowAccount>*/}
       </DivCenter>
     </LoginFormContainer>

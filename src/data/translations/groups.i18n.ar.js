@@ -5,7 +5,7 @@ export default {
   "delete-msg": "هل تريد حذف هذه المجموعة ؟",
   cancel: "إلغاء",
   joined: "تم الإنضمام",
-  participants: "عدد المشاركين",
+  participants: "المشاركون",
   edit: "تعديل",
   delete: "حذف",
   quit: "مغادرة",

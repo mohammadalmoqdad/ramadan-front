@@ -126,7 +126,6 @@ export default function TopStudents() {
           }
 
           let randomColor = Math.floor(Math.random() * (5 - 1) + 1);
-          console.log(randomColor + "66666666666666");
           return (
             <StudentPointsWrapper key={index}>
               <SecondaryWrapper>
@@ -151,7 +150,6 @@ export default function TopStudents() {
               </SecondaryWrapper>
 
               <WarbSlider style={{ display: `${visible}` }} id={index + 1}>
-                {console.log(index + 1 + "+ '=========================='")}
                 {/* <SecondaryWrapper>  style="@media (max-width:700) { display: `${visible}` }"*/}
                 <AverageWrapper>
                   <DayInAverageWrapper>12 Ramadan</DayInAverageWrapper>

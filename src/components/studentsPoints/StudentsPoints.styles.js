@@ -1,17 +1,23 @@
 import styled from "styled-components";
 import {
-    InputSubmit as DefaultInputSubmit,
-    DropdownList as DefaultDropdownList
+  InputSubmit as DefaultInputSubmit,
+  DropdownList as DefaultDropdownList,
 } from "../shared/styles";
 
 export default styled.div`
   display: flex;
   bottom: 2rem;
   position: relative;
-  background: linear-gradient(120deg, #2980b9, #2980b9);
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  flex-direction: column;
+  width: 80%;
+  margin: 2rem auto;
+
+  @media (max-width: 500px) {
+    width: 90%;
+  }
 `;
 
 export const PointShow = styled.div`
@@ -68,14 +74,13 @@ export const ChartsContainer = styled.div`
 `;
 
 export const SelectInputContainer = styled.div`
-display: flex;
-gap:4rem;
-width:100%;
-@media(max-width:1100px){
-  flex-direction: column;
-  gap:0rem;
-}
-}
+  display: flex;
+  gap: 4rem;
+  width: 100%;
+  @media (max-width: 1100px) {
+    flex-direction: column;
+    gap: 0rem;
+  }
 `;
 
 export const DivCenter = styled.div`
@@ -146,8 +151,7 @@ export const H3Login = styled.h3`
   }
 `;
 
-export const Span = styled.span`
-`;
+export const Span = styled.span``;
 
 export const InputSubmit = styled(DefaultInputSubmit)`
   outline: none;

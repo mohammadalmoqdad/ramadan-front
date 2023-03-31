@@ -48,7 +48,7 @@ export default function Standards() {
 
   useEffect(() => {
     if (!cookie.load("token")) {
-      navigate("/login", { state: { redirectTo: "/Standards" } });
+      navigate("/login", { state: { redirectTo: "/contest-criteria" } });
     }
 
     setLoading(true);

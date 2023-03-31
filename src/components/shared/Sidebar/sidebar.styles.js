@@ -1,75 +1,71 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { colors } from "styles";
 
 export const SideBarContainer = styled.div`
   animation-duration: 0.2s;
-  top: 5rem;
-  background-color: white;
-  font-family: 'Noto Kufi Arabic', sans-serif !important;
+  background-color: ${colors.warmWheat};
   height: 100%;
-  box-shadow: 2px 19px 10px 2px #00000063;
   text-align: center;
-  color: lightgray;
-  right: 0;
-  width: 15%;
-  @media(max-width:1000px){ 
-    width: 20%;
-  }
-  @media(max-width:750px){ 
-    width: 25%;
-  }
-@media (max-width:550px) {
-  display: none;
-}
-position: fixed;
-  right: 0;
-`;
+  border-radius: 1.5rem;
+  width: 19.0625rem;
 
-export const UserInfoContainer = styled.div`
-  display: ${({ isSidebarCollapsed }) => {
-    if (isSidebarCollapsed === true) return "none";
-    if (isSidebarCollapsed === false) return "flex";
-    return "flex";
-  }};
-  justify-content: space-around;
-  flex-direction: row-reverse;
-  align-items: center;
-`;
+  & svg {
+    min-width: 1.2rem;
+  }
 
-export const Username = styled.label`
-  width:100%;
-  border-bottom: 1px solid lightgray;
-  padding: 0.5rem;
-  color: #213c64;
-  font-size: 1.1rem;
-  font-weight: bold;
+  @media (max-width: 1000px) and (min-width: 750px) {
+    & span {
+      display: none;
+    }
+    width: fit-content;
+    text-align: center;
+  }
+
+  @media (max-width: 750px) {
+    display: none;
+  }
 `;
 
 export const MenuContainer = styled.div`
   width: 100%;
 `;
 
-export const MenuLink = styled(NavLink)`
+export const WirdLogoContainer = styled.div`
+  padding: 1rem;
+`;
+
+export const MenuLink = styled(Link)`
   display: flex;
   text-decoration: none;
   justify-content: flex-end;
+  border-radius: 0.75rem;
   align-items: center;
-  color: #213c64;
+  color: ${colors.darkGrey};
   white-space: nowrap;
-  width: 100%;
+  width: 85%;
   height: 3.063rem;
   padding: 0.5rem 0.8rem;
+  flex-direction: var(--flex-direction);
+  font-weight: 700;
+  text-align: var(--text-align);
+  gap: 1rem;
+  margin: 0.5rem auto;
+  font-family: var(--font-family-main);
+  font-size: 1rem;
+
   :hover {
-    background-color: #f4b069;
-    color: white;
+    background-color: ${colors.lightRed};
+    color: ${colors.black};
   }
   :focus {
-    background-color: #f4b069;
-    color: white;
+    background-color: ${colors.lightRed};
+    color: ${colors.black};
   }
-  > svg {
-    width: 1.4rem;
-    margin-left: 0.5rem;
+  @media (max-width: 1000px) {
+    font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
   }
 `;
 
@@ -80,7 +76,6 @@ export const MenuItem = styled.span`
     return "";
   }};
   cursor: pointer;
-  background-color: inherit;
   padding: 0;
   border: none;
   width: 100%;

@@ -1,17 +1,17 @@
 export default {
-  students: "المشاركين",
+  "accepted-participants": "المشاركون",
   reject: "حذف",
   addParticipantManually: "إضافة مشترك يدوياً",
-  deactivatedStudents: "المشاركين غير المفعلين",
-  rejectedParticipants: "المشاركين المرفوضين",
+  deactivatedStudents: "المشاركون غير المفعلين",
+  rejectedParticipants: "المشاركون المرفوضون",
   show: "عرض",
-  deactivate: "الغاء التفعيل",
+  deactivate: "إلغاء التفعيل",
   "set-admin": "تعيين كمسؤول",
   "set-super-admin": "تعيين كمسؤول رئيسي",
   "change-password": "تغيير كلمة المرور",
-  "enter-new-password": "ادخل كلمة مرور جديدة",
+  "enter-new-password": "أدخل كلمة مرور جديدة",
   "confirm-new-password": "تأكيد كلمة المرور الجديدة",
   reactive: "إعادة تفعيل",
   "unmatched-passwords": "كلمتا المرور ليستا متطابقتين",
-  "reset-password-failed-msg":"لم يتم إعادة تعيين كلمة المرور"
+  "reset-password-failed-msg": "لم يتم إعادة تعيين كلمة المرور",
 };

@@ -106,7 +106,7 @@ export const ParticipantsNumbers = styled.div`
   justify-content: flex-start;
 
   @media (max-width: 31.25rem) {
-    padding: 0.75rem;
+    padding: 1rem 0.75rem;
     gap: 0.125rem;
     justify-content: center;
   }
@@ -189,12 +189,11 @@ export const MemberImgsAndNumNumbers = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 0rem;
-  gap: 0.75rem;
+  gap: 0;
 
   width: 8.875rem;
   height: 2.25rem;
   @media (max-width: 31.25rem) {
-    gap: 0.125rem;
   }
 `;
 
@@ -202,12 +201,13 @@ export const MembersImgs = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 0rem;
+  padding: 0;
   position: relative;
   width: 6rem;
   height: 2.25rem;
   @media (max-width: 31.25rem) {
     align-items: center;
+    width: 12rem;
   }
 `;
 
@@ -250,7 +250,7 @@ export const MembersImg = styled.div`
 
   color: #000000;
 
-  @media (max-width: 31.25rem) {
+  @media (max-width: 500px) {
     border-radius: 0.5rem;
     width: 1.875rem;
     height: 1.875rem;
