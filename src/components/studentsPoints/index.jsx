@@ -20,6 +20,7 @@ import TableData from "./table";
 import cookie from "react-cookies";
 import { useNavigate } from "react-router-dom";
 import Loader from "../Loader";
+import MyOngoingContestTab from "components/shared/MyOngoingContestTab";
 
 export default function StudentsPoints() {
   const [Students, setStudents] = useState(null);
@@ -65,6 +66,7 @@ export default function StudentsPoints() {
 
   return (
     <LoginFormContainer>
+      <MyOngoingContestTab />
       <PointShow>
         <LoginForm>
           {Students?.length === 0 || !Students ? (

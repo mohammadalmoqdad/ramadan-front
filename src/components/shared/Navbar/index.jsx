@@ -91,10 +91,6 @@ function Nav({ changeTheme, theme }) {
                   {mapRoutesToPagesNames.hasOwnProperty(pathname)
                     ? t(mapRoutesToPagesNames[pathname])
                     : ""}
-                  {console.log(
-                    "mapRoutesToPagesNames.hasOwnProperty(pathname)",
-                    pathname
-                  )}
                 </PageTitle>
               </LeftNavItems>
               <RightNavItems>

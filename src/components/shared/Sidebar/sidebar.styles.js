@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { colors } from "styles";
 
 export const SideBarContainer = styled.div`
@@ -35,7 +35,7 @@ export const WirdLogoContainer = styled.div`
   padding: 1rem;
 `;
 
-export const MenuLink = styled(NavLink)`
+export const MenuLink = styled(Link)`
   display: flex;
   text-decoration: none;
   justify-content: flex-end;
